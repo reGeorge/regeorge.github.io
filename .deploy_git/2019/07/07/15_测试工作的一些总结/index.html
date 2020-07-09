@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="reGeorge" />
+
+
+
+<meta name="description" content="手工测试测试流程规范
+产品从立项到发布要经历的流程
+
+立项流程：收集需求（用户、销售、领导等）-&amp;gt;立项（产品经理）-&amp;gt;决策（领导）
+设计阶段：需求澄清（产品经理）-&amp;gt;产品设计（UI、架构）-&amp;gt;开发story-&amp;gt;测试方案
+开发&amp;amp;转测：进度把控-风险评估
+客户验收：结项
+
+
+测试的职责
+
+输出测试设计和测试用例并由相关人员一起评审（BA，开发，项目经理，测试）
+执">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试工作的一些总结">
+<meta property="og:url" content="http://regeorge.github.io/2019/07/07/15_测试工作的一些总结/index.html">
+<meta property="og:site_name" content="reGeorge">
+<meta property="og:description" content="手工测试测试流程规范
+产品从立项到发布要经历的流程
+
+立项流程：收集需求（用户、销售、领导等）-&amp;gt;立项（产品经理）-&amp;gt;决策（领导）
+设计阶段：需求澄清（产品经理）-&amp;gt;产品设计（UI、架构）-&amp;gt;开发story-&amp;gt;测试方案
+开发&amp;amp;转测：进度把控-风险评估
+客户验收：结项
+
+
+测试的职责
+
+输出测试设计和测试用例并由相关人员一起评审（BA，开发，项目经理，测试）
+执">
+<meta property="og:updated_time" content="2020-02-10T12:50:10.889Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="测试工作的一些总结">
+<meta name="twitter:description" content="手工测试测试流程规范
+产品从立项到发布要经历的流程
+
+立项流程：收集需求（用户、销售、领导等）-&amp;gt;立项（产品经理）-&amp;gt;决策（领导）
+设计阶段：需求澄清（产品经理）-&amp;gt;产品设计（UI、架构）-&amp;gt;开发story-&amp;gt;测试方案
+开发&amp;amp;转测：进度把控-风险评估
+客户验收：结项
+
+
+测试的职责
+
+输出测试设计和测试用例并由相关人员一起评审（BA，开发，项目经理，测试）
+执">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>测试工作的一些总结 | reGeorge</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="http://upload.jianshu.io/users/upload_avatars/1894726/684463e7598e?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">reGeorge</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签</a></li>
+                        
+                            <li><a href="/CV/resume/resume.html">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bat/">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结-android/">总结,android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">reGeorge</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="http://upload.jianshu.io/users/upload_avatars/1894726/684463e7598e?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">reGeorge</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签</a></li>
+                
+                    <li><a href="/CV/resume/resume.html">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-15_测试工作的一些总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/07/15_测试工作的一些总结/" class="article-date">
+      <time datetime="2019-07-07T12:32:18.000Z" itemprop="datePublished">2019-07-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      测试工作的一些总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结-android/">总结,android</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="手工测试"><a href="#手工测试" class="headerlink" title="手工测试"></a>手工测试</h3><h4 id="测试流程规范"><a href="#测试流程规范" class="headerlink" title="测试流程规范"></a>测试流程规范</h4><ol>
+<li><p>产品从立项到发布要经历的流程</p>
+<ol>
+<li>立项流程：收集需求（用户、销售、领导等）-&gt;立项（产品经理）-&gt;决策（领导）</li>
+<li>设计阶段：需求澄清（产品经理）-&gt;产品设计（UI、架构）-&gt;开发story-&gt;测试方案</li>
+<li>开发&amp;转测：进度把控-风险评估</li>
+<li>客户验收：结项</li>
+</ol>
+</li>
+<li><p>测试的职责</p>
+<ol>
+<li>输出测试设计和测试用例并由相关人员一起评审（BA，开发，项目经理，测试）</li>
+<li>执行测试用例</li>
+<li>缺陷跟踪</li>
+<li>输出测试报告、测试总结等</li>
+</ol>
+</li>
+</ol>
+<h4 id="测试人员需要掌握的技能"><a href="#测试人员需要掌握的技能" class="headerlink" title="测试人员需要掌握的技能"></a>测试人员需要掌握的技能</h4><ol>
+<li><p>产品从立项到发布的各个流程中，测试需要关注的地方</p>
+<ol>
+<li>立项流程中，收集需求这个环节，测试在执行用例期间遇到非bug类的体验问题要本地记录，并汇总反馈给产品经理</li>
+<li>设计阶段的评审环节，测试要多从用户体验的角度提出自己的观点和疑问（测试比开发更接近用户，比销售更熟悉产品的实现）</li>
+<li>测试方案、测试用例、测试执行、缺陷跟踪是测试的核心职责<ol>
+<li>测试方案要覆盖全面（测试目的、测试准备、测试分工、测试范围、测试风险）</li>
+<li>测试用例要按照功能测试设计将操作步骤、检查点逐一细化</li>
+<li>测试执行要覆盖到测试用例的每一个测试步骤和检查点</li>
+<li>缺陷跟踪要在回归问题场景的基础上，弄清bug的根因和修改方案，回归测试要考虑到是否需要补充测试方案和测试用例</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>参考：<a href="https://blog.csdn.net/alice_tl/article/details/80218342">怎样制定一个合格的测试方案</a></p>
+<ol>
+<li><p>常见客户端测试工具的使用</p>
+<p> ADB<br>参考：</p>
+<p> SqliteStudio<br>参考：</p>
+<p> tcpdump<br>参考:<a href="todo">tcpdump的使用</a></p>
+<p> wireshark<br>参考:<a href="todo">wireshark的使用</a></p>
+</li>
+</ol>
+<h3 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h3><ol>
+<li><p>常见的自动化测试框架</p>
+<ol>
+<li>Appium和Selenium了解</li>
+<li>开源的自动化框架上手</li>
+</ol>
+</li>
+<li><p>自动化脚本编写语言</p>
+<p> java和python</p>
+</li>
+<li><p>自动化构建的思路</p>
+<ol>
+<li>从脚本到aw，再到框架</li>
+<li>自动构建任务，远程执行</li>
+<li>测试报告的生成</li>
+</ol>
+</li>
+<li><p>从手工用例到自动化用例转化的注意点</p>
+<ol>
+<li>自动化用例覆盖范围的评审</li>
+<li>自动化用例执行失败用例的定位</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/05/26/11_让你的Hexo支持mermaid/">
+                    让你的hexo支持mermaid
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#手工测试"><span class="toc-text">手工测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#测试流程规范"><span class="toc-text">测试流程规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试人员需要掌握的技能"><span class="toc-text">测试人员需要掌握的技能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动化测试"><span class="toc-text">自动化测试</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/05/26/11_让你的Hexo支持mermaid/" title="下一篇: 让你的hexo支持mermaid">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/07/15_测试工作的一些总结/">测试工作的一些总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26/11_让你的Hexo支持mermaid/">让你的hexo支持mermaid</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/10_安卓客户端取日志脚本/">安卓客户端取日志脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/01/09_ADB常用命令/">ADB常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/05/08_使用selenium-wget实现自动下载图片/">使用selenium+wget实现自动下载图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/21/07_Markdown的使用/">Markdown的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/06_百日囚徒问题/">百日囚徒问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/20/05_一个简单的备忘录app/">一个简单的备忘录app</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/29/04_GBK和UTF-8的区别/">遇到乱码问题的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/26/03_冒泡排序算法/">冒泡排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/14/02_git常用命令/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/01_如何搭建个人博客/">如何搭建个人博客</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2020 reGeorge
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
