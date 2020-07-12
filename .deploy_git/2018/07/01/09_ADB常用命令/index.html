@@ -15,22 +15,91 @@
 
 
 
-<meta name="description" content="获取应用包名（打开应用）adb shell &amp;quot;dumpsys window | grep mCurrentFocus&amp;quot;
-获取应用安装路径adb shell pm path 包名
-获取应用版本号adb shell &amp;quot;pm dump 包名 | grep &amp;quot;versionName&amp;quot;&amp;quot;">
+<meta name="description" content="adb
+命令
+含义
+
+
+
+
+adb shell
+adb shell “dumpsys window \
+grep mCurrentFocus”
+获取应用包名（打开应用）
+
+
+
+adb shell pm path 包名
+获取应用安装路径
+
+
+
+adb shell “pm dump 包名
+获取应用版本号
+
+
+
+adb shell “cat /system/build.prop
+获取手机系统信息（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ADB常用命令">
 <meta property="og:url" content="http://regeorge.github.io/2018/07/01/09_ADB常用命令/index.html">
 <meta property="og:site_name" content="reGeorge">
-<meta property="og:description" content="获取应用包名（打开应用）adb shell &amp;quot;dumpsys window | grep mCurrentFocus&amp;quot;
-获取应用安装路径adb shell pm path 包名
-获取应用版本号adb shell &amp;quot;pm dump 包名 | grep &amp;quot;versionName&amp;quot;&amp;quot;">
-<meta property="og:updated_time" content="2020-02-10T12:50:10.889Z">
+<meta property="og:description" content="adb
+命令
+含义
+
+
+
+
+adb shell
+adb shell “dumpsys window \
+grep mCurrentFocus”
+获取应用包名（打开应用）
+
+
+
+adb shell pm path 包名
+获取应用安装路径
+
+
+
+adb shell “pm dump 包名
+获取应用版本号
+
+
+
+adb shell “cat /system/build.prop
+获取手机系统信息（">
+<meta property="og:updated_time" content="2020-07-12T16:05:57.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ADB常用命令">
-<meta name="twitter:description" content="获取应用包名（打开应用）adb shell &amp;quot;dumpsys window | grep mCurrentFocus&amp;quot;
-获取应用安装路径adb shell pm path 包名
-获取应用版本号adb shell &amp;quot;pm dump 包名 | grep &amp;quot;versionName&amp;quot;&amp;quot;">
+<meta name="twitter:description" content="adb
+命令
+含义
+
+
+
+
+adb shell
+adb shell “dumpsys window \
+grep mCurrentFocus”
+获取应用包名（打开应用）
+
+
+
+adb shell pm path 包名
+获取应用安装路径
+
+
+
+adb shell “pm dump 包名
+获取应用版本号
+
+
+
+adb shell “cat /system/build.prop
+获取手机系统信息（">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -262,36 +331,110 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h4 id="获取应用包名（打开应用）"><a href="#获取应用包名（打开应用）" class="headerlink" title="获取应用包名（打开应用）"></a>获取应用包名（打开应用）</h4><pre><code>adb shell &quot;dumpsys window | grep mCurrentFocus&quot;
-</code></pre><h4 id="获取应用安装路径"><a href="#获取应用安装路径" class="headerlink" title="获取应用安装路径"></a>获取应用安装路径</h4><pre><code>adb shell pm path 包名
-</code></pre><h4 id="获取应用版本号"><a href="#获取应用版本号" class="headerlink" title="获取应用版本号"></a>获取应用版本号</h4><pre><code>adb shell &quot;pm dump 包名 | grep &quot;versionName&quot;&quot;
-</code></pre><a id="more"></a>
-<h4 id="获取手机系统信息（-CPU，厂商名称等）"><a href="#获取手机系统信息（-CPU，厂商名称等）" class="headerlink" title="获取手机系统信息（ CPU，厂商名称等）"></a>获取手机系统信息（ CPU，厂商名称等）</h4><pre><code>adb shell &quot;cat /system/build.prop | grep &quot;product&quot;&quot;
-</code></pre><h4 id="获取手机系统版本"><a href="#获取手机系统版本" class="headerlink" title="获取手机系统版本"></a>获取手机系统版本</h4><pre><code>adb shell getprop ro.build.version.release
-</code></pre><h4 id="获取手机系统api版本"><a href="#获取手机系统api版本" class="headerlink" title="获取手机系统api版本"></a>获取手机系统api版本</h4><pre><code>adb shell getprop ro.build.version.sdk
-</code></pre><h4 id="获取手机设备型号"><a href="#获取手机设备型号" class="headerlink" title="获取手机设备型号"></a>获取手机设备型号</h4><pre><code>adb -d shell getprop ro.product.model
-</code></pre><h4 id="获取手机厂商名称"><a href="#获取手机厂商名称" class="headerlink" title="获取手机厂商名称"></a>获取手机厂商名称</h4><pre><code>adb -d shell getprop ro.product.brand
-</code></pre><h4 id="获取手机的序列号"><a href="#获取手机的序列号" class="headerlink" title="获取手机的序列号"></a>获取手机的序列号</h4><pre><code>有两种方式
-adb get-serialno
-adb shell getprop ro.serialno
-</code></pre><h4 id="获取手机的IMEI"><a href="#获取手机的IMEI" class="headerlink" title="获取手机的IMEI"></a>获取手机的IMEI</h4><pre><code>有三种方式，由于手机和系统的限制，不一定获取到
-adb shell dumpsys iphonesubinfo
-其中Device ID即为IMEI号
+        <table>
+<thead>
+<tr>
+<th style="text-align:center">adb</th>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">adb shell</td>
+<td>adb shell “dumpsys window \</td>
+<td>grep mCurrentFocus”</td>
+<td>获取应用包名（打开应用）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell pm path 包名</td>
+<td>获取应用安装路径</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “pm dump 包名</td>
+<td>获取应用版本号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “cat /system/build.prop</td>
+<td>获取手机系统信息（ CPU，厂商名称等）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.release</td>
+<td>获取手机系统版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.sdk</td>
+<td>获取手机系统api版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.model</td>
+<td>获取手机设备型号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.brand</td>
+<td>获取手机厂商名称</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.serialno</td>
+<td>获取手机的序列号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell dumpsys iphonesubinfo</td>
+<td>获取手机的IMEI</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /sys/class/net/wlan/address</td>
+<td>获取手机mac地址</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /proc/meminfo</td>
+<td>获取手机内存信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df</td>
+<td>获取手机存储信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /mnt/shell/emulated</td>
+<td>获取手机内部存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /storage/sdcard</td>
+<td>获取sdcard存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取手机分辨率</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell wm density</td>
+<td>获取手机物理密度</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取当前界面对应的活动和包名</td>
+</tr>
+</tbody>
+</table>
+<p>待刷新</p>
 
-adb shell getprop gsm.baseband.imei
-service call iphonesubinfo 
-此种方式，需要自己处理获取的信息得到
-</code></pre><h4 id="获取手机mac地址"><a href="#获取手机mac地址" class="headerlink" title="获取手机mac地址"></a>获取手机mac地址</h4><pre><code>adb shell cat /sys/class/net/wlan/address
-adb shell cat /sys/class/net/wlan0/address
-</code></pre><h4 id="获取手机内存信息"><a href="#获取手机内存信息" class="headerlink" title="获取手机内存信息"></a>获取手机内存信息</h4><pre><code>adb shell cat /proc/meminfo
-</code></pre><h4 id="获取手机存储信息"><a href="#获取手机存储信息" class="headerlink" title="获取手机存储信息"></a>获取手机存储信息</h4><pre><code>adb shell df
-</code></pre><h4 id="获取手机内部存储信息："><a href="#获取手机内部存储信息：" class="headerlink" title="获取手机内部存储信息："></a>获取手机内部存储信息：</h4><pre><code>魅族手机： adb shell df /mnt/shell/emulated
-其他： adb shell df /data
-</code></pre><h4 id="获取sdcard存储信息："><a href="#获取sdcard存储信息：" class="headerlink" title="获取sdcard存储信息："></a>获取sdcard存储信息：</h4><pre><code>adb shell df /storage/sdcard
-</code></pre><h4 id="获取手机分辨率"><a href="#获取手机分辨率" class="headerlink" title="获取手机分辨率"></a>获取手机分辨率</h4><pre><code>adb shell &quot;dumpsys window | grep mUnrestrictedScreen&quot;
-</code></pre><h4 id="获取手机物理密度"><a href="#获取手机物理密度" class="headerlink" title="获取手机物理密度"></a>获取手机物理密度</h4><pre><code>adb shell wm density
-</code></pre><h4 id="获取当前界面对应的活动和包名"><a href="#获取当前界面对应的活动和包名" class="headerlink" title="获取当前界面对应的活动和包名"></a>获取当前界面对应的活动和包名</h4><pre><code>adb shell &quot;dumpsys window | grep mCurrentFocus&quot;
-</code></pre>
       
     </div>
     
@@ -323,7 +466,7 @@ adb shell cat /sys/class/net/wlan0/address
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#获取应用包名（打开应用）"><span class="toc-text">获取应用包名（打开应用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取应用安装路径"><span class="toc-text">获取应用安装路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取应用版本号"><span class="toc-text">获取应用版本号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机系统信息（-CPU，厂商名称等）"><span class="toc-text">获取手机系统信息（ CPU，厂商名称等）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机系统版本"><span class="toc-text">获取手机系统版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机系统api版本"><span class="toc-text">获取手机系统api版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机设备型号"><span class="toc-text">获取手机设备型号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机厂商名称"><span class="toc-text">获取手机厂商名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机的序列号"><span class="toc-text">获取手机的序列号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机的IMEI"><span class="toc-text">获取手机的IMEI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机mac地址"><span class="toc-text">获取手机mac地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机内存信息"><span class="toc-text">获取手机内存信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机存储信息"><span class="toc-text">获取手机存储信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机内部存储信息："><span class="toc-text">获取手机内部存储信息：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取sdcard存储信息："><span class="toc-text">获取sdcard存储信息：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机分辨率"><span class="toc-text">获取手机分辨率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取手机物理密度"><span class="toc-text">获取手机物理密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取当前界面对应的活动和包名"><span class="toc-text">获取当前界面对应的活动和包名</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -368,7 +511,7 @@ adb shell cat /sys/class/net/wlan0/address
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/07/15_测试工作的一些总结/">测试工作的一些总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26/11_让你的Hexo支持mermaid/">让你的hexo支持mermaid</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/10_安卓客户端取日志脚本/">安卓客户端取日志脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/01/09_ADB常用命令/">ADB常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/05/08_使用selenium-wget实现自动下载图片/">使用selenium+wget实现自动下载图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/21/07_Markdown的使用/">Markdown的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/06_百日囚徒问题/">百日囚徒问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/20/05_一个简单的备忘录app/">一个简单的备忘录app</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/29/04_GBK和UTF-8的区别/">遇到乱码问题的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/26/03_冒泡排序算法/">冒泡排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/14/02_git常用命令/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/01_如何搭建个人博客/">如何搭建个人博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/07/15_测试工作的一些总结/">测试工作的一些总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/26/11_让你的Hexo支持mermaid/">让你的hexo支持mermaid</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/10_安卓客户端取日志脚本/">安卓客户端取日志脚本</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/01/09_ADB常用命令/">ADB常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/05/08_使用selenium-wget实现自动下载图片/">使用selenium+wget实现自动下载图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/21/07_Markdown的使用/">Markdown的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/06_百日囚徒问题/">百日囚徒问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/20/05_基于android实现一个简单的备忘录app/">基于android实现一个简单的备忘录app</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/29/04_GBK和UTF-8的区别/">遇到乱码问题的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/26/03_冒泡排序算法/">冒泡排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/14/02_git常用命令/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/09/01_如何搭建个人博客/">如何搭建个人博客</a></li></ul>
 
 
 

@@ -509,11 +509,110 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h4 id="获取应用包名（打开应用）"><a href="#获取应用包名（打开应用）" class="headerlink" title="获取应用包名（打开应用）"></a>获取应用包名（打开应用）</h4><pre><code>adb shell &quot;dumpsys window | grep mCurrentFocus&quot;
-</code></pre><h4 id="获取应用安装路径"><a href="#获取应用安装路径" class="headerlink" title="获取应用安装路径"></a>获取应用安装路径</h4><pre><code>adb shell pm path 包名
-</code></pre><h4 id="获取应用版本号"><a href="#获取应用版本号" class="headerlink" title="获取应用版本号"></a>获取应用版本号</h4><pre><code>adb shell &quot;pm dump 包名 | grep &quot;versionName&quot;&quot;
-</code></pre>
-          
+        <table>
+<thead>
+<tr>
+<th style="text-align:center">adb</th>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">adb shell</td>
+<td>adb shell “dumpsys window \</td>
+<td>grep mCurrentFocus”</td>
+<td>获取应用包名（打开应用）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell pm path 包名</td>
+<td>获取应用安装路径</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “pm dump 包名</td>
+<td>获取应用版本号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “cat /system/build.prop</td>
+<td>获取手机系统信息（ CPU，厂商名称等）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.release</td>
+<td>获取手机系统版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.sdk</td>
+<td>获取手机系统api版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.model</td>
+<td>获取手机设备型号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.brand</td>
+<td>获取手机厂商名称</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.serialno</td>
+<td>获取手机的序列号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell dumpsys iphonesubinfo</td>
+<td>获取手机的IMEI</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /sys/class/net/wlan/address</td>
+<td>获取手机mac地址</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /proc/meminfo</td>
+<td>获取手机内存信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df</td>
+<td>获取手机存储信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /mnt/shell/emulated</td>
+<td>获取手机内部存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /storage/sdcard</td>
+<td>获取sdcard存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取手机分辨率</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell wm density</td>
+<td>获取手机物理密度</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取当前界面对应的活动和包名</td>
+</tr>
+</tbody>
+</table>
+<p>待刷新</p>
+
       
     </div>
     
@@ -526,10 +625,6 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ADB/">ADB</a></li></ul>
     </div>
 
-      
-        <p class="article-more-link">
-          <a href="/2018/07/01/09_ADB常用命令/#more">阅读全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -742,10 +837,10 @@
 
 
   
-    <article id="post-05_一个简单的备忘录app" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-05_基于android实现一个简单的备忘录app" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/05/20/05_一个简单的备忘录app/" class="article-date">
+      <a href="/2017/05/20/05_基于android实现一个简单的备忘录app/" class="article-date">
       <time datetime="2017-05-20T12:13:59.000Z" itemprop="datePublished">2017-05-20</time>
 </a>
 
@@ -761,7 +856,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/20/05_一个简单的备忘录app/">一个简单的备忘录app</a>
+      <a class="article-title" href="/2017/05/20/05_基于android实现一个简单的备忘录app/">基于android实现一个简单的备忘录app</a>
     </h1>
   
 
@@ -789,7 +884,7 @@
 
       
         <p class="article-more-link">
-          <a href="/2017/05/20/05_一个简单的备忘录app/#more">阅读全文 >></a>
+          <a href="/2017/05/20/05_基于android实现一个简单的备忘录app/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
