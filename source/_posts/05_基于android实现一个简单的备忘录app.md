@@ -1,5 +1,5 @@
 ---
-title: 一个简单的备忘录app
+title: 基于android实现一个简单的备忘录app
 date: 2017-05-20 20:13:59
 tags: android
 ---
