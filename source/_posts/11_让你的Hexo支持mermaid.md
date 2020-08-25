@@ -22,6 +22,7 @@ tags: hexo
 参考文章：
 
     https://qsli.github.io/2017/01/01/markdown-mindmap/
+    https://github.com/HunterXuan/hexo-simple-mindmap
 
 
 #### 配置完成后，使用mermaid语法
@@ -71,3 +72,13 @@ gantt
         Create tests for renderer           :2d
         Add to mermaid                      :1d
 ```
+
+##### 脑图
+{% pullquote mindmap mindmap-md %}
+- [在 Hexo 中使用思维导图](https://hunterx.xyz/use-mindmap-in-hexo.html)
+  - 前言
+  - 操作指南
+    - 准备需要的文件
+    - 为主题添加 CSS/JS 文件
+  - 使用方法
+{% endpullquote %}
