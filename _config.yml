@@ -92,8 +92,8 @@ jsonContent:
 deploy:
   type: git
   repo: 
-    # github: git@github.com:reGeorge/regeorge.github.io.git,master
-    coding: git@git.coding.net:reGeorge/reGeorge.git,master
+    github: git@github.com:reGeorge/regeorge.github.io.git,master
+    coding: git@e.coding.net:reGeorge/reGeorge.git,master
   branch: master
 
 # mermaid chart
