@@ -159,8 +159,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -212,8 +210,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
                             
                         </ul>
             </nav>
@@ -385,7 +381,7 @@ if __name__ == &quot;__main__&quot;:
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#操作步骤"><span class="toc-text">操作步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境安装"><span class="toc-text">环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python脚本"><span class="toc-text">python脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载成功"><span class="toc-text">下载成功</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#操作步骤"><span class="toc-number">1.</span> <span class="toc-text">操作步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境安装"><span class="toc-number">2.</span> <span class="toc-text">环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python脚本"><span class="toc-number">3.</span> <span class="toc-text">python脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载成功"><span class="toc-number">4.</span> <span class="toc-text">下载成功</span></a></li></ol>
         
     </div>
     <style>
@@ -483,22 +479,6 @@ if __name__ == &quot;__main__&quot;:
     </div>
     
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 

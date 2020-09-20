@@ -40,7 +40,7 @@ since: 2016
 ## https://github.com/hexojs/hexo-generator-feed
 
 subnav:
-  # Email: "mailto:123@123.com"
+  # Email: "mailto:18351923906@163.com"
   #新浪微博: "sina weibo"
   # GitHub: "https://github.com/reGeorge"
   #V2EX: "#"
@@ -69,7 +69,7 @@ subnav:
   #CodePen: ""
   #Plunker: ""
   #Instagram: "#"
-  LOFTER: "http://regeorge.lofter.com/"
+  # LOFTER: "http://regeorge.lofter.com/"
   #Flickr: "#"
   #reddit: ""
   #Medium: ""
@@ -117,7 +117,7 @@ youyan:
 ## "5": show images form bg-1.jpg to bg-5.jpg in `/yelee/source/background/`
 ## "5": 显示`/yelee/source/background/`文件夹中 bg-1.jpg 到 bg-5.jpg 这5张图片
 ## "0": white-gray background | 淳朴灰白背景
-background_image: 5
+background_image: 0
 
 # Base Font Size | 字号调节
 base_font_size: 16  #px, 16 - 24
@@ -156,7 +156,7 @@ copyright: false
 # Table of contents | 文章目录
 toc:
   on: true
-  list_number: false # 目录序号
+  list_number: true # 目录序号
   max_depth: 3  # 1 - 6 (h1-h6) 目录最大级数
   nowrap: false # Keep title on same line | 目录标题不换行
 

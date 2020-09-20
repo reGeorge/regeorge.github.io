@@ -154,8 +154,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -207,8 +205,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
                             
                         </ul>
             </nav>
@@ -311,7 +307,7 @@ git revert %commitid%
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建本地仓库"><span class="toc-text">创建本地仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建本地分支"><span class="toc-text">创建本地分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看本地分支"><span class="toc-text">查看本地分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置远程仓库地址"><span class="toc-text">设置远程仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看已配置的远程仓库"><span class="toc-text">查看已配置的远程仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从远程仓库更新到本地分支"><span class="toc-text">从远程仓库更新到本地分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在未加入缓存区时回滚"><span class="toc-text">在未加入缓存区时回滚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将本文件夹内所有改动加入缓存区"><span class="toc-text">将本文件夹内所有改动加入缓存区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在加入缓存区时回滚"><span class="toc-text">在加入缓存区时回滚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将暂存区的改动提交到本地仓库"><span class="toc-text">将暂存区的改动提交到本地仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在提交仓库后回滚"><span class="toc-text">在提交仓库后回滚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将本地分支推送到远程仓库"><span class="toc-text">将本地分支推送到远程仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gitignore文件中写入不需要同步的文件夹路径"><span class="toc-text">.gitignore文件中写入不需要同步的文件夹路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo-deploy-命令"><span class="toc-text">hexo deploy 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FAQ"><span class="toc-text">FAQ</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建本地仓库"><span class="toc-number">1.</span> <span class="toc-text">创建本地仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建本地分支"><span class="toc-number">2.</span> <span class="toc-text">创建本地分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看本地分支"><span class="toc-number">3.</span> <span class="toc-text">查看本地分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置远程仓库地址"><span class="toc-number">4.</span> <span class="toc-text">设置远程仓库地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看已配置的远程仓库"><span class="toc-number">5.</span> <span class="toc-text">查看已配置的远程仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从远程仓库更新到本地分支"><span class="toc-number">6.</span> <span class="toc-text">从远程仓库更新到本地分支</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在未加入缓存区时回滚"><span class="toc-number">7.</span> <span class="toc-text">在未加入缓存区时回滚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将本文件夹内所有改动加入缓存区"><span class="toc-number">8.</span> <span class="toc-text">将本文件夹内所有改动加入缓存区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在加入缓存区时回滚"><span class="toc-number">9.</span> <span class="toc-text">在加入缓存区时回滚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将暂存区的改动提交到本地仓库"><span class="toc-number">10.</span> <span class="toc-text">将暂存区的改动提交到本地仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在提交仓库后回滚"><span class="toc-number">11.</span> <span class="toc-text">在提交仓库后回滚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将本地分支推送到远程仓库"><span class="toc-number">12.</span> <span class="toc-text">将本地分支推送到远程仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gitignore文件中写入不需要同步的文件夹路径"><span class="toc-number">13.</span> <span class="toc-text">.gitignore文件中写入不需要同步的文件夹路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo-deploy-命令"><span class="toc-number">14.</span> <span class="toc-text">hexo deploy 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FAQ"><span class="toc-number">15.</span> <span class="toc-text">FAQ</span></a></li></ol>
         
     </div>
     <style>
@@ -409,22 +405,6 @@ git revert %commitid%
     </div>
     
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 

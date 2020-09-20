@@ -157,8 +157,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -210,8 +208,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
                             
                         </ul>
             </nav>
@@ -409,7 +405,7 @@ private String getTime() {
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#增删查改的实现"><span class="toc-text">增删查改的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建主活动及布局文件"><span class="toc-text">创建主活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建数据库"><span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建添加备忘的活动及布局文件"><span class="toc-text">创建添加备忘的活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建查看备忘的活动及布局文件"><span class="toc-text">创建查看备忘的活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建修改备忘的活动及布局文件"><span class="toc-text">创建修改备忘的活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在Manifest文件中注册活动："><span class="toc-text">在Manifest文件中注册活动：</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#增删查改的实现"><span class="toc-number">1.</span> <span class="toc-text">增删查改的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建主活动及布局文件"><span class="toc-number">1.1.</span> <span class="toc-text">创建主活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建数据库"><span class="toc-number">1.2.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建添加备忘的活动及布局文件"><span class="toc-number">1.3.</span> <span class="toc-text">创建添加备忘的活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建查看备忘的活动及布局文件"><span class="toc-number">1.4.</span> <span class="toc-text">创建查看备忘的活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建修改备忘的活动及布局文件"><span class="toc-number">1.5.</span> <span class="toc-text">创建修改备忘的活动及布局文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在Manifest文件中注册活动："><span class="toc-number">1.6.</span> <span class="toc-text">在Manifest文件中注册活动：</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -507,22 +503,6 @@ private String getTime() {
     </div>
     
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 

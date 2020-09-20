@@ -157,8 +157,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -210,8 +208,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
                             
                         </ul>
             </nav>
@@ -348,7 +344,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-标题"><span class="toc-text">1.标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-text">三级标题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-无序列表"><span class="toc-text">2.无序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-有序列表"><span class="toc-text">3.有序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-链接"><span class="toc-text">4.链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-图片"><span class="toc-text">5.图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-引用"><span class="toc-text">6.引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-代码引用"><span class="toc-text">7.代码引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-表格"><span class="toc-text">8.表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-换行"><span class="toc-text">8. 换行</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-标题"><span class="toc-number">1.</span> <span class="toc-text">1.标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-number">1.1.</span> <span class="toc-text">三级标题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-无序列表"><span class="toc-number">2.</span> <span class="toc-text">2.无序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-有序列表"><span class="toc-number">3.</span> <span class="toc-text">3.有序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-链接"><span class="toc-number">4.</span> <span class="toc-text">4.链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-图片"><span class="toc-number">5.</span> <span class="toc-text">5.图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-引用"><span class="toc-number">6.</span> <span class="toc-text">6.引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-代码引用"><span class="toc-number">7.</span> <span class="toc-text">7.代码引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-表格"><span class="toc-number">8.</span> <span class="toc-text">8.表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-换行"><span class="toc-number">9.</span> <span class="toc-text">8. 换行</span></a></li></ol>
         
     </div>
     <style>
@@ -446,22 +442,6 @@
     </div>
     
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 
