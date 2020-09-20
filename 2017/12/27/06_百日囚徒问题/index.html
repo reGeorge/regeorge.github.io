@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="reGeorge">
 <meta property="og:description" content="有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。
 一天，全体囚徒大会，国王大赦，给大家一个机会：如果某一天，某个囚徒能够明确表示，所有的囚徒都已经被放过风了，而且的确如此，那么所有囚徒释放；如果仍有囚徒未被放">
-<meta property="og:updated_time" content="2020-09-20T14:07:38.416Z">
+<meta property="og:updated_time" content="2020-09-20T14:22:00.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百日囚徒问题">
 <meta name="twitter:description" content="有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。
@@ -157,8 +157,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -210,8 +208,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
                             
                         </ul>
             </nav>
@@ -413,7 +409,7 @@ while 1==1:
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#日志"><span class="toc-text">日志</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-number">2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#日志"><span class="toc-number">3.</span> <span class="toc-text">日志</span></a></li></ol>
         
     </div>
     <style>
@@ -511,22 +507,6 @@ while 1==1:
     </div>
     
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 

@@ -24,7 +24,7 @@
 <meta property="og:description" content="操作步骤unsplash.com是一个免费下载高清图片的网站，我们可以使用web自动化工具selenium来批量获取该网站主页上提供的海量图片下载链接，并使用强大的多线程下载工具wget下载这些图片。
 另外，selenium需要配合chromedriver.exe来操控谷歌浏览器，我们可以通过搜索下载对应浏览器版本的chromedriver.exe">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1894726-f5a17a997569edfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-09-20T14:07:38.416Z">
+<meta property="og:updated_time" content="2020-09-20T14:22:00.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用selenium+wget实现自动下载图片">
 <meta name="twitter:description" content="操作步骤unsplash.com是一个免费下载高清图片的网站，我们可以使用web自动化工具selenium来批量获取该网站主页上提供的海量图片下载链接，并使用强大的多线程下载工具wget下载这些图片。
@@ -159,8 +159,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <a class="fa LOFTER" href="http://regeorge.lofter.com/" title="LOFTER"></a>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -212,8 +210,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <a class="fa LOFTER" target="_blank" href="http://regeorge.lofter.com/" title="LOFTER"></a>
                             
                         </ul>
             </nav>
@@ -385,7 +381,7 @@ if __name__ == &quot;__main__&quot;:
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#操作步骤"><span class="toc-text">操作步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境安装"><span class="toc-text">环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python脚本"><span class="toc-text">python脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载成功"><span class="toc-text">下载成功</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#操作步骤"><span class="toc-number">1.</span> <span class="toc-text">操作步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境安装"><span class="toc-number">2.</span> <span class="toc-text">环境安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python脚本"><span class="toc-number">3.</span> <span class="toc-text">python脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载成功"><span class="toc-number">4.</span> <span class="toc-text">下载成功</span></a></li></ol>
         
     </div>
     <style>
@@ -483,22 +479,6 @@ if __name__ == &quot;__main__&quot;:
     </div>
     
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
 
 
 
