@@ -1,4 +1,4 @@
-### 魏斌的简历  <img src=".\500k.jpg" height = "110" div align="right"/>
+### 魏斌的简历  <img src=".\90k.jpg" height = "110" div align="right"/>
 
 
 
