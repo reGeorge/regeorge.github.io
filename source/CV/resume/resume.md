@@ -1,4 +1,5 @@
-### 魏斌的简历  <img src=".\90k.jpg" height = "110" div align="right"/>
+### 魏斌的简历  <img src=".\90k.jpg" height = "90" div align="right"/>
+
 
 
 
@@ -43,4 +44,4 @@
 - 对体验类问题敏感度较高，能在早期的需求澄清和开发设计阶段发现并提出部分缺陷
 - 有较好的团队合作意识，能够积极拉通产品SE开发等角色推动问题解决
 - 有较强的动手能力以及学习能力，喜欢写一些提高工作效率的脚本，乐于分享经验总结
-- 技术博客: http://ryxd52.coding-pages.com/
+- 技术博客: https://https://regeorge.github.io/
