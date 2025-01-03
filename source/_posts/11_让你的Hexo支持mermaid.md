@@ -5,10 +5,32 @@ tags: hexo
 ---
 
 #### mermaid配置方法
-1. npm安装插件
-2. blog根目录config文件中添加配置
-3. 主题文件中添加过滤标签
-4. 补充：blog根目录中package.json文件中添加依赖（参考文章中没有提到）
+
+Mermaid是一个用于生成流程图、时序图等图表的JavaScript库。要在Hexo中使用它,需要以下步骤:
+
+1. npm安装mermaid渲染插件:
+
+```bash
+npm install hexo-filter-mermaid-diagrams --save
+```
+
+2. 在Hexo博客的根目录下,修改`_config.yml`文件,添加以下配置:
+
+```yaml
+mermaid:
+  enable: true
+  theme: default
+```
+
+3. 在需要插入图表的Markdown文件中,使用Mermaid语法插入图表。例如:
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
 
 <!--more-->
 

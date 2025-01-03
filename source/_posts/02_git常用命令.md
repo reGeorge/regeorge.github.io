@@ -60,3 +60,45 @@ tags: git
 
 参考：http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/
 	  http://blog.csdn.net/shiren1118/article/details/7761203
+
+#### 查看提交历史
+    git log
+
+#### 查看简洁的提交历史
+    git log --oneline
+
+#### 查看文件的修改历史
+    git blame <file>
+
+#### 查看工作目录状态
+    git status
+
+#### 比较工作目录和暂存区的差异
+    git diff
+
+#### 比较暂存区和最后一次提交的差异
+    git diff --cached
+
+#### 创建并切换到新分支
+    git checkout -b <branch_name>
+
+#### 合并分支
+    git merge <branch_name>
+
+#### 删除本地分支
+    git branch -d <branch_name>
+
+#### 删除远程分支
+    git push origin --delete <branch_name>
+
+#### 暂存当前更改以便切换分支
+    git stash
+
+#### 恢复暂存的更改
+    git stash pop
+
+#### 查看所有暂存的更改
+    git stash list
+
+#### 清除所有暂存的更改
+    git stash clear
