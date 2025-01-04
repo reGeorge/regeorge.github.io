@@ -50,6 +50,47 @@ tags: git
 #### hexo deploy 命令
 在使用hexo搭建博客时，blog目录下有一个.git文件夹，而.deploy_git文件夹内的.git文件夹又对应了另一个仓库,hexo d命令正是将此目录下的仓库推送到远程仓库从而实现更新博客的
 
+#### Hexo 常用部署命令详解
+
+1. `hexo g` (hexo generate)
+- 作用：生成静态文件
+- 原理：
+  - 读取 source 目录下的文件（主要是 markdown）
+  - 根据主题模板将内容渲染成 HTML
+  - 生成的静态文件存放在 public 目录
+  - 包含 HTML、CSS、JavaScript 等资源文件
+
+2. `hexo s` (hexo server)
+- 作用：启动本地预览服务器
+- 原理：
+  - 启动一个 Node.js 服务器
+  - 默认监听 4000 端口
+  - 将 public 目录作为网站根目录
+  - 支持实时预览（修改文件后自动更新）
+
+3. `hexo d` (hexo deploy)
+- 作用：部署网站到远程服务器
+- 原理：
+  - 首先将 public 目录下的文件复制到 .deploy_git 目录
+  - 在 .deploy_git 目录初始化 Git 仓库（如果不存在）
+  - 添加远程仓库（通常是 GitHub Pages）
+  - 提交所有文件并推送到远程仓库
+
+4. `hexo s -g`
+- 作用：生成静态文件并启动预览服务器
+- 原理：
+  - 相当于顺序执行 hexo g 和 hexo s
+  - 生成的文件存在内存中，服务器关闭后不保存
+  - 用于本地快速预览效果
+
+5. `hexo g -d`
+- 作用：生成静态文件并立即部署
+- 原理：
+  - 相当于顺序执行 hexo g 和 hexo d
+  - 先生成静态文件到 public 目录
+  - 然后立即部署到远程服务器
+  - 常用于确认内容无误后的发布
+
 #### FAQ
 
 - Q1：在github上创建仓库，在本地新建仓库并push产生冲突
