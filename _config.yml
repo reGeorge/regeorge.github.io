@@ -92,9 +92,9 @@ jsonContent:
 deploy:
   type: git
   repo: 
-    github: git@github.com:reGeorge/regeorge.github.io.git,master
+    github: git@github.com:reGeorge/regeorge.github.io.git
     # coding: git@e.coding.net:reGeorge/reGeorge.git,master  废弃了
-  branch: master
+  branch: gh-pages
 
 # mermaid chart
 mermaid: ## mermaid url https://github.com/knsv/mermaid
