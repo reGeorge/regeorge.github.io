@@ -76,7 +76,7 @@
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: 
+        search: true
     }
 </script>
 
@@ -110,6 +110,13 @@
 
         
 
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
         
 
 
@@ -284,7 +291,6 @@
 
 
 
-
   
     <article id="post-06_百日囚徒问题" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -352,7 +358,6 @@
 
 
 
-
   
     <article id="post-05_基于android实现一个简单的备忘录app" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -410,7 +415,6 @@
   </div>
   
 </article>
-
 
 
 
@@ -491,7 +495,6 @@
 
 
 
-
   
     <article id="post-03_冒泡排序算法" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -549,7 +552,6 @@
   </div>
   
 </article>
-
 
 
 
@@ -625,7 +627,6 @@
 
 
 
-
   
     <article id="post-01_如何搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -686,7 +687,6 @@
   </div>
   
 </article>
-
 
 
 
