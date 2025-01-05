@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/" rel="tag">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bat/" rel="tag">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93-android/" rel="tag">总结,android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/" rel="tag">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bat/" rel="tag">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" rel="tag">微信公众号</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93-android/" rel="tag">总结,android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/" rel="tag">效率提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="tag">系统设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag">自动化</a></li></ul>
                     </div>
                 </section>
                 
@@ -226,6 +226,315 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-11_让你的Hexo支持mermaid" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/" class="article-date">
+      <time datetime="2019-05-26T08:56:24.000Z" itemprop="datePublished">2019-05-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/">让你的hexo支持mermaid</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h4 id="mermaid配置方法"><a href="#mermaid配置方法" class="headerlink" title="mermaid配置方法"></a>mermaid配置方法</h4><p>Mermaid是一个用于生成流程图、时序图等图表的JavaScript库。要在Hexo中使用它,需要以下步骤:</p>
+<ol>
+<li>npm安装mermaid渲染插件:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams --save</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在Hexo博客的根目录下,修改<code>_config.yml</code>文件,添加以下配置:</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mermaid:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">default</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在需要插入图表的Markdown文件中,使用Mermaid语法插入图表。例如:</li>
+</ol>
+<pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-10_安卓客户端取日志脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/" class="article-date">
+      <time datetime="2019-04-01T12:32:18.000Z" itemprop="datePublished">2019-04-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/">安卓客户端取日志脚本</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>安卓客户端取日志脚本：8ii8i i<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bat/" rel="tag">bat</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-09_ADB常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/01/09_ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+      <time datetime="2018-07-01T12:32:18.000Z" itemprop="datePublished">2018-07-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/01/09_ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">ADB常用命令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <table>
+<thead>
+<tr>
+<th style="text-align:center">adb</th>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">adb shell</td>
+<td>adb shell “dumpsys window \</td>
+<td>grep mCurrentFocus”</td>
+<td>获取应用包名（打开应用）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell pm path 包名</td>
+<td>获取应用安装路径</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “pm dump 包名</td>
+<td>获取应用版本号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “cat /system/build.prop</td>
+<td>获取手机系统信息（ CPU，厂商名称等）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.release</td>
+<td>获取手机系统版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.sdk</td>
+<td>获取手机系统api版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.model</td>
+<td>获取手机设备型号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.brand</td>
+<td>获取手机厂商名称</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.serialno</td>
+<td>获取手机的序列号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell dumpsys iphonesubinfo</td>
+<td>获取手机的IMEI</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /sys/class/net/wlan/address</td>
+<td>获取手机mac地址</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /proc/meminfo</td>
+<td>获取手机内存信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df</td>
+<td>获取手机存储信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /mnt/shell/emulated</td>
+<td>获取手机内部存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /storage/sdcard</td>
+<td>获取sdcard存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取手机分辨率</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell wm density</td>
+<td>获取手机物理密度</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取当前界面对应的活动和包名</td>
+</tr>
+</tbody>
+</table>
+<p>待刷新</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ADB/" rel="tag">ADB</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-08_使用selenium-wget实现自动下载图片" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -694,79 +1003,9 @@
 
 
   
-    <article id="post-01_如何搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/09/01_%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
-      <time datetime="2017-01-09T14:27:45.000Z" itemprop="datePublished">2017-01-09</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/09/01_%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">如何搭建个人博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>搭建个人主页的步骤如下：</p>
-<ul>
-<li>先将我们写的文章或者照片生成静态页面(hexo)</li>
-<li>并将这些静态页面部署到支持静态页面的服务器(github或coding)</li>
-<li>这样我们就可以通过服务器的域名地址访问到自己的博客了(regeorge.github.io)</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/01/09/01_%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
