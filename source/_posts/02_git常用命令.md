@@ -102,23 +102,3 @@ tags: git
 
 #### 清除所有暂存的更改
     git stash clear
-
-#### sed 命令示例解析
-```bash
-sed -i '' 's/theme.mermaid.enable/mermaid.enable/g' themes/yelee/layout/_partial/footer.ejs
-```
-
-命令分解：
-- `sed`: 流编辑器，用于文本处理
-- `-i ''`: 
-  - `-i` 表示直接修改文件（in-place）
-  - `''` 是 macOS 下的特殊语法，表示不创建备份文件
-- `'s/theme.mermaid.enable/mermaid.enable/g'`:
-  - `s/` 表示替换（substitute）
-  - `theme.mermaid.enable` 是要被替换的文本
-  - `mermaid.enable` 是替换后的文本
-  - `g` 表示全局替换（global）
-- `themes/yelee/layout/_partial/footer.ejs`: 目标文件路径
-
-作用：
-将 footer.ejs 文件中所有的 `theme.mermaid.enable` 替换为 `mermaid.enable`
