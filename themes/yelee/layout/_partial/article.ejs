@@ -17,7 +17,7 @@
         <%- partial('post/category') %>
         <% if (post.tags && typeof post.tags === 'object' && post.tags.length) { %>
           <div class="article-tag tagcloud">
-            <%- list_tags(Array.isArray(post.tags) ? post.tags : (post.tags.toArray ? post.tags.toArray() : []), {
+            <%- list_tags(post.tags, {
               show_count: false,
               class: 'article-tag'
             }) %>
@@ -98,5 +98,3 @@
         <% } %>
     </script>
 <% } %>
-
-<% console.log(typeof post.tags, post.tags) %>

@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git常用命令</title>
+    <url>/2017/01/14/02_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h4 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h4><p><code>git init</code><br>.git所在文件夹便是git对应的一个本地仓库</p>
+<span id="more"></span>
+<h4 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h4><pre><code>git branch master
+</code></pre><h4 id="查看本地分支"><a href="#查看本地分支" class="headerlink" title="查看本地分支"></a>查看本地分支</h4><pre><code>git branch
+</code></pre><h4 id="设置远程仓库地址"><a href="#设置远程仓库地址" class="headerlink" title="设置远程仓库地址"></a>设置远程仓库地址</h4><pre><code>git remote add github git@github.com:regeorge/blog.git
+</code></pre><h4 id="查看已配置的远程仓库"><a href="#查看已配置的远程仓库" class="headerlink" title="查看已配置的远程仓库"></a>查看已配置的远程仓库</h4><pre><code>git remote
+</code></pre><h4 id="从远程仓库更新到本地分支"><a href="#从远程仓库更新到本地分支" class="headerlink" title="从远程仓库更新到本地分支"></a>从远程仓库更新到本地分支</h4><pre><code>git pull github master
+</code></pre><h4 id="在未加入缓存区时回滚"><a href="#在未加入缓存区时回滚" class="headerlink" title="在未加入缓存区时回滚"></a>在未加入缓存区时回滚</h4><pre><code>git checkout -- .
+</code></pre><h4 id="将本文件夹内所有改动加入缓存区"><a href="#将本文件夹内所有改动加入缓存区" class="headerlink" title="将本文件夹内所有改动加入缓存区"></a>将本文件夹内所有改动加入缓存区</h4><pre><code>git add .
+</code></pre><h4 id="在加入缓存区时回滚"><a href="#在加入缓存区时回滚" class="headerlink" title="在加入缓存区时回滚"></a>在加入缓存区时回滚</h4><pre><code>git reset HEAD
+</code></pre><h4 id="将暂存区的改动提交到本地仓库"><a href="#将暂存区的改动提交到本地仓库" class="headerlink" title="将暂存区的改动提交到本地仓库"></a>将暂存区的改动提交到本地仓库</h4><pre><code>git commit -m &quot;add all files&quot;
+</code></pre><h4 id="在提交仓库后回滚"><a href="#在提交仓库后回滚" class="headerlink" title="在提交仓库后回滚"></a>在提交仓库后回滚</h4><pre><code>git log #查看提交记录（带有唯一标识commitid）
+git revert %commitid%
+</code></pre><h4 id="将本地分支推送到远程仓库"><a href="#将本地分支推送到远程仓库" class="headerlink" title="将本地分支推送到远程仓库"></a>将本地分支推送到远程仓库</h4><pre><code>git push github master
+</code></pre><h4 id="gitignore文件中写入不需要同步的文件夹路径"><a href="#gitignore文件中写入不需要同步的文件夹路径" class="headerlink" title=".gitignore文件中写入不需要同步的文件夹路径"></a>.gitignore文件中写入不需要同步的文件夹路径</h4><h4 id="hexo-deploy-命令"><a href="#hexo-deploy-命令" class="headerlink" title="hexo deploy 命令"></a>hexo deploy 命令</h4><p>在使用hexo搭建博客时，blog目录下有一个.git文件夹，而.deploy_git文件夹内的.git文件夹又对应了另一个仓库,hexo d命令正是将此目录下的仓库推送到远程仓库从而实现更新博客的</p>
+<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
+<li>Q1：在github上创建仓库，在本地新建仓库并push产生冲突</li>
+</ul>
+<ul>
+<li>A1：先pull后push<pre><code>git push -u origin master -f
+</code></pre></li>
+</ul>
+<p>参考：<a href="http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/">http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/</a><br>      <a href="http://blog.csdn.net/shiren1118/article/details/7761203">http://blog.csdn.net/shiren1118/article/details/7761203</a></p>
+<h4 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h4><pre><code>git log
+</code></pre><h4 id="查看简洁的提交历史"><a href="#查看简洁的提交历史" class="headerlink" title="查看简洁的提交历史"></a>查看简洁的提交历史</h4><pre><code>git log --oneline
+</code></pre><h4 id="查看文件的修改历史"><a href="#查看文件的修改历史" class="headerlink" title="查看文件的修改历史"></a>查看文件的修改历史</h4><pre><code>git blame &lt;file&gt;
+</code></pre><h4 id="查看工作目录状态"><a href="#查看工作目录状态" class="headerlink" title="查看工作目录状态"></a>查看工作目录状态</h4><pre><code>git status
+</code></pre><h4 id="比较工作目录和暂存区的差异"><a href="#比较工作目录和暂存区的差异" class="headerlink" title="比较工作目录和暂存区的差异"></a>比较工作目录和暂存区的差异</h4><pre><code>git diff
+</code></pre><h4 id="比较暂存区和最后一次提交的差异"><a href="#比较暂存区和最后一次提交的差异" class="headerlink" title="比较暂存区和最后一次提交的差异"></a>比较暂存区和最后一次提交的差异</h4><pre><code>git diff --cached
+</code></pre><h4 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h4><pre><code>git checkout -b &lt;branch_name&gt;
+</code></pre><h4 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h4><pre><code>git merge &lt;branch_name&gt;
+</code></pre><h4 id="删除本地分支"><a href="#删除本地分支" class="headerlink" title="删除本地分支"></a>删除本地分支</h4><pre><code>git branch -d &lt;branch_name&gt;
+</code></pre><h4 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h4><pre><code>git push origin --delete &lt;branch_name&gt;
+</code></pre><h4 id="暂存当前更改以便切换分支"><a href="#暂存当前更改以便切换分支" class="headerlink" title="暂存当前更改以便切换分支"></a>暂存当前更改以便切换分支</h4><pre><code>git stash
+</code></pre><h4 id="恢复暂存的更改"><a href="#恢复暂存的更改" class="headerlink" title="恢复暂存的更改"></a>恢复暂存的更改</h4><pre><code>git stash pop
+</code></pre><h4 id="查看所有暂存的更改"><a href="#查看所有暂存的更改" class="headerlink" title="查看所有暂存的更改"></a>查看所有暂存的更改</h4><pre><code>git stash list
+</code></pre><h4 id="清除所有暂存的更改"><a href="#清除所有暂存的更改" class="headerlink" title="清除所有暂存的更改"></a>清除所有暂存的更改</h4><pre><code>git stash clear
+</code></pre><h4 id="sed-命令示例解析"><a href="#sed-命令示例解析" class="headerlink" title="sed 命令示例解析"></a>sed 命令示例解析</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;&#x27;</span> <span class="string">&#x27;s/theme.mermaid.enable/mermaid.enable/g&#x27;</span> themes/yelee/layout/_partial/footer.ejs</span><br></pre></td></tr></table></figure>
+<p>命令分解：</p>
+<ul>
+<li><code>sed</code>: 流编辑器，用于文本处理</li>
+<li><code>-i &#39;&#39;</code>: <ul>
+<li><code>-i</code> 表示直接修改文件（in-place）</li>
+<li><code>&#39;&#39;</code> 是 macOS 下的特殊语法，表示不创建备份文件</li>
+</ul>
+</li>
+<li><code>&#39;s/theme.mermaid.enable/mermaid.enable/g&#39;</code>:<ul>
+<li><code>s/</code> 表示替换（substitute）</li>
+<li><code>theme.mermaid.enable</code> 是要被替换的文本</li>
+<li><code>mermaid.enable</code> 是替换后的文本</li>
+<li><code>g</code> 表示全局替换（global）</li>
+</ul>
+</li>
+<li><code>themes/yelee/layout/_partial/footer.ejs</code>: 目标文件路径</li>
+</ul>
+<p>作用：<br>将 footer.ejs 文件中所有的 <code>theme.mermaid.enable</code> 替换为 <code>mermaid.enable</code></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何搭建个人博客</title>
     <url>/2017/01/09/01_%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>搭建个人主页的步骤如下：</p>
@@ -114,84 +178,6 @@ http://regeorge.coding.me/
       </tags>
   </entry>
   <entry>
-    <title>git常用命令</title>
-    <url>/2017/01/14/02_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h4 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h4><p><code>git init</code><br>.git所在文件夹便是git对应的一个本地仓库</p>
-<span id="more"></span>
-<h4 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h4><pre><code>git branch master
-</code></pre><h4 id="查看本地分支"><a href="#查看本地分支" class="headerlink" title="查看本地分支"></a>查看本地分支</h4><pre><code>git branch
-</code></pre><h4 id="设置远程仓库地址"><a href="#设置远程仓库地址" class="headerlink" title="设置远程仓库地址"></a>设置远程仓库地址</h4><pre><code>git remote add github git@github.com:regeorge/blog.git
-</code></pre><h4 id="查看已配置的远程仓库"><a href="#查看已配置的远程仓库" class="headerlink" title="查看已配置的远程仓库"></a>查看已配置的远程仓库</h4><pre><code>git remote
-</code></pre><h4 id="从远程仓库更新到本地分支"><a href="#从远程仓库更新到本地分支" class="headerlink" title="从远程仓库更新到本地分支"></a>从远程仓库更新到本地分支</h4><pre><code>git pull github master
-</code></pre><h4 id="在未加入缓存区时回滚"><a href="#在未加入缓存区时回滚" class="headerlink" title="在未加入缓存区时回滚"></a>在未加入缓存区时回滚</h4><pre><code>git checkout -- .
-</code></pre><h4 id="将本文件夹内所有改动加入缓存区"><a href="#将本文件夹内所有改动加入缓存区" class="headerlink" title="将本文件夹内所有改动加入缓存区"></a>将本文件夹内所有改动加入缓存区</h4><pre><code>git add .
-</code></pre><h4 id="在加入缓存区时回滚"><a href="#在加入缓存区时回滚" class="headerlink" title="在加入缓存区时回滚"></a>在加入缓存区时回滚</h4><pre><code>git reset HEAD
-</code></pre><h4 id="将暂存区的改动提交到本地仓库"><a href="#将暂存区的改动提交到本地仓库" class="headerlink" title="将暂存区的改动提交到本地仓库"></a>将暂存区的改动提交到本地仓库</h4><pre><code>git commit -m &quot;add all files&quot;
-</code></pre><h4 id="在提交仓库后回滚"><a href="#在提交仓库后回滚" class="headerlink" title="在提交仓库后回滚"></a>在提交仓库后回滚</h4><pre><code>git log #查看提交记录（带有唯一标识commitid）
-git revert %commitid%
-</code></pre><h4 id="将本地分支推送到远程仓库"><a href="#将本地分支推送到远程仓库" class="headerlink" title="将本地分支推送到远程仓库"></a>将本地分支推送到远程仓库</h4><pre><code>git push github master
-</code></pre><h4 id="gitignore文件中写入不需要同步的文件夹路径"><a href="#gitignore文件中写入不需要同步的文件夹路径" class="headerlink" title=".gitignore文件中写入不需要同步的文件夹路径"></a>.gitignore文件中写入不需要同步的文件夹路径</h4><h4 id="hexo-deploy-命令"><a href="#hexo-deploy-命令" class="headerlink" title="hexo deploy 命令"></a>hexo deploy 命令</h4><p>在使用hexo搭建博客时，blog目录下有一个.git文件夹，而.deploy_git文件夹内的.git文件夹又对应了另一个仓库,hexo d命令正是将此目录下的仓库推送到远程仓库从而实现更新博客的</p>
-<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
-<li>Q1：在github上创建仓库，在本地新建仓库并push产生冲突</li>
-</ul>
-<ul>
-<li>A1：先pull后push<pre><code>git push -u origin master -f
-</code></pre></li>
-</ul>
-<p>参考：<a href="http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/">http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/</a><br>      <a href="http://blog.csdn.net/shiren1118/article/details/7761203">http://blog.csdn.net/shiren1118/article/details/7761203</a></p>
-<h4 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h4><pre><code>git log
-</code></pre><h4 id="查看简洁的提交历史"><a href="#查看简洁的提交历史" class="headerlink" title="查看简洁的提交历史"></a>查看简洁的提交历史</h4><pre><code>git log --oneline
-</code></pre><h4 id="查看文件的修改历史"><a href="#查看文件的修改历史" class="headerlink" title="查看文件的修改历史"></a>查看文件的修改历史</h4><pre><code>git blame &lt;file&gt;
-</code></pre><h4 id="查看工作目录状态"><a href="#查看工作目录状态" class="headerlink" title="查看工作目录状态"></a>查看工作目录状态</h4><pre><code>git status
-</code></pre><h4 id="比较工作目录和暂存区的差异"><a href="#比较工作目录和暂存区的差异" class="headerlink" title="比较工作目录和暂存区的差异"></a>比较工作目录和暂存区的差异</h4><pre><code>git diff
-</code></pre><h4 id="比较暂存区和最后一次提交的差异"><a href="#比较暂存区和最后一次提交的差异" class="headerlink" title="比较暂存区和最后一次提交的差异"></a>比较暂存区和最后一次提交的差异</h4><pre><code>git diff --cached
-</code></pre><h4 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h4><pre><code>git checkout -b &lt;branch_name&gt;
-</code></pre><h4 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h4><pre><code>git merge &lt;branch_name&gt;
-</code></pre><h4 id="删除本地分支"><a href="#删除本地分支" class="headerlink" title="删除本地分支"></a>删除本地分支</h4><pre><code>git branch -d &lt;branch_name&gt;
-</code></pre><h4 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h4><pre><code>git push origin --delete &lt;branch_name&gt;
-</code></pre><h4 id="暂存当前更改以便切换分支"><a href="#暂存当前更改以便切换分支" class="headerlink" title="暂存当前更改以便切换分支"></a>暂存当前更改以便切换分支</h4><pre><code>git stash
-</code></pre><h4 id="恢复暂存的更改"><a href="#恢复暂存的更改" class="headerlink" title="恢复暂存的更改"></a>恢复暂存的更改</h4><pre><code>git stash pop
-</code></pre><h4 id="查看所有暂存的更改"><a href="#查看所有暂存的更改" class="headerlink" title="查看所有暂存的更改"></a>查看所有暂存的更改</h4><pre><code>git stash list
-</code></pre><h4 id="清除所有暂存的更改"><a href="#清除所有暂存的更改" class="headerlink" title="清除所有暂存的更改"></a>清除所有暂存的更改</h4><pre><code>git stash clear
-</code></pre><h4 id="sed-命令示例解析"><a href="#sed-命令示例解析" class="headerlink" title="sed 命令示例解析"></a>sed 命令示例解析</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;&#x27;</span> <span class="string">&#x27;s/theme.mermaid.enable/mermaid.enable/g&#x27;</span> themes/yelee/layout/_partial/footer.ejs</span><br></pre></td></tr></table></figure>
-<p>命令分解：</p>
-<ul>
-<li><code>sed</code>: 流编辑器，用于文本处理</li>
-<li><code>-i &#39;&#39;</code>: <ul>
-<li><code>-i</code> 表示直接修改文件（in-place）</li>
-<li><code>&#39;&#39;</code> 是 macOS 下的特殊语法，表示不创建备份文件</li>
-</ul>
-</li>
-<li><code>&#39;s/theme.mermaid.enable/mermaid.enable/g&#39;</code>:<ul>
-<li><code>s/</code> 表示替换（substitute）</li>
-<li><code>theme.mermaid.enable</code> 是要被替换的文本</li>
-<li><code>mermaid.enable</code> 是替换后的文本</li>
-<li><code>g</code> 表示全局替换（global）</li>
-</ul>
-</li>
-<li><code>themes/yelee/layout/_partial/footer.ejs</code>: 目标文件路径</li>
-</ul>
-<p>作用：<br>将 footer.ejs 文件中所有的 <code>theme.mermaid.enable</code> 替换为 <code>mermaid.enable</code></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>冒泡排序算法</title>
-    <url>/2017/03/26/03_%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>(对 n 个数降序)冒泡排序的思路是：</p>
-<p>1、最多进行 (n-1) 次排序</p>
-<p>2、每次排序将从第一个开始遍历和后一个数比较（确定是否执行交换位置）<br>   值得注意的是本次排序后会产生一个最小数，下次排序可以不用和该数进行比较的判断</p>
-<span id="more"></span>
-<p>关于复杂度的概念还未与其他排序算法比较</p>
-<p>代码如下：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class MyBubbleSort &#123;</span><br><span class="line">	public static void main(String[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		int[] arr = &#123;2,6,3,9,4,5,1,2,5,8&#125;;</span><br><span class="line">		int len = arr.length;</span><br><span class="line">		for (int i=0;i&lt;len-1;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			for (int j=0;j&lt;len-1-i;j++)//减i的原因是经过i+1次排序后倒数第i+1个数都是确认最小的</span><br><span class="line">			&#123;</span><br><span class="line">				if(arr[j]&lt;arr[j+1])</span><br><span class="line">				&#123;	</span><br><span class="line">					int temp = 0;</span><br><span class="line">					temp = arr[j];</span><br><span class="line">					arr[j] = arr[j+1];</span><br><span class="line">					arr[j+1] = temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.print(&quot;第&quot;+(i+1)+&quot;次排序结果:&quot;);	</span><br><span class="line">			for(int a = 0; a &lt;len;a++)</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(arr[a] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(&quot;最终排序结果为：&quot;);</span><br><span class="line">		for(int a = 0; a &lt;len;a++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(arr[a] + &quot;\t&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>遇到乱码问题的解决方案</title>
     <url>/2017/03/29/04_GBK%E5%92%8CUTF-8%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h4 id="编码的概念"><a href="#编码的概念" class="headerlink" title="编码的概念"></a>编码的概念</h4><ul>
@@ -226,6 +212,20 @@ git revert %commitid%
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>冒泡排序算法</title>
+    <url>/2017/03/26/03_%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>(对 n 个数降序)冒泡排序的思路是：</p>
+<p>1、最多进行 (n-1) 次排序</p>
+<p>2、每次排序将从第一个开始遍历和后一个数比较（确定是否执行交换位置）<br>   值得注意的是本次排序后会产生一个最小数，下次排序可以不用和该数进行比较的判断</p>
+<span id="more"></span>
+<p>关于复杂度的概念还未与其他排序算法比较</p>
+<p>代码如下：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class MyBubbleSort &#123;</span><br><span class="line">	public static void main(String[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		int[] arr = &#123;2,6,3,9,4,5,1,2,5,8&#125;;</span><br><span class="line">		int len = arr.length;</span><br><span class="line">		for (int i=0;i&lt;len-1;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			for (int j=0;j&lt;len-1-i;j++)//减i的原因是经过i+1次排序后倒数第i+1个数都是确认最小的</span><br><span class="line">			&#123;</span><br><span class="line">				if(arr[j]&lt;arr[j+1])</span><br><span class="line">				&#123;	</span><br><span class="line">					int temp = 0;</span><br><span class="line">					temp = arr[j];</span><br><span class="line">					arr[j] = arr[j+1];</span><br><span class="line">					arr[j+1] = temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.print(&quot;第&quot;+(i+1)+&quot;次排序结果:&quot;);	</span><br><span class="line">			for(int a = 0; a &lt;len;a++)</span><br><span class="line">			&#123;</span><br><span class="line">				System.out.print(arr[a] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(&quot;最终排序结果为：&quot;);</span><br><span class="line">		for(int a = 0; a &lt;len;a++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(arr[a] + &quot;\t&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -453,6 +453,71 @@ private String getTime() &#123;
       </tags>
   </entry>
   <entry>
+    <title>Markdown的使用</title>
+    <url>/2018/02/21/07_Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>Markdown的常用方法如下：</p>
+<span id="more"></span>
+<h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h2><p><code>### 三级标题</code>  </p>
+<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="2-无序列表"><a href="#2-无序列表" class="headerlink" title="2.无序列表"></a>2.无序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 列表1</span><br><span class="line">- 列表2</span><br><span class="line">- 列表2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表2</li>
+</ul>
+<h2 id="3-有序列表"><a href="#3-有序列表" class="headerlink" title="3.有序列表"></a>3.有序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 列表1</span><br><span class="line">2. 列表2</span><br><span class="line">3. 列表3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表3</li>
+</ol>
+<h2 id="4-链接"><a href="#4-链接" class="headerlink" title="4.链接"></a>4.链接</h2><p><code>[百度](http://www.baidu.com/)</code>  </p>
+<p><a href="http://www.baidu.com/">百度</a></p>
+<h2 id="5-图片"><a href="#5-图片" class="headerlink" title="5.图片"></a>5.图片</h2><p><code>![](http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg)</code>  </p>
+<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" alt=""></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg&quot; height = &quot;110&quot; div align=&quot;right&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" height = "110" div align="right"/></p>
+<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6.引用"></a>6.引用</h2><p><code>&gt; *我挥舞着本子和键盘*，**发誓要把这世界写个明明白白**。</code>  </p>
+<blockquote>
+<p><em>我挥舞着本子和键盘</em>，<strong>发誓要把这世界写个明明白白</strong>。</p>
+</blockquote>
+<h2 id="7-代码引用"><a href="#7-代码引用" class="headerlink" title="7.代码引用"></a>7.代码引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`hello world`</span><br></pre></td></tr></table></figure>
+<p><code>hello world</code></p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-表格"><a href="#8-表格" class="headerlink" title="8.表格"></a>8.表格</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|姓名|学号|成绩|</span><br><span class="line">|----|:----:|----:|</span><br><span class="line">|张三|35|60|</span><br><span class="line">|李四|33|59|</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th style="text-align:center">学号</th>
+<th style="text-align:right">成绩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>张三</td>
+<td style="text-align:center">35</td>
+<td style="text-align:right">60</td>
+</tr>
+<tr>
+<td>李四</td>
+<td style="text-align:center">33</td>
+<td style="text-align:right">59</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-换行"><a href="#8-换行" class="headerlink" title="8. 换行"></a>8. 换行</h2><ol>
+<li>直接用空行来代表换行</li>
+</ol>
+<ol start="2">
+<li>或者在行位连续输入2个空格来代表换行  </li>
+</ol>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>百日囚徒问题</title>
     <url>/2017/12/27/06_%E7%99%BE%E6%97%A5%E5%9B%9A%E5%BE%92%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。</p>
@@ -583,171 +648,6 @@ while 1==1:
       </tags>
   </entry>
   <entry>
-    <title>Markdown的使用</title>
-    <url>/2018/02/21/07_Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>Markdown的常用方法如下：</p>
-<span id="more"></span>
-<h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h2><p><code>### 三级标题</code>  </p>
-<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="2-无序列表"><a href="#2-无序列表" class="headerlink" title="2.无序列表"></a>2.无序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 列表1</span><br><span class="line">- 列表2</span><br><span class="line">- 列表2</span><br></pre></td></tr></table></figure>
-<ul>
-<li>列表1</li>
-<li>列表2</li>
-<li>列表2</li>
-</ul>
-<h2 id="3-有序列表"><a href="#3-有序列表" class="headerlink" title="3.有序列表"></a>3.有序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 列表1</span><br><span class="line">2. 列表2</span><br><span class="line">3. 列表3</span><br></pre></td></tr></table></figure>
-<ol>
-<li>列表1</li>
-<li>列表2</li>
-<li>列表3</li>
-</ol>
-<h2 id="4-链接"><a href="#4-链接" class="headerlink" title="4.链接"></a>4.链接</h2><p><code>[百度](http://www.baidu.com/)</code>  </p>
-<p><a href="http://www.baidu.com/">百度</a></p>
-<h2 id="5-图片"><a href="#5-图片" class="headerlink" title="5.图片"></a>5.图片</h2><p><code>![](http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg)</code>  </p>
-<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" alt=""></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg&quot; height = &quot;110&quot; div align=&quot;right&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" height = "110" div align="right"/></p>
-<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6.引用"></a>6.引用</h2><p><code>&gt; *我挥舞着本子和键盘*，**发誓要把这世界写个明明白白**。</code>  </p>
-<blockquote>
-<p><em>我挥舞着本子和键盘</em>，<strong>发誓要把这世界写个明明白白</strong>。</p>
-</blockquote>
-<h2 id="7-代码引用"><a href="#7-代码引用" class="headerlink" title="7.代码引用"></a>7.代码引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`hello world`</span><br></pre></td></tr></table></figure>
-<p><code>hello world</code></p>
-<pre><code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-表格"><a href="#8-表格" class="headerlink" title="8.表格"></a>8.表格</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|姓名|学号|成绩|</span><br><span class="line">|----|:----:|----:|</span><br><span class="line">|张三|35|60|</span><br><span class="line">|李四|33|59|</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th style="text-align:center">学号</th>
-<th style="text-align:right">成绩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>张三</td>
-<td style="text-align:center">35</td>
-<td style="text-align:right">60</td>
-</tr>
-<tr>
-<td>李四</td>
-<td style="text-align:center">33</td>
-<td style="text-align:right">59</td>
-</tr>
-</tbody>
-</table>
-<h2 id="8-换行"><a href="#8-换行" class="headerlink" title="8. 换行"></a>8. 换行</h2><ol>
-<li>直接用空行来代表换行</li>
-</ol>
-<ol start="2">
-<li>或者在行位连续输入2个空格来代表换行  </li>
-</ol>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用selenium+wget实现自动下载图片</title>
-    <url>/2018/03/05/08_%E4%BD%BF%E7%94%A8selenium-wget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/</url>
-    <content><![CDATA[<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>unsplash.com是一个免费下载高清图片的网站，我们可以使用web自动化工具selenium来批量获取该网站主页上提供的海量图片下载链接，并使用强大的多线程下载工具wget下载这些图片。</p>
-<p>另外，selenium需要配合chromedriver.exe来操控谷歌浏览器，我们可以通过搜索下载对应浏览器版本的chromedriver.exe</p>
-<span id="more"></span>
-<h4 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h4><ol>
-<li>selenium</li>
-<li><p>wget</p>
-<p> pip install selenium<br> pip install wget</p>
-</li>
-</ol>
-<h4 id="python脚本"><a href="#python脚本" class="headerlink" title="python脚本"></a>python脚本</h4><pre><code>from selenium import webdriver
-import wget
-import os
-import time
-import subprocess
-
-def mkdir(path):
-    # 去除首位空格
-    path=path.strip()
-    # 去除尾部 \ 符号
-    path=path.rstrip(&quot;\\&quot;)
-
-    # 判断路径是否存在
-    # 存在     True
-    # 不存在   False
-    isExists=os.path.exists(path)
-
-    # 判断结果
-    if not isExists:
-        # 如果不存在则创建目录
-        print (&apos;%s创建成功&apos;%path)
-        # 创建目录操作函数
-        os.makedirs(path)
-        return True
-    else:
-        # 如果目录存在则不创建，并提示目录已存在
-        print (&apos;%s目录已存在&apos;%path)
-        return False
-
-
-def download_pic(folderpath=&apos;&apos;,list=[]):
-    i = 1
-    for url in list:
-        try:
-        #     wget.download(url, out=&apos;%s\\%d.jpg&apos; %(folderpath,i))
-            cmd = &apos;C:\\Python36\\Scripts\\wget -O &quot;%s\\%d.jpg&quot; &quot;%s&quot;&apos; %(folderpath,i,url)
-            print(cmd)
-            subprocess.Popen(cmd)
-            i += 1
-        except:
-            print(&apos;skip&apos;)
-    print(&apos;下载成功...&apos;)
-
-def craw_url(scroll=&apos;2&apos;,web_url=&apos;&apos;):
-    driver = webdriver.Chrome(&apos;C:\\Python36\\Lib\site-packages\\chromedriver_binary\\chromedriver.exe&apos;)
-    driver.get(web_url)
-    driver.maximize_window()
-    time.sleep(3)
-    urls = []
-    try:
-        for i in range(1,scroll):
-            pics = driver.find_elements_by_class_name(name=&apos;_2zEKz&apos;)
-            for pic in pics:
-                src = &apos;%s\n&apos;%pic.get_attribute(name=&apos;src&apos;)
-                src = src.replace(&apos;1000&apos;,&apos;2592&apos;)
-                # print(src)
-                urls.append(src)
-            js=&quot;window.scrollTo(0,document.body.scrollHeight)&quot;
-            driver.execute_script(js)
-            time.sleep(3)
-            print(&quot;循环次数：%d&quot;%i)
-        driver.close()
-    except:
-        driver.close()
-    urls = list(set(urls))
-    print(&apos;获取图片链接成功...&apos;)
-    return urls
-
-if __name__ == &quot;__main__&quot;:
-    download_path = &apos;G:\\02_photo\\unsplash&apos;
-    url_list=craw_url(scroll=1000,web_url=&apos;https://unsplash.com/&apos;)
-    mkdir(download_path)
-    download_pic(folderpath=download_path,list=url_list)
-
-    #    for url in url_list:
-    #            print(url)
-    #    try:
-    #        f=open(&apos;%s\\0_urls.txt&apos;%download_path,&apos;w&apos;)
-    #       f.writelines(url_list)
-    #       f.close()
-    #    except:
-                pass
-</code></pre><h4 id="下载成功"><a href="#下载成功" class="headerlink" title="下载成功"></a>下载成功</h4><p><img src="http://upload-images.jianshu.io/upload_images/1894726-f5a17a997569edfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ADB常用命令</title>
     <url>/2018/07/01/09_ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<table>
@@ -856,6 +756,106 @@ if __name__ == &quot;__main__&quot;:
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>ADB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用selenium+wget实现自动下载图片</title>
+    <url>/2018/03/05/08_%E4%BD%BF%E7%94%A8selenium-wget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/</url>
+    <content><![CDATA[<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>unsplash.com是一个免费下载高清图片的网站，我们可以使用web自动化工具selenium来批量获取该网站主页上提供的海量图片下载链接，并使用强大的多线程下载工具wget下载这些图片。</p>
+<p>另外，selenium需要配合chromedriver.exe来操控谷歌浏览器，我们可以通过搜索下载对应浏览器版本的chromedriver.exe</p>
+<span id="more"></span>
+<h4 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h4><ol>
+<li>selenium</li>
+<li><p>wget</p>
+<p> pip install selenium<br> pip install wget</p>
+</li>
+</ol>
+<h4 id="python脚本"><a href="#python脚本" class="headerlink" title="python脚本"></a>python脚本</h4><pre><code>from selenium import webdriver
+import wget
+import os
+import time
+import subprocess
+
+def mkdir(path):
+    # 去除首位空格
+    path=path.strip()
+    # 去除尾部 \ 符号
+    path=path.rstrip(&quot;\\&quot;)
+
+    # 判断路径是否存在
+    # 存在     True
+    # 不存在   False
+    isExists=os.path.exists(path)
+
+    # 判断结果
+    if not isExists:
+        # 如果不存在则创建目录
+        print (&apos;%s创建成功&apos;%path)
+        # 创建目录操作函数
+        os.makedirs(path)
+        return True
+    else:
+        # 如果目录存在则不创建，并提示目录已存在
+        print (&apos;%s目录已存在&apos;%path)
+        return False
+
+
+def download_pic(folderpath=&apos;&apos;,list=[]):
+    i = 1
+    for url in list:
+        try:
+        #     wget.download(url, out=&apos;%s\\%d.jpg&apos; %(folderpath,i))
+            cmd = &apos;C:\\Python36\\Scripts\\wget -O &quot;%s\\%d.jpg&quot; &quot;%s&quot;&apos; %(folderpath,i,url)
+            print(cmd)
+            subprocess.Popen(cmd)
+            i += 1
+        except:
+            print(&apos;skip&apos;)
+    print(&apos;下载成功...&apos;)
+
+def craw_url(scroll=&apos;2&apos;,web_url=&apos;&apos;):
+    driver = webdriver.Chrome(&apos;C:\\Python36\\Lib\site-packages\\chromedriver_binary\\chromedriver.exe&apos;)
+    driver.get(web_url)
+    driver.maximize_window()
+    time.sleep(3)
+    urls = []
+    try:
+        for i in range(1,scroll):
+            pics = driver.find_elements_by_class_name(name=&apos;_2zEKz&apos;)
+            for pic in pics:
+                src = &apos;%s\n&apos;%pic.get_attribute(name=&apos;src&apos;)
+                src = src.replace(&apos;1000&apos;,&apos;2592&apos;)
+                # print(src)
+                urls.append(src)
+            js=&quot;window.scrollTo(0,document.body.scrollHeight)&quot;
+            driver.execute_script(js)
+            time.sleep(3)
+            print(&quot;循环次数：%d&quot;%i)
+        driver.close()
+    except:
+        driver.close()
+    urls = list(set(urls))
+    print(&apos;获取图片链接成功...&apos;)
+    return urls
+
+if __name__ == &quot;__main__&quot;:
+    download_path = &apos;G:\\02_photo\\unsplash&apos;
+    url_list=craw_url(scroll=1000,web_url=&apos;https://unsplash.com/&apos;)
+    mkdir(download_path)
+    download_pic(folderpath=download_path,list=url_list)
+
+    #    for url in url_list:
+    #            print(url)
+    #    try:
+    #        f=open(&apos;%s\\0_urls.txt&apos;%download_path,&apos;w&apos;)
+    #       f.writelines(url_list)
+    #       f.close()
+    #    except:
+                pass
+</code></pre><h4 id="下载成功"><a href="#下载成功" class="headerlink" title="下载成功"></a>下载成功</h4><p><img src="http://upload-images.jianshu.io/upload_images/1894726-f5a17a997569edfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1034,83 +1034,6 @@ https://github.com/HunterXuan/hexo-simple-mindmap
       </tags>
   </entry>
   <entry>
-    <title>sublime插件安装</title>
-    <url>/2020/10/08/13_sublimetext%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h4 id="如何安装插件详见：https-packagecontrol-io-installation"><a href="#如何安装插件详见：https-packagecontrol-io-installation" class="headerlink" title="如何安装插件详见：https://packagecontrol.io/installation"></a>如何安装插件详见：<a href="https://packagecontrol.io/installation">https://packagecontrol.io/installation</a></h4><h4 id="OmniMarkupPreviwer"><a href="#OmniMarkupPreviwer" class="headerlink" title="OmniMarkupPreviwer"></a>OmniMarkupPreviwer</h4><p>实时在浏览器中预览markdown。快捷键如下：<br>Ctrl+Alt+O: Preview Markup in Browser.<br>Ctrl+Alt+X: Export Markup as HTML.<br>Ctrl+Alt+C: Copy Markup as HTML</p>
-<span id="more"></span>
-<h4 id="TableEditor"><a href="#TableEditor" class="headerlink" title="TableEditor"></a>TableEditor</h4><table>
-<thead>
-<tr>
-<th>操作</th>
-<th>快捷键</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>启用</td>
-<td>ctrl + shift + p</td>
-<td>Table Editor: Enable for current syntax <br>or view</td>
-</tr>
-<tr>
-<td>禁用</td>
-<td>ctrl + shift + p</td>
-<td>Table Editor: Disable for current syntax <br>or view</td>
-</tr>
-<tr>
-<td>快速建表</td>
-<td>ctrl + k, Enter</td>
-<td>要先输入表的第一行</td>
-</tr>
-<tr>
-<td>跳转到下一列的单元格</td>
-<td>Tab</td>
-<td>shift + Tab跳转到上一个单元格</td>
-</tr>
-<tr>
-<td>跳转到下一行的单元格</td>
-<td>Enter</td>
-<td></td>
-</tr>
-<tr>
-<td>添加一列</td>
-<td>alt + shift + 右</td>
-<td>在光标所在列左侧插入一列</td>
-</tr>
-<tr>
-<td>删除一列</td>
-<td>alt + shift + 左</td>
-<td>删除光标所在列</td>
-</tr>
-<tr>
-<td>交换列位置</td>
-<td>alt + 左或右</td>
-<td>将光标所在列和左或右侧列交换位置</td>
-</tr>
-<tr>
-<td>添加一行</td>
-<td>alt + shift + 下</td>
-<td>在光标所在行上方插入一行</td>
-</tr>
-<tr>
-<td>删除一行</td>
-<td>alt + shift + 上</td>
-<td>删除光标所在行</td>
-</tr>
-<tr>
-<td>交换行位置</td>
-<td>alt + 左或右</td>
-<td>将光标所在行和上或下侧行交换位置</td>
-</tr>
-</tbody>
-</table>
-<p>参考：<br><a href="https://www.jianshu.com/p/aa30cc25c91b">https://www.jianshu.com/p/aa30cc25c91b</a><br><a href="https://segmentfault.com/a/1190000007935021">https://segmentfault.com/a/1190000007935021</a></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>测试工作的一些总结</title>
     <url>/2019/07/07/14_%E6%B5%8B%E8%AF%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h4 id="手工测试"><a href="#手工测试" class="headerlink" title="手工测试"></a>手工测试</h4><h5 id="测试流程规范"><a href="#测试流程规范" class="headerlink" title="测试流程规范"></a>测试流程规范</h5><ol>
@@ -1197,93 +1120,80 @@ https://github.com/HunterXuan/hexo-simple-mindmap
       </tags>
   </entry>
   <entry>
-    <title>读书笔记收集</title>
-    <url>/2025/01/01/16_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%94%B6%E9%9B%86/</url>
-    <content><![CDATA[<h4 id="待阅读清单"><a href="#待阅读清单" class="headerlink" title="待阅读清单"></a>待阅读清单</h4><h4 id="已阅读清单"><a href="#已阅读清单" class="headerlink" title="已阅读清单"></a>已阅读清单</h4><ul>
-<li>《蛤蟆先生去看心理医生》</li>
-<li>《心流》</li>
-<li>《牧羊少年奇幻之旅》</li>
-<li>《悉达多》</li>
-<li>《人类简史》</li>
-<li>《曾国藩传》</li>
-<li>《乔布斯传》</li>
-<li>《小王子》</li>
-<li>《邓小平时代》</li>
-<li>《易中天品三国》</li>
-<li>《乒乓球有意思》</li>
-<li>《失落的卫星》</li>
-<li>《纳瓦尔宝典》</li>
-<li>《置身事内》</li>
-<li>《李光耀观天下》</li>
-<li>《为什么精英都是时间控》</li>
-</ul>
-<h5 id="《心流》读书笔记"><a href="#《心流》读书笔记" class="headerlink" title="《心流》读书笔记"></a>《心流》读书笔记</h5><ol>
-<li><p><strong>心流的核心要素</strong></p>
-<ul>
-<li>明确的目标和即时反馈</li>
-<li>挑战与能力的平衡</li>
-<li>全神贯注的状态</li>
-</ul>
-</li>
-<li><p><strong>进入心流的最佳条件</strong></p>
-<ul>
-<li>选择”擅长但不精通”的领域</li>
-<li>将大目标拆解成小任务</li>
-<li>建立清晰的任务闭环</li>
-<li>保持正向反馈</li>
-</ul>
-</li>
-<li><p><strong>个人实践心得</strong></p>
-<blockquote>
-<p>从乒乓球运动的经验来看，面对挑战时的态度至关重要。选择接受挑战还是逃避，会带来完全不同的结局。真正的技能提升需要：</p>
-<ul>
-<li>从理论上改变认知</li>
-<li>克服心理上的惧怕</li>
-<li>达到身心的放松</li>
-<li>通过正确练习形成肌肉记忆</li>
-<li>获得正向心理反馈</li>
-</ul>
-</blockquote>
-</li>
-<li><p><strong>心流体验在不同领域的对比</strong></p>
-<ul>
-<li><p>运动领域（以乒乓球为例）：</p>
-<ul>
-<li>即时反馈明确</li>
-<li>对手水平匹配时更容易进入状态</li>
-<li>环境单纯，易于保持专注</li>
-</ul>
-</li>
-<li><p>工作领域（以编程为例）：</p>
-<ul>
-<li>后端开发更容易进入心流：<ul>
-<li>微服务设计自带任务拆解特性</li>
-<li>清晰的模块定位</li>
-<li>明确的全局作用</li>
-</ul>
-</li>
-<li>前端开发的挑战：<ul>
-<li>所见即所得的即时压力</li>
-<li>频繁的需求调整</li>
-<li>调试过程易产生挫败感</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>心态建设</strong></p>
-<ul>
-<li>接受不完美</li>
-<li>敢于重新开始</li>
-<li>避免完美主义陷阱</li>
-<li>保持持续学习的态度</li>
-</ul>
-</li>
-</ol>
+    <title>sublime插件安装</title>
+    <url>/2020/10/08/13_sublimetext%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h4 id="如何安装插件详见：https-packagecontrol-io-installation"><a href="#如何安装插件详见：https-packagecontrol-io-installation" class="headerlink" title="如何安装插件详见：https://packagecontrol.io/installation"></a>如何安装插件详见：<a href="https://packagecontrol.io/installation">https://packagecontrol.io/installation</a></h4><h4 id="OmniMarkupPreviwer"><a href="#OmniMarkupPreviwer" class="headerlink" title="OmniMarkupPreviwer"></a>OmniMarkupPreviwer</h4><p>实时在浏览器中预览markdown。快捷键如下：<br>Ctrl+Alt+O: Preview Markup in Browser.<br>Ctrl+Alt+X: Export Markup as HTML.<br>Ctrl+Alt+C: Copy Markup as HTML</p>
+<span id="more"></span>
+<h4 id="TableEditor"><a href="#TableEditor" class="headerlink" title="TableEditor"></a>TableEditor</h4><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>快捷键</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启用</td>
+<td>ctrl + shift + p</td>
+<td>Table Editor: Enable for current syntax <br>or view</td>
+</tr>
+<tr>
+<td>禁用</td>
+<td>ctrl + shift + p</td>
+<td>Table Editor: Disable for current syntax <br>or view</td>
+</tr>
+<tr>
+<td>快速建表</td>
+<td>ctrl + k, Enter</td>
+<td>要先输入表的第一行</td>
+</tr>
+<tr>
+<td>跳转到下一列的单元格</td>
+<td>Tab</td>
+<td>shift + Tab跳转到上一个单元格</td>
+</tr>
+<tr>
+<td>跳转到下一行的单元格</td>
+<td>Enter</td>
+<td></td>
+</tr>
+<tr>
+<td>添加一列</td>
+<td>alt + shift + 右</td>
+<td>在光标所在列左侧插入一列</td>
+</tr>
+<tr>
+<td>删除一列</td>
+<td>alt + shift + 左</td>
+<td>删除光标所在列</td>
+</tr>
+<tr>
+<td>交换列位置</td>
+<td>alt + 左或右</td>
+<td>将光标所在列和左或右侧列交换位置</td>
+</tr>
+<tr>
+<td>添加一行</td>
+<td>alt + shift + 下</td>
+<td>在光标所在行上方插入一行</td>
+</tr>
+<tr>
+<td>删除一行</td>
+<td>alt + shift + 上</td>
+<td>删除光标所在行</td>
+</tr>
+<tr>
+<td>交换行位置</td>
+<td>alt + 左或右</td>
+<td>将光标所在行和上或下侧行交换位置</td>
+</tr>
+</tbody>
+</table>
+<p>参考：<br><a href="https://www.jianshu.com/p/aa30cc25c91b">https://www.jianshu.com/p/aa30cc25c91b</a><br><a href="https://segmentfault.com/a/1190000007935021">https://segmentfault.com/a/1190000007935021</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
-        <tag>总结</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,6 +1389,96 @@ https://github.com/HunterXuan/hexo-simple-mindmap
 <li>代码重复率&lt;5%</li>
 <li>测试覆盖率&gt;80%</li>
 </ul>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读书笔记收集</title>
+    <url>/2025/01/01/16_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%94%B6%E9%9B%86/</url>
+    <content><![CDATA[<h4 id="待阅读清单"><a href="#待阅读清单" class="headerlink" title="待阅读清单"></a>待阅读清单</h4><h4 id="已阅读清单"><a href="#已阅读清单" class="headerlink" title="已阅读清单"></a>已阅读清单</h4><ul>
+<li>《蛤蟆先生去看心理医生》</li>
+<li>《心流》</li>
+<li>《牧羊少年奇幻之旅》</li>
+<li>《悉达多》</li>
+<li>《人类简史》</li>
+<li>《曾国藩传》</li>
+<li>《乔布斯传》</li>
+<li>《小王子》</li>
+<li>《邓小平时代》</li>
+<li>《易中天品三国》</li>
+<li>《乒乓球有意思》</li>
+<li>《失落的卫星》</li>
+<li>《纳瓦尔宝典》</li>
+<li>《置身事内》</li>
+<li>《李光耀观天下》</li>
+<li>《为什么精英都是时间控》</li>
+</ul>
+<h5 id="《心流》读书笔记"><a href="#《心流》读书笔记" class="headerlink" title="《心流》读书笔记"></a>《心流》读书笔记</h5><ol>
+<li><p><strong>心流的核心要素</strong></p>
+<ul>
+<li>明确的目标和即时反馈</li>
+<li>挑战与能力的平衡</li>
+<li>全神贯注的状态</li>
+</ul>
+</li>
+<li><p><strong>进入心流的最佳条件</strong></p>
+<ul>
+<li>选择”擅长但不精通”的领域</li>
+<li>将大目标拆解成小任务</li>
+<li>建立清晰的任务闭环</li>
+<li>保持正向反馈</li>
+</ul>
+</li>
+<li><p><strong>个人实践心得</strong></p>
+<blockquote>
+<p>从乒乓球运动的经验来看，面对挑战时的态度至关重要。选择接受挑战还是逃避，会带来完全不同的结局。真正的技能提升需要：</p>
+<ul>
+<li>从理论上改变认知</li>
+<li>克服心理上的惧怕</li>
+<li>达到身心的放松</li>
+<li>通过正确练习形成肌肉记忆</li>
+<li>获得正向心理反馈</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>心流体验在不同领域的对比</strong></p>
+<ul>
+<li><p>运动领域（以乒乓球为例）：</p>
+<ul>
+<li>即时反馈明确</li>
+<li>对手水平匹配时更容易进入状态</li>
+<li>环境单纯，易于保持专注</li>
+</ul>
+</li>
+<li><p>工作领域（以编程为例）：</p>
+<ul>
+<li>后端开发更容易进入心流：<ul>
+<li>微服务设计自带任务拆解特性</li>
+<li>清晰的模块定位</li>
+<li>明确的全局作用</li>
+</ul>
+</li>
+<li>前端开发的挑战：<ul>
+<li>所见即所得的即时压力</li>
+<li>频繁的需求调整</li>
+<li>调试过程易产生挫败感</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>心态建设</strong></p>
+<ul>
+<li>接受不完美</li>
+<li>敢于重新开始</li>
+<li>避免完美主义陷阱</li>
+<li>保持持续学习的态度</li>
+</ul>
+</li>
+</ol>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>总结</tag>
