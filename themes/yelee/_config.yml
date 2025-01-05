@@ -186,7 +186,7 @@ tagcloud: true
   # MOxFIVE: http://moxfive.xyz/
 friends: false
 
-#是否开启“关于我”。
+#是否开启"关于我"。
 # aboutme: 专注于前端
 aboutme: false
 
@@ -230,7 +230,7 @@ tab_title_change:
 ## Insatall below plugin to take effect | 使用搜索需先安装对应插件
 ## https://github.com/PaicHyperionDev/hexo-generator-search
 search: 
-  # on: true
+  on: true
   onload: false
   ## true: get search.xml file when the page has loaded
   ## false: get the file when search box gets focus
@@ -299,3 +299,7 @@ CDN:
   clipboard: //cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js
   mathjax: //cdn.bootcss.com/mathjax/2.6.1/MathJax.js
   scrollreveal: //cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js
+
+mermaid:
+  enable: true
+  version: "8.8.4"  # 确保版本号正确
