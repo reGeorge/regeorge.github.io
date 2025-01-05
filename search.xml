@@ -1,70 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>git常用命令</title>
-    <url>/2017/01/14/02_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h4 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h4><p><code>git init</code><br>.git所在文件夹便是git对应的一个本地仓库</p>
-<span id="more"></span>
-<h4 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h4><pre><code>git branch master
-</code></pre><h4 id="查看本地分支"><a href="#查看本地分支" class="headerlink" title="查看本地分支"></a>查看本地分支</h4><pre><code>git branch
-</code></pre><h4 id="设置远程仓库地址"><a href="#设置远程仓库地址" class="headerlink" title="设置远程仓库地址"></a>设置远程仓库地址</h4><pre><code>git remote add github git@github.com:regeorge/blog.git
-</code></pre><h4 id="查看已配置的远程仓库"><a href="#查看已配置的远程仓库" class="headerlink" title="查看已配置的远程仓库"></a>查看已配置的远程仓库</h4><pre><code>git remote
-</code></pre><h4 id="从远程仓库更新到本地分支"><a href="#从远程仓库更新到本地分支" class="headerlink" title="从远程仓库更新到本地分支"></a>从远程仓库更新到本地分支</h4><pre><code>git pull github master
-</code></pre><h4 id="在未加入缓存区时回滚"><a href="#在未加入缓存区时回滚" class="headerlink" title="在未加入缓存区时回滚"></a>在未加入缓存区时回滚</h4><pre><code>git checkout -- .
-</code></pre><h4 id="将本文件夹内所有改动加入缓存区"><a href="#将本文件夹内所有改动加入缓存区" class="headerlink" title="将本文件夹内所有改动加入缓存区"></a>将本文件夹内所有改动加入缓存区</h4><pre><code>git add .
-</code></pre><h4 id="在加入缓存区时回滚"><a href="#在加入缓存区时回滚" class="headerlink" title="在加入缓存区时回滚"></a>在加入缓存区时回滚</h4><pre><code>git reset HEAD
-</code></pre><h4 id="将暂存区的改动提交到本地仓库"><a href="#将暂存区的改动提交到本地仓库" class="headerlink" title="将暂存区的改动提交到本地仓库"></a>将暂存区的改动提交到本地仓库</h4><pre><code>git commit -m &quot;add all files&quot;
-</code></pre><h4 id="在提交仓库后回滚"><a href="#在提交仓库后回滚" class="headerlink" title="在提交仓库后回滚"></a>在提交仓库后回滚</h4><pre><code>git log #查看提交记录（带有唯一标识commitid）
-git revert %commitid%
-</code></pre><h4 id="将本地分支推送到远程仓库"><a href="#将本地分支推送到远程仓库" class="headerlink" title="将本地分支推送到远程仓库"></a>将本地分支推送到远程仓库</h4><pre><code>git push github master
-</code></pre><h4 id="gitignore文件中写入不需要同步的文件夹路径"><a href="#gitignore文件中写入不需要同步的文件夹路径" class="headerlink" title=".gitignore文件中写入不需要同步的文件夹路径"></a>.gitignore文件中写入不需要同步的文件夹路径</h4><h4 id="hexo-deploy-命令"><a href="#hexo-deploy-命令" class="headerlink" title="hexo deploy 命令"></a>hexo deploy 命令</h4><p>在使用hexo搭建博客时，blog目录下有一个.git文件夹，而.deploy_git文件夹内的.git文件夹又对应了另一个仓库,hexo d命令正是将此目录下的仓库推送到远程仓库从而实现更新博客的</p>
-<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
-<li>Q1：在github上创建仓库，在本地新建仓库并push产生冲突</li>
-</ul>
-<ul>
-<li>A1：先pull后push<pre><code>git push -u origin master -f
-</code></pre></li>
-</ul>
-<p>参考：<a href="http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/">http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/</a><br>      <a href="http://blog.csdn.net/shiren1118/article/details/7761203">http://blog.csdn.net/shiren1118/article/details/7761203</a></p>
-<h4 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h4><pre><code>git log
-</code></pre><h4 id="查看简洁的提交历史"><a href="#查看简洁的提交历史" class="headerlink" title="查看简洁的提交历史"></a>查看简洁的提交历史</h4><pre><code>git log --oneline
-</code></pre><h4 id="查看文件的修改历史"><a href="#查看文件的修改历史" class="headerlink" title="查看文件的修改历史"></a>查看文件的修改历史</h4><pre><code>git blame &lt;file&gt;
-</code></pre><h4 id="查看工作目录状态"><a href="#查看工作目录状态" class="headerlink" title="查看工作目录状态"></a>查看工作目录状态</h4><pre><code>git status
-</code></pre><h4 id="比较工作目录和暂存区的差异"><a href="#比较工作目录和暂存区的差异" class="headerlink" title="比较工作目录和暂存区的差异"></a>比较工作目录和暂存区的差异</h4><pre><code>git diff
-</code></pre><h4 id="比较暂存区和最后一次提交的差异"><a href="#比较暂存区和最后一次提交的差异" class="headerlink" title="比较暂存区和最后一次提交的差异"></a>比较暂存区和最后一次提交的差异</h4><pre><code>git diff --cached
-</code></pre><h4 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h4><pre><code>git checkout -b &lt;branch_name&gt;
-</code></pre><h4 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h4><pre><code>git merge &lt;branch_name&gt;
-</code></pre><h4 id="删除本地分支"><a href="#删除本地分支" class="headerlink" title="删除本地分支"></a>删除本地分支</h4><pre><code>git branch -d &lt;branch_name&gt;
-</code></pre><h4 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h4><pre><code>git push origin --delete &lt;branch_name&gt;
-</code></pre><h4 id="暂存当前更改以便切换分支"><a href="#暂存当前更改以便切换分支" class="headerlink" title="暂存当前更改以便切换分支"></a>暂存当前更改以便切换分支</h4><pre><code>git stash
-</code></pre><h4 id="恢复暂存的更改"><a href="#恢复暂存的更改" class="headerlink" title="恢复暂存的更改"></a>恢复暂存的更改</h4><pre><code>git stash pop
-</code></pre><h4 id="查看所有暂存的更改"><a href="#查看所有暂存的更改" class="headerlink" title="查看所有暂存的更改"></a>查看所有暂存的更改</h4><pre><code>git stash list
-</code></pre><h4 id="清除所有暂存的更改"><a href="#清除所有暂存的更改" class="headerlink" title="清除所有暂存的更改"></a>清除所有暂存的更改</h4><pre><code>git stash clear
-</code></pre><h4 id="sed-命令示例解析"><a href="#sed-命令示例解析" class="headerlink" title="sed 命令示例解析"></a>sed 命令示例解析</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;&#x27;</span> <span class="string">&#x27;s/theme.mermaid.enable/mermaid.enable/g&#x27;</span> themes/yelee/layout/_partial/footer.ejs</span><br></pre></td></tr></table></figure>
-<p>命令分解：</p>
-<ul>
-<li><code>sed</code>: 流编辑器，用于文本处理</li>
-<li><code>-i &#39;&#39;</code>: <ul>
-<li><code>-i</code> 表示直接修改文件（in-place）</li>
-<li><code>&#39;&#39;</code> 是 macOS 下的特殊语法，表示不创建备份文件</li>
-</ul>
-</li>
-<li><code>&#39;s/theme.mermaid.enable/mermaid.enable/g&#39;</code>:<ul>
-<li><code>s/</code> 表示替换（substitute）</li>
-<li><code>theme.mermaid.enable</code> 是要被替换的文本</li>
-<li><code>mermaid.enable</code> 是替换后的文本</li>
-<li><code>g</code> 表示全局替换（global）</li>
-</ul>
-</li>
-<li><code>themes/yelee/layout/_partial/footer.ejs</code>: 目标文件路径</li>
-</ul>
-<p>作用：<br>将 footer.ejs 文件中所有的 <code>theme.mermaid.enable</code> 替换为 <code>mermaid.enable</code></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何搭建个人博客</title>
     <url>/2017/01/09/01_%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p>搭建个人主页的步骤如下：</p>
@@ -175,6 +111,70 @@ http://regeorge.coding.me/
 </code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git常用命令</title>
+    <url>/2017/01/14/02_git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h4 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h4><p><code>git init</code><br>.git所在文件夹便是git对应的一个本地仓库</p>
+<span id="more"></span>
+<h4 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h4><pre><code>git branch master
+</code></pre><h4 id="查看本地分支"><a href="#查看本地分支" class="headerlink" title="查看本地分支"></a>查看本地分支</h4><pre><code>git branch
+</code></pre><h4 id="设置远程仓库地址"><a href="#设置远程仓库地址" class="headerlink" title="设置远程仓库地址"></a>设置远程仓库地址</h4><pre><code>git remote add github git@github.com:regeorge/blog.git
+</code></pre><h4 id="查看已配置的远程仓库"><a href="#查看已配置的远程仓库" class="headerlink" title="查看已配置的远程仓库"></a>查看已配置的远程仓库</h4><pre><code>git remote
+</code></pre><h4 id="从远程仓库更新到本地分支"><a href="#从远程仓库更新到本地分支" class="headerlink" title="从远程仓库更新到本地分支"></a>从远程仓库更新到本地分支</h4><pre><code>git pull github master
+</code></pre><h4 id="在未加入缓存区时回滚"><a href="#在未加入缓存区时回滚" class="headerlink" title="在未加入缓存区时回滚"></a>在未加入缓存区时回滚</h4><pre><code>git checkout -- .
+</code></pre><h4 id="将本文件夹内所有改动加入缓存区"><a href="#将本文件夹内所有改动加入缓存区" class="headerlink" title="将本文件夹内所有改动加入缓存区"></a>将本文件夹内所有改动加入缓存区</h4><pre><code>git add .
+</code></pre><h4 id="在加入缓存区时回滚"><a href="#在加入缓存区时回滚" class="headerlink" title="在加入缓存区时回滚"></a>在加入缓存区时回滚</h4><pre><code>git reset HEAD
+</code></pre><h4 id="将暂存区的改动提交到本地仓库"><a href="#将暂存区的改动提交到本地仓库" class="headerlink" title="将暂存区的改动提交到本地仓库"></a>将暂存区的改动提交到本地仓库</h4><pre><code>git commit -m &quot;add all files&quot;
+</code></pre><h4 id="在提交仓库后回滚"><a href="#在提交仓库后回滚" class="headerlink" title="在提交仓库后回滚"></a>在提交仓库后回滚</h4><pre><code>git log #查看提交记录（带有唯一标识commitid）
+git revert %commitid%
+</code></pre><h4 id="将本地分支推送到远程仓库"><a href="#将本地分支推送到远程仓库" class="headerlink" title="将本地分支推送到远程仓库"></a>将本地分支推送到远程仓库</h4><pre><code>git push github master
+</code></pre><h4 id="gitignore文件中写入不需要同步的文件夹路径"><a href="#gitignore文件中写入不需要同步的文件夹路径" class="headerlink" title=".gitignore文件中写入不需要同步的文件夹路径"></a>.gitignore文件中写入不需要同步的文件夹路径</h4><h4 id="hexo-deploy-命令"><a href="#hexo-deploy-命令" class="headerlink" title="hexo deploy 命令"></a>hexo deploy 命令</h4><p>在使用hexo搭建博客时，blog目录下有一个.git文件夹，而.deploy_git文件夹内的.git文件夹又对应了另一个仓库,hexo d命令正是将此目录下的仓库推送到远程仓库从而实现更新博客的</p>
+<h4 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h4><ul>
+<li>Q1：在github上创建仓库，在本地新建仓库并push产生冲突</li>
+</ul>
+<ul>
+<li>A1：先pull后push<pre><code>git push -u origin master -f
+</code></pre></li>
+</ul>
+<p>参考：<a href="http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/">http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/</a><br>      <a href="http://blog.csdn.net/shiren1118/article/details/7761203">http://blog.csdn.net/shiren1118/article/details/7761203</a></p>
+<h4 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h4><pre><code>git log
+</code></pre><h4 id="查看简洁的提交历史"><a href="#查看简洁的提交历史" class="headerlink" title="查看简洁的提交历史"></a>查看简洁的提交历史</h4><pre><code>git log --oneline
+</code></pre><h4 id="查看文件的修改历史"><a href="#查看文件的修改历史" class="headerlink" title="查看文件的修改历史"></a>查看文件的修改历史</h4><pre><code>git blame &lt;file&gt;
+</code></pre><h4 id="查看工作目录状态"><a href="#查看工作目录状态" class="headerlink" title="查看工作目录状态"></a>查看工作目录状态</h4><pre><code>git status
+</code></pre><h4 id="比较工作目录和暂存区的差异"><a href="#比较工作目录和暂存区的差异" class="headerlink" title="比较工作目录和暂存区的差异"></a>比较工作目录和暂存区的差异</h4><pre><code>git diff
+</code></pre><h4 id="比较暂存区和最后一次提交的差异"><a href="#比较暂存区和最后一次提交的差异" class="headerlink" title="比较暂存区和最后一次提交的差异"></a>比较暂存区和最后一次提交的差异</h4><pre><code>git diff --cached
+</code></pre><h4 id="创建并切换到新分支"><a href="#创建并切换到新分支" class="headerlink" title="创建并切换到新分支"></a>创建并切换到新分支</h4><pre><code>git checkout -b &lt;branch_name&gt;
+</code></pre><h4 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h4><pre><code>git merge &lt;branch_name&gt;
+</code></pre><h4 id="删除本地分支"><a href="#删除本地分支" class="headerlink" title="删除本地分支"></a>删除本地分支</h4><pre><code>git branch -d &lt;branch_name&gt;
+</code></pre><h4 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h4><pre><code>git push origin --delete &lt;branch_name&gt;
+</code></pre><h4 id="暂存当前更改以便切换分支"><a href="#暂存当前更改以便切换分支" class="headerlink" title="暂存当前更改以便切换分支"></a>暂存当前更改以便切换分支</h4><pre><code>git stash
+</code></pre><h4 id="恢复暂存的更改"><a href="#恢复暂存的更改" class="headerlink" title="恢复暂存的更改"></a>恢复暂存的更改</h4><pre><code>git stash pop
+</code></pre><h4 id="查看所有暂存的更改"><a href="#查看所有暂存的更改" class="headerlink" title="查看所有暂存的更改"></a>查看所有暂存的更改</h4><pre><code>git stash list
+</code></pre><h4 id="清除所有暂存的更改"><a href="#清除所有暂存的更改" class="headerlink" title="清除所有暂存的更改"></a>清除所有暂存的更改</h4><pre><code>git stash clear
+</code></pre><h4 id="sed-命令示例解析"><a href="#sed-命令示例解析" class="headerlink" title="sed 命令示例解析"></a>sed 命令示例解析</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;&#x27;</span> <span class="string">&#x27;s/theme.mermaid.enable/mermaid.enable/g&#x27;</span> themes/yelee/layout/_partial/footer.ejs</span><br></pre></td></tr></table></figure>
+<p>命令分解：</p>
+<ul>
+<li><code>sed</code>: 流编辑器，用于文本处理</li>
+<li><code>-i &#39;&#39;</code>: <ul>
+<li><code>-i</code> 表示直接修改文件（in-place）</li>
+<li><code>&#39;&#39;</code> 是 macOS 下的特殊语法，表示不创建备份文件</li>
+</ul>
+</li>
+<li><code>&#39;s/theme.mermaid.enable/mermaid.enable/g&#39;</code>:<ul>
+<li><code>s/</code> 表示替换（substitute）</li>
+<li><code>theme.mermaid.enable</code> 是要被替换的文本</li>
+<li><code>mermaid.enable</code> 是替换后的文本</li>
+<li><code>g</code> 表示全局替换（global）</li>
+</ul>
+</li>
+<li><code>themes/yelee/layout/_partial/footer.ejs</code>: 目标文件路径</li>
+</ul>
+<p>作用：<br>将 footer.ejs 文件中所有的 <code>theme.mermaid.enable</code> 替换为 <code>mermaid.enable</code></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -453,6 +453,136 @@ private String getTime() &#123;
       </tags>
   </entry>
   <entry>
+    <title>百日囚徒问题</title>
+    <url>/2017/12/27/06_%E7%99%BE%E6%97%A5%E5%9B%9A%E5%BE%92%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。</p>
+<p>一天，全体囚徒大会，国王大赦，给大家一个机会：如果某一天，某个囚徒能够明确表示，所有的囚徒都已经被放过风了，而且的确如此，那么所有囚徒释放；如果仍有囚徒未被放过风，那么所有的囚徒一起处死！</p>
+<p>囚徒大会后给大家20分钟时间讨论，囚徒们能找到方法么？不考虑什么犯人突然死亡的意外因素。是纯粹的理论题。</p>
+<span id="more"></span>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1、前100天利用灯来互相确认自己的身份（灯初始状态为关闭）：</p>
+<ul>
+<li>计数人<ul>
+<li>首次放风的人不进行任何操作，设第一个二次放风的人为计数人，计数人把灯打开（比如第20天该囚犯第二次去放风，且前面没有人去动过灯，则说明连同他共有19个人是首次放风），则此时生成一个该天数的计数(N-1)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>已知囚徒<ul>
+<li>设剩下的99人中，见到过灯灭状态的人为已知囚徒，因为计数人能通过开灯的日期准确推算出之前的人数</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>未知囚徒<ul>
+<li>设从未见过灯灭状态的人为未知囚徒，因为灯打开后，计数人无法获取放风的准确人数</li>
+</ul>
+</li>
+</ul>
+<p>这里有可能出现最好情况：第100天，某首次放风囚徒发现灯为关闭状态，说明前100天均无人2次放风，即每人都是首次放风，可以宣布获救。</p>
+<p>2、100天过后，未知囚徒和计数人之间通过灯来传递信息（灯初始状态为打开）：</p>
+<ul>
+<li><p>已知囚徒放风</p>
+<ul>
+<li>不进行任何操作</li>
+</ul>
+</li>
+<li><p>未知囚徒放风</p>
+<ul>
+<li>若灯为打开状态，说明通信可用，关灯向计数人传递信息，至此该未知囚徒以后都不再对灯进行操作。</li>
+<li>若灯为关闭状态，说明此次通信未结束，不进行任何操作</li>
+</ul>
+</li>
+<li><p>计数人放风</p>
+<ul>
+<li>若灯为关闭状态，计数N+1，并将灯打开，以便下一个未知囚徒传递信息</li>
+<li>若灯为打开状态，说明暂时没有未知囚徒发起通信，不进行任何操作</li>
+</ul>
+</li>
+</ul>
+<p>当计数人放风时恰好N=100，则他可以宣布确定所有囚徒都放过风了。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>import random
+
+days = 1    # 天数
+light = 0    # 灯
+times = [0 for i in range(0,100)]    # 每个囚徒放风次数的统计数组
+counter = -1    # 计数人
+remainer = 100    # 剩余未知人
+
+while 1==1:
+    print(&quot;第%d天: &quot;%days)
+    print(&quot;        剩余未知人: %d&quot;%remainer)
+    # 随机抽选一人放风
+    P = random.randint(0, 99)
+
+    # 前100天确认身份
+    if days &lt;= 100:
+        if light == 0:
+            times[P] += 1    # 灯灭放风有效
+            if times == 1:
+                pass
+            if times[P] == 2:    # 灯灭且第二次放风
+                counter = P
+                print(&quot;        确定计数人: %d&quot; %counter)
+                light = 1
+                remainer -= (days-1)    # 开灯计数
+        else:
+            pass    # 在灯亮放风无效
+
+        if days == 100 and light == 0:    # 100天灯仍灭，获救
+            print(&quot;获救&quot;)
+            break
+
+    else:    # 100天后通过灯通信
+        if light == 1:
+            times[P] += 1    # 灯亮放风有效
+            if times[P] == 1:    #(未知者)关灯发出信息
+                light = 0
+
+        else:
+            if P == counter:    # 灯灭计数人开灯计数
+                light = 1
+                remainer -= 1
+                if remainer == 0:
+                    print(&quot;        计数人%d宣布获救&quot; %counter)
+                    break
+    days += 1
+</code></pre><h4 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h4><pre><code>第1天: 
+    剩余未知人: 100
+第2天: 
+        剩余未知人: 100
+第3天: 
+        剩余未知人: 100
+第4天: 
+        剩余未知人: 100
+第5天: 
+        剩余未知人: 100
+第6天: 
+        剩余未知人: 100
+第7天: 
+        剩余未知人: 100
+        确定计数人: 53
+第8天: 
+        剩余未知人: 94
+第9天: 
+        剩余未知人: 94
+
+······
+
+第9538天: 
+    剩余未知人: 1
+第9539天: 
+        剩余未知人: 1
+第9540天: 
+        剩余未知人: 1
+第9541天: 
+        剩余未知人: 1
+        计数人53宣布获救
+</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown的使用</title>
     <url>/2018/02/21/07_Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>Markdown的常用方法如下：</p>
@@ -615,136 +745,6 @@ if __name__ == &quot;__main__&quot;:
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>百日囚徒问题</title>
-    <url>/2017/12/27/06_%E7%99%BE%E6%97%A5%E5%9B%9A%E5%BE%92%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。</p>
-<p>一天，全体囚徒大会，国王大赦，给大家一个机会：如果某一天，某个囚徒能够明确表示，所有的囚徒都已经被放过风了，而且的确如此，那么所有囚徒释放；如果仍有囚徒未被放过风，那么所有的囚徒一起处死！</p>
-<p>囚徒大会后给大家20分钟时间讨论，囚徒们能找到方法么？不考虑什么犯人突然死亡的意外因素。是纯粹的理论题。</p>
-<span id="more"></span>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1、前100天利用灯来互相确认自己的身份（灯初始状态为关闭）：</p>
-<ul>
-<li>计数人<ul>
-<li>首次放风的人不进行任何操作，设第一个二次放风的人为计数人，计数人把灯打开（比如第20天该囚犯第二次去放风，且前面没有人去动过灯，则说明连同他共有19个人是首次放风），则此时生成一个该天数的计数(N-1)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>已知囚徒<ul>
-<li>设剩下的99人中，见到过灯灭状态的人为已知囚徒，因为计数人能通过开灯的日期准确推算出之前的人数</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>未知囚徒<ul>
-<li>设从未见过灯灭状态的人为未知囚徒，因为灯打开后，计数人无法获取放风的准确人数</li>
-</ul>
-</li>
-</ul>
-<p>这里有可能出现最好情况：第100天，某首次放风囚徒发现灯为关闭状态，说明前100天均无人2次放风，即每人都是首次放风，可以宣布获救。</p>
-<p>2、100天过后，未知囚徒和计数人之间通过灯来传递信息（灯初始状态为打开）：</p>
-<ul>
-<li><p>已知囚徒放风</p>
-<ul>
-<li>不进行任何操作</li>
-</ul>
-</li>
-<li><p>未知囚徒放风</p>
-<ul>
-<li>若灯为打开状态，说明通信可用，关灯向计数人传递信息，至此该未知囚徒以后都不再对灯进行操作。</li>
-<li>若灯为关闭状态，说明此次通信未结束，不进行任何操作</li>
-</ul>
-</li>
-<li><p>计数人放风</p>
-<ul>
-<li>若灯为关闭状态，计数N+1，并将灯打开，以便下一个未知囚徒传递信息</li>
-<li>若灯为打开状态，说明暂时没有未知囚徒发起通信，不进行任何操作</li>
-</ul>
-</li>
-</ul>
-<p>当计数人放风时恰好N=100，则他可以宣布确定所有囚徒都放过风了。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>import random
-
-days = 1    # 天数
-light = 0    # 灯
-times = [0 for i in range(0,100)]    # 每个囚徒放风次数的统计数组
-counter = -1    # 计数人
-remainer = 100    # 剩余未知人
-
-while 1==1:
-    print(&quot;第%d天: &quot;%days)
-    print(&quot;        剩余未知人: %d&quot;%remainer)
-    # 随机抽选一人放风
-    P = random.randint(0, 99)
-
-    # 前100天确认身份
-    if days &lt;= 100:
-        if light == 0:
-            times[P] += 1    # 灯灭放风有效
-            if times == 1:
-                pass
-            if times[P] == 2:    # 灯灭且第二次放风
-                counter = P
-                print(&quot;        确定计数人: %d&quot; %counter)
-                light = 1
-                remainer -= (days-1)    # 开灯计数
-        else:
-            pass    # 在灯亮放风无效
-
-        if days == 100 and light == 0:    # 100天灯仍灭，获救
-            print(&quot;获救&quot;)
-            break
-
-    else:    # 100天后通过灯通信
-        if light == 1:
-            times[P] += 1    # 灯亮放风有效
-            if times[P] == 1:    #(未知者)关灯发出信息
-                light = 0
-
-        else:
-            if P == counter:    # 灯灭计数人开灯计数
-                light = 1
-                remainer -= 1
-                if remainer == 0:
-                    print(&quot;        计数人%d宣布获救&quot; %counter)
-                    break
-    days += 1
-</code></pre><h4 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h4><pre><code>第1天: 
-    剩余未知人: 100
-第2天: 
-        剩余未知人: 100
-第3天: 
-        剩余未知人: 100
-第4天: 
-        剩余未知人: 100
-第5天: 
-        剩余未知人: 100
-第6天: 
-        剩余未知人: 100
-第7天: 
-        剩余未知人: 100
-        确定计数人: 53
-第8天: 
-        剩余未知人: 94
-第9天: 
-        剩余未知人: 94
-
-······
-
-第9538天: 
-    剩余未知人: 1
-第9539天: 
-        剩余未知人: 1
-第9540天: 
-        剩余未知人: 1
-第9541天: 
-        剩余未知人: 1
-        计数人53宣布获救
-</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -938,6 +938,15 @@ https://github.com/HunterXuan/hexo-simple-mindmap
       </tags>
   </entry>
   <entry>
+    <title>安卓客户端取日志脚本</title>
+    <url>/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<p>安卓客户端取日志脚本：8ii8i i<br><span id="more"></span></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">::初始化脚本</span><br><span class="line">:start</span><br><span class="line">cls</span><br><span class="line">echo ****************************************</span><br><span class="line">echo [请输入：0]        退出</span><br><span class="line">echo [请输入：1]        获取applog</span><br><span class="line">echo [请输入：2]        清理applog</span><br><span class="line">echo [直接输入回车]   执行默认操作</span><br><span class="line">echo ****************************************</span><br><span class="line"></span><br><span class="line">set FOLDER=%~dp0</span><br><span class="line">set TIMESTAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%</span><br><span class="line">set /p opt=请输入:</span><br><span class="line"></span><br><span class="line">if &quot;%opt%&quot;==&quot;0&quot; goto exit</span><br><span class="line">if &quot;%opt%&quot;==&quot;1&quot; goto get_log</span><br><span class="line">if &quot;%opt%&quot;==&quot;&quot; goto default</span><br><span class="line"></span><br><span class="line">:default</span><br><span class="line">echo 执行默认操作</span><br><span class="line">echo 我啥也没干</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:get_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 获取applog</span><br><span class="line">echo 目标路径为 %FOLDER%%TIMESTAMP%</span><br><span class="line">::adb pull applog路径 目标路径</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:clean_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 清理applog</span><br><span class="line">adb remount</span><br><span class="line">::adb shell rm -r xxx</span><br><span class="line">pause</span><br><span class="line">goto start</span><br></pre></td></tr></table></figure><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>bat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>客户端测试方案的设计思路</title>
     <url>/2020/08/31/12_%E6%B5%8B%E8%AF%95%E6%96%B9%E6%A1%88%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/</url>
     <content><![CDATA[<h4 id="5W1H原则"><a href="#5W1H原则" class="headerlink" title="5W1H原则"></a>5W1H原则</h4><p>在任何场景下，组织一场活动也好，制定一个商业计划书也好，5W1H原则都是需要适用的，自然在测试方案的制定上也能够适用。</p>
@@ -1022,15 +1031,6 @@ https://github.com/HunterXuan/hexo-simple-mindmap
 </blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>总结</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>安卓客户端取日志脚本</title>
-    <url>/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<p>安卓客户端取日志脚本：8ii8i i<br><span id="more"></span></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">::初始化脚本</span><br><span class="line">:start</span><br><span class="line">cls</span><br><span class="line">echo ****************************************</span><br><span class="line">echo [请输入：0]        退出</span><br><span class="line">echo [请输入：1]        获取applog</span><br><span class="line">echo [请输入：2]        清理applog</span><br><span class="line">echo [直接输入回车]   执行默认操作</span><br><span class="line">echo ****************************************</span><br><span class="line"></span><br><span class="line">set FOLDER=%~dp0</span><br><span class="line">set TIMESTAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%</span><br><span class="line">set /p opt=请输入:</span><br><span class="line"></span><br><span class="line">if &quot;%opt%&quot;==&quot;0&quot; goto exit</span><br><span class="line">if &quot;%opt%&quot;==&quot;1&quot; goto get_log</span><br><span class="line">if &quot;%opt%&quot;==&quot;&quot; goto default</span><br><span class="line"></span><br><span class="line">:default</span><br><span class="line">echo 执行默认操作</span><br><span class="line">echo 我啥也没干</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:get_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 获取applog</span><br><span class="line">echo 目标路径为 %FOLDER%%TIMESTAMP%</span><br><span class="line">::adb pull applog路径 目标路径</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:clean_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 清理applog</span><br><span class="line">adb remount</span><br><span class="line">::adb shell rm -r xxx</span><br><span class="line">pause</span><br><span class="line">goto start</span><br></pre></td></tr></table></figure><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
