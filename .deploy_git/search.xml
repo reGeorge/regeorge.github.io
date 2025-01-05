@@ -453,71 +453,6 @@ private String getTime() &#123;
       </tags>
   </entry>
   <entry>
-    <title>Markdown的使用</title>
-    <url>/2018/02/21/07_Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>Markdown的常用方法如下：</p>
-<span id="more"></span>
-<h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h2><p><code>### 三级标题</code>  </p>
-<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="2-无序列表"><a href="#2-无序列表" class="headerlink" title="2.无序列表"></a>2.无序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 列表1</span><br><span class="line">- 列表2</span><br><span class="line">- 列表2</span><br></pre></td></tr></table></figure>
-<ul>
-<li>列表1</li>
-<li>列表2</li>
-<li>列表2</li>
-</ul>
-<h2 id="3-有序列表"><a href="#3-有序列表" class="headerlink" title="3.有序列表"></a>3.有序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 列表1</span><br><span class="line">2. 列表2</span><br><span class="line">3. 列表3</span><br></pre></td></tr></table></figure>
-<ol>
-<li>列表1</li>
-<li>列表2</li>
-<li>列表3</li>
-</ol>
-<h2 id="4-链接"><a href="#4-链接" class="headerlink" title="4.链接"></a>4.链接</h2><p><code>[百度](http://www.baidu.com/)</code>  </p>
-<p><a href="http://www.baidu.com/">百度</a></p>
-<h2 id="5-图片"><a href="#5-图片" class="headerlink" title="5.图片"></a>5.图片</h2><p><code>![](http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg)</code>  </p>
-<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" alt=""></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg&quot; height = &quot;110&quot; div align=&quot;right&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" height = "110" div align="right"/></p>
-<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6.引用"></a>6.引用</h2><p><code>&gt; *我挥舞着本子和键盘*，**发誓要把这世界写个明明白白**。</code>  </p>
-<blockquote>
-<p><em>我挥舞着本子和键盘</em>，<strong>发誓要把这世界写个明明白白</strong>。</p>
-</blockquote>
-<h2 id="7-代码引用"><a href="#7-代码引用" class="headerlink" title="7.代码引用"></a>7.代码引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`hello world`</span><br></pre></td></tr></table></figure>
-<p><code>hello world</code></p>
-<pre><code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="8-表格"><a href="#8-表格" class="headerlink" title="8.表格"></a>8.表格</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|姓名|学号|成绩|</span><br><span class="line">|----|:----:|----:|</span><br><span class="line">|张三|35|60|</span><br><span class="line">|李四|33|59|</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th style="text-align:center">学号</th>
-<th style="text-align:right">成绩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>张三</td>
-<td style="text-align:center">35</td>
-<td style="text-align:right">60</td>
-</tr>
-<tr>
-<td>李四</td>
-<td style="text-align:center">33</td>
-<td style="text-align:right">59</td>
-</tr>
-</tbody>
-</table>
-<h2 id="8-换行"><a href="#8-换行" class="headerlink" title="8. 换行"></a>8. 换行</h2><ol>
-<li>直接用空行来代表换行</li>
-</ol>
-<ol start="2">
-<li>或者在行位连续输入2个空格来代表换行  </li>
-</ol>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>百日囚徒问题</title>
     <url>/2017/12/27/06_%E7%99%BE%E6%97%A5%E5%9B%9A%E5%BE%92%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。</p>
@@ -648,103 +583,68 @@ while 1==1:
       </tags>
   </entry>
   <entry>
-    <title>使用selenium+wget实现自动下载图片</title>
-    <url>/2018/03/05/08_%E4%BD%BF%E7%94%A8selenium-wget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/</url>
-    <content><![CDATA[<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>unsplash.com是一个免费下载高清图片的网站，我们可以使用web自动化工具selenium来批量获取该网站主页上提供的海量图片下载链接，并使用强大的多线程下载工具wget下载这些图片。</p>
-<p>另外，selenium需要配合chromedriver.exe来操控谷歌浏览器，我们可以通过搜索下载对应浏览器版本的chromedriver.exe</p>
+    <title>Markdown的使用</title>
+    <url>/2018/02/21/07_Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>Markdown的常用方法如下：</p>
 <span id="more"></span>
-<h4 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h4><ol>
-<li>selenium</li>
-<li><p>wget</p>
-<p> pip install selenium<br> pip install wget</p>
-</li>
+<h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h2><p><code>### 三级标题</code>  </p>
+<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h2 id="2-无序列表"><a href="#2-无序列表" class="headerlink" title="2.无序列表"></a>2.无序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 列表1</span><br><span class="line">- 列表2</span><br><span class="line">- 列表2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表2</li>
+</ul>
+<h2 id="3-有序列表"><a href="#3-有序列表" class="headerlink" title="3.有序列表"></a>3.有序列表</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 列表1</span><br><span class="line">2. 列表2</span><br><span class="line">3. 列表3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表3</li>
 </ol>
-<h4 id="python脚本"><a href="#python脚本" class="headerlink" title="python脚本"></a>python脚本</h4><pre><code>from selenium import webdriver
-import wget
-import os
-import time
-import subprocess
-
-def mkdir(path):
-    # 去除首位空格
-    path=path.strip()
-    # 去除尾部 \ 符号
-    path=path.rstrip(&quot;\\&quot;)
-
-    # 判断路径是否存在
-    # 存在     True
-    # 不存在   False
-    isExists=os.path.exists(path)
-
-    # 判断结果
-    if not isExists:
-        # 如果不存在则创建目录
-        print (&apos;%s创建成功&apos;%path)
-        # 创建目录操作函数
-        os.makedirs(path)
-        return True
-    else:
-        # 如果目录存在则不创建，并提示目录已存在
-        print (&apos;%s目录已存在&apos;%path)
-        return False
-
-
-def download_pic(folderpath=&apos;&apos;,list=[]):
-    i = 1
-    for url in list:
-        try:
-        #     wget.download(url, out=&apos;%s\\%d.jpg&apos; %(folderpath,i))
-            cmd = &apos;C:\\Python36\\Scripts\\wget -O &quot;%s\\%d.jpg&quot; &quot;%s&quot;&apos; %(folderpath,i,url)
-            print(cmd)
-            subprocess.Popen(cmd)
-            i += 1
-        except:
-            print(&apos;skip&apos;)
-    print(&apos;下载成功...&apos;)
-
-def craw_url(scroll=&apos;2&apos;,web_url=&apos;&apos;):
-    driver = webdriver.Chrome(&apos;C:\\Python36\\Lib\site-packages\\chromedriver_binary\\chromedriver.exe&apos;)
-    driver.get(web_url)
-    driver.maximize_window()
-    time.sleep(3)
-    urls = []
-    try:
-        for i in range(1,scroll):
-            pics = driver.find_elements_by_class_name(name=&apos;_2zEKz&apos;)
-            for pic in pics:
-                src = &apos;%s\n&apos;%pic.get_attribute(name=&apos;src&apos;)
-                src = src.replace(&apos;1000&apos;,&apos;2592&apos;)
-                # print(src)
-                urls.append(src)
-            js=&quot;window.scrollTo(0,document.body.scrollHeight)&quot;
-            driver.execute_script(js)
-            time.sleep(3)
-            print(&quot;循环次数：%d&quot;%i)
-        driver.close()
-    except:
-        driver.close()
-    urls = list(set(urls))
-    print(&apos;获取图片链接成功...&apos;)
-    return urls
-
-if __name__ == &quot;__main__&quot;:
-    download_path = &apos;G:\\02_photo\\unsplash&apos;
-    url_list=craw_url(scroll=1000,web_url=&apos;https://unsplash.com/&apos;)
-    mkdir(download_path)
-    download_pic(folderpath=download_path,list=url_list)
-
-    #    for url in url_list:
-    #            print(url)
-    #    try:
-    #        f=open(&apos;%s\\0_urls.txt&apos;%download_path,&apos;w&apos;)
-    #       f.writelines(url_list)
-    #       f.close()
-    #    except:
-                pass
-</code></pre><h4 id="下载成功"><a href="#下载成功" class="headerlink" title="下载成功"></a>下载成功</h4><p><img src="http://upload-images.jianshu.io/upload_images/1894726-f5a17a997569edfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<h2 id="4-链接"><a href="#4-链接" class="headerlink" title="4.链接"></a>4.链接</h2><p><code>[百度](http://www.baidu.com/)</code>  </p>
+<p><a href="http://www.baidu.com/">百度</a></p>
+<h2 id="5-图片"><a href="#5-图片" class="headerlink" title="5.图片"></a>5.图片</h2><p><code>![](http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg)</code>  </p>
+<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" alt=""></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg&quot; height = &quot;110&quot; div align=&quot;right&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://img0.ph.126.net/lsmfEETHdhqyL1Yshsk4Ww==/6631563645446087568.jpg" height = "110" div align="right"/></p>
+<h2 id="6-引用"><a href="#6-引用" class="headerlink" title="6.引用"></a>6.引用</h2><p><code>&gt; *我挥舞着本子和键盘*，**发誓要把这世界写个明明白白**。</code>  </p>
+<blockquote>
+<p><em>我挥舞着本子和键盘</em>，<strong>发誓要把这世界写个明明白白</strong>。</p>
+</blockquote>
+<h2 id="7-代码引用"><a href="#7-代码引用" class="headerlink" title="7.代码引用"></a>7.代码引用</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`hello world`</span><br></pre></td></tr></table></figure>
+<p><code>hello world</code></p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for() &#123;</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-表格"><a href="#8-表格" class="headerlink" title="8.表格"></a>8.表格</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|姓名|学号|成绩|</span><br><span class="line">|----|:----:|----:|</span><br><span class="line">|张三|35|60|</span><br><span class="line">|李四|33|59|</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th style="text-align:center">学号</th>
+<th style="text-align:right">成绩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>张三</td>
+<td style="text-align:center">35</td>
+<td style="text-align:right">60</td>
+</tr>
+<tr>
+<td>李四</td>
+<td style="text-align:center">33</td>
+<td style="text-align:right">59</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-换行"><a href="#8-换行" class="headerlink" title="8. 换行"></a>8. 换行</h2><ol>
+<li>直接用空行来代表换行</li>
+</ol>
+<ol start="2">
+<li>或者在行位连续输入2个空格来代表换行  </li>
+</ol>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
-        <tag>python</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -868,82 +768,103 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
-    <title>让你的hexo支持mermaid</title>
-    <url>/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/</url>
-    <content><![CDATA[<h4 id="mermaid配置方法"><a href="#mermaid配置方法" class="headerlink" title="mermaid配置方法"></a>mermaid配置方法</h4><p>Mermaid是一个用于生成流程图、时序图等图表的JavaScript库。要在Hexo中使用它,需要以下步骤:</p>
-<ol>
-<li>npm安装mermaid渲染插件:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams --save</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在Hexo博客的根目录下,修改<code>_config.yml</code>文件,添加以下配置:</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mermaid:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">default</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>在需要插入图表的Markdown文件中,使用Mermaid语法插入图表。例如:</li>
-</ol>
-<pre class="mermaid">graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
+    <title>使用selenium+wget实现自动下载图片</title>
+    <url>/2018/03/05/08_%E4%BD%BF%E7%94%A8selenium-wget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/</url>
+    <content><![CDATA[<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>unsplash.com是一个免费下载高清图片的网站，我们可以使用web自动化工具selenium来批量获取该网站主页上提供的海量图片下载链接，并使用强大的多线程下载工具wget下载这些图片。</p>
+<p>另外，selenium需要配合chromedriver.exe来操控谷歌浏览器，我们可以通过搜索下载对应浏览器版本的chromedriver.exe</p>
 <span id="more"></span>
-<p>参考文章：</p>
-<pre><code>https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html
-https://github.com/webappdevelp/hexo-filter-mermaid-diagrams
-</code></pre><h4 id="hexo绘制脑图"><a href="#hexo绘制脑图" class="headerlink" title="hexo绘制脑图"></a>hexo绘制脑图</h4><p>参考文章：</p>
-<pre><code>https://qsli.github.io/2017/01/01/markdown-mindmap/
-https://github.com/HunterXuan/hexo-simple-mindmap
-</code></pre><h4 id="配置完成后，使用mermaid语法"><a href="#配置完成后，使用mermaid语法" class="headerlink" title="配置完成后，使用mermaid语法"></a>配置完成后，使用mermaid语法</h4><h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5><pre class="mermaid">graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<h5 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h5><pre class="mermaid">sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->John: Hello John, how are you?
-    loop Healthcheck
-        John->John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail...
-    John-->Alice: Great!
-    John->Bob: How about you?
-    Bob-->John: Jolly good!</pre>
-
-<h5 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h5><pre class="mermaid">gantt
-        dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to mermaid
-        section A section
-        Completed task            :done,    des1, 2014-01-06,2014-01-08
-        Active task               :active,  des2, 2014-01-09, 3d
-        Future task               :         des3, after des2, 5d
-        Future task2               :         des4, after des3, 5d
-        section Critical tasks
-        Completed task in the critical line :crit, done, 2014-01-06,24h
-        Implement parser and jison          :crit, done, after des1, 2d
-        Create tests for parser             :crit, active, 3d
-        Future task in critical line        :crit, 5d
-        Create tests for renderer           :2d
-        Add to mermaid                      :1d</pre>
-
-<h5 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h5><blockquote class="pullquote mindmap mindmap-md"><ul>
-<li><a href="https://hunterx.xyz/use-mindmap-in-hexo.html">在 Hexo 中使用思维导图</a><ul>
-<li>前言</li>
-<li>操作指南<ul>
-<li>准备需要的文件</li>
-<li>为主题添加 CSS/JS 文件</li>
-</ul>
+<h4 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h4><ol>
+<li>selenium</li>
+<li><p>wget</p>
+<p> pip install selenium<br> pip install wget</p>
 </li>
-<li>使用方法</li>
-</ul>
-</li>
-</ul>
-</blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+</ol>
+<h4 id="python脚本"><a href="#python脚本" class="headerlink" title="python脚本"></a>python脚本</h4><pre><code>from selenium import webdriver
+import wget
+import os
+import time
+import subprocess
+
+def mkdir(path):
+    # 去除首位空格
+    path=path.strip()
+    # 去除尾部 \ 符号
+    path=path.rstrip(&quot;\\&quot;)
+
+    # 判断路径是否存在
+    # 存在     True
+    # 不存在   False
+    isExists=os.path.exists(path)
+
+    # 判断结果
+    if not isExists:
+        # 如果不存在则创建目录
+        print (&apos;%s创建成功&apos;%path)
+        # 创建目录操作函数
+        os.makedirs(path)
+        return True
+    else:
+        # 如果目录存在则不创建，并提示目录已存在
+        print (&apos;%s目录已存在&apos;%path)
+        return False
+
+
+def download_pic(folderpath=&apos;&apos;,list=[]):
+    i = 1
+    for url in list:
+        try:
+        #     wget.download(url, out=&apos;%s\\%d.jpg&apos; %(folderpath,i))
+            cmd = &apos;C:\\Python36\\Scripts\\wget -O &quot;%s\\%d.jpg&quot; &quot;%s&quot;&apos; %(folderpath,i,url)
+            print(cmd)
+            subprocess.Popen(cmd)
+            i += 1
+        except:
+            print(&apos;skip&apos;)
+    print(&apos;下载成功...&apos;)
+
+def craw_url(scroll=&apos;2&apos;,web_url=&apos;&apos;):
+    driver = webdriver.Chrome(&apos;C:\\Python36\\Lib\site-packages\\chromedriver_binary\\chromedriver.exe&apos;)
+    driver.get(web_url)
+    driver.maximize_window()
+    time.sleep(3)
+    urls = []
+    try:
+        for i in range(1,scroll):
+            pics = driver.find_elements_by_class_name(name=&apos;_2zEKz&apos;)
+            for pic in pics:
+                src = &apos;%s\n&apos;%pic.get_attribute(name=&apos;src&apos;)
+                src = src.replace(&apos;1000&apos;,&apos;2592&apos;)
+                # print(src)
+                urls.append(src)
+            js=&quot;window.scrollTo(0,document.body.scrollHeight)&quot;
+            driver.execute_script(js)
+            time.sleep(3)
+            print(&quot;循环次数：%d&quot;%i)
+        driver.close()
+    except:
+        driver.close()
+    urls = list(set(urls))
+    print(&apos;获取图片链接成功...&apos;)
+    return urls
+
+if __name__ == &quot;__main__&quot;:
+    download_path = &apos;G:\\02_photo\\unsplash&apos;
+    url_list=craw_url(scroll=1000,web_url=&apos;https://unsplash.com/&apos;)
+    mkdir(download_path)
+    download_pic(folderpath=download_path,list=url_list)
+
+    #    for url in url_list:
+    #            print(url)
+    #    try:
+    #        f=open(&apos;%s\\0_urls.txt&apos;%download_path,&apos;w&apos;)
+    #       f.writelines(url_list)
+    #       f.close()
+    #    except:
+                pass
+</code></pre><h4 id="下载成功"><a href="#下载成功" class="headerlink" title="下载成功"></a>下载成功</h4><p><img src="http://upload-images.jianshu.io/upload_images/1894726-f5a17a997569edfb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png"></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -1111,6 +1032,160 @@ https://github.com/HunterXuan/hexo-simple-mindmap
       </tags>
   </entry>
   <entry>
+    <title>让你的hexo支持mermaid</title>
+    <url>/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/</url>
+    <content><![CDATA[<h4 id="mermaid配置方法"><a href="#mermaid配置方法" class="headerlink" title="mermaid配置方法"></a>mermaid配置方法</h4><p>Mermaid是一个用于生成流程图、时序图等图表的JavaScript库。要在Hexo中使用它,需要以下步骤:</p>
+<ol>
+<li>npm安装mermaid渲染插件:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams --save</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在Hexo博客的根目录下,修改<code>_config.yml</code>文件,添加以下配置:</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mermaid:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">default</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在需要插入图表的Markdown文件中,使用Mermaid语法插入图表。例如:</li>
+</ol>
+<pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<span id="more"></span>
+<p>参考文章：</p>
+<pre><code>https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html
+https://github.com/webappdevelp/hexo-filter-mermaid-diagrams
+</code></pre><h4 id="hexo绘制脑图"><a href="#hexo绘制脑图" class="headerlink" title="hexo绘制脑图"></a>hexo绘制脑图</h4><p>参考文章：</p>
+<pre><code>https://qsli.github.io/2017/01/01/markdown-mindmap/
+https://github.com/HunterXuan/hexo-simple-mindmap
+</code></pre><h4 id="配置完成后，使用mermaid语法"><a href="#配置完成后，使用mermaid语法" class="headerlink" title="配置完成后，使用mermaid语法"></a>配置完成后，使用mermaid语法</h4><h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5><pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<h5 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h5><pre class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!</pre>
+
+<h5 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h5><pre class="mermaid">gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to mermaid
+        section A section
+        Completed task            :done,    des1, 2014-01-06,2014-01-08
+        Active task               :active,  des2, 2014-01-09, 3d
+        Future task               :         des3, after des2, 5d
+        Future task2               :         des4, after des3, 5d
+        section Critical tasks
+        Completed task in the critical line :crit, done, 2014-01-06,24h
+        Implement parser and jison          :crit, done, after des1, 2d
+        Create tests for parser             :crit, active, 3d
+        Future task in critical line        :crit, 5d
+        Create tests for renderer           :2d
+        Add to mermaid                      :1d</pre>
+
+<h5 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h5><blockquote class="pullquote mindmap mindmap-md"><ul>
+<li><a href="https://hunterx.xyz/use-mindmap-in-hexo.html">在 Hexo 中使用思维导图</a><ul>
+<li>前言</li>
+<li>操作指南<ul>
+<li>准备需要的文件</li>
+<li>为主题添加 CSS/JS 文件</li>
+</ul>
+</li>
+<li>使用方法</li>
+</ul>
+</li>
+</ul>
+</blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试工作的一些总结</title>
+    <url>/2019/07/07/14_%E6%B5%8B%E8%AF%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h4 id="手工测试"><a href="#手工测试" class="headerlink" title="手工测试"></a>手工测试</h4><h5 id="测试流程规范"><a href="#测试流程规范" class="headerlink" title="测试流程规范"></a>测试流程规范</h5><ol>
+<li><p>产品从立项到发布要经历的流程</p>
+<ol>
+<li>立项流程：收集需求（用户、销售、领导等）-&gt;立项（产品经理）-&gt;决策（领导）</li>
+<li>设计阶段：需求澄清（产品经理）-&gt;产品设计（UI、架构）-&gt;开发story-&gt;测试方案</li>
+<li>开发&amp;转测：进度把控-风险评估</li>
+<li>客户验收：结项</li>
+</ol>
+</li>
+<li><p>测试的职责</p>
+<ol>
+<li>输出测试设计和测试用例并由相关人员一起评审（BA，开发，项目经理，测试）</li>
+<li>执行测试用例</li>
+<li>缺陷跟踪</li>
+<li>输出测试报告、测试总结等</li>
+</ol>
+</li>
+</ol>
+<h5 id="测试人员需要掌握的技能"><a href="#测试人员需要掌握的技能" class="headerlink" title="测试人员需要掌握的技能"></a>测试人员需要掌握的技能</h5><ol>
+<li><p>产品从立项到发布的各个流程中，测试需要关注的地方</p>
+<ol>
+<li>立项流程中，收集需求这个环节，测试在执行用例期间遇到非bug类的体验问题要本地记录，并汇总反馈给产品经理</li>
+<li>设计阶段的评审环节，测试要多从用户体验的角度提出自己的观点和疑问（测试比开发更接近用户，比销售更熟悉产品的实现）</li>
+<li>测试方案、测试用例、测试执行、缺陷跟踪是测试的核心职责<ol>
+<li>测试方案要覆盖全面（测试目的、测试准备、测试分工、测试范围、测试风险）</li>
+<li>测试用例要按照功能测试设计将操作步骤、检查点逐一细化</li>
+<li>测试执行要覆盖到测试用例的每一个测试步骤和检查点</li>
+<li>缺陷跟踪要在回归问题场景的基础上，弄清bug的根因和修改方案，回归测试要考虑到是否需要补充测试方案和测试用例</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>参考：<a href="https://blog.csdn.net/alice_tl/article/details/80218342">怎样制定一个合格的测试方案</a></p>
+<span id="more"></span>
+<h4 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h4><ol>
+<li><p>常见的自动化测试框架</p>
+<ol>
+<li>Appium和Selenium了解</li>
+<li>开源的自动化框架上手</li>
+</ol>
+</li>
+<li><p>自动化脚本编写语言</p>
+<p> java和python</p>
+</li>
+<li><p>自动化构建的思路</p>
+<ol>
+<li>从脚本到aw，再到框架</li>
+<li>自动构建任务，远程执行</li>
+<li>测试报告的生成</li>
+</ol>
+</li>
+<li><p>从手工用例到自动化用例转化的注意点</p>
+<ol>
+<li>自动化用例覆盖范围的评审</li>
+<li>自动化用例执行失败用例的定位</li>
+</ol>
+</li>
+</ol>
+<h4 id="服务端压测怎么做"><a href="#服务端压测怎么做" class="headerlink" title="服务端压测怎么做"></a>服务端压测怎么做</h4><p><a href="https://zingphoy.github.io/2020/04/26/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8E%8B%E6%B5%8B%E6%80%8E%E4%B9%88%E5%81%9A/">https://zingphoy.github.io/2020/04/26/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8E%8B%E6%B5%8B%E6%80%8E%E4%B9%88%E5%81%9A/</a></p>
+<h4 id="关于兼容性测试"><a href="#关于兼容性测试" class="headerlink" title="关于兼容性测试"></a>关于兼容性测试</h4><p>兼容性测试做筛选时，基于的不是整体市场份额，而是线上埋点分析得来的用户机型分布。</p>
+<h4 id="关于测试的一些想法"><a href="#关于测试的一些想法" class="headerlink" title="关于测试的一些想法"></a>关于测试的一些想法</h4><p>我们要回归到测试的本质上面来，测试是干什么的？这个职业存在是为了解决什么的？其实，你停下来仔细想想，无外乎在做的就是两个方面，提升质量和增加效率，对吧？那你有没有仔细想过，这两个方面怎么来提升？</p>
+<p>看到一个个很好的建议：</p>
+<p>1、要学会数据分析，通过数据分析来发现问题，比方说缺陷分布吧，这些缺陷覆盖了哪些功能模块？覆盖了哪些业务？发生在什么时间段？是哪些测试用例发现的？这些测试用例有没有什么共通点？是偶然发生的？等等，当你数据分析的越完备的时候，你就能发现问题的本质是什么，你就能提高你自己的个人能力</p>
+<p>2、要经常停下来对自己进行复盘，对你自己的能力进行总结，写出来、画出来、讲出来，你能清晰的知道你强在哪儿、差在哪儿</p>
+<p>3、增加效率的方式有很多很多，哪怕一个命令行、一个小脚本，都可以增加效率，不要深陷其中</p>
+<p>4、测试不仅仅是点点点、或者会用某个工具、或者写几行代码，更多的是，你要能分析问题、发现问题、定位问题，如果你测试一个系统，对他的业务架构、技术架构、部署架构、数据架构等等都不了解，那我不认为你是一个合格的测试</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>总结,android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>读书笔记收集</title>
     <url>/2025/01/01/16_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%94%B6%E9%9B%86/</url>
     <content><![CDATA[<h4 id="待阅读清单"><a href="#待阅读清单" class="headerlink" title="待阅读清单"></a>待阅读清单</h4><h4 id="已阅读清单"><a href="#已阅读清单" class="headerlink" title="已阅读清单"></a>已阅读清单</h4><ul>
@@ -1201,78 +1276,14 @@ https://github.com/HunterXuan/hexo-simple-mindmap
       </tags>
   </entry>
   <entry>
-    <title>测试工作的一些总结</title>
-    <url>/2019/07/07/14_%E6%B5%8B%E8%AF%95%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h4 id="手工测试"><a href="#手工测试" class="headerlink" title="手工测试"></a>手工测试</h4><h5 id="测试流程规范"><a href="#测试流程规范" class="headerlink" title="测试流程规范"></a>测试流程规范</h5><ol>
-<li><p>产品从立项到发布要经历的流程</p>
-<ol>
-<li>立项流程：收集需求（用户、销售、领导等）-&gt;立项（产品经理）-&gt;决策（领导）</li>
-<li>设计阶段：需求澄清（产品经理）-&gt;产品设计（UI、架构）-&gt;开发story-&gt;测试方案</li>
-<li>开发&amp;转测：进度把控-风险评估</li>
-<li>客户验收：结项</li>
-</ol>
-</li>
-<li><p>测试的职责</p>
-<ol>
-<li>输出测试设计和测试用例并由相关人员一起评审（BA，开发，项目经理，测试）</li>
-<li>执行测试用例</li>
-<li>缺陷跟踪</li>
-<li>输出测试报告、测试总结等</li>
-</ol>
-</li>
-</ol>
-<h5 id="测试人员需要掌握的技能"><a href="#测试人员需要掌握的技能" class="headerlink" title="测试人员需要掌握的技能"></a>测试人员需要掌握的技能</h5><ol>
-<li><p>产品从立项到发布的各个流程中，测试需要关注的地方</p>
-<ol>
-<li>立项流程中，收集需求这个环节，测试在执行用例期间遇到非bug类的体验问题要本地记录，并汇总反馈给产品经理</li>
-<li>设计阶段的评审环节，测试要多从用户体验的角度提出自己的观点和疑问（测试比开发更接近用户，比销售更熟悉产品的实现）</li>
-<li>测试方案、测试用例、测试执行、缺陷跟踪是测试的核心职责<ol>
-<li>测试方案要覆盖全面（测试目的、测试准备、测试分工、测试范围、测试风险）</li>
-<li>测试用例要按照功能测试设计将操作步骤、检查点逐一细化</li>
-<li>测试执行要覆盖到测试用例的每一个测试步骤和检查点</li>
-<li>缺陷跟踪要在回归问题场景的基础上，弄清bug的根因和修改方案，回归测试要考虑到是否需要补充测试方案和测试用例</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<p>参考：<a href="https://blog.csdn.net/alice_tl/article/details/80218342">怎样制定一个合格的测试方案</a></p>
-<span id="more"></span>
-<h4 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h4><ol>
-<li><p>常见的自动化测试框架</p>
-<ol>
-<li>Appium和Selenium了解</li>
-<li>开源的自动化框架上手</li>
-</ol>
-</li>
-<li><p>自动化脚本编写语言</p>
-<p> java和python</p>
-</li>
-<li><p>自动化构建的思路</p>
-<ol>
-<li>从脚本到aw，再到框架</li>
-<li>自动构建任务，远程执行</li>
-<li>测试报告的生成</li>
-</ol>
-</li>
-<li><p>从手工用例到自动化用例转化的注意点</p>
-<ol>
-<li>自动化用例覆盖范围的评审</li>
-<li>自动化用例执行失败用例的定位</li>
-</ol>
-</li>
-</ol>
-<h4 id="服务端压测怎么做"><a href="#服务端压测怎么做" class="headerlink" title="服务端压测怎么做"></a>服务端压测怎么做</h4><p><a href="https://zingphoy.github.io/2020/04/26/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8E%8B%E6%B5%8B%E6%80%8E%E4%B9%88%E5%81%9A/">https://zingphoy.github.io/2020/04/26/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8E%8B%E6%B5%8B%E6%80%8E%E4%B9%88%E5%81%9A/</a></p>
-<h4 id="关于兼容性测试"><a href="#关于兼容性测试" class="headerlink" title="关于兼容性测试"></a>关于兼容性测试</h4><p>兼容性测试做筛选时，基于的不是整体市场份额，而是线上埋点分析得来的用户机型分布。</p>
-<h4 id="关于测试的一些想法"><a href="#关于测试的一些想法" class="headerlink" title="关于测试的一些想法"></a>关于测试的一些想法</h4><p>我们要回归到测试的本质上面来，测试是干什么的？这个职业存在是为了解决什么的？其实，你停下来仔细想想，无外乎在做的就是两个方面，提升质量和增加效率，对吧？那你有没有仔细想过，这两个方面怎么来提升？</p>
-<p>看到一个个很好的建议：</p>
-<p>1、要学会数据分析，通过数据分析来发现问题，比方说缺陷分布吧，这些缺陷覆盖了哪些功能模块？覆盖了哪些业务？发生在什么时间段？是哪些测试用例发现的？这些测试用例有没有什么共通点？是偶然发生的？等等，当你数据分析的越完备的时候，你就能发现问题的本质是什么，你就能提高你自己的个人能力</p>
-<p>2、要经常停下来对自己进行复盘，对你自己的能力进行总结，写出来、画出来、讲出来，你能清晰的知道你强在哪儿、差在哪儿</p>
-<p>3、增加效率的方式有很多很多，哪怕一个命令行、一个小脚本，都可以增加效率，不要深陷其中</p>
-<p>4、测试不仅仅是点点点、或者会用某个工具、或者写几行代码，更多的是，你要能分析问题、发现问题、定位问题，如果你测试一个系统，对他的业务架构、技术架构、部署架构、数据架构等等都不了解，那我不认为你是一个合格的测试</p>
+    <title>开发相关内容记录</title>
+    <url>/2023/01/01/15_%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>sql 优化<br><a href="https://www.51cto.com/article/623584.html">https://www.51cto.com/article/623584.html</a></p>
+<p>MySQL索引学习<br><a href="https://juejin.cn/post/7047433474264793095">https://juejin.cn/post/7047433474264793095</a></p>
+<p>redis 详解<br><a href="https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ">https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
-        <tag>总结,android</tag>
+        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -1468,17 +1479,6 @@ https://github.com/HunterXuan/hexo-simple-mindmap
 <li>代码重复率&lt;5%</li>
 <li>测试覆盖率&gt;80%</li>
 </ul>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>总结</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>开发相关内容记录</title>
-    <url>/2023/01/01/15_%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>sql 优化<br><a href="https://www.51cto.com/article/623584.html">https://www.51cto.com/article/623584.html</a></p>
-<p>MySQL索引学习<br><a href="https://juejin.cn/post/7047433474264793095">https://juejin.cn/post/7047433474264793095</a></p>
-<p>redis 详解<br><a href="https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ">https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>总结</tag>
