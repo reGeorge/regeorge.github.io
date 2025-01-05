@@ -229,6 +229,136 @@ git revert %commitid%
       </tags>
   </entry>
   <entry>
+    <title>百日囚徒问题</title>
+    <url>/2017/12/27/06_%E7%99%BE%E6%97%A5%E5%9B%9A%E5%BE%92%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。</p>
+<p>一天，全体囚徒大会，国王大赦，给大家一个机会：如果某一天，某个囚徒能够明确表示，所有的囚徒都已经被放过风了，而且的确如此，那么所有囚徒释放；如果仍有囚徒未被放过风，那么所有的囚徒一起处死！</p>
+<p>囚徒大会后给大家20分钟时间讨论，囚徒们能找到方法么？不考虑什么犯人突然死亡的意外因素。是纯粹的理论题。</p>
+<span id="more"></span>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1、前100天利用灯来互相确认自己的身份（灯初始状态为关闭）：</p>
+<ul>
+<li>计数人<ul>
+<li>首次放风的人不进行任何操作，设第一个二次放风的人为计数人，计数人把灯打开（比如第20天该囚犯第二次去放风，且前面没有人去动过灯，则说明连同他共有19个人是首次放风），则此时生成一个该天数的计数(N-1)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>已知囚徒<ul>
+<li>设剩下的99人中，见到过灯灭状态的人为已知囚徒，因为计数人能通过开灯的日期准确推算出之前的人数</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>未知囚徒<ul>
+<li>设从未见过灯灭状态的人为未知囚徒，因为灯打开后，计数人无法获取放风的准确人数</li>
+</ul>
+</li>
+</ul>
+<p>这里有可能出现最好情况：第100天，某首次放风囚徒发现灯为关闭状态，说明前100天均无人2次放风，即每人都是首次放风，可以宣布获救。</p>
+<p>2、100天过后，未知囚徒和计数人之间通过灯来传递信息（灯初始状态为打开）：</p>
+<ul>
+<li><p>已知囚徒放风</p>
+<ul>
+<li>不进行任何操作</li>
+</ul>
+</li>
+<li><p>未知囚徒放风</p>
+<ul>
+<li>若灯为打开状态，说明通信可用，关灯向计数人传递信息，至此该未知囚徒以后都不再对灯进行操作。</li>
+<li>若灯为关闭状态，说明此次通信未结束，不进行任何操作</li>
+</ul>
+</li>
+<li><p>计数人放风</p>
+<ul>
+<li>若灯为关闭状态，计数N+1，并将灯打开，以便下一个未知囚徒传递信息</li>
+<li>若灯为打开状态，说明暂时没有未知囚徒发起通信，不进行任何操作</li>
+</ul>
+</li>
+</ul>
+<p>当计数人放风时恰好N=100，则他可以宣布确定所有囚徒都放过风了。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>import random
+
+days = 1    # 天数
+light = 0    # 灯
+times = [0 for i in range(0,100)]    # 每个囚徒放风次数的统计数组
+counter = -1    # 计数人
+remainer = 100    # 剩余未知人
+
+while 1==1:
+    print(&quot;第%d天: &quot;%days)
+    print(&quot;        剩余未知人: %d&quot;%remainer)
+    # 随机抽选一人放风
+    P = random.randint(0, 99)
+
+    # 前100天确认身份
+    if days &lt;= 100:
+        if light == 0:
+            times[P] += 1    # 灯灭放风有效
+            if times == 1:
+                pass
+            if times[P] == 2:    # 灯灭且第二次放风
+                counter = P
+                print(&quot;        确定计数人: %d&quot; %counter)
+                light = 1
+                remainer -= (days-1)    # 开灯计数
+        else:
+            pass    # 在灯亮放风无效
+
+        if days == 100 and light == 0:    # 100天灯仍灭，获救
+            print(&quot;获救&quot;)
+            break
+
+    else:    # 100天后通过灯通信
+        if light == 1:
+            times[P] += 1    # 灯亮放风有效
+            if times[P] == 1:    #(未知者)关灯发出信息
+                light = 0
+
+        else:
+            if P == counter:    # 灯灭计数人开灯计数
+                light = 1
+                remainer -= 1
+                if remainer == 0:
+                    print(&quot;        计数人%d宣布获救&quot; %counter)
+                    break
+    days += 1
+</code></pre><h4 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h4><pre><code>第1天: 
+    剩余未知人: 100
+第2天: 
+        剩余未知人: 100
+第3天: 
+        剩余未知人: 100
+第4天: 
+        剩余未知人: 100
+第5天: 
+        剩余未知人: 100
+第6天: 
+        剩余未知人: 100
+第7天: 
+        剩余未知人: 100
+        确定计数人: 53
+第8天: 
+        剩余未知人: 94
+第9天: 
+        剩余未知人: 94
+
+······
+
+第9538天: 
+    剩余未知人: 1
+第9539天: 
+        剩余未知人: 1
+第9540天: 
+        剩余未知人: 1
+第9541天: 
+        剩余未知人: 1
+        计数人53宣布获救
+</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于android实现一个简单的备忘录app</title>
     <url>/2017/05/20/05_%E5%9F%BA%E4%BA%8Eandroid%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%A4%87%E5%BF%98%E5%BD%95app/</url>
     <content><![CDATA[<h3 id="增删查改的实现"><a href="#增删查改的实现" class="headerlink" title="增删查改的实现"></a>增删查改的实现</h3><h4 id="创建主活动及布局文件"><a href="#创建主活动及布局文件" class="headerlink" title="创建主活动及布局文件"></a>创建主活动及布局文件</h4><ul>
@@ -453,136 +583,6 @@ private String getTime() &#123;
       </tags>
   </entry>
   <entry>
-    <title>百日囚徒问题</title>
-    <url>/2017/12/27/06_%E7%99%BE%E6%97%A5%E5%9B%9A%E5%BE%92%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>有100个无期徒刑囚徒，被关在100个独立的小房间，互相无法通信。每天会有一个囚徒被随机地抽出来放风，随机就是说可能被抽到多次。放风的地方有一盏灯，囚徒可以打开或者关上，除囚徒外，没有别人会去动这个灯。每个人除非出来防风，是看不到这个灯的。</p>
-<p>一天，全体囚徒大会，国王大赦，给大家一个机会：如果某一天，某个囚徒能够明确表示，所有的囚徒都已经被放过风了，而且的确如此，那么所有囚徒释放；如果仍有囚徒未被放过风，那么所有的囚徒一起处死！</p>
-<p>囚徒大会后给大家20分钟时间讨论，囚徒们能找到方法么？不考虑什么犯人突然死亡的意外因素。是纯粹的理论题。</p>
-<span id="more"></span>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1、前100天利用灯来互相确认自己的身份（灯初始状态为关闭）：</p>
-<ul>
-<li>计数人<ul>
-<li>首次放风的人不进行任何操作，设第一个二次放风的人为计数人，计数人把灯打开（比如第20天该囚犯第二次去放风，且前面没有人去动过灯，则说明连同他共有19个人是首次放风），则此时生成一个该天数的计数(N-1)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>已知囚徒<ul>
-<li>设剩下的99人中，见到过灯灭状态的人为已知囚徒，因为计数人能通过开灯的日期准确推算出之前的人数</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>未知囚徒<ul>
-<li>设从未见过灯灭状态的人为未知囚徒，因为灯打开后，计数人无法获取放风的准确人数</li>
-</ul>
-</li>
-</ul>
-<p>这里有可能出现最好情况：第100天，某首次放风囚徒发现灯为关闭状态，说明前100天均无人2次放风，即每人都是首次放风，可以宣布获救。</p>
-<p>2、100天过后，未知囚徒和计数人之间通过灯来传递信息（灯初始状态为打开）：</p>
-<ul>
-<li><p>已知囚徒放风</p>
-<ul>
-<li>不进行任何操作</li>
-</ul>
-</li>
-<li><p>未知囚徒放风</p>
-<ul>
-<li>若灯为打开状态，说明通信可用，关灯向计数人传递信息，至此该未知囚徒以后都不再对灯进行操作。</li>
-<li>若灯为关闭状态，说明此次通信未结束，不进行任何操作</li>
-</ul>
-</li>
-<li><p>计数人放风</p>
-<ul>
-<li>若灯为关闭状态，计数N+1，并将灯打开，以便下一个未知囚徒传递信息</li>
-<li>若灯为打开状态，说明暂时没有未知囚徒发起通信，不进行任何操作</li>
-</ul>
-</li>
-</ul>
-<p>当计数人放风时恰好N=100，则他可以宣布确定所有囚徒都放过风了。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>import random
-
-days = 1    # 天数
-light = 0    # 灯
-times = [0 for i in range(0,100)]    # 每个囚徒放风次数的统计数组
-counter = -1    # 计数人
-remainer = 100    # 剩余未知人
-
-while 1==1:
-    print(&quot;第%d天: &quot;%days)
-    print(&quot;        剩余未知人: %d&quot;%remainer)
-    # 随机抽选一人放风
-    P = random.randint(0, 99)
-
-    # 前100天确认身份
-    if days &lt;= 100:
-        if light == 0:
-            times[P] += 1    # 灯灭放风有效
-            if times == 1:
-                pass
-            if times[P] == 2:    # 灯灭且第二次放风
-                counter = P
-                print(&quot;        确定计数人: %d&quot; %counter)
-                light = 1
-                remainer -= (days-1)    # 开灯计数
-        else:
-            pass    # 在灯亮放风无效
-
-        if days == 100 and light == 0:    # 100天灯仍灭，获救
-            print(&quot;获救&quot;)
-            break
-
-    else:    # 100天后通过灯通信
-        if light == 1:
-            times[P] += 1    # 灯亮放风有效
-            if times[P] == 1:    #(未知者)关灯发出信息
-                light = 0
-
-        else:
-            if P == counter:    # 灯灭计数人开灯计数
-                light = 1
-                remainer -= 1
-                if remainer == 0:
-                    print(&quot;        计数人%d宣布获救&quot; %counter)
-                    break
-    days += 1
-</code></pre><h4 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h4><pre><code>第1天: 
-    剩余未知人: 100
-第2天: 
-        剩余未知人: 100
-第3天: 
-        剩余未知人: 100
-第4天: 
-        剩余未知人: 100
-第5天: 
-        剩余未知人: 100
-第6天: 
-        剩余未知人: 100
-第7天: 
-        剩余未知人: 100
-        确定计数人: 53
-第8天: 
-        剩余未知人: 94
-第9天: 
-        剩余未知人: 94
-
-······
-
-第9538天: 
-    剩余未知人: 1
-第9539天: 
-        剩余未知人: 1
-第9540天: 
-        剩余未知人: 1
-第9541天: 
-        剩余未知人: 1
-        计数人53宣布获救
-</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown的使用</title>
     <url>/2018/02/21/07_Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>Markdown的常用方法如下：</p>
@@ -645,126 +645,6 @@ while 1==1:
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ADB常用命令</title>
-    <url>/2018/07/01/09_ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<table>
-<thead>
-<tr>
-<th style="text-align:center">adb</th>
-<th>命令</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">adb shell</td>
-<td>adb shell “dumpsys window \</td>
-<td>grep mCurrentFocus”</td>
-<td>获取应用包名（打开应用）</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell pm path 包名</td>
-<td>获取应用安装路径</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell “pm dump 包名</td>
-<td>获取应用版本号</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell “cat /system/build.prop</td>
-<td>获取手机系统信息（ CPU，厂商名称等）</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell getprop ro.build.version.release</td>
-<td>获取手机系统版本</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell getprop ro.build.version.sdk</td>
-<td>获取手机系统api版本</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb -d shell getprop ro.product.model</td>
-<td>获取手机设备型号</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb -d shell getprop ro.product.brand</td>
-<td>获取手机厂商名称</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell getprop ro.serialno</td>
-<td>获取手机的序列号</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell dumpsys iphonesubinfo</td>
-<td>获取手机的IMEI</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell cat /sys/class/net/wlan/address</td>
-<td>获取手机mac地址</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell cat /proc/meminfo</td>
-<td>获取手机内存信息</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell df</td>
-<td>获取手机存储信息</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell df /mnt/shell/emulated</td>
-<td>获取手机内部存储信息：</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell df /storage/sdcard</td>
-<td>获取sdcard存储信息：</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell “dumpsys window</td>
-<td>获取手机分辨率</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell wm density</td>
-<td>获取手机物理密度</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td>adb shell “dumpsys window</td>
-<td>获取当前界面对应的活动和包名</td>
-</tr>
-</tbody>
-</table>
-<p>待刷新</p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>ADB</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>安卓客户端取日志脚本</title>
-    <url>/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<p>安卓客户端取日志脚本：8ii8i i<br><span id="more"></span></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">::初始化脚本</span><br><span class="line">:start</span><br><span class="line">cls</span><br><span class="line">echo ****************************************</span><br><span class="line">echo [请输入：0]        退出</span><br><span class="line">echo [请输入：1]        获取applog</span><br><span class="line">echo [请输入：2]        清理applog</span><br><span class="line">echo [直接输入回车]   执行默认操作</span><br><span class="line">echo ****************************************</span><br><span class="line"></span><br><span class="line">set FOLDER=%~dp0</span><br><span class="line">set TIMESTAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%</span><br><span class="line">set /p opt=请输入:</span><br><span class="line"></span><br><span class="line">if &quot;%opt%&quot;==&quot;0&quot; goto exit</span><br><span class="line">if &quot;%opt%&quot;==&quot;1&quot; goto get_log</span><br><span class="line">if &quot;%opt%&quot;==&quot;&quot; goto default</span><br><span class="line"></span><br><span class="line">:default</span><br><span class="line">echo 执行默认操作</span><br><span class="line">echo 我啥也没干</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:get_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 获取applog</span><br><span class="line">echo 目标路径为 %FOLDER%%TIMESTAMP%</span><br><span class="line">::adb pull applog路径 目标路径</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:clean_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 清理applog</span><br><span class="line">adb remount</span><br><span class="line">::adb shell rm -r xxx</span><br><span class="line">pause</span><br><span class="line">goto start</span><br></pre></td></tr></table></figure><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>bat</tag>
       </tags>
   </entry>
   <entry>
@@ -955,6 +835,15 @@ if __name__ == &quot;__main__&quot;:
       </tags>
   </entry>
   <entry>
+    <title>安卓客户端取日志脚本</title>
+    <url>/2019/04/01/10_%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%96%E6%97%A5%E5%BF%97%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<p>安卓客户端取日志脚本：8ii8i i<br><span id="more"></span></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">::初始化脚本</span><br><span class="line">:start</span><br><span class="line">cls</span><br><span class="line">echo ****************************************</span><br><span class="line">echo [请输入：0]        退出</span><br><span class="line">echo [请输入：1]        获取applog</span><br><span class="line">echo [请输入：2]        清理applog</span><br><span class="line">echo [直接输入回车]   执行默认操作</span><br><span class="line">echo ****************************************</span><br><span class="line"></span><br><span class="line">set FOLDER=%~dp0</span><br><span class="line">set TIMESTAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%</span><br><span class="line">set /p opt=请输入:</span><br><span class="line"></span><br><span class="line">if &quot;%opt%&quot;==&quot;0&quot; goto exit</span><br><span class="line">if &quot;%opt%&quot;==&quot;1&quot; goto get_log</span><br><span class="line">if &quot;%opt%&quot;==&quot;&quot; goto default</span><br><span class="line"></span><br><span class="line">:default</span><br><span class="line">echo 执行默认操作</span><br><span class="line">echo 我啥也没干</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:get_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 获取applog</span><br><span class="line">echo 目标路径为 %FOLDER%%TIMESTAMP%</span><br><span class="line">::adb pull applog路径 目标路径</span><br><span class="line">pause</span><br><span class="line">goto start</span><br><span class="line"></span><br><span class="line">:clean_log</span><br><span class="line">echo opt=%opt%</span><br><span class="line">echo 清理applog</span><br><span class="line">adb remount</span><br><span class="line">::adb shell rm -r xxx</span><br><span class="line">pause</span><br><span class="line">goto start</span><br></pre></td></tr></table></figure><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>bat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sublime插件安装</title>
     <url>/2020/10/08/13_sublimetext%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h4 id="如何安装插件详见：https-packagecontrol-io-installation"><a href="#如何安装插件详见：https-packagecontrol-io-installation" class="headerlink" title="如何安装插件详见：https://packagecontrol.io/installation"></a>如何安装插件详见：<a href="https://packagecontrol.io/installation">https://packagecontrol.io/installation</a></h4><h4 id="OmniMarkupPreviwer"><a href="#OmniMarkupPreviwer" class="headerlink" title="OmniMarkupPreviwer"></a>OmniMarkupPreviwer</h4><p>实时在浏览器中预览markdown。快捷键如下：<br>Ctrl+Alt+O: Preview Markup in Browser.<br>Ctrl+Alt+X: Export Markup as HTML.<br>Ctrl+Alt+C: Copy Markup as HTML</p>
@@ -1029,85 +918,6 @@ if __name__ == &quot;__main__&quot;:
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>让你的hexo支持mermaid</title>
-    <url>/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/</url>
-    <content><![CDATA[<h4 id="mermaid配置方法"><a href="#mermaid配置方法" class="headerlink" title="mermaid配置方法"></a>mermaid配置方法</h4><p>Mermaid是一个用于生成流程图、时序图等图表的JavaScript库。要在Hexo中使用它,需要以下步骤:</p>
-<ol>
-<li>npm安装mermaid渲染插件:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams --save</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>在Hexo博客的根目录下,修改<code>_config.yml</code>文件,添加以下配置:</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mermaid:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">default</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>在需要插入图表的Markdown文件中,使用Mermaid语法插入图表。例如:</li>
-</ol>
-<pre class="mermaid">graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<span id="more"></span>
-<p>参考文章：</p>
-<pre><code>https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html
-https://github.com/webappdevelp/hexo-filter-mermaid-diagrams
-</code></pre><h4 id="hexo绘制脑图"><a href="#hexo绘制脑图" class="headerlink" title="hexo绘制脑图"></a>hexo绘制脑图</h4><p>参考文章：</p>
-<pre><code>https://qsli.github.io/2017/01/01/markdown-mindmap/
-https://github.com/HunterXuan/hexo-simple-mindmap
-</code></pre><h4 id="配置完成后，使用mermaid语法"><a href="#配置完成后，使用mermaid语法" class="headerlink" title="配置完成后，使用mermaid语法"></a>配置完成后，使用mermaid语法</h4><h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5><pre class="mermaid">graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<h5 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h5><pre class="mermaid">sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->John: Hello John, how are you?
-    loop Healthcheck
-        John->John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail...
-    John-->Alice: Great!
-    John->Bob: How about you?
-    Bob-->John: Jolly good!</pre>
-
-<h5 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h5><pre class="mermaid">gantt
-        dateFormat  YYYY-MM-DD
-        title Adding GANTT diagram functionality to mermaid
-        section A section
-        Completed task            :done,    des1, 2014-01-06,2014-01-08
-        Active task               :active,  des2, 2014-01-09, 3d
-        Future task               :         des3, after des2, 5d
-        Future task2               :         des4, after des3, 5d
-        section Critical tasks
-        Completed task in the critical line :crit, done, 2014-01-06,24h
-        Implement parser and jison          :crit, done, after des1, 2d
-        Create tests for parser             :crit, active, 3d
-        Future task in critical line        :crit, 5d
-        Create tests for renderer           :2d
-        Add to mermaid                      :1d</pre>
-
-<h5 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h5><blockquote class="pullquote mindmap mindmap-md"><ul>
-<li><a href="https://hunterx.xyz/use-mindmap-in-hexo.html">在 Hexo 中使用思维导图</a><ul>
-<li>前言</li>
-<li>操作指南<ul>
-<li>准备需要的文件</li>
-<li>为主题添加 CSS/JS 文件</li>
-</ul>
-</li>
-<li>使用方法</li>
-</ul>
-</li>
-</ul>
-</blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1186,104 +996,114 @@ https://github.com/HunterXuan/hexo-simple-mindmap
       </tags>
   </entry>
   <entry>
-    <title>读书笔记收集</title>
-    <url>/2025/01/01/16_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%94%B6%E9%9B%86/</url>
-    <content><![CDATA[<h4 id="待阅读清单"><a href="#待阅读清单" class="headerlink" title="待阅读清单"></a>待阅读清单</h4><h4 id="已阅读清单"><a href="#已阅读清单" class="headerlink" title="已阅读清单"></a>已阅读清单</h4><ul>
-<li>《蛤蟆先生去看心理医生》</li>
-<li>《心流》</li>
-<li>《牧羊少年奇幻之旅》</li>
-<li>《悉达多》</li>
-<li>《人类简史》</li>
-<li>《曾国藩传》</li>
-<li>《乔布斯传》</li>
-<li>《小王子》</li>
-<li>《邓小平时代》</li>
-<li>《易中天品三国》</li>
-<li>《乒乓球有意思》</li>
-<li>《失落的卫星》</li>
-<li>《纳瓦尔宝典》</li>
-<li>《置身事内》</li>
-<li>《李光耀观天下》</li>
-<li>《为什么精英都是时间控》</li>
-</ul>
-<h5 id="《心流》读书笔记"><a href="#《心流》读书笔记" class="headerlink" title="《心流》读书笔记"></a>《心流》读书笔记</h5><ol>
-<li><p><strong>心流的核心要素</strong></p>
-<ul>
-<li>明确的目标和即时反馈</li>
-<li>挑战与能力的平衡</li>
-<li>全神贯注的状态</li>
-</ul>
-</li>
-<li><p><strong>进入心流的最佳条件</strong></p>
-<ul>
-<li>选择”擅长但不精通”的领域</li>
-<li>将大目标拆解成小任务</li>
-<li>建立清晰的任务闭环</li>
-<li>保持正向反馈</li>
-</ul>
-</li>
-<li><p><strong>个人实践心得</strong></p>
-<blockquote>
-<p>从乒乓球运动的经验来看，面对挑战时的态度至关重要。选择接受挑战还是逃避，会带来完全不同的结局。真正的技能提升需要：</p>
-<ul>
-<li>从理论上改变认知</li>
-<li>克服心理上的惧怕</li>
-<li>达到身心的放松</li>
-<li>通过正确练习形成肌肉记忆</li>
-<li>获得正向心理反馈</li>
-</ul>
-</blockquote>
-</li>
-<li><p><strong>心流体验在不同领域的对比</strong></p>
-<ul>
-<li><p>运动领域（以乒乓球为例）：</p>
-<ul>
-<li>即时反馈明确</li>
-<li>对手水平匹配时更容易进入状态</li>
-<li>环境单纯，易于保持专注</li>
-</ul>
-</li>
-<li><p>工作领域（以编程为例）：</p>
-<ul>
-<li>后端开发更容易进入心流：<ul>
-<li>微服务设计自带任务拆解特性</li>
-<li>清晰的模块定位</li>
-<li>明确的全局作用</li>
-</ul>
-</li>
-<li>前端开发的挑战：<ul>
-<li>所见即所得的即时压力</li>
-<li>频繁的需求调整</li>
-<li>调试过程易产生挫败感</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>心态建设</strong></p>
-<ul>
-<li>接受不完美</li>
-<li>敢于重新开始</li>
-<li>避免完美主义陷阱</li>
-<li>保持持续学习的态度</li>
-</ul>
-</li>
-</ol>
+    <title>ADB常用命令</title>
+    <url>/2018/07/01/09_ADB%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th style="text-align:center">adb</th>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">adb shell</td>
+<td>adb shell “dumpsys window \</td>
+<td>grep mCurrentFocus”</td>
+<td>获取应用包名（打开应用）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell pm path 包名</td>
+<td>获取应用安装路径</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “pm dump 包名</td>
+<td>获取应用版本号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “cat /system/build.prop</td>
+<td>获取手机系统信息（ CPU，厂商名称等）</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.release</td>
+<td>获取手机系统版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.build.version.sdk</td>
+<td>获取手机系统api版本</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.model</td>
+<td>获取手机设备型号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb -d shell getprop ro.product.brand</td>
+<td>获取手机厂商名称</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell getprop ro.serialno</td>
+<td>获取手机的序列号</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell dumpsys iphonesubinfo</td>
+<td>获取手机的IMEI</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /sys/class/net/wlan/address</td>
+<td>获取手机mac地址</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell cat /proc/meminfo</td>
+<td>获取手机内存信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df</td>
+<td>获取手机存储信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /mnt/shell/emulated</td>
+<td>获取手机内部存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell df /storage/sdcard</td>
+<td>获取sdcard存储信息：</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取手机分辨率</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell wm density</td>
+<td>获取手机物理密度</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>adb shell “dumpsys window</td>
+<td>获取当前界面对应的活动和包名</td>
+</tr>
+</tbody>
+</table>
+<p>待刷新</p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
-        <tag>总结</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>开发相关内容记录</title>
-    <url>/2023/01/01/15_%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>sql 优化<br><a href="https://www.51cto.com/article/623584.html">https://www.51cto.com/article/623584.html</a></p>
-<p>MySQL索引学习<br><a href="https://juejin.cn/post/7047433474264793095">https://juejin.cn/post/7047433474264793095</a></p>
-<p>redis 详解<br><a href="https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ">https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ</a></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>总结</tag>
+        <tag>ADB</tag>
       </tags>
   </entry>
   <entry>
@@ -1479,6 +1299,186 @@ https://github.com/HunterXuan/hexo-simple-mindmap
 <li>代码重复率&lt;5%</li>
 <li>测试覆盖率&gt;80%</li>
 </ul>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>让你的hexo支持mermaid</title>
+    <url>/2019/05/26/11_%E8%AE%A9%E4%BD%A0%E7%9A%84Hexo%E6%94%AF%E6%8C%81mermaid/</url>
+    <content><![CDATA[<h4 id="mermaid配置方法"><a href="#mermaid配置方法" class="headerlink" title="mermaid配置方法"></a>mermaid配置方法</h4><p>Mermaid是一个用于生成流程图、时序图等图表的JavaScript库。要在Hexo中使用它,需要以下步骤:</p>
+<ol>
+<li>npm安装mermaid渲染插件:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams --save</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在Hexo博客的根目录下,修改<code>_config.yml</code>文件,添加以下配置:</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mermaid:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">default</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在需要插入图表的Markdown文件中,使用Mermaid语法插入图表。例如:</li>
+</ol>
+<pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<span id="more"></span>
+<p>参考文章：</p>
+<pre><code>https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html
+https://github.com/webappdevelp/hexo-filter-mermaid-diagrams
+</code></pre><h4 id="hexo绘制脑图"><a href="#hexo绘制脑图" class="headerlink" title="hexo绘制脑图"></a>hexo绘制脑图</h4><p>参考文章：</p>
+<pre><code>https://qsli.github.io/2017/01/01/markdown-mindmap/
+https://github.com/HunterXuan/hexo-simple-mindmap
+</code></pre><h4 id="配置完成后，使用mermaid语法"><a href="#配置完成后，使用mermaid语法" class="headerlink" title="配置完成后，使用mermaid语法"></a>配置完成后，使用mermaid语法</h4><h5 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h5><pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<h5 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h5><pre class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!</pre>
+
+<h5 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h5><pre class="mermaid">gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to mermaid
+        section A section
+        Completed task            :done,    des1, 2014-01-06,2014-01-08
+        Active task               :active,  des2, 2014-01-09, 3d
+        Future task               :         des3, after des2, 5d
+        Future task2               :         des4, after des3, 5d
+        section Critical tasks
+        Completed task in the critical line :crit, done, 2014-01-06,24h
+        Implement parser and jison          :crit, done, after des1, 2d
+        Create tests for parser             :crit, active, 3d
+        Future task in critical line        :crit, 5d
+        Create tests for renderer           :2d
+        Add to mermaid                      :1d</pre>
+
+<h5 id="脑图"><a href="#脑图" class="headerlink" title="脑图"></a>脑图</h5><blockquote class="pullquote mindmap mindmap-md"><ul>
+<li><a href="https://hunterx.xyz/use-mindmap-in-hexo.html">在 Hexo 中使用思维导图</a><ul>
+<li>前言</li>
+<li>操作指南<ul>
+<li>准备需要的文件</li>
+<li>为主题添加 CSS/JS 文件</li>
+</ul>
+</li>
+<li>使用方法</li>
+</ul>
+</li>
+</ul>
+</blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读书笔记收集</title>
+    <url>/2025/01/01/16_%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E6%94%B6%E9%9B%86/</url>
+    <content><![CDATA[<h4 id="待阅读清单"><a href="#待阅读清单" class="headerlink" title="待阅读清单"></a>待阅读清单</h4><h4 id="已阅读清单"><a href="#已阅读清单" class="headerlink" title="已阅读清单"></a>已阅读清单</h4><ul>
+<li>《蛤蟆先生去看心理医生》</li>
+<li>《心流》</li>
+<li>《牧羊少年奇幻之旅》</li>
+<li>《悉达多》</li>
+<li>《人类简史》</li>
+<li>《曾国藩传》</li>
+<li>《乔布斯传》</li>
+<li>《小王子》</li>
+<li>《邓小平时代》</li>
+<li>《易中天品三国》</li>
+<li>《乒乓球有意思》</li>
+<li>《失落的卫星》</li>
+<li>《纳瓦尔宝典》</li>
+<li>《置身事内》</li>
+<li>《李光耀观天下》</li>
+<li>《为什么精英都是时间控》</li>
+</ul>
+<h5 id="《心流》读书笔记"><a href="#《心流》读书笔记" class="headerlink" title="《心流》读书笔记"></a>《心流》读书笔记</h5><ol>
+<li><p><strong>心流的核心要素</strong></p>
+<ul>
+<li>明确的目标和即时反馈</li>
+<li>挑战与能力的平衡</li>
+<li>全神贯注的状态</li>
+</ul>
+</li>
+<li><p><strong>进入心流的最佳条件</strong></p>
+<ul>
+<li>选择”擅长但不精通”的领域</li>
+<li>将大目标拆解成小任务</li>
+<li>建立清晰的任务闭环</li>
+<li>保持正向反馈</li>
+</ul>
+</li>
+<li><p><strong>个人实践心得</strong></p>
+<blockquote>
+<p>从乒乓球运动的经验来看，面对挑战时的态度至关重要。选择接受挑战还是逃避，会带来完全不同的结局。真正的技能提升需要：</p>
+<ul>
+<li>从理论上改变认知</li>
+<li>克服心理上的惧怕</li>
+<li>达到身心的放松</li>
+<li>通过正确练习形成肌肉记忆</li>
+<li>获得正向心理反馈</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>心流体验在不同领域的对比</strong></p>
+<ul>
+<li><p>运动领域（以乒乓球为例）：</p>
+<ul>
+<li>即时反馈明确</li>
+<li>对手水平匹配时更容易进入状态</li>
+<li>环境单纯，易于保持专注</li>
+</ul>
+</li>
+<li><p>工作领域（以编程为例）：</p>
+<ul>
+<li>后端开发更容易进入心流：<ul>
+<li>微服务设计自带任务拆解特性</li>
+<li>清晰的模块定位</li>
+<li>明确的全局作用</li>
+</ul>
+</li>
+<li>前端开发的挑战：<ul>
+<li>所见即所得的即时压力</li>
+<li>频繁的需求调整</li>
+<li>调试过程易产生挫败感</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>心态建设</strong></p>
+<ul>
+<li>接受不完美</li>
+<li>敢于重新开始</li>
+<li>避免完美主义陷阱</li>
+<li>保持持续学习的态度</li>
+</ul>
+</li>
+</ol>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开发相关内容记录</title>
+    <url>/2023/01/01/15_%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>sql 优化<br><a href="https://www.51cto.com/article/623584.html">https://www.51cto.com/article/623584.html</a></p>
+<p>MySQL索引学习<br><a href="https://juejin.cn/post/7047433474264793095">https://juejin.cn/post/7047433474264793095</a></p>
+<p>redis 详解<br><a href="https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ">https://mp.weixin.qq.com/s/kILz0SBtOpGTS8fZgsUfcQ</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
       <tags>
         <tag>总结</tag>
