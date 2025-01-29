@@ -1,181 +1,222 @@
 ---
 title: 调用github_api的后台实现
 date: 2025-01-12
+tags: 
+  - 技术文档
+  - github
 ---
 
-
-## Python版本实现方案
-
-### 1. 项目结构
+## 项目结构
 ```bash
-project-name/
+article-poster/
 ├── api/
-│   └── webhook.py      # 处理微信消息的主函数
+│   └── index.py        # 处理微信消息的主函数
 ├── libs/
 │   ├── github_api.py   # GitHub API 操作
-│   ├── wechat.py       # 微信消息处理
-│   └── utils.py        # 工具函数
+│   └── wechat.py       # 微信消息处理
 ├── tests/              # 测试文件
 ├── requirements.txt    # 依赖管理
 └── vercel.json         # Vercel配置
 ```
 
-### 2. 核心代码示例
+## 核心代码实现
 
-1. **webhook处理函数**
+1. **Webhook 处理函数**
 ```python
-# api/webhook.py
-from http.client import HTTPException
+# api/index.py
+from http.server import BaseHTTPRequestHandler
 from libs.wechat import WeChatMessage
 from libs.github_api import GitHubAPI
-from libs.utils import validate_signature
 
-async def handler(request):
-    # 处理GET请求（微信服务器验证）
-    if request.method == 'GET':
-        query = request.query
-        if validate_signature(query):
-            return Response(query.get('echostr', ''))
-        return Response('Invalid signature', status_code=403)
-    
-    # 处理POST请求（接收消息）
-    if request.method == 'POST':
-        try:
-            message = WeChatMessage(await request.body())
-            if message.msg_type == 'text':
-                github = GitHubAPI()
-                await github.create_post(message.format_post())
-                return Response('success')
-        except Exception as e:
-            print(f"Error processing message: {str(e)}")
-            return Response('success')  # 总是返回success避免微信服务器重试
-            
-    return Response('Method not allowed', status_code=405)
+class handler(BaseHTTPRequestHandler):
+    def validate_signature(self, query):
+        """验证微信服务器签名"""
+        token = os.environ.get('WECHAT_TOKEN')
+        timestamp = query.get('timestamp', [''])[0]
+        nonce = query.get('nonce', [''])[0]
+        signature = query.get('signature', [''])[0]
+        
+        tmp_list = [token, timestamp, nonce]
+        tmp_list.sort()
+        tmp_str = ''.join(tmp_list)
+        hash_obj = hashlib.sha1(tmp_str.encode())
+        
+        return hash_obj.hexdigest() == signature
+
+    def do_GET(self):
+        """处理GET请求（微信服务器验证）"""
+        query = parse_qs(self.path.split('?')[1]) if '?' in self.path else {}
+        if self.validate_signature(query):
+            self.send_response(200)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(query.get('echostr', [''])[0].encode())
+        else:
+            self.send_response(403)
+            self.end_headers()
+
+    def do_POST(self):
+        """处理POST请求（接收消息）"""
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
+        
+        message = WeChatMessage(post_data)
+        if message.msg_type == 'text':
+            github = GitHubAPI()
+            github.create_post(message.format_post())
+        
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write('success'.encode())
 ```
 
 2. **微信消息处理**
 ```python
 # libs/wechat.py
 import xml.etree.ElementTree as ET
-from datetime import datetime
 
 class WeChatMessage:
     def __init__(self, xml_data):
         root = ET.fromstring(xml_data)
         self.msg_type = root.find('MsgType').text
-        self.content = root.find('Content').text
+        self.content = root.find('Content').text if root.find('Content') is not None else ''
         self.from_user = root.find('FromUserName').text
-        self.create_time = int(root.find('CreateTime').text)
-
+        self.create_time = root.find('CreateTime').text
+        
     def format_post(self):
-        # 将消息转换为博客文章格式
+        if self.msg_type != 'text':
+            return None
+            
         lines = self.content.split('\n', 1)
-        title = lines[0]
-        content = lines[1] if len(lines) > 1 else ''
+        title = lines[0].strip()
+        content = lines[1].strip() if len(lines) > 1 else ''
         
         return {
             'title': title,
-            'date': datetime.now().strftime('%Y-%m-%d'),
             'content': content
         }
 ```
 
-3. **GitHub API操作**
+3. **GitHub API 操作**
 ```python
 # libs/github_api.py
 import os
 import base64
-from datetime import datetime
-import httpx
+import json
+import time
+from urllib.request import Request, urlopen
+from urllib.error import HTTPError
+import urllib.parse
 
 class GitHubAPI:
     def __init__(self):
         self.token = os.environ.get('GITHUB_TOKEN')
         self.repo = os.environ.get('GITHUB_REPO')
-        self.headers = {
-            'Authorization': f'token {self.token}',
-            'Accept': 'application/vnd.github.v3+json'
-        }
-
-    async def create_post(self, post_data):
-        # 生成文件名
-        filename = f"source/_posts/{datetime.now().strftime('%Y%m%d')}_{post_data['title']}.md"
+        self.owner = os.environ.get('GITHUB_OWNER')
+        self.branch = os.environ.get('GITHUB_BRANCH', 'master')
         
-        # 生成文章内容
+    def create_post(self, post_data):
+        """创建或更新文章"""
+        filename = "source/_posts/test-post.md"
         content = f"""---
 title: {post_data['title']}
-date: {post_data['date']}
-categories:
-  - 博客
-tags:
-  - 随笔
+date: {time.strftime('%Y-%m-%d %H:%M:%S')}
 ---
 
 {post_data['content']}
 """
-        
-        # 创建或更新文件
-        url = f'https://api.github.com/repos/{self.repo}/contents/{filename}'
-        data = {
-            'message': f'Add post: {post_data["title"]}',
-            'content': base64.b64encode(content.encode()).decode()
+        url = f"https://api.github.com/repos/{self.owner}/{self.repo}/contents/{filename}"
+        headers = {
+            'Authorization': f'token {self.token}',
+            'Accept': 'application/vnd.github.v3+json'
         }
         
-        async with httpx.AsyncClient() as client:
-            response = await client.put(url, json=data, headers=self.headers)
-            response.raise_for_status()
+        # 获取现有文件的 SHA（如果存在）
+        sha = self.get_file_sha(filename)
+        
+        data = {
+            'message': f'Update post: {post_data["title"]}',
+            'content': base64.b64encode(content.encode()).decode(),
+            'branch': self.branch
+        }
+        if sha:
+            data['sha'] = sha
+            
+        request = Request(url, 
+                        data=json.dumps(data).encode(),
+                        headers=headers,
+                        method='PUT')
+        response = urlopen(request)
+        return response.status == 200 or response.status == 201
 ```
 
-### 3. 依赖配置
+## 环境变量配置
 
-```txt
-# requirements.txt
-httpx==0.24.1
-python-dotenv==1.0.0
-pytest==7.4.0
-pytest-asyncio==0.21.1
+```env
+# .env
+WECHAT_TOKEN=your_wechat_token
+GITHUB_TOKEN=your_github_token
+GITHUB_REPO=your_repo_name
+GITHUB_OWNER=your_github_username
+GITHUB_BRANCH=master
 ```
 
-### 4. Vercel配置
-```json
-{
-  "version": 2,
-  "functions": {
-    "api/webhook.py": {
-      "runtime": "python3.9"
-    }
-  }
-}
-```
+## 本地开发
 
-### 5. 本地开发环境设置
-
-1. **创建虚拟环境**
+1. **安装依赖**
 ```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-2. **安装Vercel CLI**
-```bash
-npm i -g vercel
-```
-
-3. **本地测试**
+2. **启动开发服务器**
 ```bash
 vercel dev
 ```
 
-### 6. 环境变量
-
-1. **本地开发**
-```env
-GITHUB_TOKEN=your_github_token
-GITHUB_REPO=username/repo
-WECHAT_TOKEN=your_wechat_token
+3. **测试微信验证**
+```bash
+# 生成测试 URL
+python tests/test_signature.py
+# 使用生成的 URL 测试验证
+curl "http://localhost:3000/api/webhook?signature=XXX&timestamp=XXX&nonce=XXX&echostr=XXX"
 ```
 
-2. **Vercel部署**
-- 在Vercel项目设置中配置相同的环境变量
+4. **测试消息发送**
+```bash
+# 测试发送消息
+curl -X POST http://localhost:3000/api/webhook \
+  -H "Content-Type: application/xml" \
+  -d '<xml>
+    <ToUserName><![CDATA[toUser]]></ToUserName>
+    <FromUserName><![CDATA[fromUser]]></FromUserName>
+    <CreateTime>1704891234</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[测试文章标题
+这是文章内容，
+可以包含多行
+支持换行符]]></Content>
+    <MsgId>1234567890123456</MsgId>
+  </xml>'
+```
+
+## 部署到 Vercel
+
+1. **安装 Vercel CLI**
+```bash
+npm i -g vercel
+```
+
+2. **部署**
+```bash
+vercel
+```
+
+3. **配置环境变量**
+在 Vercel 项目设置中配置相同的环境变量
+
+## 国内访问问题解决 todo
+
+1. 申请在国内可以访问的域名：regeorge.asia
+2. 配置域名解析：使用cloudflare解析域名，并配置CNAME到vercel的域名
+3. 配置vercel的域名：vercel.app -> regeorge.asia
