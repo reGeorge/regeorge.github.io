@@ -62,4 +62,4 @@
 - 有较强的问题分析和解决能力，善于通过技术手段提升测试效率
 - 具有良好的团队协作精神，能够主动推动跨团队合作解决问题
 - 持续学习新技术，并在团队内组织技术分享，促进团队技术提升
-- 技术博客: https://regeorge.github.io/
+- 技术博客: https://regeorge-github-io.vercel.app/archives/
