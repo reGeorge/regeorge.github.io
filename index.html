@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reGeorge | 交互实验 & 记录</title>
+    <style>
+        :root {
+            --claude-beige: #F9F8F6;
+            --claude-text: #1D1D1F;
+            --claude-sub: #6E6E73;
+            --accent: #D97757; /* 琥珀色 */
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: var(--claude-beige);
+            color: var(--claude-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Serif SC", serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 80px 24px;
+            display: flex;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 650px;
+            width: 100%;
+        }
+        header {
+            margin-bottom: 80px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+        .bio {
+            color: var(--claude-sub);
+            font-size: 1.15rem;
+            max-width: 500px;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--claude-sub);
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.08); /* 稍微加深一点线段颜色 */
+            padding-bottom: 8px;
+        }
+        .project-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .project-item {
+            margin-bottom: 40px;
+            transition: transform 0.2s ease;
+        }
+        .project-item a {
+            text-decoration: none;
+            color: var(--claude-text);
+            font-size: 1.4rem;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 6px;
+            transition: color 0.2s;
+        }
+        .project-item a:hover {
+            color: var(--accent);
+        }
+        .project-description {
+            font-size: 0.95rem;
+            color: var(--claude-sub);
+            margin-bottom: 8px;
+        }
+        .project-meta {
+            font-size: 0.8rem;
+            color: var(--claude-sub);
+            font-variant-numeric: tabular-nums;
+            display: flex;
+            gap: 16px;
+        }
+        footer {
+            margin-top: 120px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--claude-sub);
+        }
+        @media (max-width: 480px) {
+            body { padding: 40px 20px; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>reGeorge</h1>
+            <p class="bio">“背着阳光走的人看到的都是阴影。”</p>
+            <p class="bio" style="margin-top: 8px; font-size: 0.95rem;">产品设计、技术思考与交互实验的数字存本。</p>
+        </header>
+
+        <main>
+            <div class="section-label">Selected Projects</div>
+            <section class="project-list">
+                <!-- 个人简历 -->
+                <div class="project-item">
+                    <a href="resume/index.html">Curriculum Vitae</a>
+                    <p class="project-description">魏斌的个人履历，专注于 AI 驱动的测试工程化与全栈工具交付。</p>
+                    <div class="project-meta">
+                        <span>Professional</span>
+                        <span>2026.03</span>
+                    </div>
+                </div>
+
+                <!-- 待挂载作品占位 -->
+                <div class="project-item" style="opacity: 0.4;">
+                    <a href="#">Interactive Experiment #01</a>
+                    <p class="project-description">即将发布的小米 x 腾讯交互设计演练。</p>
+                    <div class="project-meta">
+                        <span>Coming Soon</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-text">
+                <p>© 2026 Crafted with Gemini, Inspired by Claude Aesthetics.</p>
+                <p style="margin-top: 4px;">Minimalist & Functional.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

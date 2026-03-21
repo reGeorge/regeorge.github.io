@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魏斌 | 简历 - Claude Style</title>
+    <style>
+        :root {
+            --claude-beige: #F9F8F6;
+            --claude-text: #191919;
+            --claude-sub: #6E6E73;
+            --accent: #D97757;
+            --border: rgba(0, 0, 0, 0.06);
+        }
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--claude-beige);
+            color: var(--claude-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Serif SC", serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 60px 24px;
+            display: flex;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 720px;
+            width: 100%;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+            border-radius: 8px;
+            position: relative;
+        }
+        .back-home {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            text-decoration: none;
+            color: var(--claude-sub);
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .back-home:hover { color: var(--accent); }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 48px;
+            border-bottom: 1.5px solid var(--claude-text);
+            padding-bottom: 24px;
+        }
+        .header-info h1 {
+            font-size: 2.2rem;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .header-info p {
+            margin: 4px 0;
+            color: var(--claude-sub);
+            font-size: 0.95rem;
+        }
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        section { margin-bottom: 40px; }
+        h2 {
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--claude-sub);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .exp-item { margin-bottom: 32px; }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+        .exp-title { font-weight: 600; font-size: 1.1rem; }
+        .exp-date { color: var(--claude-sub); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+        .exp-content { padding-left: 0; list-style-type: none; }
+        .exp-content li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .exp-content li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .skill-cat h3 { font-size: 1rem; margin-bottom: 12px; }
+        .skill-cat p { font-size: 0.9rem; color: var(--claude-sub); margin: 0; }
+
+        @media (max-width: 600px) {
+            .container { padding: 32px 20px; }
+            header { flex-direction: column-reverse; }
+            .avatar { margin-bottom: 16px; width: 60px; height: 60px; }
+            .exp-header { flex-direction: column; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-home">← Index</a>
+        
+        <header>
+            <div class="header-info">
+                <h1>魏斌</h1>
+                <p>测试开发工程师</p>
+                <p>18351923906 | 18351923906@163.com</p>
+                <p>南京邮电大学 | 电子信息工程 | 本科</p>
+            </div>
+            <img src="/backup/cv/90k.jpg" alt="Profile" class="avatar">
+        </header>
+
+        <section>
+            <h2>核心竞争力</h2>
+            <ul class="exp-content">
+                <li><strong>AI 驱动的测试工程化</strong>：主导搭建 AI 接口自动化工作流，落地 2000+ 稳定测试用例。</li>
+                <li><strong>全栈工具交付能力</strong>：精通 Java/Spring Boot/Vue 生态，专注于效能工具快速闭环。</li>
+                <li><strong>DevOps 与质量保障</strong>：深入理解 CI/CD，具备全链路风险控制实操经验。</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>工作经历</h2>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">上海锐捷网络 | 测试开发工程师</span>
+                    <span class="exp-date">2025.05 - 至今</span>
+                </div>
+                <ul class="exp-content">
+                    <li>搭建基于 AI 的自动化用例生成工作流，显著降低人工编写成本。</li>
+                    <li>通过优化 Prompt Engineering，实现 2000+ 接口用用例的自动化生成。</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">上海携程 | 测试开发工程师</span>
+                    <span class="exp-date">2020.10 - 2025.05</span>
+                </div>
+                <ul class="exp-content">
+                    <li>负责酒店查询与定价服务工具链开发，提升线上问题分析效率。</li>
+                    <li>独立负责日志解析及比对工具，大幅优化发布流程与提效。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>专业技能</h2>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h3>开发 & AI 实践</h3>
+                    <p>Java / Spring Boot / Vue / MyBatis / Vibe Coding / Cursor Agent</p>
+                </div>
+                <div class="skill-cat">
+                    <h3>测试 & DevOps</h3>
+                    <p>TestNG / UI 自动化 / CI/CD 流程设计 / 容量规划</p>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 60px; text-align: center;">
+            <p style="font-size: 0.8rem; color: var(--claude-sub);">
+                © 2026 魏斌 · Built with Claude Aesthetic
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
