@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 元认知：从信息空耗到思维还原 | reGeorge</title>
+    <style>
+        :root {
+            --claude-beige: #F9F8F6;
+            --claude-text: #191919;
+            --claude-sub: #6E6E73;
+            --accent: #D97757;
+            --logic-line: #E2E2E2;
+        }
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--claude-beige);
+            color: var(--claude-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 24px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .back-link {
+            text-decoration: none;
+            color: var(--claude-sub);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 40px;
+        }
+        header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .date {
+            font-size: 0.85rem;
+            color: var(--claude-sub);
+        }
+
+        /* 可视化区域 */
+        .viz-container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .viz-header {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+        }
+
+        .loop-box {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .node {
+            border: 1px solid var(--logic-line);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .node:hover {
+            border-color: var(--accent);
+            background: var(--claude-beige);
+        }
+        .node-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+        .node-desc {
+            font-size: 0.8rem;
+            color: var(--claude-sub);
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        /* 文章内容 */
+        .content section {
+            margin-bottom: 48px;
+        }
+        .content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            color: var(--accent);
+        }
+        .insight-card {
+            border-left: 2px solid var(--logic-line);
+            padding-left: 24px;
+            margin: 24px 0;
+        }
+        .highlight {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        blockquote {
+            font-size: 1.25rem;
+            font-style: italic;
+            border: none;
+            padding: 40px;
+            background: rgba(217, 119, 87, 0.05);
+            border-radius: 12px;
+            margin: 40px 0;
+            position: relative;
+        }
+        blockquote::before {
+            content: "“";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            opacity: 0.1;
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .loop-box { grid-template-columns: 1fr; }
+            .arrow { transform: rotate(90deg); margin: 10px auto; }
+            .viz-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← 访问首府</a>
+        
+        <header>
+            <div class="date">2026.03.21</div>
+            <h1>AI 元认知：信息空耗与思维还原</h1>
+        </header>
+
+        <!-- 视觉抽象：思维闭环 -->
+        <div class="viz-container">
+            <div class="viz-header">思维向语言的“无损还原”回路</div>
+            <div class="loop-box">
+                <div class="node">
+                    <div class="node-title">结构化表达</div>
+                    <div class="node-desc">最高密度的提示词 (Prompt)</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                    <div class="node-title">AI 语义解析</div>
+                    <div class="node-desc">找回表达中的“思维损耗”</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="node">
+                    <div class="node-title">前端呈现验收</div>
+                    <div class="node-desc">完成度与意志的“贴位”</div>
+                </div>
+            </div>
+        </div>
+
+        <article class="content">
+            <section>
+                <h2>01. 告别体力劳作</h2>
+                <div class="insight-card">
+                    以前使用笔记，到处记录、到处整合、排版、画图，<span class="highlight">空耗了大量的精力</span>。
+                    在 AI 时代，第一优先级永远是结构化的语言。
+                </div>
+            </section>
+
+            <blockquote>
+                “结构化的编排是信息密度最高的提示词。”
+            </blockquote>
+
+            <section>
+                <h2>02. 找回思维损耗</h2>
+                <p>
+                    思维转变为语言的过程必然存在损耗。如果 AI 能听懂你在说什么，它的输出就能帮你整理思路，
+                    把那些在语言化过程中丢失的部分找回来。
+                </p>
+                <p>
+                    这种<span class="highlight">找回损耗的过程</span>，本质上是还原你完整思维的过程。
+                </p>
+            </section>
+
+            <section>
+                <h2>03. 验收与还原</h2>
+                <p>
+                    最终利用 AI 强大的前端能力进行验收。
+                    由于底层逻辑是基于“思维原型”的无损还原，呈现出的产物更能贴近你的原意，且逻辑的一致性更高。
+                </p>
+            </section>
+        </article>
+
+        <footer style="margin-top: 100px; padding-top: 40px; border-top: 1px solid var(--logic-line); text-align: center; color: var(--claude-sub); font-size: 0.85rem;">
+            © 2026 Crafted with AI Metacognition.
+        </footer>
+    </div>
+</body>
+</html>
