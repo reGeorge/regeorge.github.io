@@ -1,0 +1,2 @@
+# This file tells GitHub Pages NOT to use Jekyll to process the site.
+# It ensures all files (including those starting with underscores) are served as-is.
