@@ -7,96 +7,151 @@
     <style>
         :root {
             --claude-beige: #F9F8F6;
-            --claude-text: #1D1D1F;
+            --claude-text: #191919;
             --claude-sub: #6E6E73;
-            --accent: #D97757; /* 琥珀色 */
+            --accent: #D97757;
+            --folder-bg: rgba(0, 0, 0, 0.03);
+            --border: rgba(0, 0, 0, 0.06);
         }
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body {
             background-color: var(--claude-beige);
             color: var(--claude-text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Serif SC", serif;
             line-height: 1.6;
             margin: 0;
-            padding: 80px 24px;
+            padding: 60px 24px;
             display: flex;
             justify-content: center;
             -webkit-font-smoothing: antialiased;
         }
         .container {
-            max-width: 650px;
+            max-width: 800px;
             width: 100%;
         }
         header {
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
         h1 {
-            font-size: 2.8rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            letter-spacing: -0.03em;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
         .bio {
             color: var(--claude-sub);
-            font-size: 1.15rem;
-            max-width: 500px;
+            font-size: 1rem;
         }
-        .section-label {
+
+        /* Obsidian Style Navigation */
+        .obsidian-nav {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .nav-sidebar {
+            border-right: 1px solid var(--border);
+            padding-right: 20px;
+        }
+
+        .folder-group {
+            margin-bottom: 24px;
+        }
+
+        .folder-title {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             color: var(--claude-sub);
-            margin-bottom: 24px;
-            border-bottom: 1px solid rgba(0,0,0,0.08); /* 稍微加深一点线段颜色 */
-            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .project-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
+        .folder-title svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
         }
-        .project-item {
-            margin-bottom: 40px;
-            transition: transform 0.2s ease;
-        }
-        .project-item a {
+
+        .nav-item {
+            display: block;
+            padding: 6px 10px;
+            margin-left: -10px;
             text-decoration: none;
             color: var(--claude-text);
-            font-size: 1.4rem;
-            font-weight: 500;
-            display: block;
-            margin-bottom: 6px;
-            transition: color 0.2s;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.1s;
         }
-        .project-item a:hover {
+
+        .nav-item:hover {
+            background-color: var(--folder-bg);
             color: var(--accent);
         }
-        .project-description {
-            font-size: 0.95rem;
-            color: var(--claude-sub);
-            margin-bottom: 8px;
+
+        .nav-item.active {
+            background-color: var(--folder-bg);
+            font-weight: 500;
         }
-        .project-meta {
-            font-size: 0.8rem;
-            color: var(--claude-sub);
-            font-variant-numeric: tabular-nums;
+
+        .content-area {
+            min-height: 400px;
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            font-weight: 500;
             display: flex;
-            gap: 16px;
+            align-items: center;
+            gap: 10px;
         }
-        footer {
-            margin-top: 120px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(0,0,0,0.05);
+
+        .project-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
-        .footer-text {
-            font-size: 0.85rem;
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: var(--accent);
+        }
+
+        .project-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+            color: var(--claude-text);
+        }
+
+        .project-card p {
+            margin: 0;
+            font-size: 0.9rem;
             color: var(--claude-sub);
         }
-        @media (max-width: 480px) {
-            body { padding: 40px 20px; }
-            h1 { font-size: 2.2rem; }
+
+        .project-meta {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 650px) {
+            .obsidian-nav { grid-template-columns: 1fr; }
+            .nav-sidebar { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; padding-right: 0; }
         }
     </style>
 </head>
@@ -104,40 +159,60 @@
     <div class="container">
         <header>
             <h1>reGeorge</h1>
-            <p class="bio">“背着阳光走的人看到的都是阴影。”</p>
-            <p class="bio" style="margin-top: 8px; font-size: 0.95rem;">产品设计、技术思考与交互实验的数字存本。</p>
+            <p class="bio">基于 Obsidian 哲学的双向导航与交互作品集。</p>
         </header>
 
-        <main>
-            <div class="section-label">Selected Projects</div>
-            <section class="project-list">
-                <!-- 个人简历 -->
-                <div class="project-item">
-                    <a href="resume/index.html">Curriculum Vitae</a>
-                    <p class="project-description">魏斌的个人履历，专注于 AI 驱动的测试工程化与全栈工具交付。</p>
-                    <div class="project-meta">
-                        <span>Professional</span>
-                        <span>2026.03</span>
+        <div class="obsidian-nav">
+            <!-- Sidebar (Knowledge Base Style) -->
+            <aside class="nav-sidebar">
+                <div class="folder-group">
+                    <div class="folder-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        Professional
                     </div>
+                    <a href="resume/index.html" class="nav-item">Curriculum Vitae</a>
                 </div>
 
-                <!-- 待挂载作品占位 -->
-                <div class="project-item" style="opacity: 0.4;">
-                    <a href="#">Interactive Experiment #01</a>
-                    <p class="project-description">即将发布的小米 x 腾讯交互设计演练。</p>
-                    <div class="project-meta">
-                        <span>Coming Soon</span>
+                <div class="folder-group">
+                    <div class="folder-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        Lab / Interactive
                     </div>
+                    <a href="#" class="nav-item">Experiment #01</a>
+                    <a href="#" class="nav-item">Design Concept</a>
                 </div>
-            </section>
-        </main>
 
-        <footer>
-            <div class="footer-text">
-                <p>© 2026 Crafted with Gemini, Inspired by Claude Aesthetics.</p>
-                <p style="margin-top: 4px;">Minimalist & Functional.</p>
-            </div>
+                <div class="folder-group">
+                    <div class="folder-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        Archive
+                    </div>
+                    <a href="backup/posts/" class="nav-item">Historical Posts</a>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <div class="section-header">Recent Works</div>
+                
+                <a href="resume/index.html" class="project-card">
+                    <h3>Curriculum Vitae</h3>
+                    <p>魏斌的个人履历，专注于 AI 驱动的测试工程化与全栈工具交付。</p>
+                    <div class="project-meta">Current • Professional</div>
+                </a>
+
+                <div class="project-card" style="opacity: 0.5; border-style: dashed;">
+                    <h3>New Interaction</h3>
+                    <p>等待挂载新的交互式作品...</p>
+                    <div class="project-meta">Draft • Pending</div>
+                </div>
+            </main>
+        </div>
+
+        <footer style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border);">
+            <p style="font-size: 0.8rem; color: var(--claude-sub);">© 2026 Crafted with Obsidian Philosophy.</p>
         </footer>
     </div>
 </body>
+
 </html>
