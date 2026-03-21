@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生活哲学 | reGeorge 数据飞轮</title>
+    <style>
+        :root {
+            --claude-beige: #F9F8F6;
+            --claude-text: #191919;
+            --claude-sub: #6E6E73;
+            --accent: #D97757;
+            --border: rgba(0, 0, 0, 0.08);
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--claude-beige);
+            color: var(--claude-text);
+            font-family: "Noto Serif SC", serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--claude-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--claude-sub);
+            font-style: italic;
+        }
+
+        .flywheel-concept {
+            background-color: rgba(217, 119, 87, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 24px;
+            margin-bottom: 60px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .flywheel-concept h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .insight-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 12px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .insight-content {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .philosophy-note {
+            font-size: 0.95rem;
+            color: var(--claude-sub);
+            padding-top: 20px;
+            border-top: 1px dashed var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .philosophy-note::before {
+            content: "关联";
+            font-weight: 600;
+            color: var(--claude-text);
+            flex-shrink: 0;
+        }
+
+        footer {
+            margin-top: 100px;
+            text-align: center;
+            color: var(--claude-sub);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            返回首页
+        </a>
+
+        <header>
+            <h1>生活哲学数据飞轮</h1>
+            <div class="subtitle">“万物相通，见微知著。”</div>
+        </header>
+
+        <section class="flywheel-concept">
+            <h2>什么是生活哲学飞轮？</h2>
+            <p>这是一个低门槛的信息采集系统。通过捕捉日常生活中的细微观察（数据输入），将其与经典的哲学、心理学或系统论逻辑进行强关联（结构化），最终沉淀为可复用的认知模型（知识产出）。</p>
+        </section>
+
+        <div class="insight-list">
+            <!-- 示例条目 1 -->
+            <div class="insight-card">
+                <span class="tag">观察：AI 数据飞轮</span>
+                <div class="insight-content">
+                    如果你想让 AI 帮你完成复杂的创造，首先要给它提供大量的、结构化的“生肉”素材。就像喂养一头巨兽，你必须保证饲料的质量和频率。
+                </div>
+                <div class="philosophy-note">
+                    <strong>耗散结构理论</strong>：系统必须不断与外界交换能量（数据）和物质，才能维持其有序状态并不向平衡态（平庸）演化。
+                </div>
+            </div>
+
+            <!-- 示例条目 2 -->
+            <div class="insight-card">
+                <span class="tag">观察：纳瓦尔的冷水澡</span>
+                <div class="insight-content">
+                    冷水激起的瞬间，大脑的第一反应是逃避。但当你站在水下呼吸稳健时，那种“掌控感”不是来自于舒适，而是来自于对原始恐惧的降伏。
+                </div>
+                <div class="philosophy-note">
+                    <strong>斯多葛学派（Stoicism）</strong>：主动寻求小的不适（Voluntary Discomfort），能增强对抗未来痛苦的免疫力，并界定自我的边界。
+                </div>
+            </div>
+
+            <!-- 待填充 -->
+            <div class="insight-card" style="border-style: dashed; opacity: 0.6; background: transparent;">
+                <span class="tag">等待同步 Obsidian 灵感...</span>
+                <p>正在从「灵感」目录同步最近的随笔与哲学关联。</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 reGeorge | 持续观测，持续建模</p>
+        </footer>
+    </div>
+</body>
+</html>
