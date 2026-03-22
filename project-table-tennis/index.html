@@ -142,12 +142,75 @@
             align-items: center;
             text-align: center;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background-color: #fffdf9;
+        }
+
+        .pillar-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.2);
         }
 
         .pillar-title {
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--accent);
+        }
+
+        /* 详情展示区 */
+        .detail-panel {
+            margin-top: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .detail-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .detail-content {
+            font-size: 0.95rem;
+            color: var(--claude-text);
+        }
+
+        .detail-content ul {
+            padding-left: 20px;
+        }
+
+        .detail-content li {
+            margin-bottom: 12px;
+        }
+
+        .source-tag {
+            font-size: 0.8rem;
+            color: var(--claude-sub);
+            font-style: italic;
         }
 
         .pillar-list {
@@ -214,17 +277,18 @@
 
         <section class="architecture">
             <div class="arch-title">核心驱动模型</div>
+            <p style="text-align:center; color:var(--claude-sub); font-size:0.85rem; margin-top:-20px; margin-bottom:30px;">(点击卡片查看相关体会汇总)</p>
             
             <div class="tree-container">
                 <!-- 顶层核心 -->
-                <div class="core-node">
+                <div class="core-node" onclick="showDetail('core')">
                     收的彻底 · 顶的结实 · 顺的自然 · 重心不散
                     <div class="core-sub">所有技术与战术动作的底层裁判标准</div>
                 </div>
 
                 <!-- 次级支柱 -->
                 <div class="node-level">
-                    <div class="pillar-card">
+                    <div class="pillar-card" id="card-1" onclick="showDetail(1)">
                         <div class="connector conn-vertical"></div>
                         <div class="pillar-title">1. 力量传导 (物理层)</div>
                         <ul class="pillar-list">
@@ -234,7 +298,7 @@
                         </ul>
                     </div>
 
-                    <div class="pillar-card">
+                    <div class="pillar-card" id="card-2" onclick="showDetail(2)">
                         <div class="connector conn-vertical"></div>
                         <div class="pillar-title">2. 动作框架 (结构层)</div>
                         <ul class="pillar-list">
@@ -244,7 +308,7 @@
                         </ul>
                     </div>
 
-                    <div class="pillar-card">
+                    <div class="pillar-card" id="card-3" onclick="showDetail(3)">
                         <div class="connector conn-vertical"></div>
                         <div class="pillar-title">3. 迎前意识 (战术层)</div>
                         <ul class="pillar-list">
@@ -257,9 +321,18 @@
             </div>
         </section>
 
+        <!-- 详细面板展示区 -->
+        <div id="detail-panel" class="detail-panel">
+            <div class="detail-header">
+                <span id="detail-title" class="detail-title"></span>
+                <span class="source-tag">来源: GitHub/Obsidian 真实笔记</span>
+            </div>
+            <div id="detail-content" class="detail-content"></div>
+        </div>
+
         <h2>时机与系统进化</h2>
         <div class="methodology">
-            <div class="method-card">
+            <div class="method-card" onclick="showDetail('timing')">
                 <div class="method-title">⏱️ 击球时机处理</div>
                 <div style="font-size: 0.9rem; color: var(--claude-sub);">
                     <p><strong>上升期</strong>：借力撞击不发力，用框架撑住。</p>
@@ -268,7 +341,7 @@
                 </div>
             </div>
             
-            <div class="method-card">
+            <div class="method-card" onclick="showDetail('compound')">
                 <div class="method-title">🚀 进阶逻辑：滑梯加复利</div>
                 <div style="font-size: 0.9rem; color: var(--claude-sub);">
                     <p><strong>不因大失小</strong>：在技术真正突破前，坚决不养成任何“虚幻”的手感与习惯。</p>
@@ -278,5 +351,93 @@
         </div>
         
     </div>
+
+    <script>
+        const details = {
+            'core': {
+                title: '核心心法：底层标准',
+                content: `
+                    <ul>
+                        <li><strong>收的彻底</strong>：不仅仅是收前臂，而是整个身体结构的回收，为下一板蓄力。核心力量通过这种“彻底”实现连续。</li>
+                        <li><strong>顶的结实</strong>：撞击的那一刹那，身体必须是一个整体。任何局部肌肉的松垮都会让质量骤降。</li>
+                        <li><strong>顺的自然</strong>：遵循物理规律，不强行违拗来球的力量。力量顺着框架流向球心。</li>
+                        <li><strong>重心不散</strong>：重心不仅仅是移动稳，更是每一板打完重心的还原精准。</li>
+                    </ul>
+                    <p><em>这是对动作流畅度与稳定性的终极要求。</em></p>
+                `
+            },
+            1: {
+                title: '维度 1: 力量传导 (物理层)',
+                content: `
+                    <ul>
+                        <li><strong>胯比臂快 (关键认识)</strong>：意识到右胯已经顶出去，右臂才开始挥拍。这种<strong>意识层面的时差</strong>，是力量从地面传导到球心的关键。</li>
+                        <li><strong>放松是载体</strong>：要想力量传导到球上，右臂和小臂必须放松。因为肌肉紧绷会产生内部抵消。</li>
+                        <li><strong>地源发力</strong>：所有的力量并非生于手臂，而是生于踩实并盘住的右脚。踩死、顶胯、顺带。</li>
+                    </ul>
+                `
+            },
+            2: {
+                title: '维度 2: 动作框架 (结构层)',
+                content: `
+                    <ul>
+                        <li><strong>拒绝“紧绷式”控制</strong>：不要因为害怕丢球而用肌肉去压。真正的控制来自于对挥拍轨迹的重复打炼。</li>
+                        <li><strong>打磨轨迹</strong>：放松肌肉是为了让身体像精密仪器一样去探测并修正动作框架，而不是靠手腕的微调。</li>
+                        <li><strong>重心控球</strong>：如果球下网或出界，解决办法通常不是调拍面，而是<strong>调重心</strong>。用重心的前倾和稳定去“找球、顶球”。</li>
+                    </ul>
+                `
+            },
+            3: {
+                title: '维度 3: 迎前意识 (战术层)',
+                content: `
+                    <ul>
+                        <li><strong>空间余量</strong>：在身体右前方大约40cm处建立一个“击球窗”。这是发力最充分的甜蜜点。</li>
+                        <li><strong>“骑”球往前 (反手关键)</strong>：反手不是为了“蹭”一下上台，而是要有一种“骑着球往前”的态势。</li>
+                        <li><strong>撞击为主</strong>：正手亮拍撞击，先撞实再加摩擦。不敢撞就会导致摩擦太虚。</li>
+                    </ul>
+                `
+            },
+            'timing': {
+                title: '动态处理：击球时机',
+                content: `
+                    <ul>
+                        <li><strong>上升期</strong>：利用框架支撑点借力，不需要发力，借力打力的核心在于“硬结构”。</li>
+                        <li><strong>高点期</strong>：这是进攻的最佳窗口。需要将重心的前冲力完全交给球体，实现最大质量。</li>
+                        <li><strong>下降期</strong>：强调向上摩擦的“高调”。此时核心必须紧紧顶住，为手上的摩擦提供稳定的基座。</li>
+                    </ul>
+                `
+            },
+            'compound': {
+                title: '进阶逻辑：滑梯与复利',
+                content: `
+                    <ul>
+                        <li><strong>滑梯 (自动化)</strong>：建立一套像滑梯一样自然的习惯。减少思考，让动作自如滑落，提高反应速度。</li>
+                        <li><strong>复利 (积累性)</strong>：每一次符合框架的挥拍都在增加你的容错率。复利不是体现在力量变大，而是体现在“不失误”能力的几何级增长。</li>
+                        <li><strong>断舍离</strong>：在技术真正突破前，坚决不追求那些依靠“运气手感”打出来的神球。</li>
+                    </ul>
+                `
+            }
+        };
+
+        function showDetail(key) {
+            const panel = document.getElementById('detail-panel');
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+            const data = details[key];
+
+            // 滚动到面板
+            panel.style.display = 'block';
+            title.innerText = data.title;
+            content.innerHTML = data.content;
+
+            // 平滑滚动
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // 更新卡片激活状态
+            document.querySelectorAll('.pillar-card').forEach(c => c.classList.remove('active'));
+            if(typeof key === 'number') {
+                document.getElementById('card-' + key).classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
