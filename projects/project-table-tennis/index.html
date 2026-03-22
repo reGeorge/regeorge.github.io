@@ -213,6 +213,28 @@
             font-style: italic;
         }
 
+        /* 原话引用块 */
+        blockquote.verbatim {
+            margin: 0 0 12px 0;
+            padding: 12px 16px;
+            background: #faf7f2;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95rem;
+            color: var(--claude-text);
+            line-height: 1.7;
+        }
+
+        .note-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--claude-sub);
+            margin: 16px 0 6px 0;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
         .pillar-list {
             list-style: none;
             padding: 0;
@@ -325,7 +347,7 @@
         <div id="detail-panel" class="detail-panel">
             <div class="detail-header">
                 <span id="detail-title" class="detail-title"></span>
-                <span class="source-tag">来源: GitHub/Obsidian 真实笔记</span>
+                <span id="detail-source" class="source-tag"></span>
             </div>
             <div id="detail-content" class="detail-content"></div>
         </div>
