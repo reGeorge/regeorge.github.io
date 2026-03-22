@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乒乓球技术框架与思维流</title>
+    <style>
+        :root {
+            --claude-beige: #F9F8F6;
+            --claude-text: #191919;
+            --claude-sub: #6E6E73;
+            --accent: #D97757;
+            --border: rgba(0, 0, 0, 0.08);
+            --card-bg: #FFFFFF;
+            --node-bg: #f0ede6;
+        }
+
+        body {
+            background-color: var(--claude-beige);
+            color: var(--claude-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--claude-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .bio {
+            color: var(--claude-sub);
+            font-size: 1rem;
+        }
+
+        .architecture {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .arch-title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* 结构树样式 */
+        .tree-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .node-level {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* 核心心法 */
+        .core-node {
+            background-color: var(--claude-text);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-align: center;
+            z-index: 2;
+            width: 60%;
+        }
+
+        .core-sub {
+            font-size: 0.85rem;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* 连接线 */
+        .connector {
+            position: absolute;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .conn-vertical {
+            width: 2px;
+            height: 40px;
+            top: -40px;
+        }
+
+        /* 二级节点：三大支柱 */
+        .pillar-card {
+            background-color: var(--node-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .pillar-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .pillar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--claude-text);
+            opacity: 0.9;
+        }
+
+        .pillar-list li {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border);
+        }
+        .pillar-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* 方法论 */
+        .methodology {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .method-card {
+            flex: 1;
+            padding: 20px;
+            border-left: 3px solid var(--accent);
+            background: rgba(217, 119, 87, 0.05);
+        }
+        
+        .method-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .node-level {
+                flex-direction: column;
+            }
+            .core-node { width: 100%; box-sizing: border-box; }
+            .methodology { flex-direction: column; }
+            .pillar-card { width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            返回首页
+        </a>
+
+        <header>
+            <h1>乒乓技术框架图谱</h1>
+            <p class="bio">从底层发力逻辑到动态实战意识的解构体系。基于个人真实笔记打磨。</p>
+        </header>
+
+        <section class="architecture">
+            <div class="arch-title">核心驱动模型</div>
+            
+            <div class="tree-container">
+                <!-- 顶层核心 -->
+                <div class="core-node">
+                    收的彻底 · 顶的结实 · 顺的自然 · 重心不散
+                    <div class="core-sub">所有技术与战术动作的底层裁判标准</div>
+                </div>
+
+                <!-- 次级支柱 -->
+                <div class="node-level">
+                    <div class="pillar-card">
+                        <div class="connector conn-vertical"></div>
+                        <div class="pillar-title">1. 力量传导 (物理层)</div>
+                        <ul class="pillar-list">
+                            <li><strong>胯比臂快</strong>: 右胯顶出后，右臂才挥拍</li>
+                            <li><strong>放松是载体</strong>: 肌肉紧绷会导致内部力抵消</li>
+                            <li><strong>地源发力</strong>: 力量生于踩实并盘住的右脚</li>
+                        </ul>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="connector conn-vertical"></div>
+                        <div class="pillar-title">2. 动作框架 (结构层)</div>
+                        <ul class="pillar-list">
+                            <li><strong>放弃控制权</strong>: 不用肌肉紧绷去控制力量</li>
+                            <li><strong>打磨轨迹</strong>: 用放松去感知和修正挥拍框架</li>
+                            <li><strong>重心控球</strong>: 拍下网或出界，靠调重心而非调手腕</li>
+                        </ul>
+                    </div>
+
+                    <div class="pillar-card">
+                        <div class="connector conn-vertical"></div>
+                        <div class="pillar-title">3. 迎前意识 (战术层)</div>
+                        <ul class="pillar-list">
+                            <li><strong>空间余量</strong>: 建立右前方 40cm 的击球窗</li>
+                            <li><strong>“骑”球往前</strong>: 反手不“蹭”，以手肘为轴往前转</li>
+                            <li><strong>撞击为主</strong>: 正手亮拍撞击，先撞实再加摩擦</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2>时机与系统进化</h2>
+        <div class="methodology">
+            <div class="method-card">
+                <div class="method-title">⏱️ 击球时机处理</div>
+                <div style="font-size: 0.9rem; color: var(--claude-sub);">
+                    <p><strong>上升期</strong>：借力撞击不发力，用框架撑住。</p>
+                    <p><strong>高点期</strong>：往前发力摩擦，撞击出前冲质量。</p>
+                    <p><strong>下降期</strong>：往上摩擦高调，用核心紧紧顶住。</p>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-title">🚀 进阶逻辑：滑梯加复利</div>
+                <div style="font-size: 0.9rem; color: var(--claude-sub);">
+                    <p><strong>不因大失小</strong>：在技术真正突破前，坚决不养成任何“虚幻”的手感与习惯。</p>
+                    <p><strong>滑梯 (自动化)</strong>：建立稳定的习惯。<strong>复利 (积累性)</strong>：通过每一次正确的发力和框架打磨，实现几何级增长。</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
