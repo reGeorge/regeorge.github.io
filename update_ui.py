@@ -11,7 +11,7 @@ def update_html():
     with open(path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # 1. 注入 JS 数据 (插入到 const details = { 之后)
+    # JS 注入 (插入到 const details = { 之后)
     data_js = """        errors: {
             title: '⚠️ 逆向提醒：错题集 (芒格思维)',
             source: '来自 2026-03-22 训练反思',
@@ -19,8 +19,7 @@ def update_html():
         },
 """
     if 'errors:' not in content:
-        content = re.sub(r'(const details = \{)', r'\1\n' + data_js, content)
-        print("Inserted JS data.")
+        content = re.sub(r'const details = \{', f"const details = {{\\n{data_js}", content)
 
     # 2. 注入 HTML 卡片 (插入到 <h2>时机与系统进化</h2> 之前)
     card_html = """
