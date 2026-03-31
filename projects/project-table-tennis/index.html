@@ -13,6 +13,10 @@
             --border: rgba(0, 0, 0, 0.08);
             --card-bg: #FFFFFF;
             --node-bg: #f0ede6;
+            --dialogue-bg: #faf9f7;
+            --filter-color: #9ca3af;
+            --action-color: #059669;
+            --highlight-bg: #fefce8;
         }
 
         * { box-sizing: border-box; }
@@ -137,6 +141,218 @@
             display: inline-block;
         }
 
+        /* ========================================
+           教练式对话洞见卡 - 新样式
+           ======================================== */
+        
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+        .insight-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        /* 卡片头部 - 核心结论（默认可见） */
+        .card-header {
+            padding: 20px 24px;
+            border-left: 4px solid var(--accent);
+            background: linear-gradient(90deg, rgba(217, 119, 87, 0.03) 0%, transparent 100%);
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--claude-text);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* 折叠触发区 */
+        details {
+            border-top: 1px solid var(--border);
+        }
+
+        details > summary {
+            padding: 12px 24px;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--claude-sub);
+            background: var(--dialogue-bg);
+            transition: background 0.2s;
+        }
+        details > summary:hover {
+            background: #f5f4f2;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details > summary::before {
+            content: "▶";
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+        details[open] > summary::before {
+            transform: rotate(90deg);
+        }
+
+        /* 展开内容区 */
+        .card-body {
+            padding: 24px;
+        }
+
+        /* 子区块样式 */
+        .sub-section {
+            margin-bottom: 20px;
+        }
+        .sub-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--claude-sub);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sub-label::before {
+            content: "";
+            width: 3px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* 对话还原 */
+        .dialogue-block {
+            background: var(--dialogue-bg);
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 0.95rem;
+        }
+        .dialogue-q {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .dialogue-q::before {
+            content: "Q: ";
+            font-weight: 600;
+        }
+        .dialogue-a {
+            color: var(--claude-text);
+            padding-left: 16px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 8px;
+        }
+        .dialogue-a::before {
+            content: "A: ";
+            font-weight: 600;
+            color: var(--claude-sub);
+        }
+
+        /* 身体感悟 - 高亮 */
+        .aha-moment {
+            background: var(--highlight-bg);
+            border-left: 3px solid #eab308;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        .aha-moment::before {
+            content: "💡 ";
+        }
+
+        /* 冗余过滤器 - 删除线 */
+        .filter-section {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .filtered-out {
+            color: var(--filter-color);
+            text-decoration: line-through;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .focus-lens {
+            color: var(--claude-text);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .focus-lens::before {
+            content: "✓ ";
+            color: var(--action-color);
+            font-weight: 600;
+        }
+
+        /* 最小化行动 */
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(5, 150, 105, 0.05);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .action-item:last-child {
+            margin-bottom: 0;
+        }
+        .action-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--action-color);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .action-text {
+            font-size: 0.95rem;
+            color: var(--claude-text);
+        }
+
+        /* 可迁移场景 */
+        .migration-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .migration-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+        .migration-item::before {
+            content: "→";
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* 原有样式兼容 */
         blockquote.verbatim {
             margin: 16px 0;
             padding: 16px 20px;
@@ -203,44 +419,115 @@
             <p class="bio">从底层发力逻辑到动态实战意识的解构体系。基于个人真实笔记打磨。</p>
         </header>
 
-        <section class="architecture">
-            <div class="arch-title">核心驱动模型 (点击跳转详情)</div>
-            <div class="tree-container">
-                <a href="#section-core" class="core-node">
-                    收的彻底 · 顶的结实 · 顺的自然 · 重心不散
-                    <div style="font-size: 0.8rem; font-weight: normal; opacity: 0.8; margin-top: 5px;">所有技术与战术动作的底层裁判标准</div>
-                </a>
+        <!-- 新增：新格式洞见卡片示例 -->
+        <section>
+            <h2>新格式：教练式对话洞见卡</h2>
+            <p style="color: var(--claude-sub); margin-bottom: 24px;">
+                点击卡片标题展开，查看对话还原、冗余过滤器与行动实验。
+            </p>
 
-                <div class="node-level">
-                    <a href="#section-physic" class="pillar-card">
-                        <div class="pillar-title">1. 力量传导</div>
-                        <div class="pillar-sub">物理层：胯比臂快</div>
-                    </a>
-                    <a href="#section-frame" class="pillar-card">
-                        <div class="pillar-title">2. 动作框架</div>
-                        <div class="pillar-sub">结构层：重心控球</div>
-                    </a>
-                    <a href="#section-tactics" class="pillar-card">
-                        <div class="pillar-title">3. 迎前意识</div>
-                        <div class="pillar-sub">战术层：击球窗</div>
-                    </a>
+            <!-- 示例卡片1：击球点 -->
+            <article class="insight-card">
+                <div class="card-header">
+                    <span class="card-tag">击球点技术</span>
+                    <h3 class="card-title">第三点撞击集中向前，第四点放慢往上合力</h3>
                 </div>
+                <details>
+                    <summary>展开对话还原与推导过程</summary>
+                    <div class="card-body">
+                        
+                        <div class="sub-section">
+                            <div class="sub-label">对话还原</div>
+                            <div class="dialogue-block">
+                                <div class="dialogue-q">教练讲解：正手拉球分为几个击球阶段？</div>
+                                <div class="dialogue-a">我理解了，第三点是撞击点，要向前发力。</div>
+                                <div class="dialogue-a">第四点是摩擦点，要往上收，但不能太快。</div>
+                            </div>
+                        </div>
 
-                <div class="node-level">
-                    <a href="#section-timing" class="pillar-card">
-                        <div class="pillar-title">4. 时机处理</div>
-                        <div class="pillar-sub">动态层：上升/高点/下降</div>
-                    </a>
-                    <a href="#section-errors" class="pillar-card" style="background-color: rgba(192, 57, 43, 0.05);">
-                        <div class="pillar-title" style="color: #c0392b;">5. 错题集</div>
-                        <div class="pillar-sub">逆向层：芒格思维</div>
-                    </a>
-                    <a href="#section-growth" class="pillar-card">
-                        <div class="pillar-title">6. 系统进化</div>
-                        <div class="pillar-sub">长期层：滑梯与复利</div>
-                    </a>
+                        <div class="sub-section">
+                            <div class="sub-label">核心逻辑</div>
+                            <p style="font-size: 0.95rem;">向前 = 速度，向前 + 向上 = 旋转。两者合力才是完整的拉球动作。</p>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">身体感悟</div>
+                            <div class="aha-moment">击球瞬间像"撞门"，收拍瞬间像"甩鞭"——一个是爆发，一个是控制。</div>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">冗余过滤器</div>
+                            <div class="filter-section">
+                                <div class="filtered-out">站位角度、手腕内旋角度、握拍松紧的各种讨论</div>
+                                <div class="focus-lens">"撞 vs. 摩"的意象区分，过滤了所有局部动作调整噪音</div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">最小化行动实验</div>
+                            <div class="action-item">
+                                <div class="action-checkbox"></div>
+                                <div class="action-text">下次练球时，专门数：每一板击球，第三点"撞"了没有，第四点"收"了没有</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+            </article>
+
+            <!-- 示例卡片2：重心感知 -->
+            <article class="insight-card">
+                <div class="card-header">
+                    <span class="card-tag">身体感知</span>
+                    <h3 class="card-title">重心不是"压低"，而是"挂在腿上"</h3>
                 </div>
-            </div>
+                <details>
+                    <summary>展开对话还原与推导过程</summary>
+                    <div class="card-body">
+                        
+                        <div class="sub-section">
+                            <div class="sub-label">对话还原</div>
+                            <div class="dialogue-block">
+                                <div class="dialogue-q">教练问：你觉得腿累吗？</div>
+                                <div class="dialogue-a">答：特别酸，大腿发胀。</div>
+                                <div class="dialogue-q">教练追问：那是你在对抗重力，而不是利用重力。</div>
+                                <div class="dialogue-a">答：...啊，原来是这样。</div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">身体感悟</div>
+                            <div class="aha-moment">想象重心"挂"在裤腿上，而不是用肌肉"扛"住身体——瞬间放松了大腿。</div>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">冗余过滤器</div>
+                            <div class="filter-section">
+                                <div class="filtered-out">脚尖朝向、膝盖弯曲角度、站位宽度的讨论</div>
+                                <div class="focus-lens">"对抗 vs. 利用"的意象选择题，瞬间过滤了所有姿势细节</div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">可迁移场景</div>
+                            <div class="migration-list">
+                                <div class="migration-item">写代码时，不要"对抗"bug，而是"利用"错误信息定位问题</div>
+                                <div class="migration-item">团队管理时，不要"对抗"员工缺点，而是"利用"其优势</div>
+                            </div>
+                        </div>
+
+                        <div class="sub-section">
+                            <div class="sub-label">最小化行动实验</div>
+                            <div class="action-item">
+                                <div class="action-checkbox"></div>
+                                <div class="action-text">下次练球前，先静站 10 秒，想象裤腿被挂住，感受腿部是否真的更放松</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+            </article>
+
         </section>
 
         <main>
@@ -293,7 +580,7 @@
                         正手要先撞实再加摩擦。之前全是压拍摩擦，导致不出质量且提前还原。收臂要打开，收到位。
                     </div>
                     <div class="detail-item">
-                        <strong>反手不“蹭”</strong>
+                        <strong>反手不"蹭"</strong>
                         以手肘为轴往前转，注意力放小臂，避免手腕参与过多导致的僵硬。动作点到为止，力花在刀刃上。
                     </div>
                 </div>
@@ -311,7 +598,7 @@
             <section id="section-errors">
                 <h2>逆向提醒：错题集 (芒格思维)</h2>
                 <blockquote class="verbatim" style="border-left-color: #c0392b;">
-                    <strong>下旋球误区：</strong>存在“先起弧线，再压弧线”的思维双重误区，导致稳定性差。
+                    <strong>下旋球误区：</strong>存在"先起弧线，再压弧线"的思维双重误区，导致稳定性差。
                 </blockquote>
                 <blockquote class="verbatim" style="border-left-color: #c0392b;">
                     <strong>上旋球误区：</strong>击球点晚、拉手大、不转腰。导致被球顶住，动作做不完。
@@ -333,7 +620,7 @@
                     </div>
                     <div class="detail-item">
                         <strong>复利 (积累性)</strong>
-                        通过每一次正确的发力和框架打磨，实现几何级增长。坚决不养成任何“虚幻”的手感。
+                        通过每一次正确的发力和框架打磨，实现几何级增长。坚决不养成任何"虚幻"的手感。
                     </div>
                 </div>
             </section>
