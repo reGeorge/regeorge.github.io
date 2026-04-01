@@ -145,3 +145,29 @@
 ## 📂 来源文件
 
 对应的原始洞察笔记存放在 `philosophy-flywheel/sources/{日期}-{标题}.md`。
+
+---
+
+## 🔄 收到洞见/复盘时的自动落地流程
+
+当用户通过微信或命令行发送洞见感悟或复盘文档时，执行以下步骤：
+
+### Step 1: 生成卡片
+- 读取本文件获取模板约束
+- 基于用户原文生成洞见卡片（哲学洞见）或飞轮卡片（工作复盘）
+- 哲学洞见 → 参考 `INSIGHT-CARD-TEMPLATE.md`
+- 工作复盘 → 参考 `RETROSPECTIVE-FLYWHEEL-CARD.md`
+
+### Step 2: 落地 Obsidian
+- 将用户原话写入 `~/Documents/codeStore/obsidian/灵感与思考/{日期}-{标题}.md`
+- 工作复盘写入 `~/Documents/codeStore/obsidian/工作/{日期}-{标题}.md`
+- 保留原话，不做 AI 修饰
+- 自动 commit + push
+
+### Step 3: 落地交互仓库
+- 将卡片 HTML 插入对应 `projects/` 下的 `index.html`
+- 原始文件复制到对应 `sources/` 目录
+- 自动 commit + push
+
+### Step 4: 简短确认
+- 告知用户写入的路径和卡片摘要，不需要额外确认
