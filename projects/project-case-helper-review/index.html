@@ -11,100 +11,105 @@
             --claude-text: #191919;
             --claude-sub: #6E6E73;
             --accent: #D97757;
-            --accent2: #4A90D9;
             --border: rgba(0, 0, 0, 0.08);
             --card-bg: #FFFFFF;
         }
-
         body {
-            background-color: var(--claude-beige);
-            color: var(--claude-text);
-            font-family: "Noto Serif SC", serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            background-color: var(--claude-beige); color: var(--claude-text);
+            font-family: "Noto Serif SC", serif; line-height: 1.8;
+            margin: 0; padding: 40px 20px; display: flex; justify-content: center;
         }
-
         .container { max-width: 720px; width: 100%; }
-
         .back-link {
             display: inline-flex; align-items: center; gap: 8px;
             color: var(--claude-sub); text-decoration: none; font-size: 0.9rem;
             margin-bottom: 40px; transition: color 0.2s;
         }
         .back-link:hover { color: var(--accent); }
-
         header { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
         h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.01em; }
         .subtitle { font-size: 1.1rem; color: var(--claude-sub); font-style: italic; }
-
         .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 60px; }
         .thought-tag {
             display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 0.78rem;
             font-weight: 600; letter-spacing: 0.05em; border: 1px solid var(--accent);
             color: var(--accent); background: rgba(217, 119, 87, 0.06);
         }
-
-        .flywheel-card {
+        .insight-list { display: flex; flex-direction: column; gap: 28px; }
+        .insight-card {
             background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
-            margin-bottom: 32px; overflow: hidden;
-            border-left: 4px solid var(--accent);
-            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative; transition: transform 0.2s, box-shadow 0.2s; overflow: hidden;
         }
-        .flywheel-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
-
+        .insight-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
         .card-header { padding: 28px 28px 0; }
-        .card-tag {
+        .tag {
             font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
             color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block;
         }
-
-        .card-section { padding: 0 28px; }
-        .card-section h3 {
-            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em;
-            color: var(--claude-sub); margin: 0; padding-top: 20px; font-weight: 600;
+        details { margin: 0; }
+        summary {
+            cursor: pointer; user-select: none; list-style: none;
+            padding: 0 28px 20px;
         }
-        .card-section h3:first-child { padding-top: 0; }
-        .card-section p { font-size: 0.92rem; margin: 8px 0 0; }
-        .card-section ul { font-size: 0.92rem; padding-left: 20px; margin: 8px 0 0; }
-        .card-section ul li { margin-bottom: 6px; }
-
-        .card-section h4 {
-            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
-            color: #aaa; margin: 12px 0 6px; font-weight: 600;
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: attr(data-hint); font-size: 0.78rem;
+            color: var(--claude-sub); font-style: italic;
         }
-
-        .question-block {
+        details[open] summary::after { content: "▲ 收起"; }
+        details[open] summary .core-text { color: var(--accent); }
+        .core-text { font-size: 1.05rem; font-weight: 600; line-height: 1.7; }
+        details[open] summary { padding-bottom: 8px; }
+        .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+        .process-content { padding: 0 28px 24px; }
+        .process-section { margin-top: 18px; }
+        .process-section h4 {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--claude-sub); margin: 0 0 8px; font-weight: 600;
+        }
+        .process-section p, .process-section ul { font-size: 0.92rem; color: var(--claude-text); margin: 0; }
+        .process-section ul { padding-left: 20px; }
+        .process-section ul li { margin-bottom: 6px; }
+        .dialogue-block {
             background: #f8f7f5; border-radius: 8px; padding: 14px 18px;
-            font-size: 0.88rem; line-height: 1.9; margin-bottom: 12px;
+            font-size: 0.88rem; line-height: 1.9;
         }
-        .question-block .q-label { color: var(--accent); font-weight: 600; }
-        .question-block .q-text { color: var(--claude-text); }
-
-        .highlight-box {
-            background: rgba(217, 119, 87, 0.05); border-left: 4px solid var(--accent);
-            padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0;
+        .dialogue-block .q { color: var(--accent); font-weight: 600; }
+        .dialogue-block .q::before { content: "Q："; }
+        .dialogue-block .a { color: #333; }
+        .dialogue-block .a::before { content: "A："; color: var(--claude-sub); font-weight: 600; }
+        .aha-block {
+            background: rgba(255, 230, 100, 0.22); border-left: 3px solid #C9A227;
+            padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 0.88rem;
         }
-        .highlight-box p { margin: 4px 0; font-size: 0.92rem; }
-
-        .verdict {
-            padding: 24px 28px; border-top: 1px solid var(--border);
+        .aha-block::before { content: "💡 身体感悟 / Aha Moment："; font-weight: 700; display: block; margin-bottom: 4px; color: #7A6010; }
+        .aha-block p { color: #5A4A10; margin: 0; }
+        .redundancy-section {
+            background: #fafafa; border-radius: 6px; padding: 12px 16px; font-size: 0.85rem;
+        }
+        .redundancy-section h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin: 0 0 8px; }
+        .noise { color: #bbb; text-decoration: line-through; margin-bottom: 4px; display: block; }
+        .focus-lens { color: #444; border-left: 2px solid var(--accent); padding-left: 10px; margin-top: 8px; }
+        .focus-lens::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+        .action-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; margin-bottom: 8px; }
+        .checkbox { width: 15px; height: 15px; border: 1.5px solid var(--accent); border-radius: 3px; flex-shrink: 0; margin-top: 4px; }
+        .action-label { color: #2a7a2a; font-weight: 600; }
+        .migration-section { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
+        .migration-section h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--claude-sub); margin: 0 0 8px; }
+        .migration-item { font-size: 0.88rem; margin-bottom: 6px; padding-left: 14px; position: relative; }
+        .migration-item::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+        .philosophy-note {
             font-size: 0.85rem; color: var(--claude-sub);
+            padding: 14px 28px 20px; border-top: 1px solid var(--border);
         }
-        .verdict strong { color: var(--claude-text); }
-
-        .source-link {
-            font-size: 0.78rem; color: #ccc; padding: 0 28px 16px; display: block;
-        }
+        .philosophy-note strong { color: var(--claude-text); }
+        .source-link { font-size: 0.78rem; color: #ccc; padding: 0 28px 16px; display: block; }
         .source-link a { color: inherit; text-decoration: none; }
         .source-link a:hover { color: var(--claude-sub); }
-
         footer { margin-top: 100px; text-align: center; color: var(--claude-sub); font-size: 0.85rem; }
-
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
+            summary::after, details[open] summary::after { display: none; }
         }
     </style>
 </head>
@@ -122,161 +127,166 @@
             <span class="thought-tag">PDCA</span>
         </div>
 
-        <div class="flywheel-card">
-            <div class="card-header">
-                <span class="card-tag">飞轮卡片 #1 · 人工门禁</span>
-            </div>
-            <div class="card-section">
-                <h3>这次实践为什么强烈体现"人工门禁"</h3>
-                <p>dot1x 项目 66 条用例全部返工，根因是没做状态矩阵分析就批量创建。此后设计 Phase 0 门禁：批量创建前必须停下来等人确认。dot1x 之后所有项目（多业务服务、Zentyal、寒暑假计费、MAC 无感等）再未出现批量返工。</p>
-                <div class="highlight-box">
-                    <p><strong>投入产出比最高的设计</strong>——一个阻断规则消灭了整个项目最大的质量风险。</p>
-                </div>
-            </div>
-            <div class="card-section">
-                <h3>门禁具体落在哪</h3>
-                <p>Phase 0 的五步标准动作，每一步都需要人工判断：</p>
-                <ul>
-                    <li><strong>状态维度拆解</strong>——人工确认哪些维度是正交的、哪些组合有业务意义</li>
-                    <li><strong>公共模版映射</strong>——人工判断哪些参数需要抓包确认，哪些可以从已有步骤继承</li>
-                    <li><strong>目录结构设计</strong>——人工审核多层业务目录是否符合实际组织架构</li>
-                    <li><strong>分析报告审批</strong>——人工放行后才能进入公共步骤创建和批量生成</li>
-                </ul>
-            </div>
-            <div class="card-section">
-                <h3>最值得继续挖的人工判断</h3>
-                <p><strong>审计规则的自动生成</strong>：Phase 0 已经产出了维度拆解和状态组合表，但审计规则配置（`config_rules.json`）仍然是手写的。这块从"Phase 0 产物"到"Phase 2 审计"之间存在断裂——人需要在两步之间手工翻译，容易漏规则或写错规则。</p>
-                <p><strong>case-debugger 全局公共用例识别</strong>：审计器只扫描指定目录，识别不了全局公共用例（51401/51403），会误报为 COMMON_MISSING。修复方案已明确但未落地。</p>
-            </div>
-            <div class="card-section">
-                <h3>AI 如何通过提问辅助人工判断</h3>
-                <h4>审批前：暴露未收敛点</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"这次 Phase 0 分析中，哪些状态组合只有你（人）能确认是否有业务意义？哪些可以通过平台数据验证？"</span>
-                </div>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"上一次返工中，错误集中在哪一类状态组合？这次是否覆盖了那个盲区？"</span>
-                </div>
-                <h4>审批时：形成放行标准</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"如果这份分析报告交给另一个不了解该业务的人看，他能独立判断报告是否完整吗？缺什么？"</span>
-                </div>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"审计规则配置是否已经覆盖了报告中的所有状态组合？有没有遗漏的校验维度？"</span>
-                </div>
-                <h4>审批后：记录判断依据</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"你这次放行的核心依据是什么？如果批量创建后发现问题，最可能出在哪里？"</span>
-                </div>
-            </div>
-            <div class="card-section">
-                <h3>留给未来的启发</h3>
-                <p>当出现以下信号时，应该再次调用"人工门禁"的思想：</p>
-                <ul>
-                    <li>需要批量创建超过 10 个同类对象（用例、目录、配置）</li>
-                    <li>创建动作的结果难以逐个回滚</li>
-                    <li>创建前的分析是由 AI 自动生成而非人工参与的</li>
-                    <li>一次性操作涉及多个关联系统的状态变更</li>
-                </ul>
-            </div>
-            <div class="verdict">
-                <strong>模型总结：</strong>人工门禁的价值不在"阻断"，而在"让阻断变成可追问、可审计、可改进的协作接口"。Phase 0 不是瓶颈，Phase 0 的质量才是。
-            </div>
-        </div>
+        <div class="insight-list">
 
-        <div class="flywheel-card">
-            <div class="card-header">
-                <span class="card-tag">飞轮卡片 #2 · 样本验证后放量</span>
-            </div>
-            <div class="card-section">
-                <h3>这次实践为什么强烈体现"样本验证后放量"</h3>
-                <p>case-debugger 的定位从一开始就是"创建样本后立即跑审计，0 偏差才放行批量"。审计被定位为 CI lint 而不是事后 hotfix。这条链路是：公共步骤创建 → 样本用例创建 → contract_smoke 测试 → case-debugger 审计 → 全部通过才批量生成。</p>
-            </div>
-            <div class="card-section">
-                <h3>样本验证具体落在哪</h3>
-                <ul>
-                    <li><strong>contract_smoke</strong>——验证创建的用例结构与接口契约一致</li>
-                    <li><strong>case-debugger</strong>——验证公共步骤引用、审计规则、参数类型</li>
-                    <li><strong>人工确认</strong>——样本在飞书上实际跑一遍，确认端到端链路通</li>
-                </ul>
-            </div>
-            <div class="card-section">
-                <h3>最值得继续挖的人工判断</h3>
-                <p><strong>知识库结构校验</strong>：145 条公共用例 JSON 没有 schema 校验，同步脚本出 bug 可能写入缺字段的 JSON。人在"创建样本 → 跑审计"这一步无法感知数据层已损坏，错误会延迟到批量创建阶段才暴露。</p>
-            </div>
-            <div class="card-section">
-                <h3>AI 如何通过提问辅助人工判断</h3>
-                <h4>审批前</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"审计通过的样本覆盖了哪些规则维度？是否有未被任何规则覆盖的创建动作？"</span>
+            <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
+                <div class="card-header">
+                    <span class="tag">飞轮卡片 #1 · 人工门禁</span>
                 </div>
-                <h4>审批时</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"如果这个样本的审计结果有 0 个 warning，你对放行批量有多大信心？哪里让你不安？"</span>
+                <details>
+                    <summary data-hint="（点击展开推导过程）">
+                        <span class="core-text">dot1x 66 条返工催生了 Phase 0 门禁——批量创建前必须停下来等人确认。门禁的价值不在"阻断"，而在"让阻断变成可追问、可审计、可改进的协作接口"。</span>
+                    </summary>
+                    <hr class="divider">
+                    <div class="process-content">
+                        <div class="process-section">
+                            <h4>思想为何在本次实践中成立</h4>
+                            <p>dot1x 项目没做状态矩阵分析就批量创建，66 条用例全部返工。此后硬编码了"批量创建前必须等人确认"的阻断规则。dot1x 之后所有项目再未出现批量返工。</p>
+                        </div>
+                        <div class="process-section">
+                            <h4>门禁具体落在哪</h4>
+                            <p>Phase 0 的五步标准动作，每一步都需要人工判断：</p>
+                            <ul>
+                                <li><strong>状态维度拆解</strong>——人工确认哪些维度正交、哪些组合有业务意义</li>
+                                <li><strong>公共模版映射</strong>——人工判断哪些参数需要抓包确认</li>
+                                <li><strong>目录结构设计</strong>——人工审核多层业务目录是否符合组织架构</li>
+                                <li><strong>分析报告审批</strong>——人工放行后才能进入公共步骤创建和批量生成</li>
+                            </ul>
+                        </div>
+                        <div class="process-section">
+                            <h4>最值得继续挖的人工判断</h4>
+                            <p><strong>审计规则的自动生成</strong>：Phase 0 已经产出了维度拆解和状态组合表，但审计规则配置仍然是手写的。从"Phase 0 产物"到"Phase 2 审计"之间存在断裂。</p>
+                            <p><strong>全局公共用例识别</strong>：审计器识别不了 51401/51403 等全局公共用例，会误报为 COMMON_MISSING。修复方案已明确但未落地。</p>
+                        </div>
+                        <div class="process-section">
+                            <h4>AI 如何通过提问辅助人工判断</h4>
+                            <div class="dialogue-block">
+                                <span class="q">审批前：这次 Phase 0 分析中，哪些状态组合只有人能确认业务意义？哪些可以通过平台数据验证？</span><br><br>
+                                <span class="q">审批时：如果这份分析报告交给另一个不了解该业务的人看，他能独立判断报告是否完整吗？缺什么？</span><br><br>
+                                <span class="q">审批后：你这次放行的核心依据是什么？如果批量创建后发现问题，最可能出在哪里？</span>
+                            </div>
+                        </div>
+                        <div class="process-section">
+                            <h4>留给未来的启发</h4>
+                            <div class="migration-item">需要批量创建超过 10 个同类对象时</div>
+                            <div class="migration-item">创建动作的结果难以逐个回滚时</div>
+                            <div class="migration-item">一次性操作涉及多个关联系统的状态变更时</div>
+                        </div>
+                    </div>
+                </details>
+                <div class="philosophy-note">
+                    <strong>Phase 0 不是瓶颈，Phase 0 的质量才是。</strong>投入产出比最高的设计，不是代码，而是一个阻断规则。
+                </div>
+                <div class="source-link">
+                    来源：<a href="sources/2026-04-01-caseHelper阶段思考.md">[工作复盘/2026-04-01-caseHelper阶段思考.md]</a>
                 </div>
             </div>
-            <div class="card-section">
-                <h3>留给未来的启发</h3>
-                <p>当以下信号出现时，应该启用"样本验证后放量"模式：</p>
-                <ul>
-                    <li>创建动作涉及多个互相依赖的对象（目录→公共步骤→业务用例）</li>
-                    <li>下游消费者（其他系统、其他脚本）依赖创建结果的数据格式</li>
-                    <li>批量创建的数量级超过人工逐个验证的能力</li>
-                </ul>
-            </div>
-            <div class="verdict">
-                <strong>模型总结：</strong>"样本验证"不是验证单个样本的正确性，而是验证"从样本到批量"这个放大过程不会引入新的错误。样本是缩小器的校准点，不是终点。
-            </div>
-        </div>
 
-        <div class="flywheel-card">
-            <div class="card-header">
-                <span class="card-tag">飞轮卡片 #3 · 做减法的勇气</span>
-            </div>
-            <div class="card-section">
-                <h3>这次实践为什么强烈体现"做减法"</h3>
-                <p>复盘中明确识别了 6 类无用功：Lark 过度拆分、agent_service 空转、POC 停滞、skill 发现系统解决不存在的问题、早期专题脚本重复、平台 client 拆分建议。并且画了 6 条"不做"的边界。项目已经过了"做加法"的阶段，进入"做减法和加固"。</p>
-            </div>
-            <div class="card-section">
-                <h3>做减法具体落在哪</h3>
-                <ul>
-                    <li><strong>删代码</strong>：archive 归档历史脚本，scripts 只保留当前在用的</li>
-                    <li><strong>砍方向</strong>：不做自动化 Phase 0、不扩展 agent_service、不做双向同步</li>
-                    <li><strong>收敛配置</strong>：从 4 个配置来源收敛到 1 个</li>
-                    <li><strong>拒绝建议</strong>：架构审阅建议拆分 platform_client，评估后决定不拆</li>
-                </ul>
-            </div>
-            <div class="card-section">
-                <h3>最值得继续挖的人工判断</h3>
-                <p><strong>"不做"的边界判断</strong>：什么该砍、什么该留，经常不是技术问题而是判断问题。Lark 5 模块砍到 2 个是对的，但当时怎么知道"2 个就够了"？判断标准是"覆盖 90% 使用场景的模块数"。这个 90% 的阈值本身也需要定期验证——如果业务需求变了，可能需要重新评估。</p>
-            </div>
-            <div class="card-section">
-                <h3>AI 如何通过提问辅助人工判断</h3>
-                <h4>审批前</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"你计划砍掉的这个模块/方向，过去 30 天内被使用了几次？有证据还是凭感觉？"</span>
+            <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
+                <div class="card-header">
+                    <span class="tag">飞轮卡片 #2 · 样本验证后放量</span>
                 </div>
-                <h4>审批时</h4>
-                <div class="question-block">
-                    <span class="q-label">Q：</span><span class="q-text">"如果砍掉这个能力，未来需要重建的成本是多少？重建时间是否可接受？"</span>
+                <details>
+                    <summary data-hint="（点击展开推导过程）">
+                        <span class="core-text">"样本验证"不是验证单个样本的正确性，而是验证"从样本到批量"这个放大过程不会引入新的错误。样本是缩小器的校准点，不是终点。</span>
+                    </summary>
+                    <hr class="divider">
+                    <div class="process-content">
+                        <div class="process-section">
+                            <h4>思想为何在本次实践中成立</h4>
+                            <p>case-debugger 的定位从一开始就是"创建样本后立即跑审计，0 偏差才放行批量"。审计被定位为 CI lint 而不是事后 hotfix。链路：公共步骤创建 → 样本用例创建 → contract_smoke → case-debugger 审计 → 批量生成。</p>
+                        </div>
+                        <div class="process-section">
+                            <h4>样本验证具体落在哪</h4>
+                            <ul>
+                                <li><strong>contract_smoke</strong>——验证用例结构与接口契约一致</li>
+                                <li><strong>case-debugger</strong>——验证公共步骤引用、审计规则、参数类型</li>
+                                <li><strong>人工确认</strong>——样本在飞书上实际跑一遍，确认端到端链路通</li>
+                            </ul>
+                        </div>
+                        <div class="process-section">
+                            <h4>最值得继续挖的人工判断</h4>
+                            <p><strong>知识库结构校验</strong>：145 条公共用例 JSON 没有 schema 校验，同步脚本出 bug 可能写入缺字段的 JSON。人在"创建样本 → 跑审计"这一步无法感知数据层已损坏，错误会延迟到批量创建阶段才暴露。</p>
+                        </div>
+                        <div class="process-section">
+                            <h4>AI 如何通过提问辅助人工判断</h4>
+                            <div class="dialogue-block">
+                                <span class="q">审批前：审计通过的样本覆盖了哪些规则维度？是否有未被任何规则覆盖的创建动作？</span><br><br>
+                                <span class="q">审批时：如果这个样本的审计结果有 0 个 warning，你对放行批量有多大信心？哪里让你不安？</span>
+                            </div>
+                        </div>
+                        <div class="process-section">
+                            <h4>留给未来的启发</h4>
+                            <div class="migration-item">创建动作涉及多个互相依赖的对象（目录→公共步骤→业务用例）</div>
+                            <div class="migration-item">下游消费者依赖创建结果的数据格式</div>
+                            <div class="migration-item">批量创建的数量级超过人工逐个验证的能力</div>
+                        </div>
+                    </div>
+                </details>
+                <div class="philosophy-note">
+                    <strong>样本是缩小器的校准点，不是终点。</strong>验证的不是"样本对不对"，而是"放大过程会不会引入新错"。
                 </div>
             </div>
-            <div class="card-section">
-                <h3>留给未来的启发</h3>
-                <p>当以下信号出现时，应该启动"做减法"审查：</p>
-                <ul>
-                    <li>一个模块/服务搭建完成后 30 天内无人主动使用</li>
-                    <li>架构优化建议的收益无法量化（"可能更好维护"不是收益）</li>
-                    <li>项目新增的代码行数超过业务驱动的需求量</li>
-                </ul>
-            </div>
-            <div class="verdict">
-                <strong>模型总结：</strong>做减法不是"偷懒"，而是"把有限的精力从 80% 的低价值区域抽出来，集中到 20% 的支柱上"。这个项目三个真正的支柱是：Phase 0 门禁、platform-client 封装、知识库 manifest。
-            </div>
-        </div>
 
-        <div class="source-link">
-            来源：<a href="sources/2026-04-01-caseHelper阶段思考.md">[工作复盘/2026-04-01-caseHelper阶段思考.md]</a>
+            <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
+                <div class="card-header">
+                    <span class="tag">飞轮卡片 #3 · 做减法的勇气</span>
+                </div>
+                <details>
+                    <summary data-hint="（点击展开推导过程）">
+                        <span class="core-text">复盘中识别了 6 类无用功，画了 6 条"不做"的边界。项目已过"做加法"阶段，进入"做减法和加固"。三个真正的支柱：Phase 0 门禁、platform-client 封装、知识库 manifest。</span>
+                    </summary>
+                    <hr class="divider">
+                    <div class="process-content">
+                        <div class="process-section">
+                            <h4>思想为何在本次实践中成立</h4>
+                            <p>复盘中明确识别了 6 类无用功：Lark 过度拆分、agent_service 空转、POC 停滞、skill 发现系统解决不存在的问题、早期专题脚本重复、平台 client 拆分建议。无效投入的共性：<strong>解决了一个不存在的问题</strong>。</p>
+                        </div>
+                        <div class="process-section">
+                            <h4>做减法具体落在哪</h4>
+                            <ul>
+                                <li><strong>删代码</strong>：archive 归档历史脚本，scripts 只保留当前在用的</li>
+                                <li><strong>砍方向</strong>：不做自动化 Phase 0、不扩展 agent_service、不做双向同步</li>
+                                <li><strong>收敛配置</strong>：从 4 个配置来源收敛到 1 个</li>
+                                <li><strong>拒绝建议</strong>：架构审阅建议拆分 platform_client，评估后决定不拆</li>
+                            </ul>
+                        </div>
+                        <div class="process-section">
+                            <h4>冗余过滤器</h4>
+                            <div class="redundancy-section">
+                                <h4>已过滤的噪音</h4>
+                                <span class="noise">"应该拆分 platform_client 让它更清晰"</span>
+                                <span class="noise">"agent_service 是未来趋势应该提前布局"</span>
+                                <span class="noise">"多做几层抽象以后扩展更方便"</span>
+                                <div class="focus-lens">
+                                    <strong>聚焦透镜：</strong>一个工具性项目，"上帝类"只要内部方法职责清晰，不拆也没问题。提前布局未经验证的方向是最大的浪费。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="process-section">
+                            <h4>最值得继续挖的人工判断</h4>
+                            <p><strong>"不做"的边界判断</strong>：什么该砍、什么该留，不是技术问题而是判断问题。Lark 5 模块砍到 2 个是对的，但当时怎么知道"2 个就够了"？判断标准是"覆盖 90% 使用场景的模块数"——这个 90% 的阈值本身也需要定期验证。</p>
+                        </div>
+                        <div class="process-section">
+                            <h4>AI 如何通过提问辅助人工判断</h4>
+                            <div class="dialogue-block">
+                                <span class="q">审批前：你计划砍掉的这个模块/方向，过去 30 天内被使用了几次？有证据还是凭感觉？</span><br><br>
+                                <span class="q">审批时：如果砍掉这个能力，未来需要重建的成本是多少？重建时间是否可接受？</span>
+                            </div>
+                        </div>
+                        <div class="process-section">
+                            <h4>留给未来的启发</h4>
+                            <div class="migration-item">一个模块/服务搭建完成后 30 天内无人主动使用</div>
+                            <div class="migration-item">架构优化建议的收益无法量化（"可能更好维护"不是收益）</div>
+                            <div class="migration-item">项目新增的代码行数超过业务驱动的需求量</div>
+                        </div>
+                    </div>
+                </details>
+                <div class="philosophy-note">
+                    <strong>做减法不是"偷懒"。</strong>把有限的精力从 80% 的低价值区域抽出来，集中到 20% 的支柱上。三个支柱：Phase 0 门禁、platform-client、知识库 manifest。
+                </div>
+            </div>
+
         </div>
 
         <footer>
