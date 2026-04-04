@@ -1,0 +1,26 @@
+{
+  "kind": "daily",
+  "label": "2026-04-03",
+  "subject": "小满",
+  "title": "小满日报",
+  "hero_tagline": "聚焦今天新增的记录和当下状态。",
+  "period_caption": "今天",
+  "summary": "2026-04-03暂无新的相关记录。",
+  "items": [],
+  "highlights": [],
+  "timeline": [],
+  "stats": {
+    "count": 0,
+    "magnet_total": 0,
+    "type_breakdown": {},
+    "active_days": 0,
+    "average_magnets": 0
+  },
+  "latest_raw": {
+    "happened_at": "2026-04-02 21:01:50",
+    "source_file": "2026-04-02.md",
+    "query": "闭嘴",
+    "answer": ""
+  },
+  "generated_at": "2026-04-03T23:00:05"
+}

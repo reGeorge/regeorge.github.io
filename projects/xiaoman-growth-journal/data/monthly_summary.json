@@ -1,0 +1,26 @@
+{
+  "kind": "monthly",
+  "label": "2026-04",
+  "subject": "小满",
+  "title": "小满月报",
+  "hero_tagline": "把这个月积累下来的变化整理成一张完整切面。",
+  "period_caption": "本月",
+  "summary": "2026-04暂无新的相关记录。",
+  "items": [],
+  "highlights": [],
+  "timeline": [],
+  "stats": {
+    "count": 0,
+    "magnet_total": 0,
+    "type_breakdown": {},
+    "active_days": 0,
+    "average_magnets": 0
+  },
+  "latest_raw": {
+    "happened_at": "2026-04-02 21:01:50",
+    "source_file": "2026-04-02.md",
+    "query": "闭嘴",
+    "answer": ""
+  },
+  "generated_at": "2026-04-03T23:00:05"
+}
