@@ -3,678 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>魏斌 | 简历 - 数据飞轮版</title>
+    <title>魏斌 | 简历</title>
     <style>
         :root {
-            --bg: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --text: #1A1A1A;
-            --sub: #888888;
-            --light: #CCCCCC;
-            --accent: #333333;
-            --filter-red: #C0392B;
-            --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Consolas", "Liberation Mono", monospace;
+            --bg: #f7f4ee;
+            --card: #fffdf8;
+            --text: #1f1b16;
+            --sub: #6f6559;
+            --line: rgba(60, 38, 18, 0.1);
+            --accent: #b35c35;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; }
 
         body {
-            background: var(--bg);
+            margin: 0;
+            padding: 40px 20px 64px;
+            background:
+                radial-gradient(circle at top, rgba(255,255,255,0.75), transparent 35%),
+                linear-gradient(180deg, #f7f3ec 0%, #efe6d8 100%);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-            line-height: 1.6;
-            padding: 48px 24px;
+            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
             display: flex;
             justify-content: center;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* ==================== 容器 ==================== */
-        .resume {
-            max-width: 900px;
-            width: 100%;
-            background: var(--bg-card);
-            border-radius: 6px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-            overflow: hidden;
+        .page {
+            width: min(860px, 100%);
         }
 
-        /* ==================== 页眉 ==================== */
-        .resume-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 48px 48px 32px;
-            border-bottom: 1.5px solid var(--text);
-        }
-        .header-left {}
-        .header-left h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 6px;
-        }
-        .header-left .title {
-            font-size: 0.95rem;
-            color: var(--sub);
-            margin-bottom: 12px;
-            letter-spacing: 0.02em;
-        }
-        .contact-line {
-            font-size: 0.8rem;
-            color: var(--sub);
-            font-family: var(--font-mono);
-            line-height: 1.9;
-        }
-        .contact-line span {
-            margin-right: 16px;
-        }
-        .header-right {
-            flex-shrink: 0;
-            margin-left: 32px;
-        }
-        .header-right img {
-            width: 80px;
-            height: 80px;
-            border-radius: 4px;
-            object-fit: cover;
-        }
-
-        /* ==================== 布局：主栏 + 侧栏 ==================== */
-        .resume-body {
-            display: grid;
-            grid-template-columns: 1fr 260px;
-            gap: 0;
-        }
-        .main-col {
-            padding: 36px 40px 36px 48px;
-            border-right: 1px solid rgba(0,0,0,0.07);
-        }
-        .side-col {
-            padding: 36px 32px;
-            background: #F7F7F7;
-        }
-
-        section { margin-bottom: 36px; }
-        section:last-child { margin-bottom: 0; }
-
-        /* ==================== 通用标签 ==================== */
-        .section-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--sub);
+        .back-home {
+            display: inline-block;
             margin-bottom: 20px;
-            font-weight: 500;
+            color: var(--sub);
+            text-decoration: none;
+            font-size: 0.92rem;
         }
 
-        /* ==================== 飞轮卡片 ==================== */
-        .fw-card {
-            margin-bottom: 28px;
-            border: 1px solid rgba(0,0,0,0.08);
-            border-radius: 5px;
-            overflow: hidden;
-            transition: box-shadow 0.2s;
-        }
-        .fw-card:hover {
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-
-        /* 展开箭头 */
-        .fw-card details {
-            cursor: pointer;
-        }
-        .fw-card summary {
-            list-style: none;
-            padding: 14px 16px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            user-select: none;
-        }
-        .fw-card summary::-webkit-details-marker { display: none; }
-        .fw-card summary::after {
-            content: "›";
-            font-size: 1.1rem;
-            color: var(--light);
-            flex-shrink: 0;
-            margin-top: 1px;
-            transition: transform 0.2s, color 0.2s;
-        }
-        .fw-card details[open] summary::after {
-            transform: rotate(90deg);
+        .back-home:hover {
             color: var(--accent);
         }
-        .fw-card details[open] summary .toggle-hint {
-            opacity: 1;
+
+        .resume-shell {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(60, 38, 18, 0.08);
+            overflow: hidden;
         }
 
-        /* 主干：结论 */
-        .fw-archive {
-            font-weight: 600;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            flex: 1;
+        .hero {
+            padding: 32px 32px 24px;
+            border-bottom: 1px solid var(--line);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(234, 217, 198, 0.6));
         }
-        .fw-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
             color: var(--sub);
+            margin-bottom: 14px;
+            font-size: 1rem;
         }
-        .fw-company {
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: 0.01em;
-        }
-        .fw-date {
+
+        .hero-contact {
             color: var(--sub);
-        }
-        .toggle-hint {
-            font-size: 0.72rem;
-            color: var(--light);
-            font-family: var(--font-mono);
-            opacity: 0;
-            transition: opacity 0.2s;
-            white-space: nowrap;
-        }
-        .fw-card details:hover .toggle-hint,
-        .fw-card details[open] .toggle-hint {
-            opacity: 1;
+            font-size: 0.92rem;
         }
 
-        /* 过程还原 */
-        .fw-process {
-            padding: 0 16px 14px 36px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            font-size: 0.83rem;
-            font-family: var(--font-mono);
-            color: #555;
-            line-height: 1.8;
-        }
-        .fw-process p {
-            margin-bottom: 8px;
-        }
-        .fw-process p:last-child { margin-bottom: 0; }
-
-        /* 字段标签 */
-        .fw-label {
+        .hero-contact span {
             display: inline-block;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--sub);
-            margin-right: 6px;
-            font-family: var(--font-mono);
+            margin-right: 16px;
         }
 
-        /* 删除线 = 噪音过滤 */
-        del {
-            color: var(--filter-red);
-            text-decoration: line-through;
-            opacity: 0.7;
-            font-weight: 300;
-        }
-
-        /* 认知顿悟 = 高亮 */
-        .fw-aha {
+        .hero-summary {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px dashed var(--line);
             color: var(--text);
-            font-weight: 500;
-        }
-        .fw-aha .fw-label { color: var(--accent); }
-
-        /* 验证动作 = 绿底 */
-        .fw-action {
-            background: #F0FFF4;
-            border-radius: 3px;
-            padding: 4px 8px;
-            display: inline-block;
+            max-width: 720px;
         }
 
-        /* 能力标签 */
-        .ability-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-family: var(--font-mono);
-            color: var(--text);
-            background: rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 3px;
-            padding: 3px 8px;
-            margin: 0 4px 6px 0;
-            line-height: 1.5;
+        .content {
+            padding: 28px 32px 36px;
         }
 
-        /* ==================== 核心竞争力 ==================== */
-        .core-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        .section {
+            margin-bottom: 28px;
         }
-        .core-item:last-child {
-            border-bottom: none;
+
+        .section:last-child {
             margin-bottom: 0;
-            padding-bottom: 0;
         }
-        .core-number {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--light);
-            margin-right: 10px;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-        .core-title {
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 3px;
-        }
-        .core-desc {
+
+        .section-title {
+            margin: 0 0 14px;
             font-size: 0.82rem;
-            color: var(--sub);
-            font-family: var(--font-mono);
-        }
-
-        /* ==================== 侧栏 ==================== */
-        .side-section { margin-bottom: 28px; }
-        .side-section:last-child { margin-bottom: 0; }
-        .side-label {
-            font-size: 0.68rem;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
             color: var(--sub);
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-        .skill-group { margin-bottom: 14px; }
-        .skill-group-title {
-            font-size: 0.78rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .skill-group p {
-            font-size: 0.75rem;
-            font-family: var(--font-mono);
-            color: var(--sub);
-            line-height: 1.7;
         }
 
-        /* 可迁移场景标签 */
-        .transfer-tag {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-family: var(--font-mono);
-            color: var(--sub);
-            background: rgba(0,0,0,0.03);
-            border-left: 2px solid var(--light);
-            padding: 3px 8px;
-            margin: 0 4px 5px 0;
-            line-height: 1.5;
-        }
-        .transfer-tag.main {
-            border-left-color: var(--accent);
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        /* 飞轮能力图谱 */
-        .flywheel-map {
-            font-size: 0.78rem;
-            font-family: var(--font-mono);
-            color: var(--sub);
-            line-height: 2;
-        }
-        .flywheel-map .entry {
+        .chip-list {
             display: flex;
-            align-items: baseline;
-            gap: 6px;
-        }
-        .flywheel-map .entry span:first-child {
-            color: var(--text);
-            font-weight: 600;
-        }
-        .flywheel-map .entry span:last-child {
-            font-size: 0.72rem;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        /* 哲学锚点 */
-        .philosophy-note {
-            font-size: 0.72rem;
-            font-family: var(--font-mono);
-            color: var(--sub);
-            line-height: 1.7;
-            padding: 10px 12px;
-            background: rgba(0,0,0,0.02);
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 4px;
-            margin-top: 8px;
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(179, 92, 53, 0.08);
+            color: var(--accent);
+            font-size: 0.84rem;
         }
-        .philosophy-note strong {
-            display: block;
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--light);
+
+        .resume-item {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: #fff;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+
+        details {
+            margin: 0;
+        }
+
+        summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 16px 18px;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .summary-title {
+            font-weight: 700;
             margin-bottom: 4px;
         }
 
-        /* 返回链接 */
-        .back-home {
-            display: inline-block;
-            font-size: 0.78rem;
+        .summary-meta {
             color: var(--sub);
-            text-decoration: none;
-            margin-bottom: 20px;
-            font-family: var(--font-mono);
-            transition: color 0.2s;
+            font-size: 0.9rem;
         }
-        .back-home:hover { color: var(--text); }
-        .back-home::before { content: "← "; }
 
-        /* ==================== 响应式 ==================== */
-        @media (max-width: 700px) {
-            body { padding: 20px 12px; }
-            .resume-header { padding: 28px 20px 20px; flex-direction: column-reverse; }
-            .header-right { margin-left: 0; }
-            .resume-body { grid-template-columns: 1fr; }
-            .main-col { padding: 24px 20px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
-            .side-col { padding: 24px 20px; }
-            .fw-card summary { padding: 12px 12px; }
-            .fw-process { padding: 0 12px 12px 28px; }
+        .summary-highlight {
+            margin-top: 8px;
+            color: var(--text);
+        }
+
+        .summary-toggle {
+            color: var(--accent);
+            white-space: nowrap;
+            font-size: 0.88rem;
+        }
+
+        .resume-detail {
+            padding: 0 18px 18px;
+            border-top: 1px solid var(--line);
+            color: var(--sub);
+        }
+
+        .resume-detail ul {
+            margin: 12px 0 0;
+            padding-left: 18px;
+        }
+
+        .resume-detail li {
+            margin-bottom: 8px;
+        }
+
+        .simple-list {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--sub);
+        }
+
+        .simple-list li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 12px 40px;
+            }
+
+            .hero, .content {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .summary-row {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="resume">
-        <a href="../index.html" class="back-home">首页</a>
+    <div class="page">
+        <a href="../index.html" class="back-home">← 返回首页</a>
 
-        <!-- ==================== 页眉 ==================== -->
-        <header class="resume-header">
-            <div class="header-left">
+        <div class="resume-shell">
+            <header class="hero">
                 <h1>魏斌</h1>
-                <div class="title">测试开发工程师 · 南京</div>
-                <div class="contact-line">
+                <div class="hero-subtitle">测试开发工程师 · AI 工程化 / 自动化平台 / 质量保障</div>
+                <div class="hero-contact">
+                    <span>南京</span>
                     <span>18351923906</span>
                     <span>18351923906@163.com</span>
                     <span>南京邮电大学 · 电子信息工程</span>
                 </div>
-            </div>
-            <div class="header-right">
-                <img src="../assets/img/90k.jpg" alt="Profile">
-            </div>
-        </header>
+                <div class="hero-summary">
+                    关注 AI 驱动的测试工程化、自动化平台与质量保障。擅长把重复流程抽象成系统，把模糊经验固化成可复用工具，偏好用小步验证推进复杂问题。
+                </div>
+            </header>
 
-        <!-- ==================== 主栏 + 侧栏 ==================== -->
-        <div class="resume-body">
-
-            <!-- ==================== 主栏 ==================== -->
-            <div class="main-col">
-
-                <!-- 核心竞争力 -->
-                <section>
-                    <div class="section-label">核心竞争力</div>
-
-                    <div class="core-item">
-                        <span class="core-number">01</span>
-                        <div>
-                            <div class="core-title">AI 驱动的测试工程化</div>
-                            <div class="core-desc">主导搭建 AI 接口自动化工作流，落地 2000+ 稳定测试用例。</div>
-                        </div>
-                    </div>
-
-                    <div class="core-item">
-                        <span class="core-number">02</span>
-                        <div>
-                            <div class="core-title">全栈工具交付能力</div>
-                            <div class="core-desc">精通 Java/Spring Boot/Vue 生态，专注于效能工具快速闭环。</div>
-                        </div>
-                    </div>
-
-                    <div class="core-item">
-                        <span class="core-number">03</span>
-                        <div>
-                            <div class="core-title">DevOps 与质量保障</div>
-                            <div class="core-desc">深入理解 CI/CD，具备全链路风险控制实操经验。</div>
-                        </div>
+            <main class="content">
+                <section class="section">
+                    <h2 class="section-title">核心关键词</h2>
+                    <div class="chip-list">
+                        <span class="chip">AI 驱动测试工程化</span>
+                        <span class="chip">自动化平台搭建</span>
+                        <span class="chip">LangChain / Prompt Engineering</span>
+                        <span class="chip">Java / Spring Boot / Python</span>
+                        <span class="chip">CI/CD 与质量门禁</span>
+                        <span class="chip">快速验证与闭环交付</span>
                     </div>
                 </section>
 
-                <!-- 工作经历 -->
-                <section>
-                    <div class="section-label">工作经历</div>
+                <section class="section">
+                    <h2 class="section-title">工作经历</h2>
 
-                    <!-- 飞轮卡片 01 -->
-                    <div class="fw-card">
-                        <details>
+                    <div class="resume-item">
+                        <details open>
                             <summary>
-                                <div class="fw-meta">
-                                    <span class="fw-company">上海锐捷网络</span>
-                                    <span class="fw-date">2025.05 — 至今</span>
+                                <div class="summary-row">
+                                    <div>
+                                        <div class="summary-title">上海锐捷网络</div>
+                                        <div class="summary-meta">测试开发工程师 · 2025.05 — 至今</div>
+                                        <div class="summary-highlight">参与并落地 AI Prompt Engineering 用例生成流水线，覆盖 2000+ 接口。</div>
+                                    </div>
+                                    <div class="summary-toggle">展开 / 收起</div>
                                 </div>
-                                <div class="fw-archive">
-                                    主导基于 LangChain 的自动化测试框架重构，效率提升 40%，2000+ 接口用例稳定运行
-                                </div>
-                                <span class="toggle-hint">展开飞轮 →</span>
                             </summary>
-                            <div class="fw-process">
-                                <p>
-                                    <span class="fw-label">冗余过滤</span>
-                                    <del>n8n 繁琐的 UI 连线编排</del> →
-                                    <del>重复的接口脚本定义</del> →
-                                    <del>逐条手写 Tool Calling</del> →
-                                    统一抽象为 Python Skills 注册机制
-                                </p>
-                                <p class="fw-aha">
-                                    <span class="fw-label">认知顿悟</span>
-                                    测试的本质不再是"找 Bug"，而是构建一个<span style="color:#D97757;font-weight:600;">"具备自我审计能力的系统"</span>。工具选型只是手段，认知框架才是壁垒。
-                                </p>
-                                <p class="fw-action">
-                                    <span class="fw-label">验证动作</span>
-                                    用 4 小时写了一个本地 Python 脚本模拟 Tool Calling，确立了代码优先的架构方向 → 推广至全组
-                                </p>
+                            <div class="resume-detail">
+                                <ul>
+                                    <li>先用 n8n 对重复且规则明确的接口用例做流程编排，优先解决高频、低复杂度的自动化问题。</li>
+                                    <li>在 Agent 能力更成熟后，把平台 API 抽象为 skill、把执行流程沉淀为 service，逐步形成可对话式生成自动化用例的能力。</li>
+                                    <li>通过小步验证推进方案演进，从流程编排走向更灵活的人机协同。</li>
+                                </ul>
                             </div>
                         </details>
                     </div>
 
-                    <!-- 飞轮卡片 02 -->
-                    <div class="fw-card">
+                    <div class="resume-item">
                         <details>
                             <summary>
-                                <div class="fw-meta">
-                                    <span class="fw-company">上海携程</span>
-                                    <span class="fw-date">2020.10 — 2025.05</span>
+                                <div class="summary-row">
+                                    <div>
+                                        <div class="summary-title">上海携程</div>
+                                        <div class="summary-meta">测试开发工程师 · 2020.10 — 2025.05</div>
+                                        <div class="summary-highlight">负责酒店查询与定价服务工具链、日志解析比对工具与质量工程，发布流程效率提升 50%。</div>
+                                    </div>
+                                    <div class="summary-toggle">展开 / 收起</div>
                                 </div>
-                                <div class="fw-archive">
-                                    主导酒店查询与定价服务工具链开发 + 日志解析比对工具，发布流程效率提升 50%
-                                </div>
-                                <span class="toggle-hint">展开飞轮 →</span>
                             </summary>
-                            <div class="fw-process">
-                                <p>
-                                    <span class="fw-label">冗余过滤</span>
-                                    <del>逐行人工日志阅读</del> →
-                                    <del>跨环境手动比对字段</del> →
-                                    <del>每次复现都需要研发介入</del> →
-                                    工具链自助化 + Diff 自动化
-                                </p>
-                                <p class="fw-aha">
-                                    <span class="fw-label">认知顿悟</span>
-                                    提效的核心不是"让机器做事"，而是<span style="color:#D97757;font-weight:600;">"把研发从重复确认中解放出来"</span>。工具的终极价值是让生产者专注于创造，而非维护。
-                                </p>
-                                <p class="fw-action">
-                                    <span class="fw-label">验证动作</span>
-                                    先用 Excel 宏 + 正则写了最小可用版本，验证流程可行 → 再用 Java 重构为生产级工具
-                                </p>
+                            <div class="resume-detail">
+                                <ul>
+                                    <li>搭建日志解析与自动比对工具，减少人工逐行排查，提高问题定位效率。</li>
+                                    <li>基于数据分析设计分级质量门禁，把问题尽量前置，而不是事后补救。</li>
+                                    
+                                </ul>
                             </div>
                         </details>
-                    </div>
-
-                    <!-- 飞轮卡片 03 -->
-                    <div class="fw-card">
-                        <details>
-                            <summary>
-                                <div class="fw-meta">
-                                    <span class="fw-company">上海携程</span>
-                                    <span class="fw-date">2020.10 — 2025.05</span>
-                                </div>
-                                <div class="fw-archive">
-                                    CI/CD 全链路质量门禁设计，线上缺陷逃逸率降低 35%，发布窗口从 4 小时压缩至 1.5 小时
-                                </div>
-                                <span class="toggle-hint">展开飞轮 →</span>
-                            </summary>
-                            <div class="fw-process">
-                                <p>
-                                    <span class="fw-label">冗余过滤</span>
-                                    <del>人工卡点审批流程</del> →
-                                    <del>全量回归测试</del> →
-                                    <del>事后问题追责</del> →
-                                    数据驱动的分级门禁 + 前置阻断
-                                </p>
-                                <p class="fw-aha">
-                                    <span class="fw-label">认知顿悟</span>
-                                    质量保障的本质是<span style="color:#D97757;font-weight:600;">"在正确的时间点，以最低成本获取足够的信心"</span>。不是追求零缺陷，而是管理不确定性。
-                                </p>
-                                <p class="fw-action">
-                                    <span class="fw-label">验证动作</span>
-                                    分析近 6 个月的缺陷逃逸路径 → 确认 80% 缺陷集中在 3 个高频模块 → 针对性设计分级卡点
-                                </p>
-                            </div>
-                        </details>
-                    </div>
-
-                    <!-- 飞轮卡片 04 -->
-                    <div class="fw-card">
-                        <details>
-                            <summary>
-                                <div class="fw-meta">
-                                    <span class="fw-company">上海携程</span>
-                                    <span class="fw-date">2020.10 — 2025.05</span>
-                                </div>
-                                <div class="fw-archive">
-                                    基于 AI Prompt Engineering 的用例生成流水线，覆盖 2000+ 接口，生成准确率 92%
-                                </div>
-                                <span class="toggle-hint">展开飞轮 →</span>
-                            </summary>
-                            <div class="fw-process">
-                                <p>
-                                    <span class="fw-label">冗余过滤</span>
-                                    <del>人工逐条编写接口测试用例</del> →
-                                    <del>用例模板套用导致的同质化盲区</del> →
-                                    <del>Prompt 随意迭代</del> →
-                                    Schema 驱动 + Few-shot 精选 + 自动评估
-                                </p>
-                                <p class="fw-aha">
-                                    <span class="fw-label">认知顿悟</span>
-                                    AI 生成测试用例的本质是<span style="color:#D97757;font-weight:600;">"把测试工程师的判断力显式化为 Prompt 规则"</span>。不是 AI 在替代你思考，而是你在通过 AI 规模化你的判断。
-                                </p>
-                                <p class="fw-action">
-                                    <span class="fw-label">验证动作</span>
-                                    手工标注 50 条高质量样本作为 Few-shot → 验证 3 轮迭代后准确率达标 → 上线生产
-                                </p>
-                            </div>
-                        </details>
-                    </div>
-
-                </section>
-
-                <!-- 专业技能 -->
-                <section>
-                    <div class="section-label">专业技能</div>
-                    <div class="skill-group">
-                        <div class="skill-group-title">开发 & AI 实践</div>
-                        <p>Java / Spring Boot / Vue / MyBatis / Python<br>LangChain / Cursor Agent / Vibe Coding / Prompt Engineering</p>
-                    </div>
-                    <div class="skill-group">
-                        <div class="skill-group-title">测试 & DevOps</div>
-                        <p>TestNG / UI 自动化 / CI/CD 流程设计<br>Git / Docker / 容量规划 / 全链路压测</p>
                     </div>
                 </section>
 
-            </div><!-- /main-col -->
+                <section class="section">
+                    <h2 class="section-title">技能与方向</h2>
+                    <ul class="simple-list">
+                        <li>开发：Java、Spring Boot、Vue、MyBatis、Python</li>
+                        <li>AI 实践：Prompt Engineering、工作流设计</li>
+                        <li>测试与 DevOps：TestNG、UI 自动化、CI/CD、质量门禁、容量规划、全链路压测</li>
+                    </ul>
+                </section>
 
-            <!-- ==================== 侧栏 ==================== -->
-            <div class="side-col">
-
-                <!-- 可迁移能力图谱 -->
-                <div class="side-section">
-                    <div class="side-label">飞轮能力图谱</div>
-                    <div class="flywheel-map">
-                        <div class="entry">
-                            <span>过滤噪音</span>
-                            <span>→ 自动化脚本</span>
-                        </div>
-                        <div class="entry">
-                            <span>系统思维</span>
-                            <span>→ 质量门禁</span>
-                        </div>
-                        <div class="entry">
-                            <span>认知还原</span>
-                            <span>→ AI 提效</span>
-                        </div>
-                        <div class="entry">
-                            <span>最小验证</span>
-                            <span>→ 快速闭环</span>
-                        </div>
-                        <div class="entry">
-                            <span>IPO 循环</span>
-                            <span>→ 工具链设计</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 可迁移场景 -->
-                <div class="side-section">
-                    <div class="side-label">可迁移场景</div>
-                    <div>
-                        <div class="transfer-tag main">测试 → AI Agent 审计</div>
-                        <div class="transfer-tag main">日志比对 → 数据一致性校验</div>
-                        <div class="transfer-tag">质量门禁 → 发布决策系统</div>
-                        <div class="transfer-tag">用例生成 → 文档自动化</div>
-                        <div class="transfer-tag">Prompt 规则 → LLM 评测体系</div>
-                    </div>
-                </div>
-
-                <!-- 哲学锚点 -->
-                <div class="side-section">
-                    <div class="side-label">哲学碰撞</div>
-                    <div class="philosophy-note">
-                        <strong>与生活哲学飞轮碰撞</strong>
-                        本简历的底层方法论，与哲学飞轮中的以下条目高度共鸣：
-                        <br><br>
-                        <strong>IPO 循环</strong><br>
-                        测试用例的输入→内化→输出，与知识管理 IPO 完全同构
-                        <br><br>
-                        <strong>冗余过滤器</strong><br>
-                        删除线 = 噪音过滤，是你所有工作中反复出现的第一性思维
-                        <br><br>
-                        <strong>最小化验证</strong><br>
-                        "先写一个本地脚本验证方向"，与飞轮中"最小化行动实验"完全一致
-                        <br><br>
-                        <strong>万物相通</strong><br>
-                        测试系统 = 质量保障系统 = 人生决策系统：核心都是"在不确定性中建立信心"
-                    </div>
-                </div>
-
-                <!-- 教育背景 -->
-                <div class="side-section">
-                    <div class="side-label">教育背景</div>
-                    <div style="font-size:0.82rem; font-family:var(--font-mono); color:var(--sub); line-height:1.7;">
-                        南京邮电大学<br>
-                        电子信息工程 · 本科<br>
-                        <span style="font-size:0.72rem;">2016 — 2020</span>
-                    </div>
-                </div>
-
-            </div><!-- /side-col -->
-
-        </div><!-- /resume-body -->
-
-    </div><!-- /resume -->
+                <section class="section">
+                    <h2 class="section-title">教育背景</h2>
+                    <ul class="simple-list">
+                        <li>南京邮电大学 · 电子信息工程 · 本科 · 2016 — 2020</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
 </body>
 </html>
