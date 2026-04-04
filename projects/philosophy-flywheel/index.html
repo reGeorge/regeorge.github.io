@@ -84,162 +84,10 @@
             gap: 28px;
         }
 
-        .filter-panel {
-            margin: 0 0 32px;
-            padding: 18px 20px;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.72);
-        }
-
-        .filter-panel-header {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: baseline;
-            margin-bottom: 14px;
-        }
-
-        .filter-panel-title {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        .filter-panel-copy {
-            color: var(--claude-sub);
-            font-size: 0.88rem;
-        }
-
-        .filter-chip-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .filter-chip {
-            appearance: none;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            background: #fff;
-            color: var(--claude-sub);
-            border-radius: 999px;
-            padding: 8px 12px;
-            cursor: pointer;
-            font: inherit;
-            font-size: 0.84rem;
-            transition: all 0.2s ease;
-        }
-
-        .filter-chip:hover {
-            border-color: rgba(217, 119, 87, 0.35);
-            color: var(--claude-text);
-        }
-
-        .filter-chip.active {
-            background: rgba(217, 119, 87, 0.12);
-            color: var(--accent);
-            border-color: rgba(217, 119, 87, 0.3);
-        }
-
-        .filter-summary {
-            margin-top: 12px;
-            color: var(--claude-sub);
-            font-size: 0.84rem;
-        }
-
-        .featured-review {
-            margin-bottom: 44px;
-            background: linear-gradient(135deg, rgba(217, 119, 87, 0.12), rgba(255, 255, 255, 0.9));
-            border: 1px solid rgba(217, 119, 87, 0.18);
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
-        }
-
-        .featured-review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 18px;
-        }
-
-        .featured-review-label {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .featured-review-title {
-            margin: 0;
-            font-size: 1.35rem;
-            line-height: 1.4;
-        }
-
-        .featured-review-copy {
-            margin: 8px 0 0;
+        .filter-status {
+            margin: -30px 0 32px;
             color: var(--claude-sub);
             font-size: 0.92rem;
-        }
-
-        .featured-review-reason {
-            margin: 12px 0 0;
-            font-size: 0.84rem;
-            color: var(--accent);
-            letter-spacing: 0.02em;
-        }
-
-        .featured-review-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .review-button {
-            appearance: none;
-            border: 1px solid rgba(217, 119, 87, 0.24);
-            background: rgba(255, 255, 255, 0.88);
-            color: var(--claude-text);
-            border-radius: 999px;
-            padding: 10px 14px;
-            cursor: pointer;
-            font: inherit;
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-        }
-
-        .review-button:hover {
-            transform: translateY(-1px);
-            border-color: rgba(217, 119, 87, 0.45);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        }
-
-        .review-button.primary {
-            background: var(--accent);
-            color: #fff;
-        }
-
-        .featured-card-slot .insight-card {
-            margin: 0;
-            box-shadow: none;
-        }
-
-        .featured-card-slot .insight-card:hover {
-            transform: none;
-        }
-
-        .featured-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 24px 28px 0;
-            color: var(--accent);
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-weight: 700;
         }
 
         .insight-card {
@@ -276,6 +124,20 @@
             letter-spacing: 0.02em;
             background: rgba(217, 119, 87, 0.08);
             color: var(--accent);
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .model-tag:hover {
+            border-color: rgba(217, 119, 87, 0.24);
+            background: rgba(217, 119, 87, 0.12);
+        }
+
+        .model-tag.active {
+            background: var(--accent);
+            color: #fff7f1;
+            border-color: var(--accent);
         }
 
         .insight-card.is-hidden {
@@ -577,9 +439,6 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
-            .featured-review-header {
-                flex-direction: column;
-            }
             summary::after,
             details[open] summary::after { display: none; }
         }
@@ -605,32 +464,7 @@
             <p style="margin-top: 8px; font-size: 0.85rem; color: var(--claude-sub);">本飞轮已整合：AI元认知 · 知识管理觉醒 · 小满冷水澡</p>
         </section>
 
-        <section class="featured-review" aria-labelledby="featured-review-title">
-            <div class="featured-review-header">
-                <div>
-                    <span class="featured-review-label">Daily Review</span>
-                    <h2 id="featured-review-title" class="featured-review-title">今日随机回顾</h2>
-                    <p class="featured-review-copy">每天先从一张更值得重看的卡片开始。它会轻量参考最近回顾记录、底层主题和久未复习状态，你也可以手动换一张。</p>
-                    <p class="featured-review-reason" id="featured-review-reason">正在计算今天更适合回顾的内容。</p>
-                </div>
-                <div class="featured-review-actions">
-                    <button class="review-button primary" type="button" id="reroll-featured-card">换一张</button>
-                    <button class="review-button" type="button" id="open-featured-card">展开回顾</button>
-                </div>
-            </div>
-            <div class="featured-card-slot" id="featured-card-slot"></div>
-        </section>
-
-        <section class="filter-panel" aria-labelledby="filter-panel-title">
-            <div class="filter-panel-header">
-                <div>
-                    <h2 id="filter-panel-title" class="filter-panel-title">芒格 / 巴菲特模型筛选</h2>
-                    <div class="filter-panel-copy">先用标签聚类，不单开新页。你可以把这看作“人物哲学视角”的轻量入口。</div>
-                </div>
-            </div>
-            <div class="filter-chip-list" id="filter-chip-list"></div>
-            <div class="filter-summary" id="filter-summary">当前展示全部卡片。</div>
-        </section>
+        <div class="filter-status" id="filter-status">当前展示全部卡片。点击任意标签可筛选，再次点击可取消。</div>
 
         <div class="insight-list">
 
@@ -1641,28 +1475,7 @@
     <script>
         (function () {
             const cards = Array.from(document.querySelectorAll(".insight-list > .insight-card"));
-            const slot = document.getElementById("featured-card-slot");
-            const rerollButton = document.getElementById("reroll-featured-card");
-            const openButton = document.getElementById("open-featured-card");
-            const reasonRef = document.getElementById("featured-review-reason");
-            const chipListRef = document.getElementById("filter-chip-list");
-            const filterSummaryRef = document.getElementById("filter-summary");
-            const storageKey = "philosophy-flywheel-review-history";
-            const tagConfig = [
-                { key: "all", label: "全部" },
-                { key: "共同视角", label: "共同视角" },
-                { key: "芒格", label: "芒格" },
-                { key: "巴菲特", label: "巴菲特" },
-                { key: "反向思考", label: "反向思考" },
-                { key: "能力圈", label: "能力圈" },
-                { key: "复利", label: "复利" },
-                { key: "激励机制", label: "激励机制" },
-                { key: "认知偏差", label: "认知偏差" },
-                { key: "安全边际", label: "安全边际" },
-                { key: "耐心", label: "耐心" },
-                { key: "多因素共振", label: "多因素共振" },
-                { key: "简单原则", label: "简单原则" }
-            ];
+            const filterStatusRef = document.getElementById("filter-status");
             const modelTagMap = {
                 "sources/2026-04-04-心脏复查-对未知的敬畏.md": ["芒格", "反向思考", "安全边际"],
                 "sources/2026-04-02-正念书写与放下目的.md": ["芒格", "耐心", "简单原则"],
@@ -1679,104 +1492,7 @@
                 "sources/2026-03-22-知识管理的觉醒.md": ["芒格", "复利", "简单原则"],
                 "sources/2026-03-21-AI元认知.md": ["芒格", "复利", "能力圈"]
             };
-            let featuredDetails = null;
-            let currentIndex = -1;
             let activeFilter = "all";
-
-            function getTodayKey() {
-                return new Date().toISOString().slice(0, 10);
-            }
-
-            function hashText(value) {
-                let hash = 0;
-                for (const char of value) {
-                    hash = (hash * 31 + char.charCodeAt(0)) % 2147483647;
-                }
-                return hash;
-            }
-
-            function loadHistory() {
-                try {
-                    return JSON.parse(localStorage.getItem(storageKey) || "{}");
-                } catch (error) {
-                    return {};
-                }
-            }
-
-            function saveHistory(history) {
-                localStorage.setItem(storageKey, JSON.stringify(history));
-            }
-
-            function daysBetween(isoDate) {
-                if (!isoDate) {
-                    return 365;
-                }
-                const today = new Date(getTodayKey());
-                const past = new Date(isoDate);
-                const diff = today.getTime() - past.getTime();
-                return Math.max(0, Math.round(diff / 86400000));
-            }
-
-            function buildCardMeta(card, index) {
-                const tag = card.querySelector(".tag")?.textContent?.trim() || "";
-                const core = card.querySelector(".core-text")?.textContent?.trim() || "";
-                const source = card.querySelector(".source-link a")?.getAttribute("href") || "";
-                const identity = source || `${tag}-${index}`;
-                const haystack = `${tag} ${core} ${source}`;
-                const modelTags = modelTagMap[source] || [];
-
-                let evergreen = 0;
-                if (/平静|敬畏|幸福|正念|呼吸|万物相通|核心定义/.test(haystack)) {
-                    evergreen += 3;
-                }
-                if (/AI|知识管理|飞轮|元认知|测试|系统/.test(haystack)) {
-                    evergreen += 1.5;
-                }
-                if (/行动实验|可迁移|迁移/.test(card.textContent || "")) {
-                    evergreen += 1;
-                }
-
-                return {
-                    card,
-                    index,
-                    id: identity,
-                    tag,
-                    core,
-                    source,
-                    modelTags,
-                    evergreen,
-                    seed: hashText(`${getTodayKey()}-${identity}`),
-                };
-            }
-
-            function scoreCard(meta, history) {
-                const record = history[meta.id] || {};
-                const daysSinceSeen = daysBetween(record.lastSeen);
-                const seenCount = Number(record.seenCount || 0);
-                const base = Math.min(daysSinceSeen, 30) * 0.7;
-                const freshness = seenCount === 0 ? 4 : 0;
-                const rarity = Math.max(0, 3 - seenCount * 0.35);
-                const antiRepeat = record.lastSeen === getTodayKey() ? -100 : 0;
-                const dailyTieBreak = (meta.seed % 1000) / 1000;
-                const score = base + freshness + rarity + meta.evergreen + dailyTieBreak + antiRepeat;
-
-                let reason = "因为它适合作为今天的轻量回顾起点。";
-                if (seenCount === 0) {
-                    reason = "因为它还没被你在这个页面里正式回顾过。";
-                } else if (daysSinceSeen >= 14) {
-                    reason = `因为它已经 ${daysSinceSeen} 天没有被你回顾了。`;
-                } else if (meta.evergreen >= 3) {
-                    reason = "因为它更像底层原则，值得周期性重看。";
-                } else if (seenCount <= 2) {
-                    reason = "因为它回顾次数还不多，适合趁记忆没完全沉下去再看一次。";
-                }
-
-                return {
-                    ...meta,
-                    score,
-                    reason,
-                };
-            }
 
             function injectModelTags() {
                 cards.forEach((card, index) => {
@@ -1790,9 +1506,14 @@
                     const container = document.createElement("div");
                     container.className = "model-tags";
                     tags.forEach((tag) => {
-                        const chip = document.createElement("span");
+                        const chip = document.createElement("button");
+                        chip.type = "button";
                         chip.className = "model-tag";
                         chip.textContent = tag;
+                        chip.dataset.filter = tag;
+                        chip.addEventListener("click", function () {
+                            applyFilter(activeFilter === tag ? "all" : tag);
+                        });
                         container.appendChild(chip);
                     });
                     const details = card.querySelector("details");
@@ -1805,12 +1526,12 @@
             }
 
             function updateFilterSummary(visibleCount) {
-                if (!filterSummaryRef) {
+                if (!filterStatusRef) {
                     return;
                 }
-                filterSummaryRef.textContent = activeFilter === "all"
+                filterStatusRef.textContent = activeFilter === "all"
                     ? `当前展示全部卡片，共 ${visibleCount} 张。`
-                    : `当前筛选：${activeFilter}，共命中 ${visibleCount} 张卡片。顶部推荐会自动跟随这个视角。`;
+                    : `当前筛选：${activeFilter}，共命中 ${visibleCount} 张卡片。再次点击同标签可取消筛选。`;
             }
 
             function applyFilter(key) {
@@ -1825,143 +1546,13 @@
                         visibleCount += 1;
                     }
                 });
-                Array.from(chipListRef.querySelectorAll(".filter-chip")).forEach((chip) => {
-                    chip.classList.toggle("active", chip.dataset.filter === key);
+                Array.from(document.querySelectorAll(".model-tag")).forEach((chip) => {
+                    chip.classList.toggle("active", key !== "all" && chip.dataset.filter === key);
                 });
                 updateFilterSummary(visibleCount);
-                refreshFeaturedCard();
             }
-
-            function renderFilterChips() {
-                if (!chipListRef) {
-                    return;
-                }
-                chipListRef.innerHTML = "";
-                tagConfig.forEach((item) => {
-                    const button = document.createElement("button");
-                    button.type = "button";
-                    button.className = "filter-chip";
-                    button.dataset.filter = item.key;
-                    button.textContent = item.label;
-                    button.addEventListener("click", function () {
-                        applyFilter(item.key);
-                    });
-                    chipListRef.appendChild(button);
-                });
-            }
-
-            function chooseFeaturedCard(history) {
-                const metas = cards
-                    .filter((card) => {
-                        const tags = (card.dataset.modelTags || "").split("|").filter(Boolean);
-                        if (activeFilter === "all") {
-                            return true;
-                        }
-                        if (activeFilter === "共同视角") {
-                            return tags.includes("芒格") && tags.includes("巴菲特");
-                        }
-                        return tags.includes(activeFilter);
-                    })
-                    .map((card) => buildCardMeta(card, Number(card.dataset.cardIndex || 0)))
-                    .map((meta) => scoreCard(meta, history));
-                metas.sort((a, b) => b.score - a.score);
-                return metas[0] || null;
-            }
-
-            function chooseAlternativeCard(history) {
-                const metas = cards
-                    .filter((card) => {
-                        const tags = (card.dataset.modelTags || "").split("|").filter(Boolean);
-                        if (activeFilter === "all") {
-                            return true;
-                        }
-                        if (activeFilter === "共同视角") {
-                            return tags.includes("芒格") && tags.includes("巴菲特");
-                        }
-                        return tags.includes(activeFilter);
-                    })
-                    .map((card) => buildCardMeta(card, Number(card.dataset.cardIndex || 0)))
-                    .filter((meta) => meta.index !== currentIndex)
-                    .map((meta) => scoreCard(meta, history))
-                    .sort((a, b) => b.score - a.score);
-                const shortlist = metas.slice(0, Math.min(3, metas.length));
-                if (!shortlist.length) {
-                    return null;
-                }
-                return shortlist[Math.floor(Math.random() * shortlist.length)];
-            }
-
-            function markSeen(meta, history) {
-                history[meta.id] = {
-                    lastSeen: getTodayKey(),
-                    seenCount: Number(history[meta.id]?.seenCount || 0) + 1,
-                    tag: meta.tag,
-                };
-                saveHistory(history);
-            }
-
-            function renderFeaturedCard(meta) {
-                if (!cards.length || !meta) {
-                    slot.innerHTML = "";
-                    if (reasonRef) {
-                        reasonRef.textContent = activeFilter === "all"
-                            ? "当前没有可推荐的卡片。"
-                            : "当前筛选下没有命中的推荐卡片，你可以切换标签再看。";
-                    }
-                    return;
-                }
-                currentIndex = meta.index;
-                const clone = cards[meta.index].cloneNode(true);
-                const badge = document.createElement("div");
-                badge.className = "featured-badge";
-                badge.textContent = "今日建议重看";
-                clone.prepend(badge);
-
-                featuredDetails = clone.querySelector("details");
-                if (featuredDetails) {
-                    featuredDetails.open = true;
-                }
-
-                slot.innerHTML = "";
-                slot.appendChild(clone);
-                if (reasonRef) {
-                    const prefix = activeFilter === "all" ? "" : `当前视角：${activeFilter}。`;
-                    reasonRef.textContent = `${prefix}${meta.reason}`;
-                }
-            }
-
-            function refreshFeaturedCard() {
-                const history = loadHistory();
-                const featuredMeta = chooseFeaturedCard(history);
-                if (featuredMeta) {
-                    markSeen(featuredMeta, history);
-                }
-                renderFeaturedCard(featuredMeta);
-            }
-
-            rerollButton.addEventListener("click", function () {
-                if (!cards.length) {
-                    return;
-                }
-                const history = loadHistory();
-                const nextMeta = cards.length === 1 ? chooseFeaturedCard(history) : chooseAlternativeCard(history);
-                if (nextMeta) {
-                    markSeen(nextMeta, history);
-                    renderFeaturedCard(nextMeta);
-                } else {
-                    renderFeaturedCard(null);
-                }
-            });
-
-            openButton.addEventListener("click", function () {
-                if (featuredDetails) {
-                    featuredDetails.open = true;
-                    featuredDetails.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-            });
 
             injectModelTags();
-            renderFilterChips();
             applyFilter("all");
         })();
     </script>
