@@ -5,22 +5,58 @@
   "title": "小满周报",
   "hero_tagline": "回看这一周里持续发生的高光片段。",
   "period_caption": "本周",
-  "summary": "2026-03-30 ~ 2026-04-05暂无新的相关记录。",
-  "items": [],
-  "highlights": [],
-  "timeline": [],
+  "summary": "2026-03-30 ~ 2026-04-05共记录 1 条，累计 1 个磁贴。",
+  "items": [
+    {
+      "id": "ai-1775309157000-1",
+      "type": "magnet-moment",
+      "description": "小满今天去医院非常勇敢",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775309157000
+    }
+  ],
+  "highlights": [
+    {
+      "id": "ai-1775309157000-1",
+      "type": "magnet-moment",
+      "description": "小满今天去医院非常勇敢",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775309157000
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-04-04",
+      "count": 1,
+      "magnet_total": 1,
+      "items": [
+        {
+          "id": "ai-1775309157000-1",
+          "type": "magnet-moment",
+          "description": "小满今天去医院非常勇敢",
+          "amount": 1,
+          "source": "xiaogpt-local",
+          "timestamp": 1775309157000
+        }
+      ]
+    }
+  ],
   "stats": {
-    "count": 0,
-    "magnet_total": 0,
-    "type_breakdown": {},
-    "active_days": 0,
-    "average_magnets": 0
+    "count": 1,
+    "magnet_total": 1,
+    "type_breakdown": {
+      "magnet-moment": 1
+    },
+    "active_days": 1,
+    "average_magnets": 1.0
   },
   "latest_raw": {
-    "happened_at": "2026-04-02 21:01:50",
-    "source_file": "2026-04-02.md",
-    "query": "闭嘴",
-    "answer": ""
+    "happened_at": "2026-04-04 21:25:57",
+    "source_file": "2026-04-04.md",
+    "query": "小满今天去医院非常勇敢",
+    "answer": "这个问题我还在学习中， 先聊点别的吧"
   },
-  "generated_at": "2026-04-03T23:00:05"
+  "generated_at": "2026-04-04T21:55:48"
 }
