@@ -84,6 +84,102 @@
             gap: 28px;
         }
 
+        .featured-review {
+            margin-bottom: 44px;
+            background: linear-gradient(135deg, rgba(217, 119, 87, 0.12), rgba(255, 255, 255, 0.9));
+            border: 1px solid rgba(217, 119, 87, 0.18);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .featured-review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .featured-review-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .featured-review-title {
+            margin: 0;
+            font-size: 1.35rem;
+            line-height: 1.4;
+        }
+
+        .featured-review-copy {
+            margin: 8px 0 0;
+            color: var(--claude-sub);
+            font-size: 0.92rem;
+        }
+
+        .featured-review-reason {
+            margin: 12px 0 0;
+            font-size: 0.84rem;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+
+        .featured-review-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .review-button {
+            appearance: none;
+            border: 1px solid rgba(217, 119, 87, 0.24);
+            background: rgba(255, 255, 255, 0.88);
+            color: var(--claude-text);
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font: inherit;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .review-button:hover {
+            transform: translateY(-1px);
+            border-color: rgba(217, 119, 87, 0.45);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .review-button.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .featured-card-slot .insight-card {
+            margin: 0;
+            box-shadow: none;
+        }
+
+        .featured-card-slot .insight-card:hover {
+            transform: none;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 24px 28px 0;
+            color: var(--accent);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
         .insight-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -397,6 +493,9 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
+            .featured-review-header {
+                flex-direction: column;
+            }
             summary::after,
             details[open] summary::after { display: none; }
         }
@@ -420,6 +519,22 @@
             <p>这是一个低门槛的信息采集系统。通过捕捉日常生活中的细微观察（数据输入），将其与经典的哲学、心理学或系统论逻辑进行强关联（结构化），最终沉淀为可复用的认知模型（知识产出）。</p>
             <p style="margin-top: 12px; font-size: 0.9rem; color: var(--claude-sub);">每张卡片 = <strong>核心淬炼</strong> + <strong>对话还原</strong> + <strong>冗余过滤器</strong> + <strong>迁移应用</strong>。点击展开查看推导过程。</p>
             <p style="margin-top: 8px; font-size: 0.85rem; color: var(--claude-sub);">本飞轮已整合：AI元认知 · 知识管理觉醒 · 小满冷水澡</p>
+        </section>
+
+        <section class="featured-review" aria-labelledby="featured-review-title">
+            <div class="featured-review-header">
+                <div>
+                    <span class="featured-review-label">Daily Review</span>
+                    <h2 id="featured-review-title" class="featured-review-title">今日随机回顾</h2>
+                    <p class="featured-review-copy">每天先从一张更值得重看的卡片开始。它会轻量参考最近回顾记录、底层主题和久未复习状态，你也可以手动换一张。</p>
+                    <p class="featured-review-reason" id="featured-review-reason">正在计算今天更适合回顾的内容。</p>
+                </div>
+                <div class="featured-review-actions">
+                    <button class="review-button primary" type="button" id="reroll-featured-card">换一张</button>
+                    <button class="review-button" type="button" id="open-featured-card">展开回顾</button>
+                </div>
+            </div>
+            <div class="featured-card-slot" id="featured-card-slot"></div>
         </section>
 
         <div class="insight-list">
@@ -1428,5 +1543,187 @@
             <p>© 2026 reGeorge | 持续观测，持续建模</p>
         </footer>
     </div>
+    <script>
+        (function () {
+            const cards = Array.from(document.querySelectorAll(".insight-list > .insight-card"));
+            const slot = document.getElementById("featured-card-slot");
+            const rerollButton = document.getElementById("reroll-featured-card");
+            const openButton = document.getElementById("open-featured-card");
+            const reasonRef = document.getElementById("featured-review-reason");
+            const storageKey = "philosophy-flywheel-review-history";
+            let featuredDetails = null;
+            let currentIndex = -1;
+
+            function getTodayKey() {
+                return new Date().toISOString().slice(0, 10);
+            }
+
+            function hashText(value) {
+                let hash = 0;
+                for (const char of value) {
+                    hash = (hash * 31 + char.charCodeAt(0)) % 2147483647;
+                }
+                return hash;
+            }
+
+            function loadHistory() {
+                try {
+                    return JSON.parse(localStorage.getItem(storageKey) || "{}");
+                } catch (error) {
+                    return {};
+                }
+            }
+
+            function saveHistory(history) {
+                localStorage.setItem(storageKey, JSON.stringify(history));
+            }
+
+            function daysBetween(isoDate) {
+                if (!isoDate) {
+                    return 365;
+                }
+                const today = new Date(getTodayKey());
+                const past = new Date(isoDate);
+                const diff = today.getTime() - past.getTime();
+                return Math.max(0, Math.round(diff / 86400000));
+            }
+
+            function buildCardMeta(card, index) {
+                const tag = card.querySelector(".tag")?.textContent?.trim() || "";
+                const core = card.querySelector(".core-text")?.textContent?.trim() || "";
+                const source = card.querySelector(".source-link a")?.getAttribute("href") || "";
+                const identity = source || `${tag}-${index}`;
+                const haystack = `${tag} ${core} ${source}`;
+
+                let evergreen = 0;
+                if (/平静|敬畏|幸福|正念|呼吸|万物相通|核心定义/.test(haystack)) {
+                    evergreen += 3;
+                }
+                if (/AI|知识管理|飞轮|元认知|测试|系统/.test(haystack)) {
+                    evergreen += 1.5;
+                }
+                if (/行动实验|可迁移|迁移/.test(card.textContent || "")) {
+                    evergreen += 1;
+                }
+
+                return {
+                    card,
+                    index,
+                    id: identity,
+                    tag,
+                    core,
+                    source,
+                    evergreen,
+                    seed: hashText(`${getTodayKey()}-${identity}`),
+                };
+            }
+
+            function scoreCard(meta, history) {
+                const record = history[meta.id] || {};
+                const daysSinceSeen = daysBetween(record.lastSeen);
+                const seenCount = Number(record.seenCount || 0);
+                const base = Math.min(daysSinceSeen, 30) * 0.7;
+                const freshness = seenCount === 0 ? 4 : 0;
+                const rarity = Math.max(0, 3 - seenCount * 0.35);
+                const antiRepeat = record.lastSeen === getTodayKey() ? -100 : 0;
+                const dailyTieBreak = (meta.seed % 1000) / 1000;
+                const score = base + freshness + rarity + meta.evergreen + dailyTieBreak + antiRepeat;
+
+                let reason = "因为它适合作为今天的轻量回顾起点。";
+                if (seenCount === 0) {
+                    reason = "因为它还没被你在这个页面里正式回顾过。";
+                } else if (daysSinceSeen >= 14) {
+                    reason = `因为它已经 ${daysSinceSeen} 天没有被你回顾了。`;
+                } else if (meta.evergreen >= 3) {
+                    reason = "因为它更像底层原则，值得周期性重看。";
+                } else if (seenCount <= 2) {
+                    reason = "因为它回顾次数还不多，适合趁记忆没完全沉下去再看一次。";
+                }
+
+                return {
+                    ...meta,
+                    score,
+                    reason,
+                };
+            }
+
+            function chooseFeaturedCard(history) {
+                const metas = cards.map(buildCardMeta).map((meta) => scoreCard(meta, history));
+                metas.sort((a, b) => b.score - a.score);
+                return metas[0] || null;
+            }
+
+            function chooseAlternativeCard(history) {
+                const metas = cards
+                    .map(buildCardMeta)
+                    .filter((meta) => meta.index !== currentIndex)
+                    .map((meta) => scoreCard(meta, history))
+                    .sort((a, b) => b.score - a.score);
+                const shortlist = metas.slice(0, Math.min(3, metas.length));
+                if (!shortlist.length) {
+                    return null;
+                }
+                return shortlist[Math.floor(Math.random() * shortlist.length)];
+            }
+
+            function markSeen(meta, history) {
+                history[meta.id] = {
+                    lastSeen: getTodayKey(),
+                    seenCount: Number(history[meta.id]?.seenCount || 0) + 1,
+                    tag: meta.tag,
+                };
+                saveHistory(history);
+            }
+
+            function renderFeaturedCard(meta) {
+                if (!cards.length || !meta) {
+                    return;
+                }
+                currentIndex = meta.index;
+                const clone = cards[meta.index].cloneNode(true);
+                const badge = document.createElement("div");
+                badge.className = "featured-badge";
+                badge.textContent = "今日建议重看";
+                clone.prepend(badge);
+
+                featuredDetails = clone.querySelector("details");
+                if (featuredDetails) {
+                    featuredDetails.open = true;
+                }
+
+                slot.innerHTML = "";
+                slot.appendChild(clone);
+                if (reasonRef) {
+                    reasonRef.textContent = meta.reason;
+                }
+            }
+
+            rerollButton.addEventListener("click", function () {
+                if (!cards.length) {
+                    return;
+                }
+                const history = loadHistory();
+                const nextMeta = cards.length === 1 ? chooseFeaturedCard(history) : chooseAlternativeCard(history);
+                if (nextMeta) {
+                    markSeen(nextMeta, history);
+                    renderFeaturedCard(nextMeta);
+                }
+            });
+
+            openButton.addEventListener("click", function () {
+                if (featuredDetails) {
+                    featuredDetails.open = true;
+                    featuredDetails.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            });
+
+            const history = loadHistory();
+            const featuredMeta = chooseFeaturedCard(history);
+            if (featuredMeta) {
+                markSeen(featuredMeta, history);
+                renderFeaturedCard(featuredMeta);
+            }
+        })();
+    </script>
 </body>
 </html>
