@@ -64,6 +64,12 @@
       line-height: 1.7;
       max-width: 760px;
     }
+    .hero-meta {
+      margin-top: 14px;
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
     .overview-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -98,7 +104,7 @@
       font-size: 28px;
       line-height: 1;
     }
-    .mock-note {
+    .chart-note {
       font-size: 13px;
       color: var(--accent);
       margin-bottom: 14px;
@@ -239,6 +245,14 @@
       color: var(--muted);
       line-height: 1.7;
     }
+    .timeline-points {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .timeline-points li {
+      margin-bottom: 6px;
+    }
     .footer-links {
       padding-top: 18px;
       display: flex;
@@ -292,6 +306,7 @@
       <div class="eyebrow">XiaoMan Growth Journal</div>
       <h1>小满成长记录</h1>
       <p>把日报、周报、月报放在同一个页面里纵向查看，适合连续回顾，也更适合手机端和网页端的滚动浏览。</p>
+      <div class="hero-meta" id="last-updated">更新于 --</div>
     </section>
 
     <section class="overview-grid">
@@ -308,7 +323,7 @@
 
       <div class="panel">
         <h2>图表预览</h2>
-        <div class="mock-note">以下柱状图是 Mock 交互预览，只用于看展示效果，不会写回也不会篡改任何真实报告数据。</div>
+        <div class="chart-note">以下柱状图基于当前月报中的真实时间线数据，展示本月每天的磁贴变化。</div>
         <div class="chart" id="mock-chart"></div>
       </div>
     </section>
@@ -331,6 +346,7 @@
       monthlyMagnets: document.getElementById("monthly-magnets"),
       monthlyDays: document.getElementById("monthly-days"),
       mockChart: document.getElementById("mock-chart"),
+      lastUpdated: document.getElementById("last-updated"),
     };
 
     function renderHighlights(items) {
@@ -359,7 +375,9 @@
             <span class="timeline-total">+${item.magnet_total || 0}</span>
           </div>
           <div class="timeline-meta">${item.count || 0} 条记录</div>
-          <div class="timeline-body">${(item.items || []).slice(0, 3).map((entry) => entry.description).join(" / ") || "暂无详情"}</div>
+          <ul class="timeline-points">
+            ${((item.items || []).slice(0, 3).map((entry) => `<li>${entry.description}</li>`).join("")) || "<li>暂无详情</li>"}
+          </ul>
         </article>
       `).join("");
     }
@@ -415,23 +433,28 @@
       `;
     }
 
-    function renderMockChart() {
-      const mockData = [
-        { label: "周一", value: 3 },
-        { label: "周二", value: 5 },
-        { label: "周三", value: 2 },
-        { label: "周四", value: 6 },
-        { label: "周五", value: 4 },
-        { label: "周末", value: 7 },
-      ];
-      const max = Math.max(...mockData.map((item) => item.value), 1);
-      refs.mockChart.innerHTML = mockData.map((item) => `
+    function formatGeneratedAt(value) {
+      if (!value) return "--";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      const pad = (num) => String(num).padStart(2, "0");
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    }
+
+    function renderChartFromTimeline(items) {
+      if (!items.length) {
+        refs.mockChart.innerHTML = '<div class="empty">本月还没有足够的时间线数据用于绘图。</div>';
+        return;
+      }
+      const ordered = [...items].sort((a, b) => a.date.localeCompare(b.date));
+      const max = Math.max(...ordered.map((item) => item.magnet_total || 0), 1);
+      refs.mockChart.innerHTML = ordered.map((item) => `
         <div class="bar-row">
-          <strong>${item.label}</strong>
+          <strong>${item.date.slice(5)}</strong>
           <div class="bar-track">
-            <div class="bar" style="width:${(item.value / max) * 100}%"></div>
+            <div class="bar" style="width:${((item.magnet_total || 0) / max) * 100}%"></div>
           </div>
-          <span>${item.value}</span>
+          <span>${item.magnet_total || 0}</span>
         </div>
       `).join("");
     }
@@ -457,17 +480,16 @@
       refs.weeklyMagnets.textContent = String(weekly.stats?.magnet_total ?? 0);
       refs.monthlyMagnets.textContent = String(monthly.stats?.magnet_total ?? 0);
       refs.monthlyDays.textContent = String(monthly.stats?.active_days ?? 0);
-      refs.overviewSummary.textContent = [
-        daily.summary || "日报暂无摘要。",
-        weekly.summary || "周报暂无摘要。",
-        monthly.summary || "月报暂无摘要。"
-      ].join(" ");
+      refs.overviewSummary.textContent = `今天新增 ${daily.stats?.count ?? 0} 条记录，本周累计 ${(weekly.stats?.count ?? 0)} 条，本月累计 ${(monthly.stats?.magnet_total ?? 0)} 个磁贴。`;
+      refs.lastUpdated.textContent = `更新于 ${formatGeneratedAt(monthly.generated_at || weekly.generated_at || daily.generated_at)}`;
+      renderChartFromTimeline(monthly.timeline || []);
     }
 
-    renderMockChart();
     loadReports().catch((error) => {
       refs.overviewSummary.textContent = String(error);
+      refs.lastUpdated.textContent = "更新失败";
       refs.grid.innerHTML = '<div class="panel">报告加载失败，请稍后重试。</div>';
+      refs.mockChart.innerHTML = '<div class="empty">图表加载失败，请稍后重试。</div>';
     });
   </script>
 </body>
