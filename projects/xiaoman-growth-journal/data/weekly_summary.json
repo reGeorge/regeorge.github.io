@@ -5,8 +5,16 @@
   "title": "小满周报",
   "hero_tagline": "回看这一周里持续发生的高光片段。",
   "period_caption": "本周",
-  "summary": "2026-03-30 ~ 2026-04-05共记录 1 条，累计 1 个磁贴。",
+  "summary": "2026-03-30 ~ 2026-04-05共记录 2 条，累计 2 个磁贴。",
   "items": [
+    {
+      "id": "ai-1775349689000-5",
+      "type": "magnet-moment",
+      "description": "我是小满是小爱",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775349689000
+    },
     {
       "id": "ai-1775309157000-4",
       "type": "magnet-moment",
@@ -18,6 +26,14 @@
   ],
   "highlights": [
     {
+      "id": "ai-1775349689000-5",
+      "type": "magnet-moment",
+      "description": "我是小满是小爱",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775349689000
+    },
+    {
       "id": "ai-1775309157000-4",
       "type": "magnet-moment",
       "description": "小满今天去医院非常勇敢",
@@ -27,6 +43,21 @@
     }
   ],
   "timeline": [
+    {
+      "date": "2026-04-05",
+      "count": 1,
+      "magnet_total": 1,
+      "items": [
+        {
+          "id": "ai-1775349689000-5",
+          "type": "magnet-moment",
+          "description": "我是小满是小爱",
+          "amount": 1,
+          "source": "xiaogpt-local",
+          "timestamp": 1775349689000
+        }
+      ]
+    },
     {
       "date": "2026-04-04",
       "count": 1,
@@ -44,19 +75,19 @@
     }
   ],
   "stats": {
-    "count": 1,
-    "magnet_total": 1,
+    "count": 2,
+    "magnet_total": 2,
     "type_breakdown": {
-      "magnet-moment": 1
+      "magnet-moment": 2
     },
-    "active_days": 1,
+    "active_days": 2,
     "average_magnets": 1.0
   },
   "latest_raw": {
-    "happened_at": "2026-04-03 22:34:21",
-    "source_file": "2026-04-03.md",
-    "query": "明天天气",
-    "answer": "上海普陀明天阴转多云，11度到22度，西北风2级转西风2级，空气非常好。"
+    "happened_at": "2026-04-04 22:00:12",
+    "source_file": "2026-04-04.md",
+    "query": "你是个笨蛋",
+    "answer": "你说你刚说的话我要当真吗？当真了伤心，那还是不当真吧"
   },
-  "generated_at": "2026-04-04T23:00:05"
+  "generated_at": "2026-04-05T23:00:05"
 }
