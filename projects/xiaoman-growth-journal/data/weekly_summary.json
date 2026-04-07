@@ -5,16 +5,52 @@
   "title": "小满周报",
   "hero_tagline": "回看这一周里持续发生的高光片段。",
   "period_caption": "本周",
-  "summary": "2026-04-06 ~ 2026-04-12暂无新的相关记录。",
-  "items": [],
-  "highlights": [],
-  "timeline": [],
+  "summary": "2026-04-06 ~ 2026-04-12共记录 1 条，累计 1 个磁贴。",
+  "items": [
+    {
+      "id": "ai-1775455720000-3",
+      "type": "magnet-moment",
+      "description": "小满今天自己收拾的玩具",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775455720000
+    }
+  ],
+  "highlights": [
+    {
+      "id": "ai-1775455720000-3",
+      "type": "magnet-moment",
+      "description": "小满今天自己收拾的玩具",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775455720000
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-04-06",
+      "count": 1,
+      "magnet_total": 1,
+      "items": [
+        {
+          "id": "ai-1775455720000-3",
+          "type": "magnet-moment",
+          "description": "小满今天自己收拾的玩具",
+          "amount": 1,
+          "source": "xiaogpt-local",
+          "timestamp": 1775455720000
+        }
+      ]
+    }
+  ],
   "stats": {
-    "count": 0,
-    "magnet_total": 0,
-    "type_breakdown": {},
-    "active_days": 0,
-    "average_magnets": 0
+    "count": 1,
+    "magnet_total": 1,
+    "type_breakdown": {
+      "magnet-moment": 1
+    },
+    "active_days": 1,
+    "average_magnets": 1.0
   },
   "latest_raw": {
     "happened_at": "2026-04-05 21:57:14",
@@ -22,5 +58,5 @@
     "query": "关闭关闭",
     "answer": ""
   },
-  "generated_at": "2026-04-06T13:13:28"
+  "generated_at": "2026-04-06T23:00:41"
 }
