@@ -64,6 +64,21 @@
             font-style: italic;
         }
 
+        .book-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.68rem;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(56, 138, 221, 0.08);
+            color: #185FA5;
+            letter-spacing: 0.04em;
+            border: 0.5px solid rgba(56, 138, 221, 0.25);
+            font-family: sans-serif;
+            flex-shrink: 0;
+        }
+
         .flywheel-concept {
             background-color: rgba(217, 119, 87, 0.05);
             border-left: 4px solid var(--accent);
@@ -1464,8 +1479,9 @@
 
             <!-- ==================== Card: 清晰思考 × 记忆资产 ==================== -->
             <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
-                <div class="card-header">
-                    <span class="tag">认知：你是你自己的信息源头</span>
+                <div class="card-header" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span class="tag" style="margin-bottom:0;">认知：你是你自己的信息源头</span>
+                    <span class="book-badge">× 清晰思考</span>
                 </div>
                 <details>
                     <summary data-hint="（点击展开推导过程）">
@@ -1529,8 +1545,9 @@
 
             <!-- ==================== Card: 清晰思考 × 万物相通 ==================== -->
             <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
-                <div class="card-header">
-                    <span class="tag">核心定义：万物都是哲学的饲料</span>
+                <div class="card-header" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span class="tag" style="margin-bottom:0;">核心定义：万物都是哲学的饲料</span>
+                    <span class="book-badge">× 清晰思考</span>
                 </div>
                 <details>
                     <summary data-hint="（点击展开推导过程）">
@@ -1594,8 +1611,9 @@
 
             <!-- ==================== Card: 清晰思考 × 信息不对称 ==================== -->
             <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
-                <div class="card-header">
-                    <span class="tag">哲学洞见：社交默认的底层因果</span>
+                <div class="card-header" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span class="tag" style="margin-bottom:0;">哲学洞见：社交默认的底层因果</span>
+                    <span class="book-badge">× 清晰思考</span>
                 </div>
                 <details>
                     <summary data-hint="（点击展开推导过程）">
@@ -1659,8 +1677,9 @@
 
             <!-- ==================== Card: 清晰思考 × 想清楚与做决定 ==================== -->
             <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
-                <div class="card-header">
-                    <span class="tag">认知：想清楚与做决定是两件事</span>
+                <div class="card-header" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span class="tag" style="margin-bottom:0;">认知：想清楚与做决定是两件事</span>
+                    <span class="book-badge">× 清晰思考</span>
                 </div>
                 <details>
                     <summary data-hint="（点击展开推导过程）">
@@ -1724,8 +1743,9 @@
 
             <!-- ==================== Card: 清晰思考 × 焦急的决策框架 ==================== -->
             <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
-                <div class="card-header">
-                    <span class="tag">哲学洞见：焦急的决策框架</span>
+                <div class="card-header" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <span class="tag" style="margin-bottom:0;">哲学洞见：焦急的决策框架</span>
+                    <span class="book-badge">× 清晰思考</span>
                 </div>
                 <details>
                     <summary data-hint="（点击展开推导过程）">
@@ -1816,7 +1836,12 @@
                 "sources/2026-03-31-焦急与宇宙动力学.md": ["芒格", "多因素共振"],
                 "sources/2026-03-31-碳基与硅基思维.md": ["芒格", "巴菲特", "多因素共振", "能力圈"],
                 "sources/2026-03-22-知识管理的觉醒.md": ["芒格", "复利", "简单原则"],
-                "sources/2026-03-21-AI元认知.md": ["芒格", "复利", "能力圈"]
+                "sources/2026-03-21-AI元认知.md": ["芒格", "复利", "能力圈"],
+                "sources/2026-04-08-清晰思考-记忆资产.md": ["清晰思考"],
+                "sources/2026-04-08-清晰思考-万物相通.md": ["清晰思考"],
+                "sources/2026-04-08-清晰思考-信息不对称.md": ["清晰思考"],
+                "sources/2026-04-08-清晰思考-想清楚与做决定.md": ["清晰思考"],
+                "sources/2026-04-08-清晰思考-焦急的决策框架.md": ["清晰思考"]
             };
             let activeFilter = "all";
 
