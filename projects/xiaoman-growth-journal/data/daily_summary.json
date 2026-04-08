@@ -1,62 +1,26 @@
 {
   "kind": "daily",
-  "label": "2026-04-06",
+  "label": "2026-04-07",
   "subject": "小满",
   "title": "小满日报",
   "hero_tagline": "聚焦今天新增的记录和当下状态。",
   "period_caption": "今天",
-  "summary": "2026-04-06共记录 1 条，累计 1 个磁贴。",
-  "items": [
-    {
-      "id": "ai-1775455720000-3",
-      "type": "magnet-moment",
-      "description": "小满今天自己收拾的玩具",
-      "amount": 1,
-      "source": "xiaogpt-local",
-      "timestamp": 1775455720000
-    }
-  ],
-  "highlights": [
-    {
-      "id": "ai-1775455720000-3",
-      "type": "magnet-moment",
-      "description": "小满今天自己收拾的玩具",
-      "amount": 1,
-      "source": "xiaogpt-local",
-      "timestamp": 1775455720000
-    }
-  ],
-  "timeline": [
-    {
-      "date": "2026-04-06",
-      "count": 1,
-      "magnet_total": 1,
-      "items": [
-        {
-          "id": "ai-1775455720000-3",
-          "type": "magnet-moment",
-          "description": "小满今天自己收拾的玩具",
-          "amount": 1,
-          "source": "xiaogpt-local",
-          "timestamp": 1775455720000
-        }
-      ]
-    }
-  ],
+  "summary": "2026-04-07暂无新的相关记录。",
+  "items": [],
+  "highlights": [],
+  "timeline": [],
   "stats": {
-    "count": 1,
-    "magnet_total": 1,
-    "type_breakdown": {
-      "magnet-moment": 1
-    },
-    "active_days": 1,
-    "average_magnets": 1.0
+    "count": 0,
+    "magnet_total": 0,
+    "type_breakdown": {},
+    "active_days": 0,
+    "average_magnets": 0
   },
   "latest_raw": {
-    "happened_at": "2026-04-05 21:57:14",
-    "source_file": "2026-04-05.md",
-    "query": "关闭关闭",
-    "answer": ""
+    "happened_at": "2026-04-06 21:58:03",
+    "source_file": "2026-04-06.md",
+    "query": "关灯",
+    "answer": "好的，关咯。"
   },
-  "generated_at": "2026-04-06T23:00:41"
+  "generated_at": "2026-04-07T23:00:41"
 }
