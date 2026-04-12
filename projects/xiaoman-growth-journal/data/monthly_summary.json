@@ -5,10 +5,10 @@
   "title": "小满月报",
   "hero_tagline": "把这个月积累下来的变化整理成一张完整切面。",
   "period_caption": "本月",
-  "summary": "2026-04共记录 3 条，累计 3 个磁贴。",
+  "summary": "2026-04共记录 2 条，累计 2 个磁贴。",
   "items": [
     {
-      "id": "ai-1775455720000-3",
+      "id": "ai-1775455720000-5",
       "type": "magnet-moment",
       "description": "小满今天自己收拾的玩具",
       "amount": 1,
@@ -16,15 +16,7 @@
       "timestamp": 1775455720000
     },
     {
-      "id": "ai-1775349689000-2",
-      "type": "magnet-moment",
-      "description": "我是小满是小爱",
-      "amount": 1,
-      "source": "xiaogpt-local",
-      "timestamp": 1775349689000
-    },
-    {
-      "id": "ai-1775309157000-1",
+      "id": "ai-1775309157000-4",
       "type": "magnet-moment",
       "description": "小满今天去医院非常勇敢",
       "amount": 1,
@@ -34,7 +26,7 @@
   ],
   "highlights": [
     {
-      "id": "ai-1775455720000-3",
+      "id": "ai-1775455720000-5",
       "type": "magnet-moment",
       "description": "小满今天自己收拾的玩具",
       "amount": 1,
@@ -42,15 +34,7 @@
       "timestamp": 1775455720000
     },
     {
-      "id": "ai-1775349689000-2",
-      "type": "magnet-moment",
-      "description": "我是小满是小爱",
-      "amount": 1,
-      "source": "xiaogpt-local",
-      "timestamp": 1775349689000
-    },
-    {
-      "id": "ai-1775309157000-1",
+      "id": "ai-1775309157000-4",
       "type": "magnet-moment",
       "description": "小满今天去医院非常勇敢",
       "amount": 1,
@@ -65,7 +49,7 @@
       "magnet_total": 1,
       "items": [
         {
-          "id": "ai-1775455720000-3",
+          "id": "ai-1775455720000-5",
           "type": "magnet-moment",
           "description": "小满今天自己收拾的玩具",
           "amount": 1,
@@ -75,27 +59,12 @@
       ]
     },
     {
-      "date": "2026-04-05",
-      "count": 1,
-      "magnet_total": 1,
-      "items": [
-        {
-          "id": "ai-1775349689000-2",
-          "type": "magnet-moment",
-          "description": "我是小满是小爱",
-          "amount": 1,
-          "source": "xiaogpt-local",
-          "timestamp": 1775349689000
-        }
-      ]
-    },
-    {
       "date": "2026-04-04",
       "count": 1,
       "magnet_total": 1,
       "items": [
         {
-          "id": "ai-1775309157000-1",
+          "id": "ai-1775309157000-4",
           "type": "magnet-moment",
           "description": "小满今天去医院非常勇敢",
           "amount": 1,
@@ -106,19 +75,19 @@
     }
   ],
   "stats": {
-    "count": 3,
-    "magnet_total": 3,
+    "count": 2,
+    "magnet_total": 2,
     "type_breakdown": {
-      "magnet-moment": 3
+      "magnet-moment": 2
     },
-    "active_days": 3,
+    "active_days": 2,
     "average_magnets": 1.0
   },
   "latest_raw": {
-    "happened_at": "2026-04-07 22:55:14",
-    "source_file": "2026-04-07.md",
-    "query": "把灯光调到最暗",
-    "answer": "最暗啦。"
+    "happened_at": "2026-04-09 22:30:55",
+    "source_file": "2026-04-09.md",
+    "query": "开灯",
+    "answer": "好啊。"
   },
-  "generated_at": "2026-04-08T23:00:41"
+  "generated_at": "2026-04-10T23:00:05"
 }

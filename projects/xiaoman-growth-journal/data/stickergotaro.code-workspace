@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../stickergotaro"
+		},
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../obsidian"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "regeorge.github.io"
+	}
+}

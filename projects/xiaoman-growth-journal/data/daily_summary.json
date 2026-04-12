@@ -1,11 +1,11 @@
 {
   "kind": "daily",
-  "label": "2026-04-08",
+  "label": "2026-04-10",
   "subject": "小满",
   "title": "小满日报",
   "hero_tagline": "聚焦今天新增的记录和当下状态。",
   "period_caption": "今天",
-  "summary": "2026-04-08暂无新的相关记录。",
+  "summary": "2026-04-10暂无新的相关记录。",
   "items": [],
   "highlights": [],
   "timeline": [],
@@ -17,10 +17,10 @@
     "average_magnets": 0
   },
   "latest_raw": {
-    "happened_at": "2026-04-07 22:55:14",
-    "source_file": "2026-04-07.md",
-    "query": "把灯光调到最暗",
-    "answer": "最暗啦。"
+    "happened_at": "2026-04-09 22:30:55",
+    "source_file": "2026-04-09.md",
+    "query": "开灯",
+    "answer": "好啊。"
   },
-  "generated_at": "2026-04-08T23:00:41"
+  "generated_at": "2026-04-10T23:00:05"
 }
