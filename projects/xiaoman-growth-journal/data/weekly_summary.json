@@ -5,10 +5,18 @@
   "title": "小满周报",
   "hero_tagline": "回看这一周里持续发生的高光片段。",
   "period_caption": "本周",
-  "summary": "2026-04-06 ~ 2026-04-12共记录 1 条，累计 1 个磁贴。",
+  "summary": "2026-04-06 ~ 2026-04-12共记录 2 条，累计 2 个磁贴。",
   "items": [
     {
-      "id": "ai-1775455720000-5",
+      "id": "ai-1775895659000-4",
+      "type": "magnet-moment",
+      "description": "今天小满自己收拾了玩具转了几天",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775895659000
+    },
+    {
+      "id": "ai-1775455720000-3",
       "type": "magnet-moment",
       "description": "小满今天自己收拾的玩具",
       "amount": 1,
@@ -18,7 +26,15 @@
   ],
   "highlights": [
     {
-      "id": "ai-1775455720000-5",
+      "id": "ai-1775895659000-4",
+      "type": "magnet-moment",
+      "description": "今天小满自己收拾了玩具转了几天",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775895659000
+    },
+    {
+      "id": "ai-1775455720000-3",
       "type": "magnet-moment",
       "description": "小满今天自己收拾的玩具",
       "amount": 1,
@@ -28,12 +44,27 @@
   ],
   "timeline": [
     {
+      "date": "2026-04-11",
+      "count": 1,
+      "magnet_total": 1,
+      "items": [
+        {
+          "id": "ai-1775895659000-4",
+          "type": "magnet-moment",
+          "description": "今天小满自己收拾了玩具转了几天",
+          "amount": 1,
+          "source": "xiaogpt-local",
+          "timestamp": 1775895659000
+        }
+      ]
+    },
+    {
       "date": "2026-04-06",
       "count": 1,
       "magnet_total": 1,
       "items": [
         {
-          "id": "ai-1775455720000-5",
+          "id": "ai-1775455720000-3",
           "type": "magnet-moment",
           "description": "小满今天自己收拾的玩具",
           "amount": 1,
@@ -44,19 +75,19 @@
     }
   ],
   "stats": {
-    "count": 1,
-    "magnet_total": 1,
+    "count": 2,
+    "magnet_total": 2,
     "type_breakdown": {
-      "magnet-moment": 1
+      "magnet-moment": 2
     },
-    "active_days": 1,
+    "active_days": 2,
     "average_magnets": 1.0
   },
   "latest_raw": {
-    "happened_at": "2026-04-09 22:30:55",
-    "source_file": "2026-04-09.md",
+    "happened_at": "2026-04-10 22:15:57",
+    "source_file": "2026-04-10.md",
     "query": "开灯",
-    "answer": "好啊。"
+    "answer": "小事儿。"
   },
-  "generated_at": "2026-04-10T23:00:05"
+  "generated_at": "2026-04-11T23:00:41"
 }
