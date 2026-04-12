@@ -64,7 +64,9 @@
             font-style: italic;
         }
 
-        .book-badge {
+        .book-badge,
+        .topic-chip,
+        .model-tag {
             display: inline-flex;
             align-items: center;
             font-size: 0.68rem;
@@ -77,6 +79,7 @@
             border: 0.5px solid rgba(56, 138, 221, 0.25);
             font-family: sans-serif;
             flex-shrink: 0;
+            text-decoration: none;
         }
 
         .flywheel-concept {
@@ -131,28 +134,41 @@
         }
 
         .model-tag {
-            display: inline-flex;
-            align-items: center;
-            border-radius: 999px;
             padding: 5px 10px;
             font-size: 0.74rem;
             letter-spacing: 0.02em;
             background: rgba(217, 119, 87, 0.08);
             color: var(--accent);
-            cursor: pointer;
             border: 1px solid transparent;
             transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
 
+        .book-badge.is-filterable,
+        .topic-chip.is-filterable,
+        .model-tag {
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        .book-badge.is-filterable:hover,
+        .topic-chip.is-filterable:hover,
         .model-tag:hover {
             border-color: rgba(217, 119, 87, 0.24);
             background: rgba(217, 119, 87, 0.12);
+            transform: translateY(-1px);
         }
 
+        .book-badge.active,
+        .topic-chip.active,
         .model-tag.active {
             background: var(--accent);
             color: #fff7f1;
             border-color: var(--accent);
+        }
+
+        .topic-chip {
+            text-transform: none;
+            margin-bottom: 0;
         }
 
         .insight-card.is-hidden {
@@ -167,6 +183,19 @@
             font-weight: 600;
             margin-bottom: 10px;
             display: block;
+        }
+
+        .tag.topic-chip {
+            display: inline-flex;
+            text-transform: none;
+            letter-spacing: 0.04em;
+            font-weight: 500;
+            margin-bottom: 0;
+            color: #185FA5;
+        }
+
+        .tag.topic-chip.active {
+            color: #fff7f1;
         }
 
         /* ==================== details / summary ==================== */
@@ -3387,28 +3416,76 @@
             };
             let activeFilter = "all";
 
+            function bindFilterTrigger(element, tag) {
+                element.dataset.filter = tag;
+                element.classList.add("is-filterable");
+                element.setAttribute("role", "button");
+                element.setAttribute("tabindex", "0");
+                const toggleFilter = function () {
+                    applyFilter(activeFilter === tag ? "all" : tag);
+                };
+                element.addEventListener("click", toggleFilter);
+                element.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        toggleFilter();
+                    }
+                });
+            }
+
             function injectModelTags() {
                 cards.forEach((card, index) => {
                     const source = card.querySelector(".source-link a")?.getAttribute("href") || "";
-                    const tags = modelTagMap[source] || [];
-                    card.dataset.modelTags = tags.join("|");
+                    const sourceLabel = card.querySelector(".source-link a")?.textContent || "";
+                    const isInspirationCard = sourceLabel.includes("灵感与思考");
+                    const tags = [...(modelTagMap[source] || [])];
                     card.dataset.cardIndex = String(index);
-                    if (!tags.length || card.querySelector(".model-tags")) {
+                    const bookBadges = Array.from(card.querySelectorAll(".card-header .book-badge"));
+                    bookBadges.forEach((badge) => {
+                        const tag = badge.textContent.replace(/^📖\s*/, "").trim();
+                        if (tag && !tags.includes(tag)) {
+                            tags.push(tag);
+                        }
+                        bindFilterTrigger(badge, tag);
+                    });
+
+                    const headerTag = card.querySelector(".card-header .tag");
+                    let inspirationTopic = "";
+                    if (isInspirationCard && headerTag) {
+                        inspirationTopic = headerTag.textContent.trim();
+                        if (inspirationTopic) {
+                            headerTag.classList.add("topic-chip");
+                            if (!tags.includes(inspirationTopic)) {
+                                tags.push(inspirationTopic);
+                            }
+                            bindFilterTrigger(headerTag, inspirationTopic);
+                        }
+                    }
+
+                    card.dataset.modelTags = tags.join("|");
+
+                    if (!tags.length || card.querySelector(".model-tags") || bookBadges.length) {
                         return;
                     }
+
+                    const inlineTags = new Set();
+                    if (inspirationTopic) {
+                        inlineTags.add(inspirationTopic);
+                    }
+
                     const container = document.createElement("div");
                     container.className = "model-tags";
-                    tags.forEach((tag) => {
+                    tags.filter((tag) => !inlineTags.has(tag)).forEach((tag) => {
                         const chip = document.createElement("button");
                         chip.type = "button";
                         chip.className = "model-tag";
                         chip.textContent = tag;
-                        chip.dataset.filter = tag;
-                        chip.addEventListener("click", function () {
-                            applyFilter(activeFilter === tag ? "all" : tag);
-                        });
+                        bindFilterTrigger(chip, tag);
                         container.appendChild(chip);
                     });
+                    if (!container.children.length) {
+                        return;
+                    }
                     const details = card.querySelector("details");
                     if (details) {
                         card.insertBefore(container, details);
@@ -3439,7 +3516,7 @@
                         visibleCount += 1;
                     }
                 });
-                Array.from(document.querySelectorAll(".model-tag")).forEach((chip) => {
+                Array.from(document.querySelectorAll(".book-badge, .topic-chip, .model-tag")).forEach((chip) => {
                     chip.classList.toggle("active", key !== "all" && chip.dataset.filter === key);
                 });
                 updateFilterSummary(visibleCount);

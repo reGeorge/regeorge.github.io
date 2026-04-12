@@ -9,8 +9,9 @@
 ```html
 <div class="insight-card" style="border-color: var(--accent); background: rgba(217, 119, 87, 0.02);">
     <!-- 1. 标签 -->
-    <div class="card-header">
+    <div class="card-header" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
         <span class="tag">{分类}：{标题}</span>
+        <span class="book-badge">📖 {书名，可选}</span>
     </div>
 
     <!-- 2. 折叠区域 -->
@@ -97,6 +98,11 @@
 </div>
 ```
 
+说明：
+- `book-badge` 仅在书籍碰撞卡中出现，可并列多个
+- 书籍来源已经通过 `book-badge` 呈现时，不要再在卡片顶部额外补一排同名标签
+- 原生灵感卡沿用头部 `tag`，但在页面实现中应复用与 `book-badge` 一致的筛选样式与交互
+
 ---
 
 ## 🏷️ 标签分类体系
@@ -125,6 +131,12 @@
 | 可迁移场景 | 是 | 至少 2 个跨领域场景 |
 | 哲学笔记 | 是 | 模型名称 + 一句话总结 |
 | 来源链接 | 推荐 | 指向 sources/ 下的 md 文件 |
+
+补充约束：
+- 书籍碰撞卡：头部必须显式展示书籍来源标签
+- 多书碰撞卡：按来源顺序展示多个 `book-badge`
+- 灵感卡：头部主题标签必须可参与筛选
+- 同一张卡中不重复展示同语义标签
 
 ---
 
