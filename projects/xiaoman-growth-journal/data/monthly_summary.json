@@ -5,8 +5,16 @@
   "title": "小满月报",
   "hero_tagline": "把这个月积累下来的变化整理成一张完整切面。",
   "period_caption": "本月",
-  "summary": "2026-04共记录 4 条，累计 4 个磁贴。",
+  "summary": "2026-04共记录 5 条，累计 5 个磁贴。",
   "items": [
+    {
+      "id": "ai-1775982942000-5",
+      "type": "magnet-moment",
+      "description": "小满今天问我爸爸什么时候可以请假带我出去玩啊其实今天是周日放假因为要出去",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775982942000
+    },
     {
       "id": "ai-1775895659000-4",
       "type": "magnet-moment",
@@ -42,6 +50,14 @@
   ],
   "highlights": [
     {
+      "id": "ai-1775982942000-5",
+      "type": "magnet-moment",
+      "description": "小满今天问我爸爸什么时候可以请假带我出去玩啊其实今天是周日放假因为要出去",
+      "amount": 1,
+      "source": "xiaogpt-local",
+      "timestamp": 1775982942000
+    },
+    {
       "id": "ai-1775895659000-4",
       "type": "magnet-moment",
       "description": "今天小满自己收拾了玩具转了几天",
@@ -75,6 +91,21 @@
     }
   ],
   "timeline": [
+    {
+      "date": "2026-04-12",
+      "count": 1,
+      "magnet_total": 1,
+      "items": [
+        {
+          "id": "ai-1775982942000-5",
+          "type": "magnet-moment",
+          "description": "小满今天问我爸爸什么时候可以请假带我出去玩啊其实今天是周日放假因为要出去",
+          "amount": 1,
+          "source": "xiaogpt-local",
+          "timestamp": 1775982942000
+        }
+      ]
+    },
     {
       "date": "2026-04-11",
       "count": 1,
@@ -137,19 +168,19 @@
     }
   ],
   "stats": {
-    "count": 4,
-    "magnet_total": 4,
+    "count": 5,
+    "magnet_total": 5,
     "type_breakdown": {
-      "magnet-moment": 4
+      "magnet-moment": 5
     },
-    "active_days": 4,
+    "active_days": 5,
     "average_magnets": 1.0
   },
   "latest_raw": {
-    "happened_at": "2026-04-10 22:15:57",
-    "source_file": "2026-04-10.md",
-    "query": "开灯",
-    "answer": "小事儿。"
+    "happened_at": "2026-04-11 19:04:28",
+    "source_file": "2026-04-11.md",
+    "query": "明天温度",
+    "answer": "上海普陀明天13度到17度，有些冷。"
   },
-  "generated_at": "2026-04-11T23:00:41"
+  "generated_at": "2026-04-12T23:00:41"
 }
