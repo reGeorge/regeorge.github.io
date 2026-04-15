@@ -492,6 +492,8 @@
             top: 14px;
             right: 14px;
             z-index: 20;
+            display: flex;
+            gap: 6px;
         }
         .card-shot-btn {
             appearance: none;
@@ -4033,6 +4035,7 @@
         const CARD_SELECTOR = '.insight-card';
         const SEGMENT_RATIO = 9 / 16;
         const SCALE = Math.min(window.devicePixelRatio || 2, 2);
+        const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
 
         function sanitizeFileName(name) {
             return (name || 'card').replace(/[\\/:*?"<>|]/g, '').replace(/\s+/g, '-').slice(0, 80);
@@ -4122,16 +4125,80 @@
                 if (details && !wasOpen) details.open = false;
             }
         }
+        function normalizeText(text) {
+            return (text || '').replace(/\n{3,}/g, '\n\n').replace(/[ \t]+\n/g, '\n').replace(/\u00A0/g, ' ').trim();
+        }
+        function textFrom(el) { return el ? normalizeText(el.innerText) : ''; }
+        function esc(t) { return (t || '').replace(/\\/g, '\\\\'); }
+
+        function buildMarkdown(card) {
+            const lines = [];
+            const title = textFrom(card.querySelector('.tag'));
+            const summary = textFrom(card.querySelector('.core-text'));
+            const note = textFrom(card.querySelector('.philosophy-note'));
+            const srcA = card.querySelector('.source-link a');
+            const srcText = srcA ? normalizeText(srcA.innerText) : '';
+            const srcHref = srcA ? srcA.getAttribute('href') : '';
+
+            if (title) { lines.push(`# ${esc(title)}`, ''); }
+            if (summary) { lines.push(`> ${esc(summary)}`, ''); }
+
+            card.querySelectorAll('.process-section').forEach(sec => {
+                const h = textFrom(sec.querySelector('h4'));
+                if (h) lines.push(`## ${esc(h)}`);
+                sec.querySelectorAll('p').forEach(p => { const t = textFrom(p); if (t) { lines.push(esc(t)); lines.push(''); } });
+                const db = sec.querySelector('.dialogue-block');
+                if (db) db.querySelectorAll('.q, .a').forEach(q => { const t = textFrom(q); if (t) lines.push(esc(t)); });
+                const aha = sec.querySelector('.aha-block p');
+                if (aha) { const t = textFrom(aha); if (t) { lines.push(''); lines.push(esc(t)); lines.push(''); } }
+                const noises = sec.querySelectorAll('.noise');
+                noises.forEach(n => { const t = textFrom(n); if (t) lines.push(`- ${esc(t)}`); });
+                if (noises.length) lines.push('');
+                const fl = sec.querySelector('.focus-lens');
+                if (fl) { const t = textFrom(fl); if (t) { lines.push(esc(t)); lines.push(''); } }
+                sec.querySelectorAll('.action-item').forEach(a => { const t = textFrom(a); if (t) lines.push(`- ${esc(t)}`); });
+                sec.querySelectorAll('.migration-item').forEach(m => { const t = textFrom(m); if (t) lines.push(`- ${esc(t)}`); });
+            });
+            if (note) { lines.push('## 哲学注释', esc(note), ''); }
+            if (srcText || srcHref) { lines.push('## 来源'); lines.push(srcHref ? `[${esc(srcText)}](${srcHref})` : esc(srcText)); lines.push(''); }
+            return normalizeText(lines.join('\n'));
+        }
+
+        async function copyCard(card, button) {
+            try {
+                button.disabled = true;
+                button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                const md = buildMarkdown(card);
+                await navigator.clipboard.writeText(md);
+                button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                setTimeout(() => {
+                    button.innerHTML = copySvg; button.disabled = false;
+                }, 1200);
+            } catch (err) {
+                console.error(err);
+                button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15" stroke-linecap="round"/></svg>';
+                setTimeout(() => { button.innerHTML = copySvg; button.disabled = false; }, 1500);
+            }
+        }
+
         function injectButtons() {
             const downloadSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>';
             document.querySelectorAll(CARD_SELECTOR).forEach((card, index) => {
                 if (card.querySelector('.card-tools')) return;
                 const tools = document.createElement('div'); tools.className = 'card-tools';
-                const btn = document.createElement('button');
-                btn.className = 'card-shot-btn'; btn.type = 'button';
-                btn.innerHTML = downloadSvg;
-                btn.addEventListener('click', () => captureCard(card, btn, index));
-                tools.appendChild(btn); card.appendChild(tools);
+                const dlBtn = document.createElement('button');
+                dlBtn.className = 'card-shot-btn'; dlBtn.type = 'button';
+                dlBtn.innerHTML = downloadSvg;
+                dlBtn.addEventListener('click', () => captureCard(card, dlBtn, index));
+                tools.appendChild(dlBtn);
+
+                const cpBtn = document.createElement('button');
+                cpBtn.className = 'card-shot-btn'; cpBtn.type = 'button';
+                cpBtn.innerHTML = copySvg;
+                cpBtn.addEventListener('click', () => copyCard(card, cpBtn));
+                tools.appendChild(cpBtn);
+
+                card.appendChild(tools);
             });
         }
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectButtons);
