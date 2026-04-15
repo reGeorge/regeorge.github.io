@@ -4043,24 +4043,43 @@
         }
         function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
         function canvasToBlob(canvas) { return new Promise(r => canvas.toBlob(r, 'image/png')); }
+        function isMobile() { return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); }
+
         function triggerDownload(blob, filename) {
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = filename;
-            document.body.appendChild(a); a.click(); a.remove();
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            if (isMobile()) {
+                const img = new Image();
+                img.src = url;
+                img.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:auto;z-index:99999;background:#fff;';
+                img.alt = '长按图片保存，文件名: ' + filename;
+                document.body.appendChild(img);
+                img.addEventListener('click', () => { document.body.removeChild(img); URL.revokeObjectURL(url); });
+                setTimeout(() => { document.body.removeChild(img); URL.revokeObjectURL(url); }, 15000);
+            } else {
+                const a = document.createElement('a');
+                a.href = url; a.download = filename;
+                document.body.appendChild(a); a.click(); a.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            }
         }
         async function renderCard(card) {
             card.classList.add('capture-mode');
-            const computedBg = getComputedStyle(card).backgroundColor;
-            const bgColor = (computedBg && computedBg !== 'rgba(0, 0, 0, 0)' && computedBg !== 'transparent')
-                ? computedBg : '#fafaf9';
             const canvas = await html2canvas(card, {
-                backgroundColor: bgColor,
+                backgroundColor: '#F9F8F6',
                 scale: SCALE, useCORS: true, logging: false,
                 scrollX: 0, scrollY: -window.scrollY,
                 windowWidth: document.documentElement.scrollWidth,
-                windowHeight: document.documentElement.scrollHeight
+                windowHeight: document.documentElement.scrollHeight,
+                onclone: function(clonedDoc) {
+                    const clonedCard = clonedDoc.querySelector('.insight-card.capture-mode');
+                    if (clonedCard) {
+                        clonedCard.style.backgroundColor = '#F9F8F6';
+                        clonedCard.style.background = '#F9F8F6';
+                    }
+                    clonedDoc.querySelectorAll('.process-section, .philosophy-note, .source-link, .core-text').forEach(el => {
+                        el.style.backgroundColor = '#F9F8F6';
+                    });
+                }
             });
             card.classList.remove('capture-mode');
             return canvas;
@@ -4082,7 +4101,7 @@
                 ctx.drawImage(sourceCanvas, 0, y, segWidth, currentHeight, 0, 0, segWidth, currentHeight);
                 const blob = await canvasToBlob(segCanvas);
                 triggerDownload(blob, `${baseName}-16x9-part-${String(index).padStart(2, '0')}.png`);
-                await wait(300);
+                await wait(isMobile() ? 1500 : 300);
                 y += segHeight; index++;
             }
         }
