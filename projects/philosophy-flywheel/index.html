@@ -486,6 +486,45 @@
             summary::after,
             details[open] summary::after { display: none; }
         }
+
+        .card-tools {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: flex;
+            gap: 8px;
+            z-index: 20;
+        }
+        .card-shot-btn {
+            appearance: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--claude-sub);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.78rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            backdrop-filter: blur(6px);
+        }
+        .card-shot-btn:hover {
+            color: var(--accent);
+            border-color: rgba(217, 119, 87, 0.24);
+            background: #fff;
+            transform: translateY(-1px);
+        }
+        .card-shot-btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+            transform: none;
+        }
+        .capture-mode .card-tools { display: none !important; }
+        .capture-mode .source-link { display: none !important; }
+        .capture-mode { transform: none !important; box-shadow: none !important; }
+        .insight-card { position: relative; }
+        .card-header { padding-right: 110px !important; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -3987,6 +4026,94 @@
             injectModelTags();
             applyFilter("all");
         })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+    (function () {
+        const CARD_SELECTOR = '.insight-card';
+        const SEGMENT_RATIO = 16 / 9;
+        const SCALE = Math.min(window.devicePixelRatio || 2, 2);
+
+        function sanitizeFileName(name) {
+            return (name || 'card').replace(/[\\/:*?"<>|]/g, '').replace(/\s+/g, '-').slice(0, 80);
+        }
+        function getCardTitle(card, index) {
+            const tag = card.querySelector('.tag');
+            return sanitizeFileName(tag ? tag.textContent.trim() : `card-${index + 1}`);
+        }
+        function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+        function canvasToBlob(canvas) { return new Promise(r => canvas.toBlob(r, 'image/png')); }
+        function triggerDownload(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+        async function renderCard(card) {
+            card.classList.add('capture-mode');
+            const canvas = await html2canvas(card, {
+                backgroundColor: null, scale: SCALE, useCORS: true, logging: false,
+                scrollX: 0, scrollY: -window.scrollY,
+                windowWidth: document.documentElement.scrollWidth,
+                windowHeight: document.documentElement.scrollHeight
+            });
+            card.classList.remove('capture-mode');
+            return canvas;
+        }
+        async function downloadFullShot(canvas, baseName) {
+            const blob = await canvasToBlob(canvas);
+            triggerDownload(blob, `${baseName}-full.png`);
+        }
+        async function downloadSegmentShots(sourceCanvas, baseName) {
+            const segWidth = sourceCanvas.width;
+            const segHeight = Math.round(segWidth / SEGMENT_RATIO);
+            const totalHeight = sourceCanvas.height;
+            let index = 1, y = 0;
+            while (y < totalHeight) {
+                const currentHeight = Math.min(segHeight, totalHeight - y);
+                const segCanvas = document.createElement('canvas');
+                segCanvas.width = segWidth; segCanvas.height = currentHeight;
+                const ctx = segCanvas.getContext('2d');
+                ctx.drawImage(sourceCanvas, 0, y, segWidth, currentHeight, 0, 0, segWidth, currentHeight);
+                const blob = await canvasToBlob(segCanvas);
+                triggerDownload(blob, `${baseName}-16x9-part-${String(index).padStart(2, '0')}.png`);
+                y += segHeight; index++;
+            }
+        }
+        async function captureCard(card, button, index) {
+            const details = card.querySelector('details');
+            const wasOpen = details ? details.open : false;
+            try {
+                button.disabled = true; button.textContent = '生成中...';
+                if (details && !details.open) { details.open = true; await wait(250); }
+                await wait(120);
+                const canvas = await renderCard(card);
+                const baseName = getCardTitle(card, index);
+                await downloadFullShot(canvas, baseName);
+                await downloadSegmentShots(canvas, baseName);
+                button.textContent = '已下载';
+                setTimeout(() => { button.textContent = '下载截图'; button.disabled = false; }, 1200);
+            } catch (err) {
+                console.error(err); button.textContent = '下载失败';
+                setTimeout(() => { button.textContent = '下载截图'; button.disabled = false; }, 1500);
+            } finally {
+                if (details && !wasOpen) details.open = false;
+            }
+        }
+        function injectButtons() {
+            document.querySelectorAll(CARD_SELECTOR).forEach((card, index) => {
+                if (card.querySelector('.card-tools')) return;
+                const tools = document.createElement('div'); tools.className = 'card-tools';
+                const btn = document.createElement('button');
+                btn.className = 'card-shot-btn'; btn.type = 'button'; btn.textContent = '下载截图';
+                btn.addEventListener('click', () => captureCard(card, btn, index));
+                tools.appendChild(btn); card.appendChild(tools);
+            });
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectButtons);
+        else injectButtons();
+    })();
     </script>
 </body>
 </html>

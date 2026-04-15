@@ -1,62 +1,26 @@
 {
   "kind": "daily",
-  "label": "2026-04-12",
+  "label": "2026-04-14",
   "subject": "小满",
   "title": "小满日报",
   "hero_tagline": "聚焦今天新增的记录和当下状态。",
   "period_caption": "今天",
-  "summary": "2026-04-12共记录 1 条，累计 1 个磁贴。",
-  "items": [
-    {
-      "id": "ai-1775982942000-5",
-      "type": "magnet-moment",
-      "description": "小满今天问我爸爸什么时候可以请假带我出去玩啊其实今天是周日放假因为要出去",
-      "amount": 1,
-      "source": "xiaogpt-local",
-      "timestamp": 1775982942000
-    }
-  ],
-  "highlights": [
-    {
-      "id": "ai-1775982942000-5",
-      "type": "magnet-moment",
-      "description": "小满今天问我爸爸什么时候可以请假带我出去玩啊其实今天是周日放假因为要出去",
-      "amount": 1,
-      "source": "xiaogpt-local",
-      "timestamp": 1775982942000
-    }
-  ],
-  "timeline": [
-    {
-      "date": "2026-04-12",
-      "count": 1,
-      "magnet_total": 1,
-      "items": [
-        {
-          "id": "ai-1775982942000-5",
-          "type": "magnet-moment",
-          "description": "小满今天问我爸爸什么时候可以请假带我出去玩啊其实今天是周日放假因为要出去",
-          "amount": 1,
-          "source": "xiaogpt-local",
-          "timestamp": 1775982942000
-        }
-      ]
-    }
-  ],
+  "summary": "2026-04-14暂无新的相关记录。",
+  "items": [],
+  "highlights": [],
+  "timeline": [],
   "stats": {
-    "count": 1,
-    "magnet_total": 1,
-    "type_breakdown": {
-      "magnet-moment": 1
-    },
-    "active_days": 1,
-    "average_magnets": 1.0
+    "count": 0,
+    "magnet_total": 0,
+    "type_breakdown": {},
+    "active_days": 0,
+    "average_magnets": 0
   },
   "latest_raw": {
-    "happened_at": "2026-04-11 19:04:28",
-    "source_file": "2026-04-11.md",
-    "query": "明天温度",
-    "answer": "上海普陀明天13度到17度，有些冷。"
+    "happened_at": "2026-04-13 22:14:47",
+    "source_file": "2026-04-13.md",
+    "query": "开灯",
+    "answer": "开啦。"
   },
-  "generated_at": "2026-04-12T23:00:41"
+  "generated_at": "2026-04-14T23:00:41"
 }

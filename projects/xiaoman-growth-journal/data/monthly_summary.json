@@ -177,10 +177,10 @@
     "average_magnets": 1.0
   },
   "latest_raw": {
-    "happened_at": "2026-04-11 19:04:28",
-    "source_file": "2026-04-11.md",
-    "query": "明天温度",
-    "answer": "上海普陀明天13度到17度，有些冷。"
+    "happened_at": "2026-04-13 22:14:47",
+    "source_file": "2026-04-13.md",
+    "query": "开灯",
+    "answer": "开啦。"
   },
-  "generated_at": "2026-04-12T23:00:41"
+  "generated_at": "2026-04-14T23:00:41"
 }
