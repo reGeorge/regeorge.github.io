@@ -1,11 +1,11 @@
 {
   "kind": "daily",
-  "label": "2026-04-14",
+  "label": "2026-04-16",
   "subject": "小满",
   "title": "小满日报",
   "hero_tagline": "聚焦今天新增的记录和当下状态。",
   "period_caption": "今天",
-  "summary": "2026-04-14暂无新的相关记录。",
+  "summary": "2026-04-16暂无新的相关记录。",
   "items": [],
   "highlights": [],
   "timeline": [],
@@ -17,10 +17,10 @@
     "average_magnets": 0
   },
   "latest_raw": {
-    "happened_at": "2026-04-13 22:14:47",
-    "source_file": "2026-04-13.md",
-    "query": "开灯",
-    "answer": "开啦。"
+    "happened_at": "2026-04-15 21:36:21",
+    "source_file": "2026-04-15.md",
+    "query": "明天天气",
+    "answer": "上海普陀明天小雨，记得带伞，15度到20度，东风2级，空气质量非常好。"
   },
-  "generated_at": "2026-04-14T23:00:41"
+  "generated_at": "2026-04-16T23:00:41"
 }
