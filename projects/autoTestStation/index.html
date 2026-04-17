@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoTest Station | 构建思路演示</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple-start: #7c3aed;
+      --purple-end: #a78bfa;
+      --blue-start: #2563eb;
+      --blue-end: #60a5fa;
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #64748b;
+      --border: rgba(0, 0, 0, 0.06);
+      --shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      padding: 0 36px;
+      background: rgba(250, 250, 250, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand,
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .top-nav a:hover { color: var(--text); }
+
+    .hero,
+    .section {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding-left: 36px;
+      padding-right: 36px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .hero.visible,
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      padding-top: 128px;
+      padding-bottom: 82px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 14px 4px 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--purple-start), var(--blue-start));
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--purple-start), var(--blue-start));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.06rem, 2.4vw, 1.42rem);
+      color: var(--text-secondary);
+      max-width: 860px;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .hero-visual {
+      margin-top: 54px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+
+    .float-deco {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.14;
+      animation: floatY 4.2s ease-in-out infinite;
+    }
+
+    .float-deco:nth-child(1) { top: 16%; right: 9%; }
+    .float-deco:nth-child(2) { top: 54%; right: 22%; animation-delay: 1s; }
+    .float-deco:nth-child(3) { bottom: 14%; left: 10%; animation-delay: 2s; }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+    }
+
+    .station-window {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .window-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.92), rgba(37, 99, 235, 0.92));
+      color: #fff;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .window-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .window-body {
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .mini-sidebar,
+    .mini-main,
+    .mini-card,
+    .stage-detail,
+    .roadmap-detail,
+    .demo-note {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .mini-sidebar {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .mini-item.active {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(37, 99, 235, 0.12));
+      color: var(--text);
+      font-weight: 700;
+      border-color: rgba(124, 58, 237, 0.18);
+    }
+
+    .mini-main {
+      padding: 16px;
+    }
+
+    .mini-main h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .mini-copy {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini-card {
+      padding: 12px;
+    }
+
+    .mini-card .label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .mini-card .value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .section {
+      padding-top: 84px;
+      padding-bottom: 30px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--purple-start);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .section-copy {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 820px;
+      margin-bottom: 34px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .bento-card,
+    .demo-container,
+    .timeline-panel,
+    .roadmap-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .bento-card {
+      padding: 28px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
+    }
+
+    .bento-card.wide { grid-column: 1 / -1; }
+
+    .bento-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(37, 99, 235, 0.12));
+    }
+
+    .bento-card h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .bento-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .bento-tags,
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .bento-tag,
+    .detail-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .bento-tag.purple,
+    .detail-tag.purple { background: #f3e8ff; color: var(--purple-start); }
+    .bento-tag.blue,
+    .detail-tag.blue { background: #dbeafe; color: var(--blue-start); }
+    .bento-tag.green,
+    .detail-tag.green { background: #dcfce7; color: #16a34a; }
+
+    .demo-container {
+      margin-top: 18px;
+      overflow: hidden;
+    }
+
+    .demo-header {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, var(--purple-start), var(--blue-start));
+      color: #fff;
+    }
+
+    .demo-header h3 {
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .demo-meta {
+      font-size: 0.78rem;
+      opacity: 0.86;
+    }
+
+    .demo-body {
+      padding: 24px;
+    }
+
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px 16px;
+      margin-bottom: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .step-row:hover {
+      border-color: rgba(124, 58, 237, 0.2);
+      background: #faf5ff;
+    }
+
+    .step-row.active {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.09), rgba(37, 99, 235, 0.09));
+      border-color: rgba(124, 58, 237, 0.2);
+    }
+
+    .step-emoji {
+      font-size: 1.3rem;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .step-main {
+      flex: 1;
+    }
+
+    .step-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .step-pill {
+      flex-shrink: 0;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: var(--blue-start);
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .demo-detail {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 16px;
+    }
+
+    .demo-note,
+    .code-box {
+      padding: 18px;
+    }
+
+    .demo-note h4,
+    .code-box h4,
+    .stage-detail h4,
+    .roadmap-detail h4 {
+      font-size: 0.96rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .note-list,
+    .roadmap-list,
+    .detail-list {
+      padding-left: 18px;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    .code-box {
+      background: #111827;
+      color: #eef2ff;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+    }
+
+    .code-box pre {
+      white-space: pre-wrap;
+      font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .timeline-layout,
+    .roadmap-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+    }
+
+    .timeline-panel,
+    .roadmap-container {
+      padding: 28px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 34px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(to bottom, var(--purple-start), var(--blue-start));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      cursor: pointer;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -34px;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--purple-start);
+      background: #fff;
+    }
+
+    .timeline-item[data-node-id="review"] .timeline-dot { box-shadow: 0 0 0 2px var(--blue-start); }
+    .timeline-item[data-node-id="presentation"] .timeline-dot { box-shadow: 0 0 0 2px #8b5cf6; }
+
+    .timeline-version {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--purple-start);
+      margin-bottom: 4px;
+    }
+
+    .timeline-item[data-node-id="review"] .timeline-version { color: var(--blue-start); }
+    .timeline-item[data-node-id="presentation"] .timeline-version { color: #8b5cf6; }
+
+    .timeline-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline-desc {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .timeline-item.active .timeline-title {
+      color: var(--text);
+    }
+
+    .stage-detail,
+    .roadmap-detail {
+      padding: 22px;
+      position: sticky;
+      top: 78px;
+      align-self: start;
+      box-shadow: var(--shadow);
+    }
+
+    .roadmap-tabs {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .roadmap-button {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font: inherit;
+      color: inherit;
+    }
+
+    .roadmap-button:hover,
+    .roadmap-button.active {
+      background: #faf5ff;
+      border-color: rgba(124, 58, 237, 0.18);
+    }
+
+    .roadmap-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .roadmap-copy {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .footer {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 56px 36px 80px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      .window-body,
+      .demo-detail,
+      .timeline-layout,
+      .roadmap-layout,
+      .mini-grid,
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-nav {
+        padding: 0 20px;
+      }
+
+      .hero,
+      .section,
+      .footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .stage-detail,
+      .roadmap-detail {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <a href="../../index.html">reGeorge</a>
+      <a href="#hero">AutoTest Station</a>
+    </div>
+    <div class="nav-links">
+      <a href="#flow">打通链路</a>
+      <a href="#lifecycle">生命周期</a>
+      <a href="#roadmap">后续方向</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="hero">
+    <div class="hero-badge"><span>🧩</span><span>Station Build Story</span></div>
+    <h1>自动化工作站构建思路</h1>
+    <div class="hero-subtitle">交互演示：上游是 caseHelper skills，中间是生命周期节点，下游是后续打磨方向。</div>
+    <div class="tech-stack">
+      <div class="tech-tag">caseHelper skills</div>
+      <div class="tech-tag">Structured Data</div>
+      <div class="tech-tag">Automation Platform</div>
+      <div class="tech-tag">Lifecycle Review</div>
+      <div class="tech-tag">Station Dashboard</div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="float-deco">🧠</div>
+      <div class="float-deco">⚙️</div>
+      <div class="float-deco">📎</div>
+      <div class="station-window">
+        <div class="window-top">
+          <div class="window-dots"><span></span><span></span><span></span></div>
+          <div class="window-title">AutoTest Station / Demo Snapshot</div>
+          <div class="demo-meta">skills -> review -> dashboard</div>
+        </div>
+        <div class="window-body">
+          <div class="mini-sidebar">
+            <div class="mini-item active">需求澄清</div>
+            <div class="mini-item">测试设计</div>
+            <div class="mini-item">自动化编写</div>
+            <div class="mini-item">PDT 评审</div>
+          </div>
+          <div class="mini-main">
+            <h3>结构化信息不是终点，而是平台写入和评审呈现的中间层。</h3>
+            <div class="mini-copy">同一份结构化数据，既能驱动平台建用例，也能驱动站内的生命周期卡点、阶段说明和覆盖率看板。</div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <div class="label">输入</div>
+                <div class="value">文档 / CSV / meta / 外部依赖</div>
+              </div>
+              <div class="mini-card">
+                <div class="label">沉淀</div>
+                <div class="value">skills + services + lifecycle fields</div>
+              </div>
+              <div class="mini-card">
+                <div class="label">输出</div>
+                <div class="value">caseId / review / dashboard</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="flow">
+    <div class="section-label">Part 01</div>
+    <div class="section-title">caseHelper 的 skills，怎样把结构化数据一路送到自动化平台</div>
+    <div class="section-copy">重点不是“有脚本能跑”，而是把原始需求、CSV、人工判断和平台回写之间的关系做成稳定链路。这里保留 3 个关键层：入口规整、结构化抽象、平台写入闭环。</div>
+
+    <div class="bento-grid">
+      <div class="bento-card">
+        <div class="bento-icon">🗂️</div>
+        <h3>入口先规整</h3>
+        <p>从 workstream、版本目录、meta.json、主 CSV、关联文档开始，不让信息散在临时说明里。skills 和 SOP 先做门禁，再进入后续自动化流程。</p>
+        <div class="bento-tags">
+          <div class="bento-tag purple">Phase Gate</div>
+          <div class="bento-tag blue">Versioned Workspace</div>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div class="bento-icon">🧱</div>
+        <h3>原始材料再结构化</h3>
+        <p>文档里的语义、CSV 的行数据、人工补充备注、已有 caseId 映射，会被折叠成统一字段模型，后续动作不再直接消费杂乱文本。</p>
+        <div class="bento-tags">
+          <div class="bento-tag purple">Structured Rows</div>
+          <div class="bento-tag green">Reusable Skills</div>
+        </div>
+      </div>
+
+      <div class="bento-card wide">
+        <div class="bento-icon">🚀</div>
+        <h3>结构化结果再进入平台，并回写到需求视角</h3>
+        <p>平台侧动作包括创建用例、更新步骤、补充 caseId 和审核状态。真正有价值的地方在于：平台结果会重新回到工作站，让覆盖率、剩余缺口、不可自动化归因重新变得可见。</p>
+        <div class="bento-tags">
+          <div class="bento-tag blue">Create / Sync / Verify</div>
+          <div class="bento-tag purple">Writeback Loop</div>
+          <div class="bento-tag green">Dashboard Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-container">
+      <div class="demo-header">
+        <h3>交互示意：点击链路步骤查看关键沉淀</h3>
+        <div class="demo-meta">精简版构建逻辑</div>
+      </div>
+      <div class="demo-body">
+        <div id="flowSteps"></div>
+        <div class="demo-detail">
+          <div class="demo-note">
+            <h4 id="flowDetailTitle">加载中</h4>
+            <ul class="note-list" id="flowDetailList"></ul>
+          </div>
+          <div class="code-box">
+            <h4>结构示意</h4>
+            <pre id="flowDetailCode"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lifecycle">
+    <div class="section-label">Part 02</div>
+    <div class="section-title">自动化工作站，固化自动化生命周期里的输入、评审、呈现</div>
+    <div class="section-copy">这一部分强调的不是“页面很多”，而是同一份需求数据在不同阶段怎么被输入、被审阅、再被呈现。工作站的核心作用是把这些节点固定下来，而不是每次重新组织一次信息。</div>
+
+    <div class="timeline-layout">
+      <div class="timeline-panel">
+        <div class="timeline" id="timelineList"></div>
+      </div>
+      <div class="stage-detail">
+        <h4 id="stageTitle">加载中</h4>
+        <div class="section-copy" id="stageCopy" style="margin-bottom: 12px; font-size: 0.92rem;"></div>
+        <div class="detail-tags" id="stageTags"></div>
+        <h4 style="margin-top: 18px;">关键字段</h4>
+        <ul class="detail-list" id="stageFields"></ul>
+        <h4 style="margin-top: 18px;">为什么固定这个节点</h4>
+        <ul class="detail-list" id="stageReasons"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="roadmap">
+    <div class="section-label">Part 03</div>
+    <div class="section-title">后续打磨方向，只保留最值得继续做的几件事</div>
+    <div class="section-copy">这里不展开成完整 roadmap，只保留 3 个最容易讲清楚价值的方向：平台回写一致性、评审模板产品化、多版本规模化视图。</div>
+
+    <div class="roadmap-layout">
+      <div class="roadmap-container">
+        <div class="roadmap-tabs" id="roadmapTabs"></div>
+      </div>
+      <div class="roadmap-detail">
+        <h4 id="roadmapTitle">加载中</h4>
+        <div class="section-copy" id="roadmapCopy" style="margin-bottom: 12px; font-size: 0.92rem;"></div>
+        <div class="detail-tags" id="roadmapTags"></div>
+        <h4 style="margin-top: 18px;">简要落点</h4>
+        <ul class="detail-list" id="roadmapPoints"></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    这个 demo 面向“解释思路”而不是“替代产品”。如果后续继续打磨，可以把这里的叙事层保留，把真实数据源和真实交互逐步替换进去。
+  </footer>
+
+  <script>
+    var flowItems = [
+      {
+        id: "gate",
+        emoji: "🧭",
+        name: "需求入口先过门禁",
+        tag: "SOP",
+        desc: "先判断版本目录、文档入口、CSV 来源、是否允许批量建用例。",
+        details: [
+          "把 workstream / meta.json / 版本目录先固定住，避免后面回写找不到落点。",
+          "先做样本校验和前置门禁，再决定是否走批量平台写入。",
+          "skills 的第一层价值，是先把入口规整，而不是直接执行。"
+        ],
+        code: [
+          "meta.json -> Phase0 SOP",
+          "          -> versioned workspace",
+          "          -> source CSV / docs check"
+        ].join("\n")
+      },
+      {
+        id: "structure",
+        emoji: "🧩",
+        name: "原始内容被折叠成结构化字段",
+        tag: "Model",
+        desc: "把需求文本、CSV 行、人工判断、已有 caseId 合成统一数据对象。",
+        details: [
+          "平台动作不直接消费自然语言，而是消费结构化字段。",
+          "例如 mode、review_status、dependency_scope、automation_focus 等字段会服务多个阶段。",
+          "skills 的第二层价值，是让重复判断变成可复用能力。"
+        ],
+        code: [
+          "rows[] = {",
+          "  source_key, mode, case_id,",
+          "  note, review_status, dependency_scope",
+          "}"
+        ].join("\n")
+      },
+      {
+        id: "platform",
+        emoji: "🚀",
+        name: "结构化结果进入自动化平台",
+        tag: "Write",
+        desc: "创建用例、补步骤、回写 caseId，再同步审核结果和覆盖进度。",
+        details: [
+          "先小样本、再批量，是平台写入的基本安全策略。",
+          "平台成功与否不是终点，结果还要回到站内用于后续评审和呈现。",
+          "这样需求视角和平台视角不会长期分离。"
+        ],
+        code: [
+          "skills -> services -> platform_client",
+          "                  -> create / update cases",
+          "                  -> writeback caseId / status"
+        ].join("\n")
+      }
+    ];
+
+    var lifecycleItems = [
+      {
+        id: "input",
+        version: "Input",
+        title: "输入节点",
+        desc: "把业务链路、上下游依赖、环境约束、测试边界录入成可复用字段，而不是留在口头同步里。",
+        copy: "工作站首先要承接输入。没有稳定输入字段，后面的自动化范围确认、平台创建和阶段评审都会变成一次性沟通。",
+        tags: ["mainline_focus", "dependency_scope", "automation_focus"],
+        fields: [
+          "核心业务流程与主要分支",
+          "上下游接口、环境约束、数据前置条件",
+          "自动化边界、暂不纳入原因、执行约束"
+        ],
+        reasons: [
+          "后续所有评审都需要基于这层事实，而不是重新追问。",
+          "输入字段一旦固定，模板和服务才能积累复用价值。"
+        ]
+      },
+      {
+        id: "review",
+        version: "Review",
+        title: "评审节点",
+        desc: "把“是否能自动化、为什么不能、平台是否建齐”这些问题收敛到明确评审位。",
+        copy: "工作站的第二个价值，是让评审建立在结构化事实之上。平台 case 映射是否完整、不可自动化原因是否清楚，都应该有固定查看位置。",
+        tags: ["manual_auto_split", "non_automatable_classified", "platform_cases_created"],
+        fields: [
+          "手工 / 自动化划分依据",
+          "不可自动化原因分类与归因",
+          "caseId 映射与平台创建进度"
+        ],
+        reasons: [
+          "把评审和事实绑定，减少模糊描述。",
+          "当覆盖不足时，可以直接看到卡点是输入缺失还是平台动作未完成。"
+        ]
+      },
+      {
+        id: "presentation",
+        version: "Present",
+        title: "呈现节点",
+        desc: "最终把覆盖率、手工积压、下一步待办、版本归属和文档入口统一回到需求看板。",
+        copy: "呈现不是单纯做一个 dashboard，而是把前面输入和评审的结果压缩成不同角色都能快速理解的视图。",
+        tags: ["overview", "notes", "lifecycle"],
+        fields: [
+          "覆盖率 / remaining / mapped caseId",
+          "阶段进展说明 / next_todos / CI 状态",
+          "版本归属与文档索引"
+        ],
+        reasons: [
+          "同一份结构化数据服务研发、测试、管理三个视角。",
+          "减少反复汇报，让下一轮输入直接在已有事实基础上继续。"
+        ]
+      }
+    ];
+
+    var roadmapItems = [
+      {
+        id: "loop",
+        title: "平台回写闭环更稳定",
+        copy: "继续压实平台 case 创建、执行结果、失败归因回写到需求视角的一致性，减少人工同步。",
+        tags: ["高优先", "闭环", "一致性"],
+        points: [
+          "统一 CSV、meta、dashboard 和平台状态的口径。",
+          "补齐失败重试、样本验证、批量执行的稳定机制。"
+        ]
+      },
+      {
+        id: "template",
+        title: "评审模板更产品化",
+        copy: "把输入字段和追问模板做成更清晰的引导，让使用者像填报而不是自由组织语言。",
+        tags: ["输入体验", "标准化"],
+        points: [
+          "按阶段提供默认提示语和示例。",
+          "让 dependency_scope、automation_focus 等字段更容易被完整填写。"
+        ]
+      },
+      {
+        id: "version",
+        title: "多版本视图再增强",
+        copy: "版本目录能力已经有基础，后续可以把版本维度的聚合筛选、风险对比和批量动作继续往前做。",
+        tags: ["版本管理", "规模化"],
+        points: [
+          "支持跨版本看覆盖率和风险分布。",
+          "支持版本级批量迁移、批量筛选和历史回看。"
+        ]
+      }
+    ];
+
+    var state = {
+      flowId: "gate",
+      lifecycleId: "input",
+      roadmapId: "loop"
+    };
+
+    function byId(list, id) {
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].id === id) return list[i];
+      }
+      return list[0];
+    }
+
+    function escapeHtml(value) {
+      return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;");
+    }
+
+    function renderFlow() {
+      var selected = byId(flowItems, state.flowId);
+      var container = document.getElementById("flowSteps");
+      container.innerHTML = flowItems.map(function(item) {
+        return '<div class="step-row ' + (item.id === state.flowId ? 'active' : '') + '" data-flow-id="' + item.id + '">' +
+          '<div class="step-emoji">' + item.emoji + '</div>' +
+          '<div class="step-main">' +
+            '<div class="step-name">' + escapeHtml(item.name) + '</div>' +
+            '<div class="step-desc">' + escapeHtml(item.desc) + '</div>' +
+          '</div>' +
+          '<div class="step-pill">' + escapeHtml(item.tag) + '</div>' +
+        '</div>';
+      }).join("");
+
+      document.getElementById("flowDetailTitle").textContent = selected.name;
+      document.getElementById("flowDetailList").innerHTML = selected.details.map(function(point) {
+        return '<li>' + escapeHtml(point) + '</li>';
+      }).join("");
+      document.getElementById("flowDetailCode").textContent = selected.code;
+
+      container.querySelectorAll("[data-flow-id]").forEach(function(node) {
+        node.addEventListener("click", function() {
+          state.flowId = node.dataset.flowId;
+          renderFlow();
+        });
+      });
+    }
+
+    function renderLifecycle() {
+      var selected = byId(lifecycleItems, state.lifecycleId);
+      var container = document.getElementById("timelineList");
+      container.innerHTML = lifecycleItems.map(function(item) {
+        return '<div class="timeline-item ' + (item.id === state.lifecycleId ? 'active' : '') + '" data-node-id="' + item.id + '">' +
+          '<div class="timeline-dot"></div>' +
+          '<div class="timeline-version">' + escapeHtml(item.version) + '</div>' +
+          '<div class="timeline-title">' + escapeHtml(item.title) + '</div>' +
+          '<div class="timeline-desc">' + escapeHtml(item.desc) + '</div>' +
+        '</div>';
+      }).join("");
+
+      document.getElementById("stageTitle").textContent = selected.title;
+      document.getElementById("stageCopy").textContent = selected.copy;
+      document.getElementById("stageTags").innerHTML = selected.tags.map(function(tag, index) {
+        var cls = index % 3 === 0 ? 'purple' : index % 3 === 1 ? 'blue' : 'green';
+        return '<div class="detail-tag ' + cls + '">' + escapeHtml(tag) + '</div>';
+      }).join("");
+      document.getElementById("stageFields").innerHTML = selected.fields.map(function(point) {
+        return '<li>' + escapeHtml(point) + '</li>';
+      }).join("");
+      document.getElementById("stageReasons").innerHTML = selected.reasons.map(function(point) {
+        return '<li>' + escapeHtml(point) + '</li>';
+      }).join("");
+
+      container.querySelectorAll("[data-node-id]").forEach(function(node) {
+        node.addEventListener("click", function() {
+          state.lifecycleId = node.dataset.nodeId;
+          renderLifecycle();
+        });
+      });
+    }
+
+    function renderRoadmap() {
+      var selected = byId(roadmapItems, state.roadmapId);
+      var container = document.getElementById("roadmapTabs");
+      container.innerHTML = roadmapItems.map(function(item) {
+        return '<button class="roadmap-button ' + (item.id === state.roadmapId ? 'active' : '') + '" data-roadmap-id="' + item.id + '">' +
+          '<div class="roadmap-title">' + escapeHtml(item.title) + '</div>' +
+          '<div class="roadmap-copy">' + escapeHtml(item.copy) + '</div>' +
+        '</button>';
+      }).join("");
+
+      document.getElementById("roadmapTitle").textContent = selected.title;
+      document.getElementById("roadmapCopy").textContent = selected.copy;
+      document.getElementById("roadmapTags").innerHTML = selected.tags.map(function(tag, index) {
+        var cls = index % 3 === 0 ? 'purple' : index % 3 === 1 ? 'blue' : 'green';
+        return '<div class="detail-tag ' + cls + '">' + escapeHtml(tag) + '</div>';
+      }).join("");
+      document.getElementById("roadmapPoints").innerHTML = selected.points.map(function(point) {
+        return '<li>' + escapeHtml(point) + '</li>';
+      }).join("");
+
+      container.querySelectorAll("[data-roadmap-id]").forEach(function(node) {
+        node.addEventListener("click", function() {
+          state.roadmapId = node.dataset.roadmapId;
+          renderRoadmap();
+        });
+      });
+    }
+
+    function revealSections() {
+      var sections = document.querySelectorAll('.hero, .section');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.12 });
+      sections.forEach(function(section) { observer.observe(section); });
+    }
+
+    renderFlow();
+    renderLifecycle();
+    renderRoadmap();
+    revealSections();
+  </script>
+</body>
+</html>
