@@ -8,29 +8,34 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --purple-start: #7c3aed;
-      --purple-end: #a78bfa;
-      --blue-start: #2563eb;
-      --blue-end: #60a5fa;
-      --bg: #fafafa;
-      --surface: #ffffff;
-      --text: #1a1a2e;
-      --text-secondary: #64748b;
-      --border: rgba(0, 0, 0, 0.06);
-      --shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+      --purple-start: #0f766e;
+      --purple-end: #14b8a6;
+      --blue-start: #b45309;
+      --blue-end: #d97706;
+      --bg: #f5ecdd;
+      --surface: #fffaf2;
+      --text: #2d241d;
+      --text-secondary: #6f6358;
+      --border: rgba(102, 69, 33, 0.14);
+      --shadow: 0 18px 40px rgba(51, 36, 22, 0.12);
       --radius: 18px;
       --radius-sm: 12px;
+      --heading-font: "Georgia", "Times New Roman", "Songti SC", serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
-      background: var(--bg);
+      font-family: "Segoe UI Variable Text", "Avenir Next", "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 32%),
+        radial-gradient(circle at top right, rgba(180, 83, 9, 0.12), transparent 28%),
+        linear-gradient(180deg, #f5ecdd 0%, #f0e6d8 46%, #eadfce 100%);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     a { color: inherit; }
@@ -105,15 +110,18 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.08;
+      font-family: var(--heading-font);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.12;
       margin-bottom: 14px;
-      background: linear-gradient(135deg, var(--purple-start), var(--blue-start));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text);
+    }
+
+    .section-title, .demo-header h3, .bento-card h3, .mini-main h3, .hero-visual h3 {
+      font-family: var(--heading-font);
+      letter-spacing: 0.02em;
     }
 
     .hero-subtitle {
@@ -696,14 +704,14 @@
 
   <header class="hero" id="hero">
     <div class="hero-badge"><span>🧩</span><span>Station Build Story</span></div>
-    <h1>自动化工作站构建思路</h1>
-    <div class="hero-subtitle">交互演示：上游是 caseHelper skills，中间是生命周期节点，下游是后续打磨方向。</div>
+    <h1>需求自动化工作站</h1>
+    <div class="hero-subtitle">把需求视角的输入、ATP 任务执行视角、对外汇报视角，三栏布局收到同一个工作站里。</div>
     <div class="tech-stack">
       <div class="tech-tag">caseHelper skills</div>
-      <div class="tech-tag">Structured Data</div>
-      <div class="tech-tag">Automation Platform</div>
-      <div class="tech-tag">Lifecycle Review</div>
-      <div class="tech-tag">Station Dashboard</div>
+      <div class="tech-tag">structured meta.json</div>
+      <div class="tech-tag">ATP /case/v2 + scope</div>
+      <div class="tech-tag">cascade refresh</div>
+      <div class="tech-tag">summary report</div>
     </div>
 
     <div class="hero-visual">
@@ -713,31 +721,31 @@
       <div class="station-window">
         <div class="window-top">
           <div class="window-dots"><span></span><span></span><span></span></div>
-          <div class="window-title">AutoTest Station / Demo Snapshot</div>
-          <div class="demo-meta">skills -> review -> dashboard</div>
+          <div class="window-title">需求自动化工作站 / 三栏布局快照</div>
+          <div class="demo-meta">导航 · 详情 · 报告</div>
         </div>
         <div class="window-body">
           <div class="mini-sidebar">
-            <div class="mini-item active">需求澄清</div>
-            <div class="mini-item">测试设计</div>
-            <div class="mini-item">自动化编写</div>
-            <div class="mini-item">PDT 评审</div>
+            <div class="mini-item active">基本费计费策略</div>
+            <div class="mini-item">AD对接支持LDAPs</div>
+            <div class="mini-item">认证后日志增加终端名称</div>
+            <div class="mini-item">+ 9 个需求</div>
           </div>
           <div class="mini-main">
-            <h3>结构化信息不是终点，而是平台写入和评审呈现的中间层。</h3>
-            <div class="mini-copy">同一份结构化数据，既能驱动平台建用例，也能驱动站内的生命周期卡点、阶段说明和覆盖率看板。</div>
+            <h3>左侧导航 + 中间多 tab + 右侧总结报告</h3>
+            <div class="mini-copy">三栏分别承接“看哪个需求”、“看这个需求的什么维度”、“怎么把多个需求一起对外汇报”。</div>
             <div class="mini-grid">
               <div class="mini-card">
-                <div class="label">输入</div>
-                <div class="value">文档 / CSV / meta / 外部依赖</div>
+                <div class="label">导航</div>
+                <div class="value">版本筛选 · 置顶 · 搜索</div>
               </div>
               <div class="mini-card">
-                <div class="label">沉淀</div>
-                <div class="value">skills + services + lifecycle fields</div>
+                <div class="label">详情</div>
+                <div class="value">大盘 · ATP · 用例盘点 · 卡点 · 进展</div>
               </div>
               <div class="mini-card">
-                <div class="label">输出</div>
-                <div class="value">caseId / review / dashboard</div>
+                <div class="label">报告</div>
+                <div class="value">置顶常驻 · 一键复制表格</div>
               </div>
             </div>
           </div>
@@ -748,38 +756,48 @@
 
   <section class="section" id="flow">
     <div class="section-label">Part 01</div>
-    <div class="section-title">caseHelper 的 skills，怎样把结构化数据一路送到自动化平台</div>
-    <div class="section-copy">重点不是“有脚本能跑”，而是把原始需求、CSV、人工判断和平台回写之间的关系做成稳定链路。这里保留 3 个关键层：入口规整、结构化抽象、平台写入闭环。</div>
+    <div class="section-title">从 caseHelper skills 到工作站界面：4 步把需求落到可汇报的事实</div>
+    <div class="section-copy">入口收编 → 结构化沉淀 → ATP 快照刷新 → 一键导出报告。每一步都在 meta.json / board_state.json 留痕，下一步直接在已有事实基础上继续。</div>
 
     <div class="bento-grid">
       <div class="bento-card">
-        <div class="bento-icon">🗂️</div>
-        <h3>入口先规整</h3>
-        <p>从 workstream、版本目录、meta.json、主 CSV、关联文档开始，不让信息散在临时说明里。skills 和 SOP 先做门禁，再进入后续自动化流程。</p>
+        <div class="bento-icon">�</div>
+        <h3>入口收编</h3>
+        <p>workstream 目录、meta.json、主 CSV、关联文档、ATP taskId 都在新增需求时定下来。改名、迁版本、取消托管全部走 /api/workstream/*，不动文件系统直连。</p>
         <div class="bento-tags">
-          <div class="bento-tag purple">Phase Gate</div>
-          <div class="bento-tag blue">Versioned Workspace</div>
+          <div class="bento-tag purple">Versioned Workspace</div>
+          <div class="bento-tag blue">meta.json + board_state</div>
         </div>
       </div>
 
       <div class="bento-card">
         <div class="bento-icon">🧱</div>
-        <h3>原始材料再结构化</h3>
-        <p>文档里的语义、CSV 的行数据、人工补充备注、已有 caseId 映射，会被折叠成统一字段模型，后续动作不再直接消费杂乱文本。</p>
+        <h3>结构化沉淀</h3>
+        <p>用例行、生命周期字段、ATP 绑定、CI 状态、阶段说明都折叠到同一个 workstream 对象，多个 tab 共享同一份事实，不需要为每个面板单独维护数据。</p>
         <div class="bento-tags">
-          <div class="bento-tag purple">Structured Rows</div>
-          <div class="bento-tag green">Reusable Skills</div>
+          <div class="bento-tag purple">cases / lifecycle / atp</div>
+          <div class="bento-tag green">single source of truth</div>
+        </div>
+      </div>
+
+      <div class="bento-card">
+        <div class="bento-icon">🔁</div>
+        <h3>ATP 快照</h3>
+        <p>调 /case/v2 取 pathTree，按 rootCaseId 下 1 层子目录归桶；同 taskId 的多个需求一次刷新一起更新，避免逐个点。scope_summary 与 task 全量并存。</p>
+        <div class="bento-tags">
+          <div class="bento-tag blue">scope aggregation</div>
+          <div class="bento-tag purple">cascade refresh</div>
         </div>
       </div>
 
       <div class="bento-card wide">
-        <div class="bento-icon">🚀</div>
-        <h3>结构化结果再进入平台，并回写到需求视角</h3>
-        <p>平台侧动作包括创建用例、更新步骤、补充 caseId 和审核状态。真正有价值的地方在于：平台结果会重新回到工作站，让覆盖率、剩余缺口、不可自动化归因重新变得可见。</p>
+        <div class="bento-icon">📊</div>
+        <h3>右侧总结报告，一键导出可粘贴的表格</h3>
+        <p>把跨需求的 ATP 通过率聚合成一张表，按通过率升序排，备注和负责人就地编辑。一键复制提供富文本表格、Markdown、纯文本三种格式，直接粘到飞书或邮件。</p>
         <div class="bento-tags">
-          <div class="bento-tag blue">Create / Sync / Verify</div>
-          <div class="bento-tag purple">Writeback Loop</div>
-          <div class="bento-tag green">Dashboard Ready</div>
+          <div class="bento-tag blue">pin / drawer</div>
+          <div class="bento-tag purple">copy as table</div>
+          <div class="bento-tag green">jump to ATP tab</div>
         </div>
       </div>
     </div>
@@ -807,8 +825,8 @@
 
   <section class="section" id="lifecycle">
     <div class="section-label">Part 02</div>
-    <div class="section-title">自动化工作站，固化自动化生命周期里的输入、评审、呈现</div>
-    <div class="section-copy">这一部分强调的不是“页面很多”，而是同一份需求数据在不同阶段怎么被输入、被审阅、再被呈现。工作站的核心作用是把这些节点固定下来，而不是每次重新组织一次信息。</div>
+    <div class="section-title">三栏工作站：输入、评审、呈现节点都有固定落点</div>
+    <div class="section-copy">左侧需求导航（带版本筛选与置顶）+ 中间多 tab（大盘 / 自动化卡点 / ATP / 用例盘点 / 阶段说明）+ 右侧总结报告，把同一份结构化数据投影成不同视图。</div>
 
     <div class="timeline-layout">
       <div class="timeline-panel">
@@ -828,8 +846,8 @@
 
   <section class="section" id="roadmap">
     <div class="section-label">Part 03</div>
-    <div class="section-title">后续打磨方向，只保留最值得继续做的几件事</div>
-    <div class="section-copy">这里不展开成完整 roadmap，只保留 3 个最容易讲清楚价值的方向：平台回写一致性、评审模板产品化、多版本规模化视图。</div>
+    <div class="section-title">下一步只挑能稳定推进的几件</div>
+    <div class="section-copy">不画完整 roadmap，只列 3 个方向：ATP 多 task 类型与失败归因、报告产品化、多版本批量动作。</div>
 
     <div class="roadmap-layout">
       <div class="roadmap-container">
@@ -852,55 +870,78 @@
   <script>
     var flowItems = [
       {
-        id: "gate",
-        emoji: "🧭",
-        name: "需求入口先过门禁",
-        tag: "SOP",
-        desc: "先判断版本目录、文档入口、CSV 来源、是否允许批量建用例。",
+        id: "ingest",
+        emoji: "📥",
+        name: "需求入口收编：版本目录 + meta.json + 文档索引",
+        tag: "Ingest",
+        desc: "新需求落到 workspace/<版本>/analysis/YYYYMMDD_名称/ 目录，meta.json 收口入口、CSV、文档与平台 task 绑定。",
         details: [
-          "把 workstream / meta.json / 版本目录先固定住，避免后面回写找不到落点。",
-          "先做样本校验和前置门禁，再决定是否走批量平台写入。",
-          "skills 的第一层价值，是先把入口规整，而不是直接执行。"
+          "版本目录区分 0330 / 0530 等大版本，工作站侧栏可按版本筛选与迁移。",
+          "meta.json 既是输入字段也是回写落点：station.cases、binding、navigation 都挂在这里。",
+          "新增需求、改名、迁移、取消托管 都通过 /api/workstream/* 走，不动文件系统直连。"
         ],
         code: [
-          "meta.json -> Phase0 SOP",
-          "          -> versioned workspace",
-          "          -> source CSV / docs check"
+          "workspace/0530版本/analysis/",
+          "  20260410_基本费计费策略/",
+          "    meta.json   # cases / binding / navigation",
+          "    *.csv       # 用例盘点输入",
+          "    *.md        # 交付说明 / 待确认问题"
         ].join("\n")
       },
       {
         id: "structure",
-        emoji: "🧩",
-        name: "原始内容被折叠成结构化字段",
+        emoji: "🧱",
+        name: "结构化沉淀：cases / lifecycle / atp 三类字段并列",
         tag: "Model",
-        desc: "把需求文本、CSV 行、人工判断、已有 caseId 合成统一数据对象。",
+        desc: "把用例行、生命周期判断、ATP 任务绑定折叠成同一份对象，让多个面板共享同一份事实。",
         details: [
-          "平台动作不直接消费自然语言，而是消费结构化字段。",
-          "例如 mode、review_status、dependency_scope、automation_focus 等字段会服务多个阶段。",
-          "skills 的第二层价值，是让重复判断变成可复用能力。"
+          "cases 行至少包含 source_key、mode、case_id、note、result、不可自动化原因等字段。",
+          "lifecycle_inputs 收 mainline_focus、dependency_scope、automation_focus 等评审需要的字段。",
+          "atp.binding 把 productId、taskIds、rootCaseId 钉在 board_state.json，避免每次重新填表。"
         ],
         code: [
-          "rows[] = {",
-          "  source_key, mode, case_id,",
-          "  note, review_status, dependency_scope",
+          "workstream = {",
+          "  cases: [...],",
+          "  lifecycle_inputs: {...},",
+          "  atp: { binding, snapshot, last_refreshed_at },",
+          "  navigation: { pinned, ... }",
           "}"
         ].join("\n")
       },
       {
-        id: "platform",
-        emoji: "🚀",
-        name: "结构化结果进入自动化平台",
-        tag: "Write",
-        desc: "创建用例、补步骤、回写 caseId，再同步审核结果和覆盖进度。",
+        id: "atp",
+        emoji: "🔁",
+        name: "ATP 快照：rootCaseId 1 层子目录聚合 + 同 task 级联刷新",
+        tag: "Refresh",
+        desc: "调 /case/v2 取 pathTree，按 rootCaseId 下一层子目录归桶；同 taskId 的多个需求一次刷新一起更新。",
         details: [
-          "先小样本、再批量，是平台写入的基本安全策略。",
-          "平台成功与否不是终点，结果还要回到站内用于后续评审和呈现。",
-          "这样需求视角和平台视角不会长期分离。"
+          "AtpRootScopeAggregator 单独负责按 rootCaseId 把 case 上卷到第 1 层子目录，不耦合工作站状态。",
+          "refresh_atp_snapshot(cascade=True) 会把绑定同一 taskId 的所有需求一起跑完，避免逐个点。",
+          "scope_summary 与 task 全量 summary 并存：左侧看版本盘点，右侧报告里看自己的命中范围。"
         ],
         code: [
-          "skills -> services -> platform_client",
-          "                  -> create / update cases",
-          "                  -> writeback caseId / status"
+          "POST /api/atp/snapshot/refresh",
+          "  -> 按 taskId 拉 exec detail",
+          "  -> 按 rootCaseId 1 层归桶",
+          "  -> 同 taskId 的 N 个 workstream 一并落盘"
+        ].join("\n")
+      },
+      {
+        id: "report",
+        emoji: "📊",
+        name: "总结报告：右侧常驻 + 一键复制富文本表格",
+        tag: "Export",
+        desc: "把跨需求的 ATP 通过率聚合成一张可粘贴到飞书/邮件的表格，备注与负责人就地编辑。",
+        details: [
+          "右侧报告面板支持置顶常驻或抽屉打开，pin 状态写本地存储。",
+          "一键复制提供 富文本表格 / Markdown / 纯文本 三种格式，富文本通过 ClipboardItem 写 text/html。",
+          "重点目录分析按通过率升序排，最低的需求自动排在最前；点击行直接跳到对应 ATP 面板。"
+        ],
+        code: [
+          "report.rows = workstreams",
+          "  .filter(scope_summary.task_count > 0)",
+          "  .sort(by pass_rate asc)",
+          "copy → text/html + text/plain"
         ].join("\n")
       }
     ];
@@ -909,52 +950,52 @@
       {
         id: "input",
         version: "Input",
-        title: "输入节点",
-        desc: "把业务链路、上下游依赖、环境约束、测试边界录入成可复用字段，而不是留在口头同步里。",
-        copy: "工作站首先要承接输入。没有稳定输入字段，后面的自动化范围确认、平台创建和阶段评审都会变成一次性沟通。",
-        tags: ["mainline_focus", "dependency_scope", "automation_focus"],
+        title: "输入节点 · 用例盘点 + 生命周期字段",
+        desc: "用例盘点 CSV、ATP taskId 绑定、生命周期判断字段都在这一层固定下来，避免后面的评审反复回头补字段。",
+        copy: "工作站第一层是把可结构化的输入收编：哪些是手工、哪些是自动化、哪些已经映射 caseId、ATP 任务跑哪个 rootCaseId，统一写到 meta.json 与 board_state.json，后续所有视图都以这层为准。",
+        tags: ["cases.csv", "atp.binding", "lifecycle_inputs"],
         fields: [
-          "核心业务流程与主要分支",
-          "上下游接口、环境约束、数据前置条件",
-          "自动化边界、暂不纳入原因、执行约束"
+          "用例行：source_key / mode / case_id / 不可自动化原因 / 备注",
+          "ATP 绑定：productId / taskIds / rootCaseId（在面板里直接保存，无需手编 JSON）",
+          "生命周期字段：mainline_focus、dependency_scope、automation_focus 等"
         ],
         reasons: [
-          "后续所有评审都需要基于这层事实，而不是重新追问。",
-          "输入字段一旦固定，模板和服务才能积累复用价值。"
+          "评审、报告、级联刷新都从这层取数据，输入残缺会直接卡住下游。",
+          "字段固定后，新需求只是再填一份模板，不需要每次重新约束格式。"
         ]
       },
       {
         id: "review",
         version: "Review",
-        title: "评审节点",
-        desc: "把“是否能自动化、为什么不能、平台是否建齐”这些问题收敛到明确评审位。",
-        copy: "工作站的第二个价值，是让评审建立在结构化事实之上。平台 case 映射是否完整、不可自动化原因是否清楚，都应该有固定查看位置。",
-        tags: ["manual_auto_split", "non_automatable_classified", "platform_cases_created"],
+        title: "评审节点 · 自动化卡点 + ATP 命中分析",
+        desc: "自动化卡点 tab 把不可自动化原因、覆盖率缺口、平台映射进度集中暴露，ATP tab 用 rootCaseId scope 给出真实执行命中。",
+        copy: "评审不再靠口头追问。覆盖率不达标，可以直接看是输入字段缺失、平台 case 未建齐，还是 ATP 任务没跑到该目录；rootCaseId 0 命中会给明确提示，而不是静默空表。",
+        tags: ["manual_auto_split", "platform_cases_created", "atp.scope_summary"],
         fields: [
-          "手工 / 自动化划分依据",
-          "不可自动化原因分类与归因",
-          "caseId 映射与平台创建进度"
+          "手工 / 自动化拆分依据，以及不可自动化原因聚合",
+          "caseId 映射进度、未映射用例清单",
+          "ATP scope_summary：本需求实际命中的成功 / 失败 / 通过率，与 task 全量并列展示"
         ],
         reasons: [
-          "把评审和事实绑定，减少模糊描述。",
-          "当覆盖不足时，可以直接看到卡点是输入缺失还是平台动作未完成。"
+          "把卡点对应到具体字段，避免把责任推给笼统的“覆盖率不够”。",
+          "ATP 命中数据让评审从“跑没跑”推进到“跑到我这块没有、跑了多少、谁负责跟”。"
         ]
       },
       {
         id: "presentation",
         version: "Present",
-        title: "呈现节点",
-        desc: "最终把覆盖率、手工积压、下一步待办、版本归属和文档入口统一回到需求看板。",
-        copy: "呈现不是单纯做一个 dashboard，而是把前面输入和评审的结果压缩成不同角色都能快速理解的视图。",
-        tags: ["overview", "notes", "lifecycle"],
+        title: "呈现节点 · 大盘视图 + 右侧总结报告",
+        desc: "左侧导航 + 中间多 tab + 右侧报告面板的三栏布局，把同一份数据投影成需求视角、版本视角、对外汇报视角三种呈现。",
+        copy: "呈现层不是再画一个 dashboard，而是把已经结构化的事实拆成不同读者的视图：研发看大盘，测试看 ATP 与用例盘点，对外汇报直接复制右侧报告里的表格。",
+        tags: ["overview", "atp.snapshot", "report"],
         fields: [
-          "覆盖率 / remaining / mapped caseId",
-          "阶段进展说明 / next_todos / CI 状态",
-          "版本归属与文档索引"
+          "大盘视图：覆盖率 / mapped caseId / CI 通过率 / 版本归属",
+          "ATP tab：任务最近一次执行、子目录通过率、scope summary",
+          "总结报告面板：跨需求重点目录分析，支持置顶、备注就地编辑、一键复制表格"
         ],
         reasons: [
-          "同一份结构化数据服务研发、测试、管理三个视角。",
-          "减少反复汇报，让下一轮输入直接在已有事实基础上继续。"
+          "同一份数据服务多个角色，不再为汇报临时手搓表。",
+          "报告面板的备注与负责人就地写入本地存储，刷新数据时不丢。"
         ]
       }
     ];
@@ -962,38 +1003,41 @@
     var roadmapItems = [
       {
         id: "loop",
-        title: "平台回写闭环更稳定",
-        copy: "继续压实平台 case 创建、执行结果、失败归因回写到需求视角的一致性，减少人工同步。",
-        tags: ["高优先", "闭环", "一致性"],
+        title: "ATP 数据回写更稳，覆盖更多 task 类型",
+        copy: "继续打磨 task 类型与 rootCaseId 的语义边界：当前已经支持按 1 层子目录归桶并自动级联同 taskId 的需求，下一步要把多 taskId、不同执行批次的合并口径再固化。",
+        tags: ["高优先", "ATP", "回写一致"],
         points: [
-          "统一 CSV、meta、dashboard 和平台状态的口径。",
-          "补齐失败重试、样本验证、批量执行的稳定机制。"
+          "多 taskId 合并：按 task 类型区分回归 / 冒烟 / 专项，避免用一个总分掩盖差异。",
+          "失败归因回写：把 case 失败原因带回到用例盘点视图，减少二次分析。",
+          "样本验证：批量平台动作前自动做一条样本断言。"
         ]
       },
       {
-        id: "template",
-        title: "评审模板更产品化",
-        copy: "把输入字段和追问模板做成更清晰的引导，让使用者像填报而不是自由组织语言。",
-        tags: ["输入体验", "标准化"],
+        id: "report",
+        title: "总结报告产品化：模板 + 多视角导出",
+        copy: "右侧报告已经能一键复制成飞书/邮件表格，下一步把模板做成可配置：哪些字段要出现、按什么排序、是否带负责人列，按汇报对象切换。",
+        tags: ["报告体验", "标准化"],
         points: [
-          "按阶段提供默认提示语和示例。",
-          "让 dependency_scope、automation_focus 等字段更容易被完整填写。"
+          "模板按读者分：研发周报 / 测试日报 / 管理月报。",
+          "支持把备注与负责人持久化到 meta.json，而不仅是本地存储。",
+          "支持挑选若干需求批量出报告，而不是只出全量。"
         ]
       },
       {
         id: "version",
-        title: "多版本视图再增强",
-        copy: "版本目录能力已经有基础，后续可以把版本维度的聚合筛选、风险对比和批量动作继续往前做。",
+        title: "多版本 + 多需求批量动作",
+        copy: "版本目录、级联刷新、置顶导航这些底盘已经在了，后续要把版本之间、需求之间的批量操作能力再补一轮。",
         tags: ["版本管理", "规模化"],
         points: [
-          "支持跨版本看覆盖率和风险分布。",
-          "支持版本级批量迁移、批量筛选和历史回看。"
+          "跨版本看覆盖率与风险分布。",
+          "按版本批量迁移、批量归档、批量重新刷 ATP 快照。",
+          "需求层面的批量取消托管 / 重命名 / 重新绑定 task。"
         ]
       }
     ];
 
     var state = {
-      flowId: "gate",
+      flowId: "ingest",
       lifecycleId: "input",
       roadmapId: "loop"
     };
