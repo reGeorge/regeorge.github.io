@@ -1,11 +1,11 @@
 {
   "kind": "weekly",
-  "label": "2026-04-13 ~ 2026-04-19",
+  "label": "2026-04-20 ~ 2026-04-26",
   "subject": "小满",
   "title": "小满周报",
   "hero_tagline": "回看这一周里持续发生的高光片段。",
   "period_caption": "本周",
-  "summary": "2026-04-13 ~ 2026-04-19暂无新的相关记录。",
+  "summary": "2026-04-20 ~ 2026-04-26暂无新的相关记录。",
   "items": [],
   "highlights": [],
   "timeline": [],
@@ -17,10 +17,10 @@
     "average_magnets": 0
   },
   "latest_raw": {
-    "happened_at": "2026-04-18 22:00:15",
-    "source_file": "2026-04-18.md",
-    "query": "明天明天天气",
-    "answer": "上海普陀明天多云转晴，14度到23度，北风1级转西北风2级，空气质量良好。"
+    "happened_at": "2026-04-23 21:54:32",
+    "source_file": "2026-04-23.md",
+    "query": "哦",
+    "answer": "被你问住了，看来要更努力学习了"
   },
-  "generated_at": "2026-04-19T23:00:41"
+  "generated_at": "2026-04-24T23:00:05"
 }
