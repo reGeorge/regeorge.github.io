@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../obsidian"
+		},
+		{
+			"path": "../../../../buffett-investment-research-main"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "regeorge.github.io"
+	}
+}
