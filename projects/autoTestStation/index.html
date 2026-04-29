@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutoTest Station | 构建思路演示</title>
+  <title>AutoTest Station | 架构与治理全景</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --purple-start: #0f766e;
-      --purple-end: #14b8a6;
-      --blue-start: #b45309;
-      --blue-end: #d97706;
+      --teal: #0f766e;
+      --teal-light: #14b8a6;
+      --amber: #b45309;
+      --amber-light: #d97706;
+      --violet: #7c3aed;
       --bg: #f5ecdd;
       --surface: #fffaf2;
       --text: #2d241d;
       --text-secondary: #6f6358;
       --border: rgba(102, 69, 33, 0.14);
       --shadow: 0 18px 40px rgba(51, 36, 22, 0.12);
+      --shadow-sm: 0 4px 12px rgba(51, 36, 22, 0.08);
       --radius: 18px;
-      --radius-sm: 1directory_counts_flat2px;
+      --radius-sm: 12px;
       --heading-font: "Georgia", "Times New Roman", "Songti SC", serif;
     }
 
@@ -40,652 +42,356 @@
 
     a { color: inherit; }
 
+    /* ── Nav ── */
     .top-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 56px;
-      padding: 0 36px;
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 56px; padding: 0 36px;
       background: rgba(250, 250, 250, 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .nav-brand,
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
+    .nav-brand, .nav-links { display: flex; align-items: center; gap: 18px; }
     .top-nav a {
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-size: 0.84rem;
-      font-weight: 600;
-      transition: color 0.2s ease;
+      text-decoration: none; color: var(--text-secondary);
+      font-size: 0.84rem; font-weight: 600; transition: color 0.2s ease;
     }
-
     .top-nav a:hover { color: var(--text); }
 
-    .hero,
-    .section {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding-left: 36px;
-      padding-right: 36px;
-      opacity: 0;
-      transform: translateY(28px);
+    /* ── Section base ── */
+    .hero, .section {
+      max-width: 1040px; margin: 0 auto;
+      padding-left: 36px; padding-right: 36px;
+      opacity: 0; transform: translateY(28px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
+    .hero.visible, .section.visible { opacity: 1; transform: translateY(0); }
 
-    .hero.visible,
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hero {
-      padding-top: 128px;
-      padding-bottom: 82px;
-    }
+    .hero { padding-top: 128px; padding-bottom: 72px; }
 
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 14px 4px 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--purple-start), var(--blue-start));
-      color: #fff;
-      font-size: 0.76rem;
-      font-weight: 700;
-      margin-bottom: 22px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 4px 14px 4px 8px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      color: #fff; font-size: 0.76rem; font-weight: 700; margin-bottom: 22px;
     }
 
     .hero h1 {
       font-family: var(--heading-font);
       font-size: clamp(2.4rem, 5vw, 3.6rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      line-height: 1.12;
-      margin-bottom: 14px;
-      color: var(--text);
-    }
-
-    .section-title, .demo-header h3, .bento-card h3, .mini-main h3, .hero-visual h3 {
-      font-family: var(--heading-font);
-      letter-spacing: 0.02em;
+      font-weight: 700; letter-spacing: 0.02em;
+      line-height: 1.12; margin-bottom: 14px;
     }
 
     .hero-subtitle {
       font-size: clamp(1.06rem, 2.4vw, 1.42rem);
-      color: var(--text-secondary);
-      max-width: 860px;
-      margin-bottom: 28px;
-      letter-spacing: -0.01em;
+      color: var(--text-secondary); max-width: 860px;
+      margin-bottom: 28px; letter-spacing: -0.01em;
     }
 
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .section-title, .bento-card h3, .mini-main h3 {
+      font-family: var(--heading-font); letter-spacing: 0.02em;
     }
 
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; }
     .tech-tag {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      font-weight: 600;
+      padding: 6px 14px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.8rem; font-weight: 600;
     }
 
-    .hero-visual {
-      margin-top: 54px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      min-height: 360px;
+    /* ── Stats row ── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      margin-top: 42px;
+    }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-value {
+      font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.82rem; color: var(--text-secondary);
+      margin-top: 4px; font-weight: 600;
     }
 
-    .float-deco {
-      position: absolute;
-      font-size: 2rem;
-      opacity: 0.14;
-      animation: floatY 4.2s ease-in-out infinite;
-    }
-
-    .float-deco:nth-child(1) { top: 16%; right: 9%; }
-    .float-deco:nth-child(2) { top: 54%; right: 22%; animation-delay: 1s; }
-    .float-deco:nth-child(3) { bottom: 14%; left: 10%; animation-delay: 2s; }
-
-    @keyframes floatY {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(5deg); }
-    }
-
-    .station-window {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      border: 1px solid rgba(37, 99, 235, 0.1);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .window-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 18px;
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.92), rgba(37, 99, 235, 0.92));
-      color: #fff;
-    }
-
-    .window-dots {
-      display: flex;
-      gap: 6px;
-    }
-
-    .window-dots span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    .window-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-
-    .window-body {
-      padding: 22px;
-      display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      gap: 18px;
-    }
-
-    .mini-sidebar,
-    .mini-main,
-    .mini-card,
-    .stage-detail,
-    .roadmap-detail,
-    .demo-note {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-    }
-
-    .mini-sidebar {
-      padding: 14px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .mini-item {
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      font-size: 0.84rem;
-      color: var(--text-secondary);
-    }
-
-    .mini-item.active {
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(37, 99, 235, 0.12));
-      color: var(--text);
-      font-weight: 700;
-      border-color: rgba(124, 58, 237, 0.18);
-    }
-
-    .mini-main {
-      padding: 16px;
-    }
-
-    .mini-main h3 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .mini-copy {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 14px;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .mini-card {
-      padding: 12px;
-    }
-
-    .mini-card .label {
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-secondary);
-      margin-bottom: 8px;
-    }
-
-    .mini-card .value {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    .section {
-      padding-top: 84px;
-      padding-bottom: 30px;
-    }
-
+    /* ── Section ── */
+    .section { padding-top: 84px; padding-bottom: 30px; }
     .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--purple-start);
-      margin-bottom: 10px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--teal); margin-bottom: 10px;
     }
-
     .section-title {
       font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
+      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px;
     }
-
     .section-copy {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      max-width: 820px;
-      margin-bottom: 34px;
+      color: var(--text-secondary); font-size: 1rem;
+      max-width: 820px; margin-bottom: 34px;
     }
 
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .bento-card,
-    .demo-container,
-    .timeline-panel,
-    .roadmap-container {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
+    /* ── Bento grid ── */
+    .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .bento-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .bento-card {
-      padding: 28px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-
     .bento-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
     }
-
     .bento-card.wide { grid-column: 1 / -1; }
-
     .bento-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(37, 99, 235, 0.12));
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; margin-bottom: 16px;
     }
+    .bento-icon.teal { background: rgba(15, 118, 110, 0.12); }
+    .bento-icon.amber { background: rgba(180, 83, 9, 0.12); }
+    .bento-icon.violet { background: rgba(124, 58, 237, 0.12); }
+    .bento-icon.green { background: rgba(22, 163, 74, 0.12); }
 
-    .bento-card h3 {
-      font-size: 1.14rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
+    .bento-card h3 { font-size: 1.14rem; font-weight: 700; margin-bottom: 8px; }
+    .bento-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
 
-    .bento-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
+    .bento-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { padding: 4px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; }
+    .tag.teal { background: #ccfbf1; color: var(--teal); }
+    .tag.amber { background: #fef3c7; color: var(--amber); }
+    .tag.violet { background: #f3e8ff; color: var(--violet); }
+    .tag.green { background: #dcfce7; color: #16a34a; }
 
-    .bento-tags,
-    .detail-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .bento-tag,
-    .detail-tag {
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .bento-tag.purple,
-    .detail-tag.purple { background: #f3e8ff; color: var(--purple-start); }
-    .bento-tag.blue,
-    .detail-tag.blue { background: #dbeafe; color: var(--blue-start); }
-    .bento-tag.green,
-    .detail-tag.green { background: #dcfce7; color: #16a34a; }
-
-    .demo-container {
-      margin-top: 18px;
-      overflow: hidden;
-    }
-
-    .demo-header {
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(135deg, var(--purple-start), var(--blue-start));
-      color: #fff;
-    }
-
-    .demo-header h3 {
-      font-size: 0.96rem;
-      font-weight: 700;
-    }
-
-    .demo-meta {
-      font-size: 0.78rem;
-      opacity: 0.86;
-    }
-
-    .demo-body {
-      padding: 24px;
-    }
-
-    .step-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 15px 16px;
-      margin-bottom: 10px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .step-row:hover {
-      border-color: rgba(124, 58, 237, 0.2);
-      background: #faf5ff;
-    }
-
-    .step-row.active {
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.09), rgba(37, 99, 235, 0.09));
-      border-color: rgba(124, 58, 237, 0.2);
-    }
-
-    .step-emoji {
-      font-size: 1.3rem;
-      line-height: 1;
-      margin-top: 1px;
-    }
-
-    .step-main {
-      flex: 1;
-    }
-
-    .step-name {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .step-desc {
-      font-size: 0.84rem;
-      color: var(--text-secondary);
-    }
-
-    .step-pill {
-      flex-shrink: 0;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: var(--blue-start);
-      font-size: 0.74rem;
-      font-weight: 700;
-    }
-
-    .demo-detail {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-      gap: 16px;
-    }
-
-    .demo-note,
-    .code-box {
-      padding: 18px;
-    }
-
-    .demo-note h4,
-    .code-box h4,
-    .stage-detail h4,
-    .roadmap-detail h4 {
-      font-size: 0.96rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .note-list,
-    .roadmap-list,
-    .detail-list {
-      padding-left: 18px;
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      line-height: 1.75;
-    }
-
-    .code-box {
-      background: #111827;
-      color: #eef2ff;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-    }
-
-    .code-box pre {
-      white-space: pre-wrap;
-      font-family: Consolas, "SFMono-Regular", monospace;
-      font-size: 0.82rem;
-      line-height: 1.7;
-    }
-
-    .timeline-layout,
-    .roadmap-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 340px;
-      gap: 18px;
-    }
-
-    .timeline-panel,
-    .roadmap-container {
-      padding: 28px;
-    }
-
-    .timeline {
-      position: relative;
-      padding-left: 34px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 8px;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      border-radius: 2px;
-      background: linear-gradient(to bottom, var(--purple-start), var(--blue-start));
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 28px;
-      cursor: pointer;
-    }
-
-    .timeline-item:last-child { margin-bottom: 0; }
-
-    .timeline-dot {
-      position: absolute;
-      left: -34px;
-      top: 8px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 3px solid var(--surface);
-      box-shadow: 0 0 0 2px var(--purple-start);
-      background: #fff;
-    }
-
-    .timeline-item[data-node-id="review"] .timeline-dot { box-shadow: 0 0 0 2px var(--blue-start); }
-    .timeline-item[data-node-id="presentation"] .timeline-dot { box-shadow: 0 0 0 2px #8b5cf6; }
-
-    .timeline-version {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--purple-start);
-      margin-bottom: 4px;
-    }
-
-    .timeline-item[data-node-id="review"] .timeline-version { color: var(--blue-start); }
-    .timeline-item[data-node-id="presentation"] .timeline-version { color: #8b5cf6; }
-
-    .timeline-title {
-      font-size: 1.08rem;
-      font-weight: 700;
-      margin-bottom: 5px;
-      letter-spacing: -0.01em;
-    }
-
-    .timeline-desc {
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      line-height: 1.65;
-    }
-
-    .timeline-item.active .timeline-title {
-      color: var(--text);
-    }
-
-    .stage-detail,
-    .roadmap-detail {
-      padding: 22px;
-      position: sticky;
-      top: 78px;
-      align-self: start;
+    /* ── Architecture diagram ── */
+    .arch-diagram {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; margin-top: 18px;
       box-shadow: var(--shadow);
     }
+    .arch-layers { display: flex; flex-direction: column; gap: 0; }
+    .arch-layer {
+      display: flex; align-items: center; gap: 18px;
+      padding: 18px 24px; border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.25s ease;
+      background: #fff;
+    }
+    .arch-layer:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+    .arch-layer:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+    .arch-layer:not(:last-child) { border-bottom: none; }
+    .arch-layer.active { background: linear-gradient(135deg, rgba(15, 118, 110, 0.06), rgba(180, 83, 9, 0.06)); border-color: rgba(15, 118, 110, 0.2); }
+    .arch-layer:hover { background: #faf8f4; }
+    .arch-layer-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .arch-layer-info { flex: 1; }
+    .arch-layer-name { font-size: 1rem; font-weight: 700; }
+    .arch-layer-desc { font-size: 0.84rem; color: var(--text-secondary); margin-top: 2px; }
+    .arch-layer-count {
+      flex-shrink: 0; padding: 4px 12px; border-radius: 999px;
+      background: #f1f5f9; font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);
+    }
+    .arch-detail {
+      margin-top: 18px; padding: 22px; background: #fff;
+      border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .arch-detail h4 { font-size: 1rem; margin-bottom: 10px; font-weight: 700; }
+    .arch-detail-list {
+      padding-left: 18px; color: var(--text-secondary);
+      font-size: 0.88rem; line-height: 1.75;
+    }
+    .arch-detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 
-    .roadmap-tabs {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 16px;
+    /* ── Truth flow ── */
+    .truth-flow {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0; align-items: start;
+      margin-top: 18px;
+    }
+    .truth-node {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm);
+    }
+    .truth-node h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .truth-node p { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6; }
+    .truth-node ul { padding-left: 16px; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; margin-top: 8px; }
+    .truth-arrow {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--teal); padding-top: 30px;
     }
 
-    .roadmap-button {
-      width: 100%;
-      text-align: left;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font: inherit;
-      color: inherit;
+    /* ── Table ── */
+    .truth-table {
+      width: 100%; border-collapse: collapse; margin-top: 18px;
+      background: var(--surface); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    }
+    .truth-table th, .truth-table td {
+      padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+    }
+    .truth-table th {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.08), rgba(180, 83, 9, 0.08));
+      font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .truth-table tr:last-child td { border-bottom: none; }
+    .truth-table td:first-child { font-weight: 600; }
+
+    /* ── Workspace tree ── */
+    .ws-tree {
+      background: #111827; color: #e2e8f0; border-radius: var(--radius);
+      padding: 24px 28px; font-family: Consolas, "SFMono-Regular", monospace;
+      font-size: 0.82rem; line-height: 1.8; margin-top: 18px;
+      box-shadow: var(--shadow); overflow-x: auto;
+    }
+    .ws-tree .dir { color: #93c5fd; }
+    .ws-tree .file { color: #a5b4fc; }
+    .ws-tree .comment { color: #6b7280; }
+    .ws-tree .required { color: #34d399; }
+    .ws-tree .optional { color: #fbbf24; }
+
+    /* ── Station mockup ── */
+    .station-mockup {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+      margin-top: 18px;
+    }
+    .mockup-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.92), rgba(180, 83, 9, 0.85));
+      color: #fff;
+    }
+    .mockup-dots { display: flex; gap: 6px; }
+    .mockup-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.7); }
+    .mockup-title { font-size: 0.92rem; font-weight: 700; }
+    .mockup-body { display: grid; grid-template-columns: 200px 1fr 260px; gap: 0; min-height: 340px; }
+    .mockup-sidebar {
+      padding: 14px; border-right: 1px solid var(--border); background: #faf9f6;
+    }
+    .mockup-item {
+      padding: 8px 10px; border-radius: 8px; font-size: 0.78rem;
+      margin-bottom: 6px; color: var(--text-secondary);
+      border: 1px solid transparent; cursor: default;
+    }
+    .mockup-item.active {
+      background: rgba(15, 118, 110, 0.08); border-color: rgba(15, 118, 110, 0.18);
+      color: var(--text); font-weight: 700;
+    }
+    .mockup-center { padding: 16px; }
+    .mockup-tabs {
+      display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 14px;
+    }
+    .mockup-tab {
+      padding: 8px 14px; font-size: 0.78rem; font-weight: 600;
+      color: var(--text-secondary); border-bottom: 2px solid transparent;
+      margin-bottom: -2px; cursor: default;
+    }
+    .mockup-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+    .mockup-center-content { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; }
+    .mockup-metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .mockup-metric {
+      text-align: center; padding: 12px; background: #f8f7f4;
+      border-radius: 10px; border: 1px solid var(--border);
+    }
+    .mockup-metric-val { font-size: 1.3rem; font-weight: 800; color: var(--text); }
+    .mockup-metric-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 2px; }
+    .mockup-report {
+      padding: 14px; border-left: 1px solid var(--border); background: #faf9f6;
+      font-size: 0.78rem;
+    }
+    .mockup-report h4 { font-size: 0.84rem; font-weight: 700; margin-bottom: 10px; }
+    .report-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .report-row .name { color: var(--text); font-weight: 600; }
+    .report-row .rate { font-weight: 700; }
+    .report-row .rate.good { color: #16a34a; }
+    .report-row .rate.warn { color: var(--amber); }
+    .report-row .rate.bad { color: #dc2626; }
+    .report-copy-btn {
+      margin-top: 12px; width: 100%; padding: 8px;
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      color: #fff; border: none; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 700; cursor: default;
     }
 
-    .roadmap-button:hover,
-    .roadmap-button.active {
-      background: #faf5ff;
-      border-color: rgba(124, 58, 237, 0.18);
+    /* ── Timeline ── */
+    .process-timeline {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+      margin-top: 18px; position: relative;
+    }
+    .process-timeline::before {
+      content: ""; position: absolute;
+      top: 28px; left: 10%; right: 10%;
+      height: 2px; background: linear-gradient(to right, var(--teal), var(--amber));
+      z-index: 0;
+    }
+    .process-step {
+      position: relative; z-index: 1; text-align: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px 14px;
+      box-shadow: var(--shadow-sm); transition: transform 0.25s ease;
+    }
+    .process-step:hover { transform: translateY(-3px); }
+    .process-step-icon {
+      width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; background: #fff; border: 2px solid var(--teal);
+    }
+    .process-step h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
+    .process-step p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── Roadmap ── */
+    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+    .roadmap-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm);
+      position: relative; overflow: hidden;
+    }
+    .roadmap-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    }
+    .roadmap-card.p0::before { background: linear-gradient(to right, #dc2626, #f87171); }
+    .roadmap-card.p1::before { background: linear-gradient(to right, var(--amber), var(--amber-light)); }
+    .roadmap-card.p2::before { background: linear-gradient(to right, var(--teal), var(--teal-light)); }
+    .roadmap-priority {
+      font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 10px;
+    }
+    .roadmap-card.p0 .roadmap-priority { color: #dc2626; }
+    .roadmap-card.p1 .roadmap-priority { color: var(--amber); }
+    .roadmap-card.p2 .roadmap-priority { color: var(--teal); }
+    .roadmap-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .roadmap-card ul {
+      padding-left: 16px; font-size: 0.84rem; color: var(--text-secondary);
+      line-height: 1.7;
     }
 
-    .roadmap-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .roadmap-copy {
-      color: var(--text-secondary);
-      font-size: 0.82rem;
-      line-height: 1.6;
-    }
-
+    /* ── Footer ── */
     .footer {
-      max-width: 1040px;
-      margin: 0 auto;
+      max-width: 1040px; margin: 0 auto;
       padding: 56px 36px 80px;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
+      color: var(--text-secondary); font-size: 0.9rem;
     }
 
+    /* ── Responsive ── */
     @media (max-width: 860px) {
-      .window-body,
-      .demo-detail,
-      .timeline-layout,
-      .roadmap-layout,
-      .mini-grid,
-      .bento-grid {
+      .bento-grid, .bento-grid-3, .truth-flow, .roadmap-grid,
+      .process-timeline, .mockup-body, .stats-row {
         grid-template-columns: 1fr;
       }
-
-      .top-nav {
-        padding: 0 20px;
-      }
-
-      .hero,
-      .section,
-      .footer {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .stage-detail,
-      .roadmap-detail {
-        position: static;
-      }
+      .truth-arrow { transform: rotate(90deg); padding: 10px 0; }
+      .top-nav { padding: 0 20px; }
+      .hero, .section, .footer { padding-left: 20px; padding-right: 20px; }
+      .nav-links { display: none; }
+      .mockup-body { grid-template-columns: 1fr; }
+      .mockup-sidebar, .mockup-report { border: none; border-top: 1px solid var(--border); }
     }
   </style>
 </head>
@@ -696,454 +402,508 @@
       <a href="#hero">AutoTest Station</a>
     </div>
     <div class="nav-links">
-      <a href="#flow">打通链路</a>
-      <a href="#lifecycle">生命周期</a>
-      <a href="#roadmap">后续方向</a>
+      <a href="#arch">三层架构</a>
+      <a href="#truth">数据真相</a>
+      <a href="#workspace">资产治理</a>
+      <a href="#portal">工作站</a>
+      <a href="#process">流程生命周期</a>
+      <a href="#governance">治理路线</a>
     </div>
   </nav>
 
+  <!-- ════ Hero ════ -->
   <header class="hero" id="hero">
-    <div class="hero-badge"><span>🧩</span><span>Station Build Story</span></div>
+    <div class="hero-badge"><span>🧩</span><span>Architecture &amp; Governance</span></div>
     <h1>需求自动化工作站</h1>
-    <div class="hero-subtitle">把需求视角的输入、ATP 任务执行视角、对外汇报视角，三栏布局收到同一个工作站里。</div>
-    <div class="tech-stack">
-      <div class="tech-tag">caseHelper skills</div>
-      <div class="tech-tag">structured meta.json</div>
-      <div class="tech-tag">ATP /case/v2 + scope</div>
-      <div class="tech-tag">cascade refresh</div>
-      <div class="tech-tag">summary report</div>
+    <div class="hero-subtitle">
+      从脚本仓库演进到 <strong>服务编排层 + 工作站门户 + 需求资产库</strong>。<br>
+      工作站负责入口，meta.json / board_state.json 负责真相，日报周报和 HTML 总结全部由真相派生。
     </div>
-
-    <div class="hero-visual">
-      <div class="float-deco">🧠</div>
-      <div class="float-deco">⚙️</div>
-      <div class="float-deco">📎</div>
-      <div class="station-window">
-        <div class="window-top">
-          <div class="window-dots"><span></span><span></span><span></span></div>
-          <div class="window-title">需求自动化工作站 / 三栏布局快照</div>
-          <div class="demo-meta">导航 · 详情 · 报告</div>
-        </div>
-        <div class="window-body">
-          <div class="mini-sidebar">
-            <div class="mini-item active">基本费计费策略</div>
-            <div class="mini-item">AD对接支持LDAPs</div>
-            <div class="mini-item">认证后日志增加终端名称</div>
-            <div class="mini-item">+ 9 个需求</div>
-          </div>
-          <div class="mini-main">
-            <h3>左侧导航 + 中间多 tab + 右侧总结报告</h3>
-            <div class="mini-copy">三栏分别承接“看哪个需求”、“看这个需求的什么维度”、“怎么把多个需求一起对外汇报”。</div>
-            <div class="mini-grid">
-              <div class="mini-card">
-                <div class="label">导航</div>
-                <div class="value">版本筛选 · 置顶 · 搜索</div>
-              </div>
-              <div class="mini-card">
-                <div class="label">详情</div>
-                <div class="value">大盘 · ATP · 用例盘点 · 卡点 · 进展</div>
-              </div>
-              <div class="mini-card">
-                <div class="label">报告</div>
-                <div class="value">置顶常驻 · 一键复制表格</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="tech-stack">
+      <div class="tech-tag">skills → services → scripts</div>
+      <div class="tech-tag">meta.json 单一真相</div>
+      <div class="tech-tag">版本化 workspace</div>
+      <div class="tech-tag">ATP scope 聚合</div>
+      <div class="tech-tag">三栏工作站</div>
+      <div class="tech-tag">报告派生制</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value">19+</div>
+        <div class="stat-label">Services 编排层</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">11</div>
+        <div class="stat-label">Skill 能力组</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">22+</div>
+        <div class="stat-label">Active Workstreams</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">4</div>
+        <div class="stat-label">版本并行管理</div>
       </div>
     </div>
   </header>
 
-  <section class="section" id="flow">
-    <div class="section-label">Part 01</div>
-    <div class="section-title">从 caseHelper skills 到工作站界面：4 步把需求落到可汇报的事实</div>
-    <div class="section-copy">入口收编 → 结构化沉淀 → ATP 快照刷新 → 一键导出报告。每一步都在 meta.json / board_state.json 留痕，下一步直接在已有事实基础上继续。</div>
+  <!-- ════ Part 01: Architecture ════ -->
+  <section class="section" id="arch">
+    <div class="section-label">Part 01 · 三层架构</div>
+    <div class="section-title">skills → services → scripts：能力封装、业务编排、薄入口</div>
+    <div class="section-copy">底层 skill 封装单一 API 能力，service 层编排跨 skill 业务流程并统一返回 ServiceResult，script 只做参数解析和调用。工作站（station）作为唯一人工门户，调用 service 层完成所有操作。</div>
+
+    <div class="arch-diagram">
+      <div class="arch-layers" id="archLayers"></div>
+      <div class="arch-detail" id="archDetail">
+        <h4 id="archDetailTitle">选择一层查看详情</h4>
+        <ul class="arch-detail-list" id="archDetailList"></ul>
+        <div class="arch-detail-tags" id="archDetailTags"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Part 02: Data Truth ════ -->
+  <section class="section" id="truth">
+    <div class="section-label">Part 02 · 数据真相</div>
+    <div class="section-title">meta.json + board_state.json：每类信息只有一个写入位置</div>
+    <div class="section-copy">meta.json 承载需求长期状态（阶段、用例、备注、文档索引），board_state.json 承载运行态（ATP 绑定、快照、UI 状态）。HTML 报告、日报、周报全部是派生产物。</div>
+
+    <div class="truth-flow">
+      <div class="truth-node">
+        <h4>📥 输入源</h4>
+        <p>CSV 导入、手工录入、飞书同步</p>
+        <ul>
+          <li>测试用例 CSV 初始导入</li>
+          <li>工作站界面手工维护</li>
+          <li>飞书表格 API 同步</li>
+        </ul>
+      </div>
+      <div class="truth-arrow">→</div>
+      <div class="truth-node">
+        <h4>💎 唯一真相</h4>
+        <p>meta.json + board_state.json</p>
+        <ul>
+          <li>需求状态、用例行、备注</li>
+          <li>ATP 绑定与执行快照</li>
+          <li>导航状态与 UI 偏好</li>
+        </ul>
+      </div>
+      <div class="truth-arrow">→</div>
+      <div class="truth-node">
+        <h4>📊 派生产物</h4>
+        <p>所有展示与报告</p>
+        <ul>
+          <li>工作站各 tab 视图</li>
+          <li>右侧总结报告表格</li>
+          <li>日报/周报草稿</li>
+          <li>交互总结 HTML</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="truth-table">
+      <thead>
+        <tr>
+          <th>信息类型</th>
+          <th>唯一真相源</th>
+          <th>展示位置</th>
+          <th>可手工改?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>需求基础状态</td><td>meta.json</td><td>工作站详情页</td><td>✅ 通过工作站</td></tr>
+        <tr><td>ATP 绑定</td><td>board_state.json</td><td>ATP 面板</td><td>✅ 通过工作站</td></tr>
+        <tr><td>ATP 执行快照</td><td>board_state.json</td><td>报告面板</td><td>❌ 系统刷新</td></tr>
+        <tr><td>用例明细</td><td>meta.json.station.cases</td><td>用例盘点 tab</td><td>✅ 通过工作站</td></tr>
+        <tr><td>交互总结 HTML</td><td>workspace/ 产物</td><td>工作站索引</td><td>❌ 建议生成</td></tr>
+        <tr><td>日报/周报</td><td>workspace/report/</td><td>导出入口</td><td>✅ 人工润色</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ════ Part 03: Workspace Governance ════ -->
+  <section class="section" id="workspace">
+    <div class="section-label">Part 03 · 资产治理</div>
+    <div class="section-title">版本化 workspace + 需求目录最小合同</div>
+    <div class="section-copy">workspace 按版本 → 需求两级组织，每个 workstream 满足最小结构合同：meta.json + 主 CSV + 4 份核心文档。sandbox 只放临时探针，正式能力必须提升到 services/skills。</div>
 
     <div class="bento-grid">
       <div class="bento-card">
-        <div class="bento-icon">�</div>
-        <h3>入口收编</h3>
-        <p>workstream 目录、meta.json、主 CSV、关联文档、ATP taskId 都在新增需求时定下来。改名、迁版本、取消托管全部走 /api/workstream/*，不动文件系统直连。</p>
+        <div class="bento-icon teal">📁</div>
+        <h3>版本化目录</h3>
+        <p>workspace 按 0330/0530/5.0.1/认证源 四个版本分区，每个版本下 analysis/ 存放需求目录。不再允许自由命名版本目录。</p>
         <div class="bento-tags">
-          <div class="bento-tag purple">Versioned Workspace</div>
-          <div class="bento-tag blue">meta.json + board_state</div>
+          <div class="tag teal">0330版本 · 22+</div>
+          <div class="tag amber">0530版本 · 2+</div>
+          <div class="tag violet">5.0.1版本</div>
+          <div class="tag green">认证源版本</div>
         </div>
       </div>
-
       <div class="bento-card">
-        <div class="bento-icon">🧱</div>
-        <h3>结构化沉淀</h3>
-        <p>用例行、生命周期字段、ATP 绑定、CI 状态、阶段说明都折叠到同一个 workstream 对象，多个 tab 共享同一份事实，不需要为每个面板单独维护数据。</p>
+        <div class="bento-icon amber">📋</div>
+        <h3>最小合同</h3>
+        <p>每个需求目录必须有 meta.json + 主 CSV。人读文档控制在 01~04 编号内，其他产物进入过程材料/ 目录。</p>
         <div class="bento-tags">
-          <div class="bento-tag purple">cases / lifecycle / atp</div>
-          <div class="bento-tag green">single source of truth</div>
+          <div class="tag teal">meta.json 必需</div>
+          <div class="tag amber">CSV 必需</div>
+          <div class="tag violet">4 份核心文档</div>
         </div>
       </div>
-
       <div class="bento-card">
-        <div class="bento-icon">🔁</div>
-        <h3>ATP 快照</h3>
-        <p>调 /case/v2 取 pathTree，按 rootCaseId 下 1 层子目录归桶；同 taskId 的多个需求一次刷新一起更新，避免逐个点。scope_summary 与 task 全量并存。</p>
+        <div class="bento-icon violet">🧪</div>
+        <h3>sandbox 边界</h3>
+        <p>sandbox 只放一次性探针和临时实验。凡进入正式 service 的能力，必须在同一轮任务里删除 sandbox 原实现。按主题建子目录。</p>
         <div class="bento-tags">
-          <div class="bento-tag blue">scope aggregation</div>
-          <div class="bento-tag purple">cascade refresh</div>
+          <div class="tag teal">一次性探针</div>
+          <div class="tag amber">临时实验</div>
+          <div class="tag violet">禁止长驻</div>
         </div>
       </div>
-
-      <div class="bento-card wide">
-        <div class="bento-icon">📊</div>
-        <h3>右侧总结报告，一键导出可粘贴的表格</h3>
-        <p>把跨需求的 ATP 通过率聚合成一张表，按通过率升序排，备注和负责人就地编辑。一键复制提供富文本表格、Markdown、纯文本三种格式，直接粘到飞书或邮件。</p>
+      <div class="bento-card">
+        <div class="bento-icon green">🏛️</div>
+        <h3>archive 归档</h3>
+        <p>只保留已完成项目的历史材料。跨需求长期复用的操作手册收敛到 knowledge/ 或 station/，不放 archive。</p>
         <div class="bento-tags">
-          <div class="bento-tag blue">pin / drawer</div>
-          <div class="bento-tag purple">copy as table</div>
-          <div class="bento-tag green">jump to ATP tab</div>
+          <div class="tag teal">历史只读</div>
+          <div class="tag amber">手册外迁</div>
         </div>
       </div>
     </div>
 
-    <div class="demo-container">
-      <div class="demo-header">
-        <h3>交互示意：点击链路步骤查看关键沉淀</h3>
-        <div class="demo-meta">精简版构建逻辑</div>
+    <div class="ws-tree">
+<span class="dir">workspace/</span>
+  <span class="dir">0330版本/analysis/</span>         <span class="comment"># 最大版本，22+ workstreams</span>
+    <span class="dir">20260415_个人哑终端/</span>
+      <span class="required">meta.json</span>                <span class="comment"># ✅ 必需：需求状态真相</span>
+      <span class="required">测试用例信息.csv</span>         <span class="comment"># ✅ 必需：用例盘点输入</span>
+      <span class="required">01_交付说明.md</span>           <span class="comment"># ✅ 必需：交付范围与测试方案</span>
+      <span class="optional">02_测试数据.md</span>           <span class="comment"># 📎 推荐：测试数据准备</span>
+      <span class="optional">03_交互链接.md</span>           <span class="comment"># 📎 推荐：交互入口索引</span>
+      <span class="optional">04_待确认问题.md</span>         <span class="comment"># 📎 推荐：未闭环问题</span>
+      <span class="dir">过程材料/</span>               <span class="comment"># 阶段产物统一收纳</span>
+  <span class="dir">0530版本/analysis/</span>
+  <span class="dir">5.0.1版本/analysis/</span>
+  <span class="dir">认证源业务编排版本/analysis/</span>
+  <span class="dir">report/</span>                       <span class="comment"># 日报/周报/月报/季度目标</span>
+    </div>
+  </section>
+
+  <!-- ════ Part 04: Station Portal ════ -->
+  <section class="section" id="portal">
+    <div class="section-label">Part 04 · 工作站门户</div>
+    <div class="section-title">三栏布局：导航 · 详情多 tab · 总结报告</div>
+    <div class="section-copy">左侧需求导航（版本筛选 + 置顶 + 搜索）→ 中间多 tab（大盘/卡点/ATP/用例盘点/阶段说明）→ 右侧总结报告（置顶常驻、一键复制表格到飞书/邮件）。</div>
+
+    <div class="station-mockup">
+      <div class="mockup-toolbar">
+        <div class="mockup-dots"><span></span><span></span><span></span></div>
+        <div class="mockup-title">需求自动化工作站 · 三栏布局</div>
+        <div style="font-size: 0.78rem; opacity: 0.8;">http://127.0.0.1:8765</div>
       </div>
-      <div class="demo-body">
-        <div id="flowSteps"></div>
-        <div class="demo-detail">
-          <div class="demo-note">
-            <h4 id="flowDetailTitle">加载中</h4>
-            <ul class="note-list" id="flowDetailList"></ul>
+      <div class="mockup-body">
+        <div class="mockup-sidebar">
+          <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em;">0330版本</div>
+          <div class="mockup-item active">📌 基本费计费策略</div>
+          <div class="mockup-item">AD对接支持LDAPs</div>
+          <div class="mockup-item">个人哑终端</div>
+          <div class="mockup-item">MAC无感认证防仿冒</div>
+          <div class="mockup-item">web1x认证成功后接口优化</div>
+          <div style="font-size: 0.72rem; color: var(--text-secondary); padding: 6px 10px;">+ 17 个需求</div>
+          <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-secondary); margin: 8px 0 8px; text-transform: uppercase; letter-spacing: 0.06em;">0530版本</div>
+          <div class="mockup-item">质量加固-导入接口汇总</div>
+          <div class="mockup-item">licence-cuizhen</div>
+        </div>
+        <div class="mockup-center">
+          <div class="mockup-tabs">
+            <div class="mockup-tab active">大盘</div>
+            <div class="mockup-tab">自动化卡点</div>
+            <div class="mockup-tab">ATP</div>
+            <div class="mockup-tab">用例盘点</div>
+            <div class="mockup-tab">阶段说明</div>
           </div>
-          <div class="code-box">
-            <h4>结构示意</h4>
-            <pre id="flowDetailCode"></pre>
+          <div class="mockup-metric-row">
+            <div class="mockup-metric">
+              <div class="mockup-metric-val">92.1%</div>
+              <div class="mockup-metric-label">Scope 通过率</div>
+            </div>
+            <div class="mockup-metric">
+              <div class="mockup-metric-val">38</div>
+              <div class="mockup-metric-label">Scope 用例数</div>
+            </div>
+            <div class="mockup-metric">
+              <div class="mockup-metric-val">881</div>
+              <div class="mockup-metric-label">Task 全量用例</div>
+            </div>
           </div>
+          <div class="mockup-center-content">
+            <p><strong>大盘视图</strong>：覆盖率 / mapped caseId / CI 通过率 / 版本归属</p>
+            <p style="margin-top: 6px;"><strong>自动化卡点</strong>：不可自动化原因聚合、覆盖率缺口、平台映射进度</p>
+            <p style="margin-top: 6px;"><strong>ATP</strong>：rootCaseId scope 命中、子目录通过率、级联刷新</p>
+            <p style="margin-top: 6px;"><strong>用例盘点</strong>：source_key / mode / case_id / 备注 全量表</p>
+            <p style="margin-top: 6px;"><strong>阶段说明</strong>：当前焦点、阻塞项、下一步动作</p>
+          </div>
+        </div>
+        <div class="mockup-report">
+          <h4>📊 总结报告</h4>
+          <div class="report-row"><span class="name">基本费计费策略</span><span class="rate warn">89.2%</span></div>
+          <div class="report-row"><span class="name">AD对接LDAPs</span><span class="rate good">92.1%</span></div>
+          <div class="report-row"><span class="name">个人哑终端</span><span class="rate good">95.0%</span></div>
+          <div class="report-row"><span class="name">MAC防仿冒</span><span class="rate bad">78.3%</span></div>
+          <div class="report-row"><span class="name">短信验证码</span><span class="rate good">100%</span></div>
+          <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 8px;">按通过率升序 · 备注可就地编辑</div>
+          <div class="report-copy-btn">📋 一键复制（富文本 / Markdown / 纯文本）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-grid" style="margin-top: 18px;">
+      <div class="bento-card">
+        <div class="bento-icon teal">🔁</div>
+        <h3>ATP 快照与级联刷新</h3>
+        <p>调 /case/v2 取 pathTree，按 rootCaseId 下 1 层子目录归桶。同 taskId 的多个需求一次刷新一起更新，scope_summary 与 task 全量 summary 并存。</p>
+        <div class="bento-tags">
+          <div class="tag teal">scope 聚合</div>
+          <div class="tag amber">级联刷新</div>
+          <div class="tag violet">AtpRootScopeAggregator</div>
+        </div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon amber">📋</div>
+        <h3>报告面板：一键导出到飞书</h3>
+        <p>跨需求 ATP 通过率聚合成表，按通过率升序排。一键复制提供富文本/Markdown/纯文本三种格式，通过 ClipboardItem 写 text/html 直接粘贴。</p>
+        <div class="bento-tags">
+          <div class="tag teal">pin / drawer</div>
+          <div class="tag amber">copy as table</div>
+          <div class="tag violet">jump to ATP tab</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="lifecycle">
-    <div class="section-label">Part 02</div>
-    <div class="section-title">三栏工作站：输入、评审、呈现节点都有固定落点</div>
-    <div class="section-copy">左侧需求导航（带版本筛选与置顶）+ 中间多 tab（大盘 / 自动化卡点 / ATP / 用例盘点 / 阶段说明）+ 右侧总结报告，把同一份结构化数据投影成不同视图。</div>
+  <!-- ════ Part 05: Process Lifecycle ════ -->
+  <section class="section" id="process">
+    <div class="section-label">Part 05 · 流程生命周期</div>
+    <div class="section-title">从需求创建到报告导出的 5 个固定节点</div>
+    <div class="section-copy">每个节点都有固定的写入位置和产出物，不再靠"手写步骤文档"驱动。需求一创建就得到完整模板，人工只维护固定字段，系统派生所有报告。</div>
 
-    <div class="timeline-layout">
-      <div class="timeline-panel">
-        <div class="timeline" id="timelineList"></div>
+    <div class="process-timeline">
+      <div class="process-step">
+        <div class="process-step-icon">📥</div>
+        <h4>创建收编</h4>
+        <p>create_workstream 自动生成 meta.json + CSV + 核心文档模板 + 工作站入口</p>
       </div>
-      <div class="stage-detail">
-        <h4 id="stageTitle">加载中</h4>
-        <div class="section-copy" id="stageCopy" style="margin-bottom: 12px; font-size: 0.92rem;"></div>
-        <div class="detail-tags" id="stageTags"></div>
-        <h4 style="margin-top: 18px;">关键字段</h4>
-        <ul class="detail-list" id="stageFields"></ul>
-        <h4 style="margin-top: 18px;">为什么固定这个节点</h4>
-        <ul class="detail-list" id="stageReasons"></ul>
+      <div class="process-step">
+        <div class="process-step-icon">🧱</div>
+        <h4>结构化沉淀</h4>
+        <p>用例行、生命周期字段、ATP 绑定折叠为同一份 workstream 对象</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-icon">🔁</div>
+        <h4>ATP 快照</h4>
+        <p>rootCaseId 1 层归桶 + 同 taskId 级联刷新，scope_summary 并存</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-icon">🔍</div>
+        <h4>评审分析</h4>
+        <p>自动化卡点 tab 暴露缺口，ATP 命中分析给出真实执行数据</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-icon">📊</div>
+        <h4>报告导出</h4>
+        <p>右侧报告一键复制，日报/周报由工作站生成草稿，人工只补判断</p>
+      </div>
+    </div>
+
+    <div class="bento-grid-3" style="margin-top: 24px;">
+      <div class="bento-card">
+        <div class="bento-icon teal">🏗️</div>
+        <h3>模板化创建</h3>
+        <p>create_workstream 直接生成完整模板：meta.json、主 CSV、01~04 文档、artifacts 目录、工作站入口注册。</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon amber">📝</div>
+        <h3>字段驱动，不再写文档</h3>
+        <p>人工维护 6 个固定字段（目标/进展/阻塞/归因/下一步/依赖），系统派生详情页、日报、周报。</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon violet">📤</div>
+        <h3>报告生成制</h3>
+        <p>日报草稿从 active workstream 的 notes + ATP 快照自动聚合；周报草稿从覆盖率变化 + 风险项生成。</p>
       </div>
     </div>
   </section>
 
-  <section class="section" id="roadmap">
-    <div class="section-label">Part 03</div>
-    <div class="section-title">下一步只挑能稳定推进的几件</div>
-    <div class="section-copy">不画完整 roadmap，只列 3 个方向：ATP 多 task 类型与失败归因、报告产品化、多版本批量动作。</div>
+  <!-- ════ Part 06: Governance Roadmap ════ -->
+  <section class="section" id="governance">
+    <div class="section-label">Part 06 · 治理路线</div>
+    <div class="section-title">P0 收口规则 → P1 流程入口 → P2 历史迁移</div>
+    <div class="section-copy">不画完整 roadmap，只按优先级列出三个阶段。P0 先定规则不动历史目录，P1 把工作站变成真正的流程入口，P2 逐步迁移遗留结构。</div>
 
-    <div class="roadmap-layout">
-      <div class="roadmap-container">
-        <div class="roadmap-tabs" id="roadmapTabs"></div>
+    <div class="roadmap-grid">
+      <div class="roadmap-card p0">
+        <div class="roadmap-priority">P0 · 先收口规则</div>
+        <h4>不动历史目录，先明确边界</h4>
+        <ul>
+          <li>更新 PROJECT_STRUCTURE.md 反映当前架构</li>
+          <li>创建单一真相矩阵（truth_matrix.md）</li>
+          <li>明确 workstream 最小合同</li>
+          <li>明确 sandbox 使用边界</li>
+          <li>日报/周报改为工作站生成草稿</li>
+        </ul>
       </div>
-      <div class="roadmap-detail">
-        <h4 id="roadmapTitle">加载中</h4>
-        <div class="section-copy" id="roadmapCopy" style="margin-bottom: 12px; font-size: 0.92rem;"></div>
-        <div class="detail-tags" id="roadmapTags"></div>
-        <h4 style="margin-top: 18px;">简要落点</h4>
-        <ul class="detail-list" id="roadmapPoints"></ul>
+      <div class="roadmap-card p1">
+        <div class="roadmap-priority">P1 · 流程入口</div>
+        <h4>工作站成为唯一人工门户</h4>
+        <ul>
+          <li>create_workstream 生成完整模板</li>
+          <li>增加日报/周报草稿生成按钮</li>
+          <li>需求级 HTML + 跨需求手册纳入工作站索引</li>
+          <li>station_catalog.json 统一管理工具页清单</li>
+        </ul>
+      </div>
+      <div class="roadmap-card p2">
+        <div class="roadmap-priority">P2 · 历史迁移</div>
+        <h4>逐步收敛遗留结构</h4>
+        <ul>
+          <li>停止新增自由命名版本目录</li>
+          <li>跨需求手册从 archive/ 迁到 knowledge/</li>
+          <li>清理 sandbox 长驻文件</li>
+          <li>workspace/report → workspace/reports 统一</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <footer class="footer">
-    这个 demo 面向“解释思路”而不是“替代产品”。如果后续继续打磨，可以把这里的叙事层保留，把真实数据源和真实交互逐步替换进去。
+    这个页面呈现 caseHelper 从脚本仓库到服务化工作站的演进全景。六个层面——三层架构、数据真相、资产治理、工作站门户、流程生命周期、治理路线——构成了当前系统的完整叙事。
   </footer>
 
   <script>
-    var flowItems = [
+    /* ── Architecture interactive layers ── */
+    var archLayers = [
       {
-        id: "ingest",
-        emoji: "📥",
-        name: "需求入口收编：版本目录 + meta.json + 文档索引",
-        tag: "Ingest",
-        desc: "新需求落到 workspace/<版本>/analysis/YYYYMMDD_名称/ 目录，meta.json 收口入口、CSV、文档与平台 task 绑定。",
+        id: "station",
+        icon: "🖥️",
+        name: "Station — 工作站门户",
+        desc: "唯一人工入口，三栏布局，调用 services 完成所有操作",
+        count: "1 portal",
         details: [
-          "版本目录区分 0330 / 0530 等大版本，工作站侧栏可按版本筛选与迁移。",
-          "meta.json 既是输入字段也是回写落点：station.cases、binding、navigation 都挂在这里。",
-          "新增需求、改名、迁移、取消托管 都通过 /api/workstream/* 走，不动文件系统直连。"
+          "三栏布局：左侧需求导航（版本筛选 + 置顶 + 搜索）+ 中间多 tab + 右侧总结报告",
+          "board_state.json 存储 ATP 绑定、快照、UI 状态",
+          "dashboard_data.json 存储聚合仪表盘数据",
+          "跨需求工具页：AC 认证工具、文档查看器、工具汇总"
         ],
-        code: [
-          "workspace/0530版本/analysis/",
-          "  20260410_基本费计费策略/",
-          "    meta.json   # cases / binding / navigation",
-          "    *.csv       # 用例盘点输入",
-          "    *.md        # 交付说明 / 待确认问题"
-        ].join("\n")
+        tags: ["index.html", "board_state.json", "dashboard_data.json"]
       },
       {
-        id: "structure",
-        emoji: "🧱",
-        name: "结构化沉淀：cases / lifecycle / atp 三类字段并列",
-        tag: "Model",
-        desc: "把用例行、生命周期判断、ATP 任务绑定折叠成同一份对象，让多个面板共享同一份事实。",
+        id: "services",
+        icon: "⚙️",
+        name: "Services — 统一编排层",
+        desc: "跨 skill 业务编排，所有方法返回 ServiceResult",
+        count: "19+ services",
         details: [
-          "cases 行至少包含 source_key、mode、case_id、note、result、不可自动化原因等字段。",
-          "lifecycle_inputs 收 mainline_focus、dependency_scope、automation_focus 等评审需要的字段。",
-          "atp.binding 把 productId、taskIds、rootCaseId 钉在 board_state.json，避免每次重新填表。"
+          "interactive_station_service — 工作站后端主服务",
+          "workstream_orchestrator_service — 需求创建/迁移/归档",
+          "sdet_atp_task_read_service + atp_root_scope_aggregator — ATP 数据读取与 scope 聚合",
+          "case_analysis_service + analysis_writeback_service — 用例分析与回写",
+          "lark_writeback_service + feishu_csv_sheet_import_service — 飞书读写",
+          "ac_auth_switch_service — AC 认证源切换",
+          "统一基础设施：config.py / errors.py / result.py / logging_config.py"
         ],
-        code: [
-          "workstream = {",
-          "  cases: [...],",
-          "  lifecycle_inputs: {...},",
-          "  atp: { binding, snapshot, last_refreshed_at },",
-          "  navigation: { pinned, ... }",
-          "}"
-        ].join("\n")
+        tags: ["ServiceResult", "ErrorCode", "get_config()"]
       },
       {
-        id: "atp",
-        emoji: "🔁",
-        name: "ATP 快照：rootCaseId 1 层子目录聚合 + 同 task 级联刷新",
-        tag: "Refresh",
-        desc: "调 /case/v2 取 pathTree，按 rootCaseId 下一层子目录归桶；同 taskId 的多个需求一次刷新一起更新。",
+        id: "scripts",
+        icon: "📜",
+        name: "Scripts — 薄入口",
+        desc: "参数解析 + 调 service + 打印摘要，禁止直接调 skill",
+        count: "5 类脚本",
         details: [
-          "AtpRootScopeAggregator 单独负责按 rootCaseId 把 case 上卷到第 1 层子目录，不耦合工作站状态。",
-          "refresh_atp_snapshot(cascade=True) 会把绑定同一 taskId 的所有需求一起跑完，避免逐个点。",
-          "scope_summary 与 task 全量 summary 并存：左侧看版本盘点，右侧报告里看自己的命中范围。"
+          "create/ — 批量创建目录与用例",
+          "update/ — 更新用例名称等",
+          "sync/ — 同步知识库、回写飞书、同步目录",
+          "analyze/ — 分析用例分布、生成概览",
+          "station/ — 工作站启动、ATP 回填、数据规范化"
         ],
-        code: [
-          "POST /api/atp/snapshot/refresh",
-          "  -> 按 taskId 拉 exec detail",
-          "  -> 按 rootCaseId 1 层归桶",
-          "  -> 同 taskId 的 N 个 workstream 一并落盘"
-        ].join("\n")
+        tags: ["create", "update", "sync", "analyze", "station"]
       },
       {
-        id: "report",
-        emoji: "📊",
-        name: "总结报告：右侧常驻 + 一键复制富文本表格",
-        tag: "Export",
-        desc: "把跨需求的 ATP 通过率聚合成一张可粘贴到飞书/邮件的表格，备注与负责人就地编辑。",
+        id: "skills",
+        icon: "🧩",
+        name: "Skills — 单能力封装",
+        desc: "底层 API 封装，每个 skill 包含 SKILL.md",
+        count: "11 组能力",
         details: [
-          "右侧报告面板支持置顶常驻或抽屉打开，pin 状态写本地存储。",
-          "一键复制提供 富文本表格 / Markdown / 纯文本 三种格式，富文本通过 ClipboardItem 写 text/html。",
-          "重点目录分析按通过率升序排，最低的需求自动排在最前；点击行直接跳到对应 ATP 面板。"
+          "飞书：Token 获取 / API 助手 / 表格查询 / 读取 / 写入",
+          "SDET 平台：客户端 / 批量建用例 / 审计修复 / ID 回写 / 登录",
+          "用例分析：AI 概述",
+          "工作站：station-workbench / workstream-orchestrator",
+          "审计：wireless-switch-auditor",
+          "SOP：phase0-sop（批量操作门禁）"
         ],
-        code: [
-          "report.rows = workstreams",
-          "  .filter(scope_summary.task_count > 0)",
-          "  .sort(by pass_rate asc)",
-          "copy → text/html + text/plain"
-        ].join("\n")
+        tags: ["PlatformClient", "LarkSheetReader", "Phase0 SOP"]
+      },
+      {
+        id: "knowledge",
+        icon: "📚",
+        name: "Knowledge — 知识库与治理",
+        desc: "公共步骤、规则资产、治理规范、审计配置",
+        count: "100+ cases",
+        details: [
+          "workstream_index.json — 活跃需求入口索引",
+          "common_cases/ — 100+ 公共步骤 JSON",
+          "common_cases_manifest.json — 别名到 case_id 映射",
+          "governance/ — 真相矩阵 + 需求目录合同",
+          "sdet-api-docs/ — SDET 平台 API 文档",
+          "audit/ — 审计规则配置"
+        ],
+        tags: ["truth_matrix.md", "workstream_contract.md", "manifest"]
       }
     ];
 
-    var lifecycleItems = [
-      {
-        id: "input",
-        version: "Input",
-        title: "输入节点 · 用例盘点 + 生命周期字段",
-        desc: "用例盘点 CSV、ATP taskId 绑定、生命周期判断字段都在这一层固定下来，避免后面的评审反复回头补字段。",
-        copy: "工作站第一层是把可结构化的输入收编：哪些是手工、哪些是自动化、哪些已经映射 caseId、ATP 任务跑哪个 rootCaseId，统一写到 meta.json 与 board_state.json，后续所有视图都以这层为准。",
-        tags: ["cases.csv", "atp.binding", "lifecycle_inputs"],
-        fields: [
-          "用例行：source_key / mode / case_id / 不可自动化原因 / 备注",
-          "ATP 绑定：productId / taskIds / rootCaseId（在面板里直接保存，无需手编 JSON）",
-          "生命周期字段：mainline_focus、dependency_scope、automation_focus 等"
-        ],
-        reasons: [
-          "评审、报告、级联刷新都从这层取数据，输入残缺会直接卡住下游。",
-          "字段固定后，新需求只是再填一份模板，不需要每次重新约束格式。"
-        ]
-      },
-      {
-        id: "review",
-        version: "Review",
-        title: "评审节点 · 自动化卡点 + ATP 命中分析",
-        desc: "自动化卡点 tab 把不可自动化原因、覆盖率缺口、平台映射进度集中暴露，ATP tab 用 rootCaseId scope 给出真实执行命中。",
-        copy: "评审不再靠口头追问。覆盖率不达标，可以直接看是输入字段缺失、平台 case 未建齐，还是 ATP 任务没跑到该目录；rootCaseId 0 命中会给明确提示，而不是静默空表。",
-        tags: ["manual_auto_split", "platform_cases_created", "atp.scope_summary"],
-        fields: [
-          "手工 / 自动化拆分依据，以及不可自动化原因聚合",
-          "caseId 映射进度、未映射用例清单",
-          "ATP scope_summary：本需求实际命中的成功 / 失败 / 通过率，与 task 全量并列展示"
-        ],
-        reasons: [
-          "把卡点对应到具体字段，避免把责任推给笼统的“覆盖率不够”。",
-          "ATP 命中数据让评审从“跑没跑”推进到“跑到我这块没有、跑了多少、谁负责跟”。"
-        ]
-      },
-      {
-        id: "presentation",
-        version: "Present",
-        title: "呈现节点 · 大盘视图 + 右侧总结报告",
-        desc: "左侧导航 + 中间多 tab + 右侧报告面板的三栏布局，把同一份数据投影成需求视角、版本视角、对外汇报视角三种呈现。",
-        copy: "呈现层不是再画一个 dashboard，而是把已经结构化的事实拆成不同读者的视图：研发看大盘，测试看 ATP 与用例盘点，对外汇报直接复制右侧报告里的表格。",
-        tags: ["overview", "atp.snapshot", "report"],
-        fields: [
-          "大盘视图：覆盖率 / mapped caseId / CI 通过率 / 版本归属",
-          "ATP tab：任务最近一次执行、子目录通过率、scope summary",
-          "总结报告面板：跨需求重点目录分析，支持置顶、备注就地编辑、一键复制表格"
-        ],
-        reasons: [
-          "同一份数据服务多个角色，不再为汇报临时手搓表。",
-          "报告面板的备注与负责人就地写入本地存储，刷新数据时不丢。"
-        ]
+    var archState = { activeId: "station" };
+
+    function renderArch() {
+      var container = document.getElementById("archLayers");
+      var selected = null;
+      for (var i = 0; i < archLayers.length; i++) {
+        if (archLayers[i].id === archState.activeId) { selected = archLayers[i]; break; }
       }
-    ];
+      if (!selected) selected = archLayers[0];
 
-    var roadmapItems = [
-      {
-        id: "loop",
-        title: "ATP 数据回写更稳，覆盖更多 task 类型",
-        copy: "继续打磨 task 类型与 rootCaseId 的语义边界：当前已经支持按 1 层子目录归桶并自动级联同 taskId 的需求，下一步要把多 taskId、不同执行批次的合并口径再固化。",
-        tags: ["高优先", "ATP", "回写一致"],
-        points: [
-          "多 taskId 合并：按 task 类型区分回归 / 冒烟 / 专项，避免用一个总分掩盖差异。",
-          "失败归因回写：把 case 失败原因带回到用例盘点视图，减少二次分析。",
-          "样本验证：批量平台动作前自动做一条样本断言。"
-        ]
-      },
-      {
-        id: "report",
-        title: "总结报告产品化：模板 + 多视角导出",
-        copy: "右侧报告已经能一键复制成飞书/邮件表格，下一步把模板做成可配置：哪些字段要出现、按什么排序、是否带负责人列，按汇报对象切换。",
-        tags: ["报告体验", "标准化"],
-        points: [
-          "模板按读者分：研发周报 / 测试日报 / 管理月报。",
-          "支持把备注与负责人持久化到 meta.json，而不仅是本地存储。",
-          "支持挑选若干需求批量出报告，而不是只出全量。"
-        ]
-      },
-      {
-        id: "version",
-        title: "多版本 + 多需求批量动作",
-        copy: "版本目录、级联刷新、置顶导航这些底盘已经在了，后续要把版本之间、需求之间的批量操作能力再补一轮。",
-        tags: ["版本管理", "规模化"],
-        points: [
-          "跨版本看覆盖率与风险分布。",
-          "按版本批量迁移、批量归档、批量重新刷 ATP 快照。",
-          "需求层面的批量取消托管 / 重命名 / 重新绑定 task。"
-        ]
-      }
-    ];
-
-    var state = {
-      flowId: "ingest",
-      lifecycleId: "input",
-      roadmapId: "loop"
-    };
-
-    function byId(list, id) {
-      for (var i = 0; i < list.length; i++) {
-        if (list[i].id === id) return list[i];
-      }
-      return list[0];
-    }
-
-    function escapeHtml(value) {
-      return String(value == null ? "" : value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;");
-    }
-
-    function renderFlow() {
-      var selected = byId(flowItems, state.flowId);
-      var container = document.getElementById("flowSteps");
-      container.innerHTML = flowItems.map(function(item) {
-        return '<div class="step-row ' + (item.id === state.flowId ? 'active' : '') + '" data-flow-id="' + item.id + '">' +
-          '<div class="step-emoji">' + item.emoji + '</div>' +
-          '<div class="step-main">' +
-            '<div class="step-name">' + escapeHtml(item.name) + '</div>' +
-            '<div class="step-desc">' + escapeHtml(item.desc) + '</div>' +
+      container.innerHTML = archLayers.map(function(layer) {
+        return '<div class="arch-layer ' + (layer.id === archState.activeId ? 'active' : '') + '" data-layer-id="' + layer.id + '">' +
+          '<div class="arch-layer-icon">' + layer.icon + '</div>' +
+          '<div class="arch-layer-info">' +
+            '<div class="arch-layer-name">' + esc(layer.name) + '</div>' +
+            '<div class="arch-layer-desc">' + esc(layer.desc) + '</div>' +
           '</div>' +
-          '<div class="step-pill">' + escapeHtml(item.tag) + '</div>' +
+          '<div class="arch-layer-count">' + esc(layer.count) + '</div>' +
         '</div>';
       }).join("");
 
-      document.getElementById("flowDetailTitle").textContent = selected.name;
-      document.getElementById("flowDetailList").innerHTML = selected.details.map(function(point) {
-        return '<li>' + escapeHtml(point) + '</li>';
+      document.getElementById("archDetailTitle").textContent = selected.name;
+      document.getElementById("archDetailList").innerHTML = selected.details.map(function(d) {
+        return '<li>' + esc(d) + '</li>';
       }).join("");
-      document.getElementById("flowDetailCode").textContent = selected.code;
+      document.getElementById("archDetailTags").innerHTML = selected.tags.map(function(t, i) {
+        var cls = ["teal", "amber", "violet"][i % 3];
+        return '<div class="tag ' + cls + '">' + esc(t) + '</div>';
+      }).join("");
 
-      container.querySelectorAll("[data-flow-id]").forEach(function(node) {
+      container.querySelectorAll("[data-layer-id]").forEach(function(node) {
         node.addEventListener("click", function() {
-          state.flowId = node.dataset.flowId;
-          renderFlow();
+          archState.activeId = node.dataset.layerId;
+          renderArch();
         });
       });
     }
 
-    function renderLifecycle() {
-      var selected = byId(lifecycleItems, state.lifecycleId);
-      var container = document.getElementById("timelineList");
-      container.innerHTML = lifecycleItems.map(function(item) {
-        return '<div class="timeline-item ' + (item.id === state.lifecycleId ? 'active' : '') + '" data-node-id="' + item.id + '">' +
-          '<div class="timeline-dot"></div>' +
-          '<div class="timeline-version">' + escapeHtml(item.version) + '</div>' +
-          '<div class="timeline-title">' + escapeHtml(item.title) + '</div>' +
-          '<div class="timeline-desc">' + escapeHtml(item.desc) + '</div>' +
-        '</div>';
-      }).join("");
-
-      document.getElementById("stageTitle").textContent = selected.title;
-      document.getElementById("stageCopy").textContent = selected.copy;
-      document.getElementById("stageTags").innerHTML = selected.tags.map(function(tag, index) {
-        var cls = index % 3 === 0 ? 'purple' : index % 3 === 1 ? 'blue' : 'green';
-        return '<div class="detail-tag ' + cls + '">' + escapeHtml(tag) + '</div>';
-      }).join("");
-      document.getElementById("stageFields").innerHTML = selected.fields.map(function(point) {
-        return '<li>' + escapeHtml(point) + '</li>';
-      }).join("");
-      document.getElementById("stageReasons").innerHTML = selected.reasons.map(function(point) {
-        return '<li>' + escapeHtml(point) + '</li>';
-      }).join("");
-
-      container.querySelectorAll("[data-node-id]").forEach(function(node) {
-        node.addEventListener("click", function() {
-          state.lifecycleId = node.dataset.nodeId;
-          renderLifecycle();
-        });
-      });
-    }
-
-    function renderRoadmap() {
-      var selected = byId(roadmapItems, state.roadmapId);
-      var container = document.getElementById("roadmapTabs");
-      container.innerHTML = roadmapItems.map(function(item) {
-        return '<button class="roadmap-button ' + (item.id === state.roadmapId ? 'active' : '') + '" data-roadmap-id="' + item.id + '">' +
-          '<div class="roadmap-title">' + escapeHtml(item.title) + '</div>' +
-          '<div class="roadmap-copy">' + escapeHtml(item.copy) + '</div>' +
-        '</button>';
-      }).join("");
-
-      document.getElementById("roadmapTitle").textContent = selected.title;
-      document.getElementById("roadmapCopy").textContent = selected.copy;
-      document.getElementById("roadmapTags").innerHTML = selected.tags.map(function(tag, index) {
-        var cls = index % 3 === 0 ? 'purple' : index % 3 === 1 ? 'blue' : 'green';
-        return '<div class="detail-tag ' + cls + '">' + escapeHtml(tag) + '</div>';
-      }).join("");
-      document.getElementById("roadmapPoints").innerHTML = selected.points.map(function(point) {
-        return '<li>' + escapeHtml(point) + '</li>';
-      }).join("");
-
-      container.querySelectorAll("[data-roadmap-id]").forEach(function(node) {
-        node.addEventListener("click", function() {
-          state.roadmapId = node.dataset.roadmapId;
-          renderRoadmap();
-        });
-      });
+    function esc(v) {
+      return String(v == null ? "" : v)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 
     function revealSections() {
@@ -1156,9 +916,7 @@
       sections.forEach(function(section) { observer.observe(section); });
     }
 
-    renderFlow();
-    renderLifecycle();
-    renderRoadmap();
+    renderArch();
     revealSections();
   </script>
 </body>
