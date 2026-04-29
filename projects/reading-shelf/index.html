@@ -215,25 +215,159 @@
             font-size: 0.94rem;
         }
 
-        .snapshot-panel {
-            margin-bottom: 20px;
-            padding: 22px;
-            border-radius: 28px;
-            background: linear-gradient(180deg, rgba(255, 252, 246, 0.92), rgba(246, 236, 220, 0.94));
-            border: 1px solid var(--line);
-            box-shadow: var(--shadow);
-        }
-
-        .snapshot-panel[hidden] {
-            display: none;
-        }
-
-        .snapshot-head {
+        /* --- 书籍翻开弹窗 3D Effect --- */
+        .book-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(41, 33, 29, 0.62);
+            backdrop-filter: blur(8px);
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 16px;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .book-modal-overlay.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .book-modal-wrapper {
+            position: relative;
+            perspective: 2000px;
+            width: 90vw;
+            max-width: 1120px;
+            height: min(78vh, 700px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        .book-modal-close {
+            position: absolute;
+            top: -48px;
+            right: 0;
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.4rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 100;
+        }
+
+        .book-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .book-3d-scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: translateY(18px) scale(0.96);
+        }
+
+        .book-modal-overlay.is-open .book-3d-scene {
+            transform: translateY(0) scale(1);
+        }
+
+        .book-3d-cover-front {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            z-index: 10;
+            transform-style: preserve-3d;
+            transform-origin: right center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 8px 22px 22px 8px;
+            box-shadow: inset 4px 0 10px rgba(255,255,255,0.1), 10px 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .book-modal-overlay.is-open .book-3d-cover-front {
+            transform: rotateY(-180deg);
+        }
+
+        /* 封面外皮 */
+        .book-modal-cover-outer {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            background: var(--card);
+            border-radius: 8px 22px 22px 8px;
+            overflow: hidden;
+        }
+
+        .book-modal-cover-outer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 封面内页（向后翻开展现的书页） */
+        .book-modal-cover-inner {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            background: linear-gradient(90deg, #f7f1e7, #faf5ef);
+            transform: rotateY(180deg);
+            border-radius: 22px 8px 8px 22px;
+            padding: 32px 24px;
+            box-shadow: inset -6px 0 20px rgba(41, 33, 29, 0.04);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* 右侧静态内页 */
+        .book-3d-pages-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            z-index: 5;
+            background: #fffcf8;
+            border-radius: 8px 22px 22px 8px;
+            padding: 32px 32px 32px 24px;
+            box-shadow: inset 6px 0 20px rgba(41, 33, 29, 0.04), 10px 10px 30px rgba(0,0,0,0.12);
+            overflow-y: auto;
+        }
+
+        .book-3d-pages-right::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            bottom: 18px;
+            width: 1px;
+            background: linear-gradient(180deg, rgba(140, 110, 83, 0.16), rgba(140, 110, 83, 0.04));
+        }
+        
+        /* 隐藏滚动条 */
+        .book-modal-cover-inner::-webkit-scrollbar,
+        .book-3d-pages-right::-webkit-scrollbar {
+            width: 4px;
+        }
+        .book-modal-cover-inner::-webkit-scrollbar-thumb,
+        .book-3d-pages-right::-webkit-scrollbar-thumb {
+            background: rgba(41, 33, 29, 0.1);
+            border-radius: 4px;
         }
 
         .snapshot-kicker {
@@ -246,37 +380,30 @@
             border: 1px solid var(--line);
             color: var(--muted);
             font-size: 0.8rem;
+            margin-bottom: 12px;
         }
 
-        .snapshot-head h2 {
-            margin: 10px 0 6px;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
+        #snapshotTitle {
+            margin: 0 0 12px;
+            font-size: 1.8rem;
+            line-height: 1.2;
         }
 
         .snapshot-meta {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-direction: column;
+            gap: 8px;
             color: var(--muted);
             font-size: 0.92rem;
-        }
-
-        .snapshot-close {
-            appearance: none;
-            border: 0;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.82);
-            box-shadow: inset 0 0 0 1px var(--line);
-            color: var(--ink);
-            font: inherit;
-            cursor: pointer;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed rgba(41, 33, 29, 0.1);
+            margin-bottom: 24px;
         }
 
         .snapshot-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
         .snapshot-block {
@@ -284,10 +411,6 @@
             border-radius: 18px;
             background: rgba(255, 255, 255, 0.72);
             border: 1px solid rgba(41, 33, 29, 0.08);
-        }
-
-        .snapshot-block.span-2 {
-            grid-column: span 2;
         }
 
         .snapshot-label {
@@ -356,43 +479,54 @@
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .book-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 2.5rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .book-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
         }
 
         .book-card {
             position: relative;
             display: flex;
             flex-direction: column;
-            min-height: 338px;
-            padding: 14px;
-            border-radius: 22px;
             background: var(--card);
-            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
             box-shadow: 0 10px 24px rgba(88, 62, 41, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .book-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 34px rgba(88, 62, 41, 0.14);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 24px 48px rgba(88, 62, 41, 0.15), 0 12px 24px rgba(88, 62, 41, 0.1);
         }
 
         .book-cover {
             position: relative;
-            min-height: 236px;
-            padding: 16px 14px 14px;
-            border-radius: 16px;
+            aspect-ratio: 2 / 3;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
             color: white;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            text-align: center;
         }
 
         .book-cover.has-image {
-            padding: 0;
             background: linear-gradient(145deg, #f5ede1, #e3d2bb) !important;
         }
 
@@ -424,20 +558,23 @@
         }
 
         .book-cover-image {
-            display: block;
             width: 100%;
-            min-height: 236px;
             height: 100%;
             object-fit: cover;
-            border-radius: 16px;
+            object-position: center top;
+            display: block;
         }
 
         .cover-fallback {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 236px;
-            padding: 16px 14px 14px;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            padding: 2rem 1rem 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            user-select: none;
         }
 
         .cover-fallback[hidden] {
@@ -458,7 +595,7 @@
             z-index: 1;
             margin: 10px 0;
             font-size: 1.42rem;
-            line-height: 1.08;
+            line-height: 1.2;
             font-weight: 700;
             white-space: pre-line;
         }
@@ -471,10 +608,11 @@
         }
 
         .book-copy {
+            flex: 1;
+            padding: 1rem 1.25rem 1.25rem;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            padding: 14px 2px 2px;
+            gap: 0.6rem;
         }
 
         .book-topline {
@@ -486,8 +624,9 @@
 
         .book-card h2 {
             margin: 0;
-            font-size: 1.08rem;
-            line-height: 1.3;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.35;
         }
 
         .badge {
@@ -549,10 +688,15 @@
         .book-foot {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
             gap: 10px;
             padding-top: 4px;
             color: var(--muted);
             font-size: 0.84rem;
+        }
+
+        .book-foot span {
+            min-width: 0;
         }
 
         .source-chip {
@@ -626,10 +770,6 @@
         }
 
         @media (max-width: 1060px) {
-            .book-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
             .shelf::before {
                 top: 318px;
             }
@@ -649,8 +789,74 @@
                 padding: 22px;
             }
 
+            .toolbar {
+                gap: 12px;
+            }
+
+            .filter-row {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+
+            .filter-row::-webkit-scrollbar {
+                display: none;
+            }
+
+            .shelf {
+                padding: 16px 12px 20px;
+            }
+
             .book-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                padding: 0.25rem 0;
+            }
+
+            .book-card {
+                border-radius: 10px;
+            }
+
+            .book-copy {
+                padding: 10px 10px 12px;
+                gap: 0.42rem;
+            }
+
+            .book-topline {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .book-card h2 {
+                font-size: 0.82rem;
+                line-height: 1.35;
+                display: -webkit-box;
+                line-clamp: 2;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                min-height: 2.2em;
+            }
+
+            .badge {
+                align-self: flex-start;
+                padding: 4px 7px;
+                font-size: 0.66rem;
+            }
+
+            .source-chip,
+            .book-meta,
+            .book-foot {
+                display: none;
+            }
+
+            .progress-label {
+                font-size: 0.72rem;
+            }
+
+            .progress-track {
+                height: 6px;
             }
 
             .snapshot-grid {
@@ -665,19 +871,153 @@
             .shelf::after {
                 display: none;
             }
+
+            .book-modal-overlay {
+                align-items: flex-start;
+                padding: 16px 10px 22px;
+                overflow-y: auto;
+            }
+
+            .book-modal-wrapper {
+                width: 100%;
+                max-width: none;
+                height: auto;
+                min-height: calc(100vh - 38px);
+                align-items: stretch;
+            }
+
+            .book-modal-close {
+                position: fixed;
+                top: 12px;
+                right: 12px;
+            }
+
+            .book-3d-scene {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                height: auto;
+                overflow: visible;
+                padding-right: 0;
+                transform: none;
+            }
+
+            .book-modal-overlay.is-open .book-3d-scene {
+                transform: none;
+            }
+
+            .book-3d-cover-front,
+            .book-3d-pages-right {
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-height: 0;
+            }
+
+            .book-3d-cover-front {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 auto;
+                transform-origin: center center;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.18);
+                overflow: hidden;
+            }
+
+            .book-modal-overlay.is-open .book-3d-cover-front {
+                transform: none;
+            }
+
+            .book-modal-cover-outer,
+            .book-modal-cover-inner {
+                position: relative;
+                inset: auto;
+                transform: none;
+                backface-visibility: visible;
+            }
+
+            .book-modal-cover-outer {
+                flex: 0 0 180px;
+                border-radius: 18px 18px 0 0;
+            }
+
+            .book-modal-cover-inner {
+                flex: 0 0 auto;
+                padding: 18px 16px 20px;
+                border-radius: 0 0 18px 18px;
+                box-shadow: none;
+                border-top: 1px solid rgba(41, 33, 29, 0.08);
+                overflow: visible;
+            }
+
+            .book-modal-cover-outer,
+            .book-modal-cover-inner,
+            .book-3d-pages-right {
+                border-radius: 18px;
+            }
+
+            .book-3d-pages-right {
+                padding: 18px 16px 20px;
+            }
+
+            .book-3d-pages-right::before {
+                display: none;
+            }
+
+            #snapshotTitle {
+                font-size: 1.45rem;
+            }
+
+            .snapshot-meta {
+                gap: 6px;
+                font-size: 0.84rem;
+                padding-bottom: 16px;
+                margin-bottom: 16px;
+            }
+
+            .snapshot-block {
+                padding: 14px;
+                border-radius: 14px;
+            }
         }
 
         @media (max-width: 520px) {
             .book-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 10px;
             }
 
             .book-card {
                 min-height: 0;
             }
 
-            .book-cover {
-                min-height: 220px;
+            .book-copy {
+                padding: 8px 8px 10px;
+            }
+
+            .book-card h2 {
+                font-size: 0.76rem;
+            }
+
+            .badge {
+                padding: 3px 6px;
+                font-size: 0.62rem;
+            }
+
+            .progress-label {
+                font-size: 0.68rem;
+            }
+
+            .book-modal-overlay {
+                padding: 12px 8px 18px;
+            }
+
+            .book-modal-cover-outer {
+                flex-basis: 156px;
+            }
+
+            .book-modal-cover-inner,
+            .book-3d-pages-right {
+                padding: 16px 14px 18px;
             }
         }
     </style>
@@ -701,7 +1041,7 @@
                 <button class="filter-chip active" type="button" data-filter="all">全部</button>
                 <button class="filter-chip" type="button" data-filter="已读">已读</button>
                 <button class="filter-chip" type="button" data-filter="在读">在读</button>
-                <button class="filter-chip" type="button" data-filter="想读">想读</button>
+                <button class="filter-chip" type="button" data-filter="未读">未读</button>
             </div>
             <div class="status-text" id="statusText">正在整理你的书架。</div>
         </section>
@@ -710,23 +1050,11 @@
             <div class="cover-panel-head">
                 <div>
                     <h2>当前封面实现</h2>
-                    <p>现在只保留这一套：优先显示 WeRead 候选封面，失败时退回本地生成式占位封面。页面逻辑更单纯，书架也不会因为外链波动直接坏掉。</p>
+                    <p>现在只保留这一套：优先显示同步下来的微信读书封面，缺失时退回本地生成式占位封面。页面逻辑更单纯，书架也不会因为外链波动直接坏掉。</p>
                 </div>
                 <div class="source-chip" id="strategyState">当前 MVP 正在使用 L3</div>
             </div>
             <div class="cover-panel-note">后面如果你自己提供了确定可用的封面素材，再覆盖当前候选图；在那之前，不再展示其他来源方案。</div>
-        </section>
-
-        <section class="snapshot-panel" id="snapshotPanel" aria-label="当前读书快照" hidden>
-            <div class="snapshot-head">
-                <div>
-                    <div class="snapshot-kicker" id="snapshotKicker">读书快照</div>
-                    <h2 id="snapshotTitle">选择一本书</h2>
-                    <div class="snapshot-meta" id="snapshotMeta"></div>
-                </div>
-                <button class="snapshot-close" type="button" id="snapshotClose">收起快照</button>
-            </div>
-            <div class="snapshot-grid" id="snapshotGrid"></div>
         </section>
 
         <section class="shelf" aria-label="书架内容区">
@@ -734,6 +1062,37 @@
             <div class="empty-state" id="emptyState">这个筛选下还没有书。</div>
         </section>
     </main>
+
+    <!-- 3D 翻书模态框 -->
+    <div class="book-modal-overlay" id="bookModalOverlay">
+        <div class="book-modal-wrapper" id="bookModalWrapper">
+            <button class="book-modal-close" id="bookModalClose" aria-label="关闭读书快照">&times;</button>
+            <div class="book-3d-scene">
+                
+                <!-- 书籍封面块 (左侧) -->
+                <div class="book-3d-cover-front">
+                    <!-- 实际展示给用户看到的外皮 -->
+                    <div class="book-modal-cover-outer" id="bookModalOuterCover"></div>
+                    <!-- 封面背后的内页 (摘要及信息) -->
+                    <div class="book-modal-cover-inner">
+                        <div class="snapshot-kicker" id="snapshotKicker">读书快照</div>
+                        <h2 class="snapshot-head" id="snapshotTitle">书名</h2>
+                        <div class="snapshot-meta" id="snapshotMeta">
+                            <!-- JS 填充 -->
+                        </div>
+                        <div class="snapshot-label">摘要</div>
+                        <p id="snapshotSummary" style="color:var(--muted);font-size:0.96rem;line-height:1.8;">&nbsp;</p>
+                    </div>
+                </div>
+
+                <!-- 书籍静态内页块 (右侧) -->
+                <div class="book-3d-pages-right" id="snapshotGrid">
+                    <!-- JS 填充结构 -->
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <script src="./data/books-data.js"></script>
     <script src="./data/cover-candidates.js"></script>
@@ -746,18 +1105,21 @@
         const emptyState = document.getElementById("emptyState");
         const heroMeta = document.getElementById("heroMeta");
         const strategyState = document.getElementById("strategyState");
-        const snapshotPanel = document.getElementById("snapshotPanel");
+        const bookModalOverlay = document.getElementById("bookModalOverlay");
+        const bookModalOuterCover = document.getElementById("bookModalOuterCover");
         const snapshotKicker = document.getElementById("snapshotKicker");
         const snapshotTitle = document.getElementById("snapshotTitle");
         const snapshotMeta = document.getElementById("snapshotMeta");
+        const snapshotSummary = document.getElementById("snapshotSummary");
         const snapshotGrid = document.getElementById("snapshotGrid");
-        const snapshotClose = document.getElementById("snapshotClose");
+        const bookModalClose = document.getElementById("bookModalClose");
         const filterChips = Array.from(document.querySelectorAll(".filter-chip"));
         let activeSnapshotTitle = "";
 
         function renderHeroMeta() {
             const readCount = books.filter((book) => book.status === "已读").length;
             const readingCount = books.filter((book) => book.status === "在读").length;
+            const unreadCount = books.filter((book) => book.status === "未读").length;
             const notesCount = books.reduce((sum, book) => sum + book.notes, 0);
             const obsidianCount = books.filter((book) => book.source && book.source.includes("Obsidian")).length;
 
@@ -765,60 +1127,90 @@
                 '<span class="meta-pill">共 ' + books.length + ' 本</span>',
                 '<span class="meta-pill">已读 ' + readCount + ' 本</span>',
                 '<span class="meta-pill">在读 ' + readingCount + ' 本</span>',
+                '<span class="meta-pill">未读 ' + unreadCount + ' 本</span>',
                 '<span class="meta-pill">碰撞卡片 ' + notesCount + ' 张</span>',
                 '<span class="meta-pill">Obsidian 已接入 ' + obsidianCount + ' 本</span>'
             ].join("");
         }
 
+        function formatReadingTime(seconds) {
+            if (!seconds) {
+                return '暂无';
+            }
+            const minutes = Math.round(seconds / 60);
+            if (minutes < 60) {
+                return minutes + ' 分钟';
+            }
+            const hours = Math.floor(minutes / 60);
+            const remainMinutes = minutes % 60;
+            return remainMinutes ? hours + ' 小时 ' + remainMinutes + ' 分钟' : hours + ' 小时';
+        }
+
+        function getBookFootnote(book) {
+            if (book.lastReadDate) {
+                return '最近阅读 ' + book.lastReadDate;
+            }
+            if (book.readingTime) {
+                return '阅读时长 ' + formatReadingTime(book.readingTime);
+            }
+            return '书摘归档待接入';
+        }
+
+        function resolveCoverUrl(book) {
+            if (book.cover) {
+                return book.cover;
+            }
+            const resolved = coverCandidates[book.title];
+            return resolved && resolved.cover ? resolved.cover : "";
+        }
+
         function renderStrategyState() {
             const resolvedCount = books.filter((book) => {
-                const resolved = coverCandidates[book.title];
-                return Boolean(resolved && resolved.cover);
+                return Boolean(resolveCoverUrl(book));
             }).length;
 
             strategyState.textContent = resolvedCount
-                ? '当前渲染：WeRead 候选 ' + resolvedCount + ' 本 + L3 兜底'
+                ? '当前渲染：微信读书封面 ' + resolvedCount + ' 本 + L3 兜底'
                 : '当前 MVP 正在使用 L3';
         }
 
-        function createDetailButton(book) {
-            const detail = book.detail || {};
-            return `
-                <button class="detail-button" type="button" data-detail-title="${book.title}">
-                    <span class="detail-button-top">
-                        <strong>展开读书快照</strong>
-                        <span class="detail-toggle">打开宽面板</span>
-                    </span>
-                    <div class="detail-hint">${detail.summary || '当前只有书架卡片，详细快照待补。'}</div>
-                </button>
-            `;
-        }
-
-        function renderSnapshotPanel(book) {
+        function openBookModal(book) {
             const detail = book.detail || {};
             const collisions = (detail.collisions || []).length
                 ? '<ul>' + detail.collisions.map((item) => '<li>' + item + '</li>').join('') + '</ul>'
-                : '<p>这本书还没有挂上碰撞卡片，先保留书架入口。</p>';
-            const resolved = coverCandidates[book.title];
+                : '<p>这本书还没有挂上碰撞卡片。</p>';
+            const coverUrl = resolveCoverUrl(book);
+            const theme = 'linear-gradient(145deg, ' + book.theme[0] + ', ' + book.theme[1] + ')';
 
             activeSnapshotTitle = book.title;
-            snapshotPanel.hidden = false;
+
+            // 外部封面应用
+            bookModalOuterCover.style.background = theme;
+            if (coverUrl) {
+                bookModalOuterCover.innerHTML = `<img src="${coverUrl}" alt="${book.title} 封面">`;
+            } else {
+                bookModalOuterCover.innerHTML = `
+                    <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;padding:2rem 1rem 1.5rem;text-shadow:0 2px 4px rgba(0,0,0,0.2);color:white;text-align:center;">
+                        <div style="font-size:0.76rem;opacity:0.9;">${book.edition}</div>
+                        <div style="margin:10px 0;font-size:1.42rem;line-height:1.2;font-weight:700;white-space:pre-line;">${book.coverTitle}</div>
+                        <div style="font-size:0.88rem;opacity:0.88;">${book.author}</div>
+                        <div style="font-size:0.76rem;opacity:0.9;margin-top:auto;">${book.publisher}</div>
+                    </div>`;
+            }
+
             snapshotKicker.textContent = book.source || '读书快照';
             snapshotTitle.textContent = book.title;
             snapshotMeta.innerHTML = [
-                '<span>作者 ' + book.author + '</span>',
-                '<span>出版社 ' + book.publisher + '</span>',
-                '<span>状态 ' + book.status + '</span>',
-                '<span>进度 ' + book.progress + '%</span>',
-                '<span>碰撞卡片 ' + book.notes + ' 张</span>',
-                '<span>封面 ' + (resolved ? 'WeRead 候选' : '本地生成') + '</span>'
+                '<span>作者：' + book.author + '</span>',
+                '<span>进度：' + book.progress + '% (' + book.status + ')</span>',
+                '<span>碰撞笔记：' + book.notes + ' 张</span>',
+                '<span>最近阅读：' + (book.lastReadDate || '暂无') + '</span>',
+                '<span>阅读时长：' + formatReadingTime(book.readingTime) + '</span>'
             ].join('');
+            
+            snapshotSummary.textContent = detail.summary || '当前只有卡片，快照待补。';
+
             snapshotGrid.innerHTML = `
-                <article class="snapshot-block span-2">
-                    <div class="snapshot-label">摘要</div>
-                    <p>${detail.summary || '当前只有书架卡片，详细快照待补。'}</p>
-                    <div class="snapshot-file">${detail.obsidianFile ? '来源文件：' + detail.obsidianFile : '来源：' + (book.source || '未标注')}</div>
-                </article>
                 <article class="snapshot-block">
                     <div class="snapshot-label">核心主张</div>
                     <p>${detail.thesis || '待补'}</p>
@@ -827,30 +1219,28 @@
                     <div class="snapshot-label">预设读者</div>
                     <p>${detail.reader || '待补'}</p>
                 </article>
-                <article class="snapshot-block span-2">
+                <article class="snapshot-block">
                     <div class="snapshot-label">与你的距离</div>
                     <p>${detail.distance || '待补'}</p>
                 </article>
-                <article class="snapshot-block span-2">
+                <article class="snapshot-block">
                     <div class="snapshot-label">碰撞记录</div>
                     ${collisions}
                 </article>
             `;
 
-            document.querySelectorAll('.detail-button').forEach((button) => {
-                button.classList.toggle('active', button.dataset.detailTitle === book.title);
-            });
-
-            snapshotPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            bookModalOverlay.classList.add("is-open");
         }
 
-        function closeSnapshotPanel() {
+        function closeBookModal() {
             activeSnapshotTitle = "";
-            snapshotPanel.hidden = true;
-            document.querySelectorAll('.detail-button').forEach((button) => {
-                button.classList.remove('active');
-            });
+            bookModalOverlay.classList.remove("is-open");
         }
+
+        bookModalOverlay.addEventListener('click', (e) => {
+            if (e.target === bookModalOverlay) closeBookModal();
+        });
+        bookModalClose.addEventListener('click', closeBookModal);
 
         function createGeneratedCover(book, theme) {
             return `
@@ -868,13 +1258,13 @@
         }
 
         function createRemoteCover(book, theme) {
-            const resolved = coverCandidates[book.title];
-            if (!resolved || !resolved.cover) {
+            const coverUrl = resolveCoverUrl(book);
+            if (!coverUrl) {
                 return createGeneratedCover(book, theme);
             }
             return `
                 <div class="book-cover has-image" style="background:${theme}">
-                    <img class="book-cover-image" src="${resolved.cover}" alt="${book.title} 封面" loading="lazy"
+                    <img class="book-cover-image" src="${coverUrl}" alt="${book.title} 封面" loading="lazy"
                         onerror="this.hidden=true; this.nextElementSibling.hidden=false; this.parentElement.classList.remove('has-image');">
                     <div class="cover-fallback" hidden>
                         <div>
@@ -896,8 +1286,8 @@
             const badgeClass = book.status === "已读" ? "read" : book.status === "在读" ? "reading" : "todo";
             const progress = Math.max(0, Math.min(100, book.progress));
             const theme = 'linear-gradient(145deg, ' + book.theme[0] + ', ' + book.theme[1] + ')';
-            const resolved = coverCandidates[book.title];
-            const sourceChip = resolved ? (book.source || '来源待补') + ' · weread候选' : (book.source || '来源待补');
+            const sourceChip = book.source || '来源待补';
+            const bookFootnote = getBookFootnote(book);
 
             card.innerHTML = `
                 ${createRemoteCover(book, theme)}
@@ -910,10 +1300,14 @@
                     <div class="book-meta"><strong>作者</strong> ${book.author}<br><strong>出版社</strong> ${book.publisher}</div>
                     <div class="progress-label"><span>阅读进度</span><span>${progress}%</span></div>
                     <div class="progress-track"><div class="progress-value" style="width:${progress}%"></div></div>
-                    <div class="book-foot"><span>碰撞卡片 ${book.notes} 张</span><span>书摘归档待接入</span></div>
-                    ${createDetailButton(book)}
+                    <div class="book-foot"><span>碰撞卡片 ${book.notes} 张</span><span>${bookFootnote}</span></div>
                 </div>
             `;
+
+            // 点击卡片直接打开模态框阅读快照
+            card.addEventListener('click', () => {
+                openBookModal(book);
+            });
 
             return card;
         }
@@ -925,17 +1319,8 @@
                 bookGrid.appendChild(createBookCard(book));
             });
 
-            bookGrid.querySelectorAll('.detail-button').forEach((button) => {
-                button.addEventListener('click', () => {
-                    const targetBook = books.find((item) => item.title === button.dataset.detailTitle);
-                    if (targetBook) {
-                        renderSnapshotPanel(targetBook);
-                    }
-                });
-            });
-
             if (activeSnapshotTitle && !visibleBooks.some((book) => book.title === activeSnapshotTitle)) {
-                closeSnapshotPanel();
+                closeBookModal();
             }
 
             emptyState.style.display = visibleBooks.length ? "none" : "block";
@@ -951,8 +1336,6 @@
                 renderBooks(chip.dataset.filter);
             });
         });
-
-        snapshotClose.addEventListener('click', closeSnapshotPanel);
 
         renderHeroMeta();
         renderStrategyState();
