@@ -1,12 +1,70 @@
 window.READING_SHELF_BOOKS = [
     {
+        "bookId": "34260998",
+        "title": "AI新生：破解人机共存密码·人类最后一个大问题",
+        "coverTitle": "AI新生：破解人机共存密码·人类最后一个大问题",
+        "author": "斯图尔特·罗素",
+        "publisher": "微信读书",
+        "status": "已读",
+        "progress": 100,
+        "notes": 0,
+        "edition": "微信读书",
+        "theme": [
+            "#f8fbff",
+            "#7aa5d9"
+        ],
+        "source": "微信读书同步",
+        "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/998/34260998/t9_34260998.jpg",
+        "lastReadDate": "",
+        "readingTime": 0,
+        "detail": {
+            "summary": "微信读书已同步，读书快照待补。",
+            "thesis": "待补",
+            "reader": "待补",
+            "distance": "待补",
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
+        }
+    },
+    {
+        "bookId": "3300054526",
+        "title": "5000天后的世界",
+        "coverTitle": "5000天后的世界",
+        "author": "凯文·凯利 大野和基",
+        "publisher": "微信读书",
+        "status": "已读",
+        "progress": 100,
+        "notes": 0,
+        "edition": "微信读书",
+        "theme": [
+            "#131313",
+            "#7f694f"
+        ],
+        "source": "微信读书同步",
+        "cover": "https://cdn.weread.qq.com/weread/cover/97/cpplatform_njrxnfmrer9qb4vlz6e2x5/t9_cpplatform_njrxnfmrer9qb4vlz6e2x51680751947.jpg",
+        "lastReadDate": "",
+        "readingTime": 0,
+        "detail": {
+            "summary": "微信读书已同步，读书快照待补。",
+            "thesis": "待补",
+            "reader": "待补",
+            "distance": "待补",
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
+        }
+    },
+    {
         "bookId": "912325",
         "title": "局外人",
         "coverTitle": "局外人",
         "author": "[法]加缪",
         "publisher": "上海译文出版社",
         "status": "已读",
-        "progress": 28,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：柳鸣九",
         "theme": [
@@ -15,41 +73,53 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/44/YueWen_912325/t9_YueWen_912325.jpg",
-        "lastReadDate": "2026-04-23",
-        "readingTime": 1103,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
-        "bookId": "CB_1wL0TV0UJH1A71o71JCggFBF",
-        "title": "清晰思考：将平凡时刻转化为非凡成果",
-        "coverTitle": "清晰思考：将平凡时刻转化为非凡成果",
-        "author": "【加】沙恩·帕里什",
-        "publisher": "人民邮电出版社",
+        "title": "清晰思考",
+        "coverTitle": "清晰\n思考",
+        "author": "Shane Parrish",
+        "publisher": "中信出版社",
         "status": "已读",
-        "progress": 54,
-        "notes": 0,
-        "edition": "译者：郭红梅",
+        "progress": 100,
+        "notes": 5,
+        "edition": "决策流程",
         "theme": [
-            "#f6f9f4",
-            "#8ac39c"
+            "#e6f0f7",
+            "#6a92b3"
         ],
-        "source": "微信读书同步",
-        "cover": "https://cdn.weread.qq.com/weread/cover/84/cpplatform_92xn2vnqhef5ymapkawpfg/t9_cpplatform_92xn2vnqhef5ymapkawpfg1725345567.jpg",
-        "lastReadDate": "2026-02-03",
-        "readingTime": 6306,
+        "source": "Obsidian 快照",
         "detail": {
-            "summary": "微信读书已同步，读书快照待补。",
-            "thesis": "待补",
-            "reader": "待补",
-            "distance": "待补",
-            "collisions": []
-        }
+            "summary": "Obsidian 已有快照与 5 个升级方向，虽然不在截图中，但已经构成书架的真实阅读来源。",
+            "thesis": "人生结果取决于日常无数微小时刻中，是否能用清晰思考取代本能反应。",
+            "reader": "经常在压力下做出后悔决定、想提升决策质量但不知道从哪入手的人。",
+            "distance": "互补——你已经有大量感知层洞见，但缺少决策流程层的系统框架。",
+            "originalFeeling": "人生结果不取决于少数几次重大决定，而取决于日常无数微小时刻中，是否能用清晰思考来取代本能反应。大多数人其实活在\"自动驾驶\"模式下。情绪默认、自负默认、社交默认、惰性默认——四种最突出也最危险的默认模式。清晰思考并不总是意味着\"更理性\"，而是要能识别出自己何时处于非理性状态，并在那一刻推迟决定。",
+            "collisions": [
+                "清晰思考 × 记忆资产",
+                "清晰思考 × 万物相通",
+                "清晰思考 × 信息不对称",
+                "清晰思考 × 想清楚与做决定",
+                "清晰思考 × 焦急的决策框架"
+            ],
+            "scanDate": "2026-04-08",
+            "scanTarget": "哲学飞轮 17 张洞见卡",
+            "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-清晰思考.md"
+        },
+        "cover": "https://cdn.weread.qq.com/weread/cover/84/cpplatform_92xn2vnqhef5ymapkawpfg/t9_cpplatform_92xn2vnqhef5ymapkawpfg1725345567.jpg",
+        "lastReadDate": "",
+        "readingTime": 0
     },
     {
         "bookId": "CB_EmD2ir2h6Cxt72P71J2REAcH",
@@ -58,7 +128,7 @@ window.READING_SHELF_BOOKS = [
         "author": "〔德〕博多·舍费尔",
         "publisher": "南海出版社",
         "status": "已读",
-        "progress": 10,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -68,13 +138,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_EmD2ir2h6Cxt72P71J2REAcH_parsecover",
         "lastReadDate": "",
-        "readingTime": 943,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -84,7 +157,7 @@ window.READING_SHELF_BOOKS = [
         "author": "查理·芒格(Charlie Munger)",
         "publisher": "北京联合出版公司",
         "status": "已读",
-        "progress": 12,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -94,13 +167,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_ENbBFXBFg15f71971JBwh2GX_parsecover",
         "lastReadDate": "",
-        "readingTime": 1740,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -119,14 +195,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_2GoBrOBucEYr6dV6cR_parsecover",
-        "lastReadDate": "2023-01-02",
-        "readingTime": 17657,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -136,7 +215,7 @@ window.READING_SHELF_BOOKS = [
         "author": "约瑟夫•坎贝尔（Joseph Campbell)",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 10,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -146,13 +225,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_2SJCyhCv4GrM6jk6kfGZOAod_parsecover",
         "lastReadDate": "",
-        "readingTime": 2687,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -171,14 +253,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/50/cpplatform_as7g6cvino4zuhsxnu9hxd/t9_cpplatform_as7g6cvino4zuhsxnu9hxd1715913190.jpg",
-        "lastReadDate": "2026-02-01",
-        "readingTime": 10943,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -188,7 +273,7 @@ window.READING_SHELF_BOOKS = [
         "author": "（美）纽波特",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 16,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -198,13 +283,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_6Y6EjyEkn0EC71M71J2ea4g1_parsecover",
         "lastReadDate": "",
-        "readingTime": 761,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -212,9 +300,9 @@ window.READING_SHELF_BOOKS = [
         "title": "优秀到不能被忽视",
         "coverTitle": "优秀到不能被忽视",
         "author": "卡尔·纽波特",
-        "publisher": "北京联合出版公司",
+        "publisher": "微信读书",
         "status": "已读",
-        "progress": 11,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -223,14 +311,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/31/YueWen_827161/t9_YueWen_827161.jpg",
-        "lastReadDate": "2026-01-06",
-        "readingTime": 776,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -240,7 +331,7 @@ window.READING_SHELF_BOOKS = [
         "author": "丹尼尔•卡尼曼",
         "publisher": "CTCCN",
         "status": "已读",
-        "progress": 10,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -250,13 +341,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_3zo18G19F1tP71L71J6MaGlu_parsecover",
         "lastReadDate": "",
-        "readingTime": 3234,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -266,7 +360,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[以] 尤瓦尔·赫拉利",
         "publisher": "北京：中信出版社",
         "status": "已读",
-        "progress": 25,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -276,13 +370,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_9R7D25D1X1l371F71J4EwFbH_parsecover",
         "lastReadDate": "",
-        "readingTime": 6371,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -301,14 +398,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/44/YueWen_852290/t9_YueWen_852290.jpg",
-        "lastReadDate": "2022-02-22",
-        "readingTime": 15869,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -318,7 +418,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[明]袁了凡",
         "publisher": "三秦出版社",
         "status": "已读",
-        "progress": 94,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：费勇",
         "theme": [
@@ -327,14 +427,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/28/YueWen_914697/t9_YueWen_914697.jpg",
-        "lastReadDate": "2022-01-24",
-        "readingTime": 3570,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -344,7 +447,7 @@ window.READING_SHELF_BOOKS = [
         "author": "(美)卡尔·纽波特 著；宋伟 译",
         "publisher": "南昌：江西人民出版社",
         "status": "已读",
-        "progress": 14,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -354,13 +457,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_Ca9EufEtLFbu71G71HBV0AX6_parsecover",
         "lastReadDate": "",
-        "readingTime": 1162,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -370,7 +476,7 @@ window.READING_SHELF_BOOKS = [
         "author": "【美】摩根·豪泽尔",
         "publisher": "民主与建设出版社·后浪",
         "status": "已读",
-        "progress": 98,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -379,14 +485,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_6hX8hP8h73Yd71L71GANV8lj_parsecover",
-        "lastReadDate": "2026-01-11",
-        "readingTime": 7182,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -394,25 +503,28 @@ window.READING_SHELF_BOOKS = [
         "title": "金钱心理学：财富、人性和幸福的永恒真相",
         "coverTitle": "金钱心理学：财富、人性和幸福的永恒真相",
         "author": "摩根·豪泽尔",
-        "publisher": "民主与建设出版社",
+        "publisher": "微信读书",
         "status": "已读",
-        "progress": 54,
+        "progress": 100,
         "notes": 0,
-        "edition": "译者：李青宗",
+        "edition": "微信读书",
         "theme": [
             "#335db6",
             "#1f2f6a"
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/84/cpplatform_5w7t185qhfj9qfxdrrfytz/t9_cpplatform_5w7t185qhfj9qfxdrrfytz1689561935.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 6430,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -422,7 +534,7 @@ window.READING_SHELF_BOOKS = [
         "author": "Unknown",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 18,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -432,13 +544,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_0DLErjEt52cO70u71J0To019_parsecover",
         "lastReadDate": "",
-        "readingTime": 1475,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -448,7 +563,7 @@ window.READING_SHELF_BOOKS = [
         "author": "尼尔·唐纳德·沃尔什",
         "publisher": "江西人民出版社",
         "status": "已读",
-        "progress": 3,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -458,17 +573,20 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_1LI3sC3tC6Gr70H71J9Yj7af_parsecover",
         "lastReadDate": "",
-        "readingTime": 2130,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
-        "bookId": "921826",
+        "bookId": "CB_AdD1hv1gP3Pc6bo6cR",
         "title": "心流：最优体验心理学",
         "coverTitle": "心流：最优体验心理学",
         "author": "米哈里·契克森米哈赖",
@@ -483,14 +601,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/826/921826/t9_921826.jpg",
-        "lastReadDate": "2022-08-17",
-        "readingTime": 27267,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -500,7 +621,7 @@ window.READING_SHELF_BOOKS = [
         "author": "埃里克·乔根森",
         "publisher": "中信出版集团",
         "status": "已读",
-        "progress": 87,
+        "progress": 100,
         "notes": 7,
         "edition": "财富与幸福指南",
         "theme": [
@@ -509,13 +630,14 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "Obsidian 快照",
         "cover": "https://cdn.weread.qq.com/weread/cover/89/YueWen_44026191/t9_YueWen_44026191.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 43101,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "Obsidian 已有完整快照和碰撞记录，适合作为读书碰撞卡片的第一批挂载样例。",
             "thesis": "财富是在睡觉时仍能赚钱的资产，幸福是不依赖外在结果的内在平和。",
             "reader": "想从努力工作转向用杠杆工作、同时追求内在自由的人。",
             "distance": "强共鸣——杠杆、复利、减法哲学与飞轮高度重叠。",
+            "originalFeeling": "财富是在睡觉时仍能赚钱的资产。你无法靠出卖时间变富，而是需要资产或被动收入。积累专长，把自己产品化。四种杠杆：劳动力、资本、代码、媒体。复利不只是金融概念——判断力和专长都可以复利式积累。幸福更倾向于平和与宁静，而非简单的快乐。欲望是主动选择不快乐——每个欲望都是在说\"我不满意当下\"。阅读是最重要的习惯。",
             "collisions": [
                 "纳瓦尔宝典 × 碳基与硅基杠杆",
                 "纳瓦尔宝典 × AI工具流与判断力",
@@ -525,6 +647,8 @@ window.READING_SHELF_BOOKS = [
                 "纳瓦尔宝典 × AI时代的专长",
                 "纳瓦尔宝典 × 阅读与记录"
             ],
+            "scanDate": "2026-04-08",
+            "scanTarget": "哲学飞轮 17 张洞见卡 + 5 张清晰思考碰撞卡",
             "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-纳瓦尔宝典.md"
         }
     },
@@ -535,7 +659,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[美]彼得·希夫,安德鲁·希夫",
         "publisher": "中信出版社",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "鱼、美元和经济学",
         "theme": [
@@ -544,14 +668,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "截图整理 + 微信读书",
         "cover": "https://res.weread.qq.com/wrepub/CB_Ah1DMBDKJAMb6tt6tDFyk7uD_parsecover",
-        "lastReadDate": "2025-11-06",
-        "readingTime": 8872,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "当前只放书架卡，适合后续补作“经济直觉入门”的归档。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -561,23 +688,29 @@ window.READING_SHELF_BOOKS = [
         "author": "雪球专刊",
         "publisher": "浙江出版集团数字传媒有限公司",
         "status": "已读",
-        "progress": 1,
-        "notes": 0,
+        "progress": 100,
+        "notes": 1,
         "edition": "经济理财-理财",
         "theme": [
             "#fff3e6",
             "#eb7a4d"
         ],
-        "source": "微信读书同步",
+        "source": "微信读书 + Obsidian",
         "cover": "https://cdn.weread.qq.com/weread/cover/44/YueWen_34560817/t9_YueWen_34560817.jpg",
         "lastReadDate": "",
-        "readingTime": 280,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
-            "thesis": "待补",
-            "reader": "待补",
-            "distance": "待补",
-            "collisions": []
+            "thesis": "做对的事，把事情做对。投资和商业都是同一个底层逻辑——先判断是非，再谈能力，价格和时机都是次要变量。",
+            "reader": "想从\"怎么选股\"升级为\"怎么判断一件事值不值得做\"的人。",
+            "distance": "高度共鸣——\"本分/平常心\"和飞轮底层价值观几乎完全重合，但段永平框架更系统，洞见更个人化。",
+            "originalFeeling": "",
+            "collisions": [
+                "段永平 × 本分与平静过滤器：物理学家与工程师"
+            ],
+            "scanDate": "2026-04-08",
+            "scanTarget": "",
+            "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-段永平投资问答录.md"
         }
     },
     {
@@ -587,7 +720,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[法]纪德",
         "publisher": "天津人民出版社",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：顾琪静",
         "theme": [
@@ -596,14 +729,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/35/YueWen_23736455/t9_YueWen_23736455.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 6511,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -613,7 +749,7 @@ window.READING_SHELF_BOOKS = [
         "author": "赵 鸿威",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 0,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -623,13 +759,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_EJ033C33GDVF6i56gY4Tx3nb_parsecover",
         "lastReadDate": "",
-        "readingTime": 441,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -639,7 +778,7 @@ window.READING_SHELF_BOOKS = [
         "author": "【韩】柳韩彬",
         "publisher": "国文出版社",
         "status": "已读",
-        "progress": 16,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -649,13 +788,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_23bH2dH0m4lz6yF6wwB6l5OA_parsecover",
         "lastReadDate": "",
-        "readingTime": 869,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -665,7 +807,7 @@ window.READING_SHELF_BOOKS = [
         "author": "查理·芒格",
         "publisher": "中信出版社",
         "status": "已读",
-        "progress": 32,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -675,13 +817,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_CqmDqiDqo2a36i36gp6yv0RP_parsecover",
         "lastReadDate": "",
-        "readingTime": 2458,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -691,7 +836,7 @@ window.READING_SHELF_BOOKS = [
         "author": "一行禅师",
         "publisher": "中央编译出版社",
         "status": "已读",
-        "progress": 64,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -701,13 +846,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_6kXGTNGUZAuO6ym6xA01P9iV_parsecover",
         "lastReadDate": "",
-        "readingTime": 3016,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -717,7 +865,7 @@ window.READING_SHELF_BOOKS = [
         "author": "【美】蒂莫西·费里斯, 鹤梅",
         "publisher": "文化发展出版社",
         "status": "已读",
-        "progress": 12,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -727,13 +875,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_71v32B30IBEo6i26gW7MEGIk_parsecover",
         "lastReadDate": "",
-        "readingTime": 1372,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -743,7 +894,7 @@ window.READING_SHELF_BOOKS = [
         "author": "尼采",
         "publisher": "上海文化出版社",
         "status": "已读",
-        "progress": 17,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：钱春绮",
         "theme": [
@@ -752,14 +903,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/7/YueWen_27689995/t9_YueWen_27689995.jpg",
-        "lastReadDate": "2025-09-15",
-        "readingTime": 6220,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -769,7 +923,7 @@ window.READING_SHELF_BOOKS = [
         "author": "卡夫卡",
         "publisher": "浙江人民出版社",
         "status": "已读",
-        "progress": 94,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：姬健梅",
         "theme": [
@@ -778,14 +932,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/450/34357450/t9_34357450.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 7425,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -795,7 +952,7 @@ window.READING_SHELF_BOOKS = [
         "author": "岸见一郎 古贺史健",
         "publisher": "机械工业出版社",
         "status": "已读",
-        "progress": 20,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：渠海霞",
         "theme": [
@@ -804,14 +961,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/385/25615385/t9_25615385.jpg",
-        "lastReadDate": "2022-08-31",
-        "readingTime": 1710,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -821,7 +981,7 @@ window.READING_SHELF_BOOKS = [
         "author": "待补",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 0,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -831,13 +991,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_GBLBWJBW9G7R6jF6kfDBX4Br_parsecover",
         "lastReadDate": "",
-        "readingTime": 318,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -845,25 +1008,31 @@ window.READING_SHELF_BOOKS = [
         "title": "雪球专刊·特别版：段永平投资问答录投资逻辑篇",
         "coverTitle": "雪球专刊·特别版：段永平投资问答录投资逻辑篇",
         "author": "雪球专刊",
-        "publisher": "浙江出版集团数字传媒有限公司",
+        "publisher": "微信读书",
         "status": "已读",
-        "progress": 11,
-        "notes": 0,
-        "edition": "经济理财-理财",
+        "progress": 100,
+        "notes": 1,
+        "edition": "微信读书",
         "theme": [
             "#50736f",
             "#be996d"
         ],
-        "source": "微信读书同步",
+        "source": "微信读书 + Obsidian",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/924/35679924/t9_35679924.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 6084,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
-            "summary": "微信读书已同步，读书快照待补。",
-            "thesis": "待补",
-            "reader": "待补",
-            "distance": "待补",
-            "collisions": []
+            "summary": "Obsidian 已有阅读快照和 1 张碰撞记录。",
+            "thesis": "做对的事，把事情做对。投资和商业都是同一个底层逻辑——先判断是非，再谈能力，价格和时机都是次要变量。",
+            "reader": "想从\"怎么选股\"升级为\"怎么判断一件事值不值得做\"的人。",
+            "distance": "高度共鸣——\"本分/平常心\"和飞轮底层价值观几乎完全重合，但段永平框架更系统，洞见更个人化。",
+            "originalFeeling": "",
+            "collisions": [
+                "段永平 × 本分与平静过滤器：物理学家与工程师"
+            ],
+            "scanDate": "2026-04-08",
+            "scanTarget": "",
+            "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-段永平投资问答录.md"
         }
     },
     {
@@ -882,14 +1051,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "截图整理 + 微信读书",
         "cover": "https://res.weread.qq.com/wrepub/CB_FnP2Xj2Xq0zs6iy6gY30dDMO_parsecover",
-        "lastReadDate": "2025-08-28",
-        "readingTime": 24843,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "当前只在书架卡层收录，适合后续补思想史方向的重读卡。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -899,7 +1071,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[意]马西莫·匹格里奇",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 95,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：向朝明",
         "theme": [
@@ -908,14 +1080,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/89/cpplatform_nntrwv13rh6mrhq2intwhs/t9_cpplatform_nntrwv13rh6mrhq2intwhs1734000872.jpg",
-        "lastReadDate": "2025-07-26",
-        "readingTime": 18630,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -925,7 +1100,7 @@ window.READING_SHELF_BOOKS = [
         "author": "约翰·海利",
         "publisher": "新华出版社",
         "status": "已读",
-        "progress": 10,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：董亚丽",
         "theme": [
@@ -934,14 +1109,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/49/cpPlatform_r4B98JokyMzfbwUvJemF3t/t9_cpPlatform_r4B98JokyMzfbwUvJemF3t.jpg",
-        "lastReadDate": "2025-06-19",
-        "readingTime": 1207,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -951,7 +1129,7 @@ window.READING_SHELF_BOOKS = [
         "author": "度阴山",
         "publisher": "江苏凤凰文艺出版社",
         "status": "已读",
-        "progress": 8,
+        "progress": 100,
         "notes": 0,
         "edition": "哲学宗教-东方哲学",
         "theme": [
@@ -960,14 +1138,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/76/cpplatform_nkcjju6fvrdgeurscrqqr5/t9_cpplatform_nkcjju6fvrdgeurscrqqr51752030599.jpg",
-        "lastReadDate": "2025-07-22",
-        "readingTime": 6229,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -977,7 +1158,7 @@ window.READING_SHELF_BOOKS = [
         "author": "【美】露露·米勒",
         "publisher": "湖南文艺出版社",
         "status": "已读",
-        "progress": 72,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -987,13 +1168,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_AVv8Rv8QV3w66rm6st3kN4tn_parsecover",
         "lastReadDate": "",
-        "readingTime": 1213,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1003,7 +1187,7 @@ window.READING_SHELF_BOOKS = [
         "author": "金惟纯",
         "publisher": "中信出版社",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "生命练习",
         "theme": [
@@ -1012,14 +1196,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "截图整理 + 微信读书",
         "cover": "https://cdn.weread.qq.com/weread/cover/10/cpplatform_9jmnaaecwrxf8p3bfrc7yh/t9_cpplatform_9jmnaaecwrxf8p3bfrc7yh1674023485.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 16604,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "当前还是想读状态，折叠区先作为将来放阅读快照的位置。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1029,7 +1216,7 @@ window.READING_SHELF_BOOKS = [
         "author": "露露·米勒",
         "publisher": "湖南文艺出版社",
         "status": "已读",
-        "progress": 10,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：陈晓宇",
         "theme": [
@@ -1038,14 +1225,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/75/cpplatform_cvbkmm6ahiy3dkkjm6cbeu/t9_cpplatform_cvbkmm6ahiy3dkkjm6cbeu1676431298.jpg",
-        "lastReadDate": "2025-06-03",
-        "readingTime": 608,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1055,7 +1245,7 @@ window.READING_SHELF_BOOKS = [
         "author": "彼得·考夫曼",
         "publisher": "中信出版集团",
         "status": "已读",
-        "progress": 15,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：李继宏 等",
         "theme": [
@@ -1064,14 +1254,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/48/YueWen_837932/t9_YueWen_837932.jpg",
-        "lastReadDate": "2022-01-17",
-        "readingTime": 10392,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1081,7 +1274,7 @@ window.READING_SHELF_BOOKS = [
         "author": "贝姬·肯尼迪",
         "publisher": "中信出版集团",
         "status": "已读",
-        "progress": 6,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：美同",
         "theme": [
@@ -1090,14 +1283,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/51/cpplatform_59zd8bsvew2haapnupon1r/t9_cpplatform_59zd8bsvew2haapnupon1r1694596495.jpg",
-        "lastReadDate": "2023-12-03",
-        "readingTime": 980,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1116,14 +1312,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "截图整理 + 微信读书",
         "cover": "https://res.weread.qq.com/wrepub/CB_032ARAAQ5Fb66PI6Q8_parsecover",
-        "lastReadDate": "2022-02-07",
-        "readingTime": 17765,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "当前只在书架卡层收录。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1133,7 +1332,7 @@ window.READING_SHELF_BOOKS = [
         "author": "斯科特·派克",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 9,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1143,13 +1342,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_9tsDtcDsu3Pc6bo6cR_parsecover",
         "lastReadDate": "",
-        "readingTime": 3965,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1159,7 +1361,7 @@ window.READING_SHELF_BOOKS = [
         "author": "渤海小吏",
         "publisher": "中国大百科全书出版社",
         "status": "已读",
-        "progress": 16,
+        "progress": 100,
         "notes": 0,
         "edition": "历史-中国古代",
         "theme": [
@@ -1168,14 +1370,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/20/cpplatform_n2g8fnd9eu4fj5fssec8sy/t9_cpplatform_n2g8fnd9eu4fj5fssec8sy1680848708.jpg",
-        "lastReadDate": "2024-06-27",
-        "readingTime": 9376,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1185,7 +1390,7 @@ window.READING_SHELF_BOOKS = [
         "author": "沃尔特·艾萨克森",
         "publisher": "中信出版集团",
         "status": "已读",
-        "progress": 2,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：孙思远 刘家琦",
         "theme": [
@@ -1194,14 +1399,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/37/cpplatform_gmaqcuuuamjkvu7knomjim/t9_cpplatform_gmaqcuuuamjkvu7knomjim1703077934.jpg",
-        "lastReadDate": "2024-11-11",
-        "readingTime": 561,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1211,7 +1419,7 @@ window.READING_SHELF_BOOKS = [
         "author": "待补",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 57,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1220,14 +1428,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_Gv0GS6GVj5jH6jD6kf8445OD_parsecover",
-        "lastReadDate": "2024-05-02",
-        "readingTime": 12328,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1246,14 +1457,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/97/yuewen_822995/t9_yuewen_8229951695023669.jpg",
-        "lastReadDate": "2019-06-18",
-        "readingTime": 100185,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1263,7 +1477,7 @@ window.READING_SHELF_BOOKS = [
         "author": "埃克哈特·托利",
         "publisher": "中信出版集团",
         "status": "已读",
-        "progress": 41,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：曹植",
         "theme": [
@@ -1272,14 +1486,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/2/YueWen_848673/t9_YueWen_848673.jpg",
-        "lastReadDate": "2022-09-20",
-        "readingTime": 2258,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1289,7 +1506,7 @@ window.READING_SHELF_BOOKS = [
         "author": "理查德·道金斯",
         "publisher": "浙江人民出版社",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：魏薇",
         "theme": [
@@ -1298,14 +1515,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/213/26640213/t9_26640213.jpg",
-        "lastReadDate": "2022-03-03",
-        "readingTime": 8429,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1315,7 +1535,7 @@ window.READING_SHELF_BOOKS = [
         "author": "刘子超",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 53,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1325,13 +1545,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_AMdEUdEUDABP6aR6YI_parsecover",
         "lastReadDate": "",
-        "readingTime": 8119,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1341,7 +1564,7 @@ window.READING_SHELF_BOOKS = [
         "author": "桦泽紫苑",
         "publisher": "湖南文艺出版社",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 1,
         "edition": "时间管理",
         "theme": [
@@ -1350,16 +1573,19 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "截图 + 旧读书笔记 + 微信读书",
         "cover": "https://cdn.weread.qq.com/weread/cover/11/YueWen_22664120/t9_YueWen_22664120.jpg",
-        "lastReadDate": "2022-10-03",
-        "readingTime": 7793,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "旧博客已有读书笔记，当前书架先把它作为待迁移条目。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
+            "originalFeeling": "",
             "collisions": [
                 "时间管理相关旧笔记待迁入 Obsidian 快照"
-            ]
+            ],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1369,7 +1595,7 @@ window.READING_SHELF_BOOKS = [
         "author": "陆铭",
         "publisher": "上海人民出版社",
         "status": "已读",
-        "progress": 22,
+        "progress": 100,
         "notes": 0,
         "edition": "经济理财-财经",
         "theme": [
@@ -1378,14 +1604,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/98/YueWen_854364/t9_YueWen_854364.jpg",
-        "lastReadDate": "2023-01-23",
-        "readingTime": 4426,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1395,7 +1624,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[日]村上春树",
         "publisher": "南海出版公司",
         "status": "已读",
-        "progress": 15,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：施小炜",
         "theme": [
@@ -1404,14 +1633,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/10/yuewen_25184495/t9_yuewen_251844951740049944.jpg",
-        "lastReadDate": "2023-02-14",
-        "readingTime": 1650,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1421,7 +1653,7 @@ window.READING_SHELF_BOOKS = [
         "author": "周金涛等编著",
         "publisher": "机械工业出版社",
         "status": "已读",
-        "progress": 9,
+        "progress": 100,
         "notes": 0,
         "edition": "经济理财-财经",
         "theme": [
@@ -1430,14 +1662,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/71/YueWen_25615383/t9_YueWen_25615383.jpg",
-        "lastReadDate": "2023-01-05",
-        "readingTime": 1224,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1447,7 +1682,7 @@ window.READING_SHELF_BOOKS = [
         "author": "叔本华",
         "publisher": "北京联合出版公司",
         "status": "已读",
-        "progress": 16,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：庄如蓓",
         "theme": [
@@ -1456,14 +1691,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/317/31605317/t9_31605317.jpg",
-        "lastReadDate": "2022-01-25",
-        "readingTime": 886,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1473,7 +1711,7 @@ window.READING_SHELF_BOOKS = [
         "author": "刘瑜",
         "publisher": "epub掌上书苑",
         "status": "已读",
-        "progress": 42,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1483,13 +1721,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_Bku1ZA1Y7FQC6dA6cR_parsecover",
         "lastReadDate": "",
-        "readingTime": 5806,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1499,7 +1740,7 @@ window.READING_SHELF_BOOKS = [
         "author": "刘瑜",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1508,14 +1749,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_BcsEQIEQ4ABP6aR6YI_parsecover",
-        "lastReadDate": "2022-11-12",
-        "readingTime": 22051,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1534,14 +1778,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/48/674048/t9_674048.jpg",
-        "lastReadDate": "2022-10-16",
-        "readingTime": 63273,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1551,7 +1798,7 @@ window.READING_SHELF_BOOKS = [
         "author": "M.斯科特·派克",
         "publisher": "北京联合出版公司",
         "status": "已读",
-        "progress": 6,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：严冬冬,张然,李荣等",
         "theme": [
@@ -1560,14 +1807,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/58/yuewen_34389621/t9_yuewen_343896211678699158.jpg",
-        "lastReadDate": "2022-03-03",
-        "readingTime": 7181,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1577,7 +1827,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[古罗马]马可·奥勒留",
         "publisher": "立信会计出版社",
         "status": "已读",
-        "progress": 18,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：云中轩",
         "theme": [
@@ -1586,14 +1836,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/876/340876/t9_340876.jpg",
-        "lastReadDate": "2022-04-18",
-        "readingTime": 2405,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1603,7 +1856,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[德]赫尔曼·黑塞",
         "publisher": "天津人民出版社",
         "status": "已读",
-        "progress": 98,
+        "progress": 100,
         "notes": 0,
         "edition": "译者：姜乙",
         "theme": [
@@ -1612,14 +1865,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/68/YueWen_855327/t9_YueWen_855327.jpg",
-        "lastReadDate": "2022-09-26",
-        "readingTime": 8099,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1638,14 +1894,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/881/39421881/t9_39421881.jpg",
-        "lastReadDate": "2022-08-30",
-        "readingTime": 23118,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1655,7 +1914,7 @@ window.READING_SHELF_BOOKS = [
         "author": "刘子君",
         "publisher": "中信出版集团",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1664,14 +1923,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_9itF3DF6r7Gz6TR6U5_parsecover",
-        "lastReadDate": "2022-08-24",
-        "readingTime": 14767,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1681,7 +1943,7 @@ window.READING_SHELF_BOOKS = [
         "author": "刘瑜",
         "publisher": "广西师范大学出版社",
         "status": "已读",
-        "progress": 11,
+        "progress": 100,
         "notes": 0,
         "edition": "政治军事-政治",
         "theme": [
@@ -1690,14 +1952,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/46/3300016646/t9_3300016646.jpg",
-        "lastReadDate": "2026-03-05",
-        "readingTime": 2376,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1707,7 +1972,7 @@ window.READING_SHELF_BOOKS = [
         "author": "唐文通",
         "publisher": "化学工业出版社",
         "status": "已读",
-        "progress": 97,
+        "progress": 100,
         "notes": 0,
         "edition": "艺术-音乐",
         "theme": [
@@ -1716,14 +1981,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://cdn.weread.qq.com/weread/cover/1/YueWen_23741950/t9_YueWen_23741950.jpg",
-        "lastReadDate": "2022-07-30",
-        "readingTime": 1538,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1742,14 +2010,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "微信读书同步",
         "cover": "https://wfqqreader-1252317822.image.myqcloud.com/cover/205/909205/t9_909205.jpg",
-        "lastReadDate": "2022-07-22",
-        "readingTime": 10979,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1759,7 +2030,7 @@ window.READING_SHELF_BOOKS = [
         "author": "[法]安托万·德·圣埃克苏佩里著",
         "publisher": "天津人民出版社",
         "status": "已读",
-        "progress": 99,
+        "progress": 100,
         "notes": 0,
         "edition": "童话",
         "theme": [
@@ -1768,14 +2039,17 @@ window.READING_SHELF_BOOKS = [
         ],
         "source": "截图整理 + 微信读书",
         "cover": "https://cdn.weread.qq.com/weread/cover/40/yuewen_216212/t9_yuewen_2162121686560140.jpg",
-        "lastReadDate": "2022-05-07",
-        "readingTime": 13779,
+        "lastReadDate": "",
+        "readingTime": 0,
         "detail": {
             "summary": "当前只在书架卡层收录。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1785,7 +2059,7 @@ window.READING_SHELF_BOOKS = [
         "author": "(英)齐格蒙特·鲍曼",
         "publisher": "上海社会科学院出版社有限公司",
         "status": "已读",
-        "progress": 33,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1795,13 +2069,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_BDb6tD6tM09i6Ty6U4_parsecover",
         "lastReadDate": "",
-        "readingTime": 2422,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1821,13 +2098,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_E7yGOMGP76iq6WS6UL_parsecover",
         "lastReadDate": "",
-        "readingTime": 6797,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1837,7 +2117,7 @@ window.READING_SHELF_BOOKS = [
         "author": "杰西•利弗莫尔",
         "publisher": "微信读书",
         "status": "已读",
-        "progress": 24,
+        "progress": 100,
         "notes": 0,
         "edition": "微信读书",
         "theme": [
@@ -1847,13 +2127,16 @@ window.READING_SHELF_BOOKS = [
         "source": "微信读书同步",
         "cover": "https://res.weread.qq.com/wrepub/CB_5oj8Y18YzE6s6S26Pw_parsecover",
         "lastReadDate": "",
-        "readingTime": 5725,
+        "readingTime": 0,
         "detail": {
             "summary": "微信读书已同步，读书快照待补。",
             "thesis": "待补",
             "reader": "待补",
             "distance": "待补",
-            "collisions": []
+            "originalFeeling": "",
+            "collisions": [],
+            "scanDate": "",
+            "scanTarget": ""
         }
     },
     {
@@ -1876,36 +2159,6 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "collisions": []
-        },
-        "cover": "",
-        "lastReadDate": "",
-        "readingTime": 0
-    },
-    {
-        "title": "雪球专刊·特别版",
-        "coverTitle": "雪球专刊\n特别版",
-        "author": "雪球 编",
-        "publisher": "雪球",
-        "status": "在读",
-        "progress": 64,
-        "notes": 3,
-        "edition": "段永平投资问答录",
-        "theme": [
-            "#335db6",
-            "#1f2f6a"
-        ],
-        "source": "截图 + Obsidian",
-        "detail": {
-            "summary": "Obsidian 里已有《段永平投资问答录》的快照与碰撞记录，这里先作为特别版收纳入口。",
-            "thesis": "做对的事，把事情做对。投资和商业都是同一个底层逻辑。",
-            "reader": "想从“怎么选股”升级为“怎么判断一件事值不值得做”的人。",
-            "distance": "高度共鸣——“本分 / 平常心”和你的飞轮底层价值观几乎完全重合。",
-            "collisions": [
-                "段永平 × 本分与平静过滤器",
-                "段永平 × 利润之上的追求",
-                "段永平 × 不懂不碰"
-            ],
-            "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-段永平投资问答录.md"
         },
         "cover": "",
         "lastReadDate": "",
@@ -2055,6 +2308,7 @@ window.READING_SHELF_BOOKS = [
             "thesis": "伟大的产品诞生于艺术与科技的交汇处，专注和简洁是最高原则。",
             "reader": "想理解偏执的完美主义者如何建立持久系统的人。",
             "distance": "深层共鸣——产品哲学和飞轮在密度优先、过程即奖励上高度同构。",
+            "originalFeeling": "",
             "collisions": [
                 "乔布斯传 × 大道至简",
                 "乔布斯传 × 过程即奖励",
@@ -2063,6 +2317,8 @@ window.READING_SHELF_BOOKS = [
                 "乔布斯传 × 愿景者",
                 "乔布斯传 × 偏执与英雄之旅"
             ],
+            "scanDate": "2026-04-08",
+            "scanTarget": "",
             "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-史蒂夫乔布斯传.md"
         },
         "cover": "",
@@ -2140,45 +2396,16 @@ window.READING_SHELF_BOOKS = [
             "thesis": "小决定 + 持续 + 时间 = 巨大结果。成功没有秘方，只有复利积累。",
             "reader": "想找到“为什么努力了没效果”答案的人。",
             "distance": "互补为主——你已经实践复利逻辑，但这本书补上了“延迟显现”的显式模型。",
+            "originalFeeling": "",
             "collisions": [
                 "复利效应 × 记录",
                 "复利效应 × 焦急与复利",
                 "复利效应 × 自动驾驶",
                 "复利效应 × 段永平"
             ],
+            "scanDate": "2026-04-08",
+            "scanTarget": "",
             "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-复利效应.md"
-        },
-        "cover": "",
-        "lastReadDate": "",
-        "readingTime": 0
-    },
-    {
-        "title": "清晰思考",
-        "coverTitle": "清晰\n思考",
-        "author": "Shane Parrish",
-        "publisher": "中信出版社",
-        "status": "已读",
-        "progress": 100,
-        "notes": 5,
-        "edition": "决策流程",
-        "theme": [
-            "#e6f0f7",
-            "#6a92b3"
-        ],
-        "source": "Obsidian 快照",
-        "detail": {
-            "summary": "Obsidian 已有快照与 5 个升级方向，虽然不在截图中，但已经构成书架的真实阅读来源。",
-            "thesis": "人生结果取决于日常无数微小时刻中，是否能用清晰思考取代本能反应。",
-            "reader": "经常在压力下做出后悔决定、想提升决策质量但不知道从哪入手的人。",
-            "distance": "互补——你已经有大量感知层洞见，但缺少决策流程层的系统框架。",
-            "collisions": [
-                "清晰思考 × 记忆资产",
-                "清晰思考 × 万物相通",
-                "清晰思考 × 信息不对称",
-                "清晰思考 × 想清楚与做决定",
-                "清晰思考 × 焦急的决策框架"
-            ],
-            "obsidianFile": "~/Documents/codeStore/obsidian/阅读/2026-04-08-清晰思考.md"
         },
         "cover": "",
         "lastReadDate": "",

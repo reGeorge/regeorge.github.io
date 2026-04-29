@@ -114,6 +114,15 @@ function extractCollisions(raw) {
         .map((line) => line.replace(/^\d+\.\s*/, "").trim());
 }
 
+function extractScanMetadata(raw) {
+    const scanDateMatch = raw.match(/^\*\*扫描日期：\*\*\s*(.+)$/m);
+    const scanTargetMatch = raw.match(/^\*\*扫描对象：\*\*\s*(.+)$/m);
+    return {
+        scanDate: scanDateMatch ? scanDateMatch[1].trim() : "",
+        scanTarget: scanTargetMatch ? scanTargetMatch[1].trim() : ""
+    };
+}
+
 async function loadExistingBooks() {
     const raw = await fs.readFile(booksDataPath, "utf8");
     const sandbox = { window: {} };
@@ -147,7 +156,9 @@ async function loadObsidianNotes() {
         const thesis = simplifyParagraph(extractSection(raw, "核心主张"));
         const reader = simplifyParagraph(extractSection(raw, "预设读者"));
         const distance = simplifyParagraph(extractSection(raw, "与我的距离"));
+        const originalFeeling = simplifyParagraph(extractSection(raw, "原始感受（用户原话）"));
         const collisions = extractCollisions(raw);
+        const scanMeta = extractScanMetadata(raw);
         notes.push({
             title,
             author: fields["作者"] || "",
@@ -160,7 +171,10 @@ async function loadObsidianNotes() {
                 thesis: thesis || "待补",
                 reader: reader || "待补",
                 distance: distance || "待补",
+                originalFeeling: originalFeeling || "",
                 collisions,
+                scanDate: scanMeta.scanDate,
+                scanTarget: scanMeta.scanTarget,
                 obsidianFile: `~/Documents/codeStore/obsidian/阅读/${entry.name}`
             }
         });
@@ -170,6 +184,49 @@ async function loadObsidianNotes() {
 
 function findExactNote(notesByTitle, title) {
     return notesByTitle.get(normalize(title));
+}
+
+function scoreNoteMatch(targetBook, note) {
+    const titleOverlap = computeTitleOverlap(targetBook.title, note.title);
+    const authorMatch = authorsRoughlyMatch(targetBook.author, note.author);
+    const targetTitle = normalize(targetBook.title);
+    const noteTitle = normalize(note.title);
+    let score = titleOverlap * 10;
+    if (targetTitle === noteTitle) {
+        score += 12;
+    } else if (targetTitle.includes(noteTitle) || noteTitle.includes(targetTitle)) {
+        score += 8;
+    }
+    if (authorMatch) {
+        score += 4;
+    }
+    if (noteTitle.length >= 4 && (targetTitle.includes(noteTitle) || noteTitle.includes(targetTitle))) {
+        score += 2;
+    }
+    return score;
+}
+
+function findBestNote(notes, remoteBook, existingBook) {
+    const exact = findExactNote(new Map(notes.map((note) => [normalize(note.title), note])), remoteBook.title)
+        || findExactNote(new Map(notes.map((note) => [normalize(note.title), note])), existingBook?.title || "");
+    if (exact) {
+        return exact;
+    }
+
+    const targets = [
+        { title: remoteBook.title || "", author: remoteBook.author || "" },
+        { title: existingBook?.title || "", author: existingBook?.author || "" }
+    ].filter((target) => target.title);
+
+    const candidates = notes
+        .map((note) => ({
+            note,
+            score: Math.max(...targets.map((target) => scoreNoteMatch(target, note)))
+        }))
+        .filter((item) => item.score >= 7)
+        .sort((left, right) => right.score - left.score);
+
+    return candidates[0]?.note || null;
 }
 
 function computeTitleOverlap(left, right) {
@@ -240,10 +297,10 @@ async function mapWithConcurrency(items, limit, worker) {
 }
 
 function statusFromWeread(remoteEntry, progressInfo) {
-    if (progressInfo?.book?.finishTime || remoteEntry.book?.finished === 1) {
+    const progress = Number(progressInfo?.book?.progress ?? (remoteEntry.book?.finished === 1 ? 100 : 0));
+    if (progress >= 100) {
         return "已读";
     }
-    const progress = Number(progressInfo?.book?.progress ?? 0);
     if (progress > 0 || progressInfo?.book?.isStartReading === 1) {
         return "在读";
     }
@@ -294,7 +351,12 @@ function mergeDetail(existingBook, note) {
         distance: hasMeaningfulText(existingDetail.distance)
             ? existingDetail.distance
             : (noteDetail.distance || "待补"),
+        originalFeeling: hasMeaningfulText(existingDetail.originalFeeling)
+            ? existingDetail.originalFeeling
+            : (noteDetail.originalFeeling || ""),
         collisions,
+        scanDate: existingDetail.scanDate || noteDetail.scanDate || "",
+        scanTarget: existingDetail.scanTarget || noteDetail.scanTarget || "",
         ...(existingDetail.obsidianFile ? { obsidianFile: existingDetail.obsidianFile } : {}),
         ...(!existingDetail.obsidianFile && noteDetail.obsidianFile ? { obsidianFile: noteDetail.obsidianFile } : {})
     };
@@ -373,16 +435,34 @@ function mergeDuplicateBookGroup(primary, alternative) {
 }
 
 function dedupeBooks(books) {
-    const groups = new Map();
+    function isDirectDuplicate(left, right) {
+        return `${normalize(left.title)}|${normalizeAuthor(left.author)}`
+            === `${normalize(right.title)}|${normalizeAuthor(right.author)}`;
+    }
+
+    function isNoteAlias(left, right) {
+        const leftFile = left.detail?.obsidianFile;
+        const rightFile = right.detail?.obsidianFile;
+        if (!leftFile || !rightFile || leftFile !== rightFile) {
+            return false;
+        }
+        const leftTitle = normalize(left.title);
+        const rightTitle = normalize(right.title);
+        return leftTitle === rightTitle || leftTitle.includes(rightTitle) || rightTitle.includes(leftTitle);
+    }
+
+    const groups = [];
     for (const book of books) {
-        const key = `${normalize(book.title)}|${normalizeAuthor(book.author)}`;
-        const list = groups.get(key) || [];
-        list.push(book);
-        groups.set(key, list);
+        const group = groups.find((items) => items.some((candidate) => isDirectDuplicate(candidate, book) || isNoteAlias(candidate, book)));
+        if (group) {
+            group.push(book);
+        } else {
+            groups.push([book]);
+        }
     }
 
     const deduped = [];
-    for (const group of groups.values()) {
+    for (const group of groups) {
         const ranked = group.slice().sort((left, right) => scoreBook(right) - scoreBook(left));
         const [first, ...rest] = ranked;
         deduped.push(rest.reduce((current, candidate) => mergeDuplicateBookGroup(current, candidate), first));
@@ -391,13 +471,30 @@ function dedupeBooks(books) {
 }
 
 function normalizeExistingOnlyBook(book) {
+    const progress = typeof book.progress === "number" ? Math.max(0, Math.min(100, Math.round(book.progress))) : 0;
     return {
         ...book,
-        status: book.status === "想读" ? "未读" : book.status,
+        status: progress >= 100 ? "已读" : progress > 0 ? "在读" : (book.status === "想读" ? "未读" : book.status),
+        progress,
         cover: book.cover || "",
         lastReadDate: book.lastReadDate || "",
         readingTime: book.readingTime || 0,
         notes: Array.isArray(book.detail?.collisions) ? book.detail.collisions.length : (book.notes || 0)
+    };
+}
+
+function mergeExistingOnlyBook(book, note) {
+    const normalized = normalizeExistingOnlyBook(book);
+    if (!note) {
+        return normalized;
+    }
+    const detail = mergeDetail(normalized, note);
+    return {
+        ...normalized,
+        source: buildSource(normalized, note),
+        detail,
+        notes: Array.isArray(detail.collisions) ? detail.collisions.length : normalized.notes,
+        author: normalized.author || note.author || "待补"
     };
 }
 
@@ -412,7 +509,6 @@ async function main() {
         fetchJson("https://weread.qq.com/api/user/notebook")
     ]);
 
-    const notesByTitle = new Map(obsidianNotes.map((note) => [normalize(note.title), note]));
     const usedExistingTitles = new Set();
     const remoteBooks = Array.isArray(shelfResponse.books) ? shelfResponse.books : [];
 
@@ -431,13 +527,13 @@ async function main() {
             usedExistingTitles.add(existingBook.title);
         }
 
-        const note = findExactNote(notesByTitle, remoteBook.title) || findExactNote(notesByTitle, existingBook?.title || "");
+        const note = findBestNote(obsidianNotes, remoteBook, existingBook);
         return buildBook(remoteEntry, detailInfo, progressInfo, existingBook, note);
     });
 
     const preservedBooks = existingBooks
         .filter((book) => !usedExistingTitles.has(book.title))
-        .map((book) => normalizeExistingOnlyBook(book));
+        .map((book) => mergeExistingOnlyBook(book, findBestNote(obsidianNotes, { title: book.title, author: book.author }, book)));
 
     const outputBooks = dedupeBooks([...enrichedBooks, ...preservedBooks]);
     const output = `window.READING_SHELF_BOOKS = ${JSON.stringify(outputBooks, null, 4)};\n`;
