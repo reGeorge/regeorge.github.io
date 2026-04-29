@@ -789,6 +789,76 @@
                 padding: 22px;
             }
 
+            .toolbar {
+                gap: 12px;
+            }
+
+            .filter-row {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+
+            .filter-row::-webkit-scrollbar {
+                display: none;
+            }
+
+            .shelf {
+                padding: 16px 12px 20px;
+            }
+
+            .book-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                padding: 0.25rem 0;
+            }
+
+            .book-card {
+                border-radius: 10px;
+            }
+
+            .book-copy {
+                padding: 10px 10px 12px;
+                gap: 0.42rem;
+            }
+
+            .book-topline {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .book-card h2 {
+                font-size: 0.82rem;
+                line-height: 1.35;
+                display: -webkit-box;
+                line-clamp: 2;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                min-height: 2.2em;
+            }
+
+            .badge {
+                align-self: flex-start;
+                padding: 4px 7px;
+                font-size: 0.66rem;
+            }
+
+            .source-chip,
+            .book-meta,
+            .book-foot {
+                display: none;
+            }
+
+            .progress-label {
+                font-size: 0.72rem;
+            }
+
+            .progress-track {
+                height: 6px;
+            }
+
             .snapshot-grid {
                 grid-template-columns: 1fr;
             }
@@ -802,17 +872,38 @@
                 display: none;
             }
 
+            .book-modal-overlay {
+                align-items: flex-start;
+                padding: 16px 10px 22px;
+                overflow-y: auto;
+            }
+
             .book-modal-wrapper {
-                width: min(100vw - 20px, 680px);
-                height: min(86vh, 760px);
+                width: 100%;
+                max-width: none;
+                height: auto;
+                min-height: calc(100vh - 38px);
+                align-items: stretch;
+            }
+
+            .book-modal-close {
+                position: fixed;
+                top: 12px;
+                right: 12px;
             }
 
             .book-3d-scene {
                 display: flex;
                 flex-direction: column;
                 gap: 14px;
-                overflow-y: auto;
-                padding-right: 4px;
+                height: auto;
+                overflow: visible;
+                padding-right: 0;
+                transform: none;
+            }
+
+            .book-modal-overlay.is-open .book-3d-scene {
+                transform: none;
             }
 
             .book-3d-cover-front,
@@ -845,13 +936,13 @@
             }
 
             .book-modal-cover-outer {
-                flex: 0 0 280px;
+                flex: 0 0 180px;
                 border-radius: 18px 18px 0 0;
             }
 
             .book-modal-cover-inner {
                 flex: 0 0 auto;
-                padding: 24px 20px 28px;
+                padding: 18px 16px 20px;
                 border-radius: 0 0 18px 18px;
                 box-shadow: none;
                 border-top: 1px solid rgba(41, 33, 29, 0.08);
@@ -865,21 +956,68 @@
             }
 
             .book-3d-pages-right {
-                padding: 24px 20px;
+                padding: 18px 16px 20px;
             }
 
             .book-3d-pages-right::before {
                 display: none;
             }
+
+            #snapshotTitle {
+                font-size: 1.45rem;
+            }
+
+            .snapshot-meta {
+                gap: 6px;
+                font-size: 0.84rem;
+                padding-bottom: 16px;
+                margin-bottom: 16px;
+            }
+
+            .snapshot-block {
+                padding: 14px;
+                border-radius: 14px;
+            }
         }
 
         @media (max-width: 520px) {
             .book-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 10px;
             }
 
             .book-card {
                 min-height: 0;
+            }
+
+            .book-copy {
+                padding: 8px 8px 10px;
+            }
+
+            .book-card h2 {
+                font-size: 0.76rem;
+            }
+
+            .badge {
+                padding: 3px 6px;
+                font-size: 0.62rem;
+            }
+
+            .progress-label {
+                font-size: 0.68rem;
+            }
+
+            .book-modal-overlay {
+                padding: 12px 8px 18px;
+            }
+
+            .book-modal-cover-outer {
+                flex-basis: 156px;
+            }
+
+            .book-modal-cover-inner,
+            .book-3d-pages-right {
+                padding: 16px 14px 18px;
             }
         }
     </style>
