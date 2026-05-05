@@ -29,16 +29,13 @@
             min-height: 100vh;
             color: var(--ink);
             font-family: "Trebuchet MS", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-            background:
-                radial-gradient(circle at 12% 12%, rgba(255, 241, 208, 0.72), transparent 28%),
-                radial-gradient(circle at 86% 18%, rgba(226, 213, 188, 0.58), transparent 30%),
-                linear-gradient(180deg, #f8f1e4 0%, #efe1cb 52%, #e0ccb1 100%);
+            background: #efe5d6;
         }
 
         .page-shell {
-            width: min(1160px, calc(100% - 28px));
+            width: min(1480px, calc(100% - 28px));
             margin: 0 auto;
-            padding: 24px 0 48px;
+            padding: 20px 0 36px;
         }
 
         .back-link {
@@ -57,11 +54,11 @@
 
         .hero {
             position: relative;
-            margin-bottom: 28px;
-            padding: 30px;
+            margin-bottom: 20px;
+            padding: 24px 26px;
             border: 1px solid var(--line);
             border-radius: 28px;
-            background: linear-gradient(180deg, rgba(255, 252, 246, 0.84), rgba(244, 235, 219, 0.9));
+            background: rgba(255, 251, 246, 0.9);
             box-shadow: var(--shadow);
             overflow: hidden;
         }
@@ -140,10 +137,64 @@
         .toolbar {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            gap: 14px;
-            margin-bottom: 18px;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .toolbar-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .ghost-button,
+        .primary-button,
+        .danger-button,
+        .action-button {
+            appearance: none;
+            border: 0;
+            border-radius: 12px;
+            font: inherit;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+
+        .ghost-button,
+        .action-button {
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.76);
+            box-shadow: inset 0 0 0 1px var(--line);
+            color: var(--ink);
+        }
+
+        .primary-button {
+            padding: 10px 14px;
+            background: var(--accent);
+            color: #fff9f4;
+        }
+
+        .danger-button {
+            padding: 10px 14px;
+            background: rgba(203, 123, 98, 0.14);
+            box-shadow: inset 0 0 0 1px rgba(203, 123, 98, 0.28);
+            color: #8f3e2f;
+        }
+
+        .ghost-button:hover,
+        .primary-button:hover,
+        .danger-button:hover,
+        .action-button:hover {
+            transform: translateY(-1px);
         }
 
         .current-cover-panel {
@@ -213,6 +264,7 @@
         .status-text {
             color: var(--muted);
             font-size: 0.94rem;
+            text-align: right;
         }
 
         /* --- 书籍翻开弹窗 3D Effect --- */
@@ -447,53 +499,42 @@
 
         .shelf {
             position: relative;
-            padding: 22px 18px 28px;
+            padding: 16px;
             border-radius: 28px;
-            background: linear-gradient(180deg, rgba(255, 249, 240, 0.74), rgba(248, 239, 226, 0.92));
+            background: rgba(255, 251, 246, 0.82);
             box-shadow: var(--shadow);
             border: 1px solid var(--line);
         }
 
         .shelf::before,
         .shelf::after {
-            content: "";
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            height: 16px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, #8d5d3e, #6a442d);
-            box-shadow: 0 8px 18px rgba(88, 57, 38, 0.16);
-            z-index: 0;
-        }
-
-        .shelf::before {
-            top: 318px;
-        }
-
-        .shelf::after {
-            top: 674px;
+            display: none;
         }
 
         .book-grid {
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 2rem;
-            padding: 1rem 0;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            padding: 2px 0;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 760px) {
             .book-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-                gap: 2.5rem;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
-        @media (min-width: 1200px) {
+        @media (min-width: 1040px) {
             .book-grid {
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1320px) {
+            .book-grid {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
             }
         }
 
@@ -504,14 +545,14 @@
             background: var(--card);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 24px rgba(88, 62, 41, 0.08);
+            min-width: 0;
+            box-shadow: 0 8px 18px rgba(88, 62, 41, 0.08);
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-            cursor: pointer;
         }
 
         .book-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 24px 48px rgba(88, 62, 41, 0.15), 0 12px 24px rgba(88, 62, 41, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(88, 62, 41, 0.12), 0 8px 18px rgba(88, 62, 41, 0.08);
         }
 
         .book-cover {
@@ -609,10 +650,10 @@
 
         .book-copy {
             flex: 1;
-            padding: 1rem 1.25rem 1.25rem;
+            padding: 12px;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.48rem;
         }
 
         .book-topline {
@@ -624,9 +665,14 @@
 
         .book-card h2 {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 0.98rem;
             font-weight: 600;
-            line-height: 1.35;
+            line-height: 1.32;
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .badge {
@@ -656,8 +702,8 @@
 
         .book-meta {
             color: var(--muted);
-            font-size: 0.93rem;
-            line-height: 1.7;
+            font-size: 0.84rem;
+            line-height: 1.55;
         }
 
         .book-meta strong {
@@ -669,11 +715,11 @@
             justify-content: space-between;
             gap: 8px;
             color: var(--muted);
-            font-size: 0.84rem;
+            font-size: 0.78rem;
         }
 
         .progress-track {
-            height: 9px;
+            height: 7px;
             border-radius: 999px;
             background: rgba(41, 33, 29, 0.08);
             overflow: hidden;
@@ -689,10 +735,10 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 10px;
-            padding-top: 4px;
+            gap: 8px;
+            padding-top: 2px;
             color: var(--muted);
-            font-size: 0.84rem;
+            font-size: 0.76rem;
         }
 
         .book-foot span {
@@ -703,12 +749,142 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 6px 9px;
+            width: fit-content;
+            max-width: 100%;
+            padding: 5px 8px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.78);
             border: 1px solid var(--line);
             color: var(--muted);
-            font-size: 0.77rem;
+            font-size: 0.72rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .book-note-preview {
+            margin: 0;
+            padding: 10px 11px;
+            border-radius: 12px;
+            background: rgba(186, 107, 63, 0.08);
+            color: rgba(41, 33, 29, 0.8);
+            font-size: 0.8rem;
+            line-height: 1.55;
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .action-button {
+            padding: 9px 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .editor-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(41, 33, 29, 0.42);
+            backdrop-filter: blur(6px);
+        }
+
+        .editor-overlay[hidden] {
+            display: none;
+        }
+
+        .editor-panel {
+            width: min(420px, 100%);
+            height: 100%;
+            padding: 24px 20px;
+            background: #fffbf6;
+            box-shadow: -12px 0 32px rgba(41, 33, 29, 0.16);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .editor-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .editor-kicker {
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .editor-head h2 {
+            margin: 6px 0 0;
+            font-size: 1.34rem;
+            line-height: 1.25;
+        }
+
+        .editor-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .editor-field span {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .editor-field select,
+        .editor-field input,
+        .editor-field textarea {
+            width: 100%;
+            border: 1px solid rgba(41, 33, 29, 0.12);
+            border-radius: 12px;
+            background: #fff;
+            color: var(--ink);
+            font: inherit;
+            padding: 11px 12px;
+        }
+
+        .editor-field textarea {
+            min-height: 140px;
+            resize: vertical;
+            line-height: 1.65;
+        }
+
+        .progress-editor-row {
+            display: grid;
+            grid-template-columns: 1fr 88px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .editor-hint {
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .editor-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 8px;
         }
 
         .obsidian-marker {
@@ -870,6 +1046,23 @@
                 gap: 12px;
             }
 
+            .toolbar-side {
+                width: 100%;
+                align-items: stretch;
+            }
+
+            .toolbar-actions {
+                justify-content: stretch;
+            }
+
+            .toolbar-actions .ghost-button {
+                width: 100%;
+            }
+
+            .status-text {
+                text-align: left;
+            }
+
             .filter-row {
                 display: flex;
                 flex-wrap: nowrap;
@@ -882,51 +1075,11 @@
             }
 
             .shelf {
-                padding: 16px 12px 20px;
-            }
-
-            .current-cover-panel {
-                padding: 16px;
-                border-radius: 24px;
-            }
-
-            .cover-panel-toggle {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .cover-panel-head {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .cover-panel-head h2 {
-                margin-bottom: 8px;
-                font-size: 1.2rem;
-            }
-
-            .cover-panel-head p,
-            .cover-panel-note {
-                font-size: 0.94rem;
-                line-height: 1.7;
-            }
-
-            .cover-panel-note {
-                margin-top: 12px;
-                display: -webkit-box;
-                line-clamp: 2;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .current-cover-panel.is-collapsed {
-                padding-bottom: 14px;
+                padding: 14px 10px 16px;
             }
 
             .book-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 12px;
                 padding: 0.25rem 0;
             }
@@ -963,8 +1116,7 @@
             }
 
             .source-chip,
-            .book-meta,
-            .book-foot {
+            .book-meta {
                 display: none;
             }
 
@@ -981,6 +1133,27 @@
 
             .progress-track {
                 height: 6px;
+            }
+
+            .book-note-preview {
+                padding: 8px 9px;
+                font-size: 0.76rem;
+            }
+
+            .card-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .editor-overlay {
+                align-items: flex-end;
+            }
+
+            .editor-panel {
+                width: 100%;
+                max-height: 84vh;
+                height: auto;
+                border-radius: 20px 20px 0 0;
+                padding: 18px 16px 20px;
             }
 
             .snapshot-grid {
@@ -1124,7 +1297,7 @@
 
         @media (max-width: 520px) {
             .book-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 10px;
             }
 
@@ -1147,6 +1320,10 @@
 
             .progress-label {
                 font-size: 0.68rem;
+            }
+
+            .progress-editor-row {
+                grid-template-columns: 1fr 72px;
             }
 
             .book-modal-overlay {
@@ -1190,20 +1367,12 @@
                 <button class="filter-chip" type="button" data-filter="在读">在读</button>
                 <button class="filter-chip" type="button" data-filter="未读">未读</button>
             </div>
-            <div class="status-text" id="statusText">正在整理你的书架。</div>
-        </section>
-
-        <section class="current-cover-panel" aria-label="当前封面实现">
-            <div class="cover-panel-head">
-                <div>
-                    <h2>当前封面实现</h2>
-                    <button class="cover-panel-toggle" id="coverPanelToggle" type="button" aria-expanded="false">展开封面说明</button>
+            <div class="toolbar-side">
+                <div class="toolbar-actions">
+                    <button class="ghost-button" id="exportOverridesButton" type="button">导出改动</button>
+                    <button class="ghost-button" id="resetShelfButton" type="button">恢复默认书架</button>
                 </div>
-                <div class="source-chip" id="strategyState">当前 MVP 正在使用 L3</div>
-            </div>
-            <div class="cover-panel-copy">
-                <p>现在只保留这一套：优先显示同步下来的微信读书封面，缺失时退回本地生成式占位封面。页面逻辑更单纯，书架也不会因为外链波动直接坏掉。</p>
-                <div class="cover-panel-note">后面如果你自己提供了确定可用的封面素材，再覆盖当前候选图；在那之前，不再展示其他来源方案。</div>
+                <div class="status-text" id="statusText">正在整理你的书架。</div>
             </div>
         </section>
 
@@ -1244,17 +1413,54 @@
         </div>
     </div>
 
+    <div class="editor-overlay" id="editorOverlay" hidden>
+        <div class="editor-panel" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+            <div class="editor-head">
+                <div>
+                    <div class="editor-kicker">书籍管理</div>
+                    <h2 id="editorTitle">书名</h2>
+                </div>
+                <button class="ghost-button" id="editorCloseButton" type="button">关闭</button>
+            </div>
+            <label class="editor-field">
+                <span>阅读状态</span>
+                <select id="editorStatus">
+                    <option value="已读">已读</option>
+                    <option value="在读">在读</option>
+                    <option value="未读">未读</option>
+                </select>
+            </label>
+            <label class="editor-field">
+                <span>阅读进度</span>
+                <div class="progress-editor-row">
+                    <input id="editorProgressRange" type="range" min="0" max="100" step="1">
+                    <input id="editorProgressNumber" type="number" min="0" max="100" step="1">
+                </div>
+            </label>
+            <label class="editor-field">
+                <span>一句感受</span>
+                <textarea id="editorQuickNote" placeholder="记录一句当前感受、阻力、想重读的原因，或者下一次翻开的触发点"></textarea>
+            </label>
+            <div class="editor-hint">当前改动只保存在这个浏览器的本地，不会直接改动 `books-data.js`。适合日常维护状态、进度和短感受。</div>
+            <div class="editor-actions">
+                <button class="danger-button" id="removeBookButton" type="button">移除这本书</button>
+                <button class="primary-button" id="saveBookButton" type="button">保存修改</button>
+            </div>
+        </div>
+    </div>
+
     <script src="./data/books-data.js"></script>
     <script src="./data/cover-candidates.js"></script>
     <script>
-        const books = window.READING_SHELF_BOOKS || [];
+        const baseBooks = window.READING_SHELF_BOOKS || [];
         const coverCandidates = window.READING_SHELF_COVERS || {};
+        const STORAGE_KEY = "reading-shelf-custom-state-v1";
+        const SUPPORTED_STATUS = ["已读", "在读", "未读"];
 
         const bookGrid = document.getElementById("bookGrid");
         const statusText = document.getElementById("statusText");
         const emptyState = document.getElementById("emptyState");
         const heroMeta = document.getElementById("heroMeta");
-        const strategyState = document.getElementById("strategyState");
         const bookModalOverlay = document.getElementById("bookModalOverlay");
         const bookModalOuterCover = document.getElementById("bookModalOuterCover");
         const snapshotKicker = document.getElementById("snapshotKicker");
@@ -1263,36 +1469,116 @@
         const snapshotSummary = document.getElementById("snapshotSummary");
         const snapshotGrid = document.getElementById("snapshotGrid");
         const bookModalClose = document.getElementById("bookModalClose");
-        const coverPanel = document.querySelector(".current-cover-panel");
-        const coverPanelToggle = document.getElementById("coverPanelToggle");
+        const editorOverlay = document.getElementById("editorOverlay");
+        const editorTitle = document.getElementById("editorTitle");
+        const editorStatus = document.getElementById("editorStatus");
+        const editorProgressRange = document.getElementById("editorProgressRange");
+        const editorProgressNumber = document.getElementById("editorProgressNumber");
+        const editorQuickNote = document.getElementById("editorQuickNote");
+        const editorCloseButton = document.getElementById("editorCloseButton");
+        const saveBookButton = document.getElementById("saveBookButton");
+        const removeBookButton = document.getElementById("removeBookButton");
+        const exportOverridesButton = document.getElementById("exportOverridesButton");
+        const resetShelfButton = document.getElementById("resetShelfButton");
         const filterChips = Array.from(document.querySelectorAll(".filter-chip"));
-        let activeSnapshotTitle = "";
+        const shelfState = loadShelfState();
+        let activeSnapshotKey = "";
+        let activeEditorKey = "";
+        let currentFilter = "all";
+
+        function loadShelfState() {
+            try {
+                const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+                return parsed && typeof parsed === "object" && parsed.books ? parsed : { books: {} };
+            } catch (error) {
+                return { books: {} };
+            }
+        }
+
+        function persistShelfState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(shelfState));
+        }
+
+        function exportShelfState() {
+            const payload = {
+                storageKey: STORAGE_KEY,
+                exportedAt: new Date().toISOString(),
+                books: shelfState.books
+            };
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+            const link = document.createElement("a");
+            const dateTag = payload.exportedAt.slice(0, 19).replace(/[-:T]/g, "");
+            link.href = URL.createObjectURL(blob);
+            link.download = `reading-shelf-overrides-${dateTag}.json`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(link.href);
+        }
+
+        function normalizeStatus(status) {
+            if (status === "想读" || status === "放弃") {
+                return "未读";
+            }
+            return SUPPORTED_STATUS.includes(status) ? status : "未读";
+        }
+
+        function getBookKey(book) {
+            return book.bookId || [book.title, book.author].filter(Boolean).join("__");
+        }
+
+        function escapeHtml(value) {
+            return String(value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function getBaseBookByKey(bookKey) {
+            return baseBooks.find((item) => getBookKey(item) === bookKey);
+        }
+
+        function getMergedBook(book) {
+            const bookKey = getBookKey(book);
+            const override = shelfState.books[bookKey] || {};
+            const mergedDetail = { ...(book.detail || {}) };
+
+            if (override.quickNote) {
+                mergedDetail.quickNote = override.quickNote;
+            }
+
+            return {
+                ...book,
+                status: normalizeStatus(override.status || book.status),
+                progress: Number.isFinite(override.progress) ? override.progress : (Number.isFinite(book.progress) ? book.progress : 0),
+                removed: Boolean(override.removed),
+                detail: mergedDetail
+            };
+        }
+
+        function getBooks() {
+            return baseBooks
+                .map((book) => getMergedBook(book))
+                .filter((book) => !book.removed);
+        }
+
+        function getRemovedCount() {
+            return Object.values(shelfState.books).filter((item) => item && item.removed).length;
+        }
 
         function hasObsidianSnapshot(book) {
             return Boolean(book.detail && book.detail.obsidianFile);
         }
 
-        function syncCoverPanelState() {
-            if (!coverPanel || !coverPanelToggle) {
-                return;
-            }
-            const isMobile = window.matchMedia('(max-width: 760px)').matches;
-            if (!isMobile) {
-                coverPanel.classList.remove('is-collapsed');
-                coverPanelToggle.setAttribute('aria-expanded', 'true');
-                coverPanelToggle.textContent = '收起封面说明';
-                return;
-            }
-            const collapsed = coverPanel.classList.contains('is-collapsed');
-            coverPanelToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-            coverPanelToggle.textContent = collapsed ? '展开封面说明' : '收起封面说明';
-        }
-
         function renderHeroMeta() {
+            const books = getBooks();
             const readCount = books.filter((book) => book.status === "已读").length;
             const readingCount = books.filter((book) => book.status === "在读").length;
             const unreadCount = books.filter((book) => book.status === "未读").length;
-            const notesCount = books.reduce((sum, book) => sum + book.notes, 0);
+            const notesCount = books.reduce((sum, book) => sum + (book.notes || 0), 0);
+            const quickNoteCount = books.filter((book) => book.detail && book.detail.quickNote).length;
             const obsidianCount = books.filter((book) => book.source && book.source.includes("Obsidian")).length;
 
             heroMeta.innerHTML = [
@@ -1301,6 +1587,7 @@
                 '<span class="meta-pill">在读 ' + readingCount + ' 本</span>',
                 '<span class="meta-pill">未读 ' + unreadCount + ' 本</span>',
                 '<span class="meta-pill">碰撞卡片 ' + notesCount + ' 张</span>',
+                '<span class="meta-pill">一句感受 ' + quickNoteCount + ' 本</span>',
                 '<span class="meta-pill">Obsidian 已接入 ' + obsidianCount + ' 本</span>'
             ].join("");
         }
@@ -1336,16 +1623,6 @@
             return resolved && resolved.cover ? resolved.cover : "";
         }
 
-        function renderStrategyState() {
-            const resolvedCount = books.filter((book) => {
-                return Boolean(resolveCoverUrl(book));
-            }).length;
-
-            strategyState.textContent = resolvedCount
-                ? '当前渲染：微信读书封面 ' + resolvedCount + ' 本 + L3 兜底'
-                : '当前 MVP 正在使用 L3';
-        }
-
         function openBookModal(book) {
             const detail = book.detail || {};
             const collisions = (detail.collisions || []).length
@@ -1353,8 +1630,11 @@
                 : '<p>这本书还没有挂上碰撞卡片。</p>';
             const coverUrl = resolveCoverUrl(book);
             const theme = 'linear-gradient(145deg, ' + book.theme[0] + ', ' + book.theme[1] + ')';
+            const quickNoteBlock = detail.quickNote
+                ? '<article class="snapshot-block"><div class="snapshot-label">一句感受</div><p>' + escapeHtml(detail.quickNote) + '</p></article>'
+                : '';
 
-            activeSnapshotTitle = book.title;
+            activeSnapshotKey = getBookKey(book);
 
             // 外部封面应用
             bookModalOuterCover.style.background = theme;
@@ -1399,6 +1679,7 @@
                     <div class="snapshot-label">碰撞记录</div>
                     ${collisions}
                 </article>
+                ${quickNoteBlock}
                 ${detail.originalFeeling ? `
                 <article class="snapshot-block">
                     <div class="snapshot-label">原始感受</div>
@@ -1415,14 +1696,131 @@
         }
 
         function closeBookModal() {
-            activeSnapshotTitle = "";
+            activeSnapshotKey = "";
             bookModalOverlay.classList.remove("is-open");
+        }
+
+        function closeEditor() {
+            activeEditorKey = "";
+            editorOverlay.hidden = true;
+        }
+
+        function syncEditorProgress(value) {
+            const clamped = Math.max(0, Math.min(100, Number(value) || 0));
+            editorProgressRange.value = clamped;
+            editorProgressNumber.value = clamped;
+        }
+
+        function openEditor(book) {
+            activeEditorKey = getBookKey(book);
+            editorTitle.textContent = book.title;
+            editorStatus.value = normalizeStatus(book.status);
+            syncEditorProgress(book.progress);
+            editorQuickNote.value = (book.detail && book.detail.quickNote) || "";
+            editorOverlay.hidden = false;
+        }
+
+        function writeBookOverride(bookKey, patch) {
+            const baseBook = getBaseBookByKey(bookKey);
+            if (!baseBook) {
+                return;
+            }
+
+            const existing = shelfState.books[bookKey] || {};
+            const next = { ...existing, ...patch };
+            const normalizedStatusValue = normalizeStatus(next.status || baseBook.status);
+            const normalizedProgressValue = Math.max(0, Math.min(100, Number(next.progress)));
+            const normalizedQuickNote = (next.quickNote || "").trim();
+            const nextRemoved = Boolean(next.removed);
+
+            const shouldKeep = nextRemoved
+                || normalizedStatusValue !== normalizeStatus(baseBook.status)
+                || normalizedProgressValue !== (Number.isFinite(baseBook.progress) ? baseBook.progress : 0)
+                || Boolean(normalizedQuickNote);
+
+            if (!shouldKeep) {
+                delete shelfState.books[bookKey];
+            } else {
+                shelfState.books[bookKey] = {
+                    status: normalizedStatusValue,
+                    progress: normalizedProgressValue,
+                    quickNote: normalizedQuickNote,
+                    removed: nextRemoved
+                };
+            }
+
+            persistShelfState();
+        }
+
+        function rerenderAll() {
+            renderHeroMeta();
+            renderBooks(currentFilter);
+            if (activeSnapshotKey) {
+                const activeBook = getBooks().find((book) => getBookKey(book) === activeSnapshotKey);
+                if (activeBook) {
+                    openBookModal(activeBook);
+                } else {
+                    closeBookModal();
+                }
+            }
         }
 
         bookModalOverlay.addEventListener('click', (e) => {
             if (e.target === bookModalOverlay) closeBookModal();
         });
         bookModalClose.addEventListener('click', closeBookModal);
+        editorOverlay.addEventListener('click', (event) => {
+            if (event.target === editorOverlay) {
+                closeEditor();
+            }
+        });
+        editorCloseButton.addEventListener('click', closeEditor);
+        editorProgressRange.addEventListener('input', (event) => syncEditorProgress(event.target.value));
+        editorProgressNumber.addEventListener('input', (event) => syncEditorProgress(event.target.value));
+        editorStatus.addEventListener('change', () => {
+            if (editorStatus.value === '已读') {
+                syncEditorProgress(100);
+            }
+            if (editorStatus.value === '未读') {
+                syncEditorProgress(0);
+            }
+        });
+        saveBookButton.addEventListener('click', () => {
+            if (!activeEditorKey) {
+                return;
+            }
+            writeBookOverride(activeEditorKey, {
+                status: editorStatus.value,
+                progress: Number(editorProgressNumber.value),
+                quickNote: editorQuickNote.value,
+                removed: false
+            });
+            closeEditor();
+            rerenderAll();
+        });
+        removeBookButton.addEventListener('click', () => {
+            if (!activeEditorKey) {
+                return;
+            }
+            writeBookOverride(activeEditorKey, { removed: true });
+            closeEditor();
+            rerenderAll();
+        });
+        resetShelfButton.addEventListener('click', () => {
+            if (!Object.keys(shelfState.books).length) {
+                return;
+            }
+            if (!window.confirm('恢复默认书架会清空本地的移除、状态、进度和一句感受，继续吗？')) {
+                return;
+            }
+            shelfState.books = {};
+            persistShelfState();
+            closeEditor();
+            rerenderAll();
+        });
+        exportOverridesButton.addEventListener('click', () => {
+            exportShelfState();
+        });
 
         function createGeneratedCover(book, theme) {
             return `
@@ -1464,12 +1862,14 @@
             const card = document.createElement("article");
             card.className = "book-card";
             card.dataset.status = book.status;
+            card.dataset.key = getBookKey(book);
 
             const badgeClass = book.status === "已读" ? "read" : book.status === "在读" ? "reading" : "todo";
             const progress = Math.max(0, Math.min(100, book.progress));
             const theme = 'linear-gradient(145deg, ' + book.theme[0] + ', ' + book.theme[1] + ')';
             const sourceChip = book.source || '来源待补';
             const bookFootnote = getBookFootnote(book);
+            const quickNote = book.detail && book.detail.quickNote ? '<p class="book-note-preview">' + escapeHtml(book.detail.quickNote) + '</p>' : '';
             const obsidianMarker = hasObsidianSnapshot(book)
                 ? '<div class="obsidian-marker">Obsidian</div>'
                 : '';
@@ -1486,33 +1886,54 @@
                     <div class="book-meta"><strong>作者</strong> ${book.author}<br><strong>出版社</strong> ${book.publisher}</div>
                     <div class="progress-label"><span>阅读进度</span><span>${progress}%</span></div>
                     <div class="progress-track"><div class="progress-value" style="width:${progress}%"></div></div>
+                    ${quickNote}
                     <div class="book-foot"><span>碰撞卡片 ${book.notes} 张</span><span>${bookFootnote}</span></div>
+                    <div class="card-actions">
+                        <button class="action-button" type="button" data-action="snapshot">打开快照</button>
+                        <button class="action-button" type="button" data-action="edit">管理</button>
+                    </div>
                 </div>
             `;
 
-            // 点击卡片直接打开模态框阅读快照
-            card.addEventListener('click', () => {
+            const snapshotButton = card.querySelector('[data-action="snapshot"]');
+            const editButton = card.querySelector('[data-action="edit"]');
+
+            card.addEventListener('dblclick', () => {
                 openBookModal(book);
+            });
+
+            snapshotButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openBookModal(book);
+            });
+
+            editButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openEditor(book);
             });
 
             return card;
         }
 
         function renderBooks(filter) {
+            currentFilter = filter;
+            const books = getBooks();
             const visibleBooks = filter === "all" ? books : books.filter((book) => book.status === filter);
             bookGrid.innerHTML = "";
             visibleBooks.forEach((book) => {
                 bookGrid.appendChild(createBookCard(book));
             });
 
-            if (activeSnapshotTitle && !visibleBooks.some((book) => book.title === activeSnapshotTitle)) {
+            if (activeSnapshotKey && !books.some((book) => getBookKey(book) === activeSnapshotKey)) {
                 closeBookModal();
             }
 
             emptyState.style.display = visibleBooks.length ? "none" : "block";
+            const removedCount = getRemovedCount();
+            const suffix = removedCount ? ' 已移除 ' + removedCount + ' 本，可点“恢复默认书架”撤销。' : ' 本地修改会保存在浏览器里。';
             statusText.textContent = filter === "all"
-                ? '当前展示全部书籍，共 ' + visibleBooks.length + ' 本。'
-                : '当前筛选：' + filter + '，共 ' + visibleBooks.length + ' 本。';
+                ? '当前展示全部书籍，共 ' + visibleBooks.length + ' 本。' + suffix
+                : '当前筛选：' + filter + '，共 ' + visibleBooks.length + ' 本。' + suffix;
         }
 
         filterChips.forEach((chip) => {
@@ -1523,20 +1944,7 @@
             });
         });
 
-        if (coverPanel && coverPanelToggle) {
-            if (window.matchMedia('(max-width: 760px)').matches) {
-                coverPanel.classList.add('is-collapsed');
-            }
-            syncCoverPanelState();
-            coverPanelToggle.addEventListener('click', () => {
-                coverPanel.classList.toggle('is-collapsed');
-                syncCoverPanelState();
-            });
-            window.addEventListener('resize', syncCoverPanelState);
-        }
-
         renderHeroMeta();
-        renderStrategyState();
         renderBooks("all");
     </script>
 </body>
