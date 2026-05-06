@@ -7,15 +7,22 @@ const projectRoot = path.join(repoRoot, "projects/reading-shelf");
 const booksDataPath = path.join(projectRoot, "data/books-data.js");
 
 function printUsage() {
-    console.log("Usage: node projects/reading-shelf/scripts/apply-shelf-overrides.mjs <overrides.json> [--write] [--output <file>]");
+    console.log("Usage: node projects/reading-shelf/scripts/apply-shelf-overrides.mjs <progress-export.json> [--write] [--output <file>]");
     console.log("Default mode prints a summary only. Add --write to update data/books-data.js or the file passed via --output.");
 }
 
-function normalizeStatus(status) {
-    if (status === "想读" || status === "放弃") {
+function clampProgress(value) {
+    return Math.max(0, Math.min(100, Number(value) || 0));
+}
+
+function deriveStatus(progress) {
+    if (progress >= 100) {
+        return "已读";
+    }
+    if (progress <= 0) {
         return "未读";
     }
-    return ["已读", "在读", "未读"].includes(status) ? status : "未读";
+    return "在读";
 }
 
 function getBookKey(book) {
@@ -43,8 +50,7 @@ function applyOverrides(books, overrides) {
     const result = [];
     const summary = {
         updated: 0,
-        removed: 0,
-        quickNotes: 0,
+        unchanged: 0,
         missingKeys: []
     };
 
@@ -60,28 +66,19 @@ function applyOverrides(books, overrides) {
         }
 
         seenKeys.add(bookKey);
-        if (override.removed) {
-            summary.removed += 1;
+        const progress = clampProgress(typeof override === "number" ? override : override.progress);
+        const baseProgress = clampProgress(book.progress);
+        if (progress === baseProgress) {
+            summary.unchanged += 1;
+            result.push(book);
             continue;
         }
 
-        const progress = Math.max(0, Math.min(100, Number(override.progress)));
-        const quickNote = String(override.quickNote || "").trim();
         const nextBook = {
             ...book,
-            status: normalizeStatus(override.status || book.status),
-            progress: Number.isFinite(progress) ? progress : (Number.isFinite(book.progress) ? book.progress : 0),
-            detail: {
-                ...(book.detail || {})
-            }
+            status: deriveStatus(progress),
+            progress
         };
-
-        if (quickNote) {
-            nextBook.detail.quickNote = quickNote;
-            summary.quickNotes += 1;
-        } else if (nextBook.detail && Object.prototype.hasOwnProperty.call(nextBook.detail, "quickNote")) {
-            delete nextBook.detail.quickNote;
-        }
 
         result.push(nextBook);
         summary.updated += 1;
@@ -130,8 +127,7 @@ async function main() {
     console.log("Override summary:");
     console.log(`- export time: ${overrides.exportedAt || "unknown"}`);
     console.log(`- books updated: ${summary.updated}`);
-    console.log(`- books removed: ${summary.removed}`);
-    console.log(`- quick notes merged: ${summary.quickNotes}`);
+    console.log(`- books unchanged: ${summary.unchanged}`);
     if (summary.missingKeys.length) {
         console.log(`- missing keys: ${summary.missingKeys.length}`);
         summary.missingKeys.forEach((key) => console.log(`  - ${key}`));
