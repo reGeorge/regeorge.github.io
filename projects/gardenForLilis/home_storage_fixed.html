@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家居收纳空间</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream:#f5f0e8;--warm-white:#faf8f4;--parchment:#ede8dc;
+            --wood-light:#c9a87c;--wood:#a07850;--wood-dark:#6b4f30;
+            --ink:#2c1f0e;--ink-soft:#5a4535;--ink-faint:#8a7060;
+            --amber:#d4874a;--amber-soft:#f0c490;
+            --shadow:rgba(44,31,14,.12);--shadow-deep:rgba(44,31,14,.22);
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background:var(--cream);
+            font-family:'Noto Serif SC',Georgia,serif;
+            color:var(--ink);
+            min-height:100vh;
+            background-image:radial-gradient(ellipse at 20% 0%,rgba(212,135,74,.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(160,120,80,.10) 0%,transparent 60%);
+            scroll-behavior:smooth;
+        }
+        header{
+            background:var(--wood-dark);
+            background-image:linear-gradient(135deg,#5c3d1e,#7a5235 50%,#6b4f30);
+            padding:18px 32px;
+            display:flex;
+            align-items:center;
+            gap:16px;
+            box-shadow:0 3px 16px var(--shadow-deep);
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+        .header-logo{
+            font-family:'Lora',serif;
+            font-size:22px;
+            color:var(--amber-soft);
+            letter-spacing:.05em;
+            white-space:nowrap;
+        }
+        .header-sep{
+            width:1px;
+            height:24px;
+            background:rgba(255,255,255,.2);
+        }
+        .breadcrumb{
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+            flex:1;
+        }
+        .crumb{
+            color:rgba(240,196,144,.75);
+            font-size:13px;
+            cursor:pointer;
+            padding:4px 8px;
+            border-radius:4px;
+            transition:all .18s;
+        }
+        .crumb:hover{
+            color:var(--amber-soft);
+            background:rgba(255,255,255,.08);
+        }
+        .crumb.active{
+            color:var(--warm-white);
+            cursor:default;
+        }
+        .crumb.active:hover{
+            background:none;
+        }
+        .crumb-arrow{
+            color:rgba(255,255,255,.3);
+            font-size:11px;
+            margin:0 2px;
+        }
+        .toolbar{
+            background:var(--warm-white);
+            border-bottom:1px solid rgba(160,120,80,.15);
+            padding:12px 32px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            flex-wrap:wrap;
+            transition:background .3s;
+        }
+        .toolbar-title{
+            font-size:18px;
+            font-weight:600;
+            color:var(--ink);
+            flex:1;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            min-width:120px;
+        }
+        .type-badge{
+            font-size:11px;
+            font-weight:300;
+            color:var(--ink-faint);
+            background:var(--parchment);
+            padding:2px 10px;
+            border-radius:20px;
+            letter-spacing:.06em;
+            font-family:'Lora',serif;
+        }
+        .btn{
+            display:flex;
+            align-items:center;
+            gap:6px;
+            padding:8px 14px;
+            border-radius:6px;
+            font-size:13px;
+            font-family:'Noto Serif SC',serif;
+            cursor:pointer;
+            transition:all .18s;
+            border:none;
+            white-space:nowrap;
+        }
+        .btn-primary{
+            background:var(--wood);
+            color:white;
+            box-shadow:0 2px 8px rgba(160,120,80,.3);
+        }
+        .btn-primary:hover{
+            background:var(--wood-dark);
+            transform:translateY(-1px);
+            box-shadow:0 4px 14px rgba(160,120,80,.35);
+        }
+        .btn-primary:active{
+            transform:translateY(0);
+        }
+        .btn-ghost{
+            background:transparent;
+            color:var(--ink-soft);
+            border:1px solid rgba(160,120,80,.3);
+        }
+        .btn-ghost:hover{
+            background:var(--parchment);
+            border-color:var(--wood-light);
+        }
+        .btn-ghost:active{
+            transform:scale(.97);
+        }
+        .btn-active{
+            background:var(--parchment) !important;
+            border-color:var(--wood) !important;
+            color:var(--wood-dark) !important;
+        }
+        .main{
+            padding:24px 32px;
+            max-width:1200px;
+            margin:0 auto;
+            animation:fade-slide-in .35s ease;
+        }
+        @keyframes fade-slide-in{
+            from{opacity:0;transform:translateY(12px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+        .section-header{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:16px;
+            margin-top:8px;
+        }
+        .section-label{
+            font-size:11px;
+            letter-spacing:.12em;
+            text-transform:uppercase;
+            color:var(--ink-faint);
+            font-family:'Lora',serif;
+        }
+        .section-line{
+            flex:1;
+            height:1px;
+            background:linear-gradient(to right,rgba(160,120,80,.2),transparent);
+        }
+        .container-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+            gap:14px;
+            margin-bottom:32px;
+        }
+        .container-card{
+            background:var(--warm-white);
+            border:1px solid rgba(160,120,80,.15);
+            border-radius:12px;
+            padding:18px 14px 14px;
+            cursor:pointer;
+            transition:all .22s cubic-bezier(.34,1.56,.64,1);
+            position:relative;
+            overflow:hidden;
+            user-select:none;
+            opacity:0;
+            animation:card-enter .4s cubic-bezier(.25,.46,.45,.94) forwards;
+        }
+        @keyframes card-enter{
+            from{opacity:0;transform:translateY(16px) scale(.96)}
+            to{opacity:1;transform:translateY(0) scale(1)}
+        }
+        .container-card::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            height:3px;
+            border-radius:12px 12px 0 0;
+            background:var(--card-accent,var(--wood-light));
+            opacity:.7;
+            transition:opacity .2s;
+        }
+        .container-card:hover{
+            transform:translateY(-4px);
+            box-shadow:0 8px 28px var(--shadow);
+            border-color:rgba(160,120,80,.3);
+        }
+        .container-card:hover::before{
+            opacity:1;
+        }
+        .container-card:active{
+            transform:translateY(-2px) scale(.98);
+        }
+        .card-icon{
+            font-size:34px;
+            margin-bottom:10px;
+            display:block;
+            line-height:1;
+        }
+        .card-name{
+            font-size:14px;
+            font-weight:600;
+            color:var(--ink);
+            margin-bottom:5px;
+        }
+        .card-meta{
+            font-size:11px;
+            color:var(--ink-faint);
+            font-family:'Lora',serif;
+            display:flex;
+            gap:10px;
+        }
+        .card-actions{
+            position:absolute;
+            top:10px;
+            right:10px;
+            display:none;
+            gap:4px;
+        }
+        .container-card:hover .card-actions{
+            display:flex;
+        }
+        .card-action-btn{
+            width:24px;
+            height:24px;
+            border-radius:6px;
+            border:none;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            transition:all .15s;
+            background:rgba(255,255,255,.9);
+            box-shadow:0 1px 4px var(--shadow);
+        }
+        .card-action-btn:hover{
+            transform:scale(1.1);
+        }
+        .card-action-btn.delete:hover{
+            background:#ffeaea;
+        }
+        [data-type="room"]{--card-accent:#7b9e87;}
+        [data-type="bookshelf"]{--card-accent:#a07850;}
+        [data-type="desk"]{--card-accent:#7a8fa6;}
+        [data-type="bed"]{--card-accent:#9b7db0;}
+        [data-type="cabinet"]{--card-accent:#c27b5a;}
+        [data-type="under-bed"]{--card-accent:#7a6b8a;}
+        [data-type="shelf-layer"]{--card-accent:#b5956a;}
+        [data-type="custom"]{--card-accent:#6b8a7a;}
+        [data-type="album"]{--card-accent:#c49a6c;}
+        .image-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+            gap:12px;
+            margin-bottom:32px;
+        }
+        .image-card{
+            background:var(--warm-white);
+            border:1px solid rgba(160,120,80,.15);
+            border-radius:10px;
+            overflow:hidden;
+            cursor:pointer;
+            transition:all .2s;
+            position:relative;
+            aspect-ratio:1;
+            opacity:0;
+            animation:card-enter .4s cubic-bezier(.25,.46,.45,.94) forwards;
+        }
+        .image-card:hover{
+            transform:translateY(-3px);
+            box-shadow:0 6px 20px var(--shadow);
+        }
+        .image-card img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+        }
+        .img-overlay{
+            position:absolute;
+            inset:0;
+            background:linear-gradient(to top,rgba(44,31,14,.6),transparent 50%);
+            opacity:0;
+            transition:opacity .2s;
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-end;
+            padding:10px;
+        }
+        .image-card:hover .img-overlay{
+            opacity:1;
+        }
+        .img-name{
+            color:white;
+            font-size:11px;
+            text-shadow:0 1px 3px rgba(0,0,0,.5);
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
+        .img-actions{
+            display:flex;
+            gap:6px;
+            margin-top:5px;
+        }
+        .img-action{
+            flex:1;
+            padding:4px;
+            border-radius:4px;
+            border:1px solid rgba(255,255,255,.3);
+            background:rgba(255,255,255,.15);
+            color:white;
+            font-size:11px;
+            cursor:pointer;
+            text-align:center;
+            transition:background .15s;
+            font-family:'Noto Serif SC',serif;
+        }
+        .img-action:hover{
+            background:rgba(255,255,255,.3);
+        }
+        .img-action.del:hover{
+            background:rgba(220,80,80,.5);
+        }
+        .drop-zone{
+            border:2px dashed rgba(160,120,80,.3);
+            border-radius:12px;
+            padding:28px 24px;
+            text-align:center;
+            cursor:pointer;
+            transition:all .2s;
+            background:rgba(255,255,255,.4);
+            margin-bottom:32px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            min-height:80px;
+        }
+        .drop-zone:hover,
+        .drop-zone.dragover{
+            border-color:var(--wood);
+            background:rgba(160,120,80,.06);
+        }
+        .drop-zone-text{
+            color:var(--ink-faint);
+            font-size:13px;
+            font-family:'Lora',serif;
+        }
+        .empty-state{
+            text-align:center;
+            padding:40px;
+            color:var(--ink-faint);
+            font-family:'Lora',serif;
+            font-style:italic;
+            font-size:14px;
+            animation:fade-slide-in .5s ease;
+        }
+
+        /* Floor Plan */
+        .fp-outer{
+            position:relative;
+            overflow:auto;
+            border:3px solid rgba(120,80,40,.5);
+            border-radius:12px;
+            margin-bottom:12px;
+            box-shadow:inset 0 2px 16px rgba(0,0,0,.18),0 6px 28px var(--shadow-deep);
+            background:#3a2818;
+            display:inline-block;
+            max-width:100%;
+            animation:fade-slide-in .3s ease;
+        }
+        .fp-canvas{
+            display:block;
+            image-rendering:pixelated;
+            image-rendering:crisp-edges;
+        }
+        .fp-hint{
+            font-size:11px;
+            color:var(--ink-faint);
+            font-family:'Lora',serif;
+            font-style:italic;
+            text-align:center;
+            padding-bottom:20px;
+        }
+
+        /* Modals */
+        .modal-backdrop{
+            position:fixed;
+            inset:0;
+            background:rgba(44,31,14,.4);
+            backdrop-filter:blur(4px);
+            z-index:200;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            animation:fade-in .15s ease;
+        }
+        @keyframes fade-in{
+            from{opacity:0}
+            to{opacity:1}
+        }
+        @keyframes slide-up{
+            from{opacity:0;transform:translateY(20px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+        .modal{
+            background:var(--warm-white);
+            border-radius:16px;
+            padding:28px;
+            width:420px;
+            max-width:calc(100vw - 40px);
+            box-shadow:0 20px 60px rgba(44,31,14,.25);
+            animation:slide-up .2s cubic-bezier(.34,1.56,.64,1);
+        }
+        .modal-title{
+            font-size:18px;
+            font-weight:600;
+            margin-bottom:20px;
+            color:var(--ink);
+        }
+        .form-group{
+            margin-bottom:16px;
+        }
+        .form-label{
+            display:block;
+            font-size:12px;
+            color:var(--ink-soft);
+            margin-bottom:6px;
+            letter-spacing:.05em;
+        }
+        .form-input{
+            width:100%;
+            padding:10px 14px;
+            border:1px solid rgba(160,120,80,.25);
+            border-radius:8px;
+            font-size:14px;
+            font-family:'Noto Serif SC',serif;
+            color:var(--ink);
+            background:var(--cream);
+            transition:border-color .15s;
+            outline:none;
+        }
+        .form-input:focus{
+            border-color:var(--wood);
+            box-shadow:0 0 0 3px rgba(160,120,80,.1);
+        }
+        .type-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:8px;
+            margin-top:6px;
+        }
+        .type-option{
+            border:1px solid rgba(160,120,80,.2);
+            border-radius:8px;
+            padding:10px 6px;
+            text-align:center;
+            cursor:pointer;
+            transition:all .15s;
+            background:var(--cream);
+        }
+        .type-option:hover{
+            border-color:var(--wood-light);
+            background:var(--parchment);
+        }
+        .type-option.selected{
+            border-color:var(--wood);
+            background:rgba(160,120,80,.1);
+            box-shadow:0 0 0 2px rgba(160,120,80,.2);
+        }
+        .type-option .t-icon{
+            font-size:22px;
+            display:block;
+            margin-bottom:4px;
+        }
+        .type-option .t-name{
+            font-size:11px;
+            color:var(--ink-soft);
+        }
+        .modal-actions{
+            display:flex;
+            gap:10px;
+            margin-top:24px;
+            justify-content:flex-end;
+        }
+
+        /* Size editor modal */
+        .size-inputs{
+            display:flex;
+            gap:12px;
+            align-items:center;
+        }
+        .size-inputs .form-group{
+            flex:1;
+            margin-bottom:0;
+        }
+        .size-inputs .size-x{
+            color:var(--ink-faint);
+            font-family:'Lora',serif;
+            font-size:16px;
+            margin-top:18px;
+        }
+
+        /* Lightbox */
+        .lightbox{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.85);
+            z-index:300;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:zoom-out;
+            animation:fade-in .2s;
+        }
+        .lightbox img{
+            max-width:90vw;
+            max-height:88vh;
+            border-radius:4px;
+            box-shadow:0 20px 80px rgba(0,0,0,.6);
+            animation:lightbox-zoom .25s cubic-bezier(.25,.46,.45,.94);
+        }
+        @keyframes lightbox-zoom{
+            from{transform:scale(.9);opacity:0}
+            to{transform:scale(1);opacity:1}
+        }
+        .lightbox-close{
+            position:absolute;
+            top:20px;
+            right:24px;
+            color:white;
+            font-size:28px;
+            cursor:pointer;
+            opacity:.7;
+            transition:opacity .15s;
+            background:none;
+            border:none;
+            line-height:1;
+        }
+        .lightbox-close:hover{
+            opacity:1;
+        }
+
+        /* ═══ Album Book Modal ═══ */
+        .album-modal-backdrop{
+            position:fixed;
+            inset:0;
+            background:rgba(44,31,14,.55);
+            backdrop-filter:blur(6px);
+            z-index:250;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            animation:fade-in .25s ease;
+        }
+        .album-book{
+            width:780px;
+            max-width:94vw;
+            height:520px;
+            max-height:80vh;
+            perspective:1800px;
+            display:flex;
+            align-items:stretch;
+            animation:book-open .5s cubic-bezier(.25,.46,.45,.94);
+        }
+        @keyframes book-open{
+            from{opacity:0;transform:scale(.85) rotateY(-15deg)}
+            to{opacity:1;transform:scale(1) rotateY(0)}
+        }
+        .album-page{
+            flex:1;
+            padding:32px 28px;
+            overflow-y:auto;
+            position:relative;
+        }
+        .album-page-left{
+            background:linear-gradient(135deg,#f5eed8,#ede5d0);
+            border-radius:8px 0 0 8px;
+            box-shadow:inset -4px 0 12px rgba(0,0,0,.08),4px 0 16px rgba(0,0,0,.12);
+            border-right:2px solid #c9a87c;
+        }
+        .album-page-right{
+            background:linear-gradient(225deg,#f5eed8,#ede5d0);
+            border-radius:0 8px 8px 0;
+            box-shadow:inset 4px 0 12px rgba(0,0,0,.08),-4px 0 16px rgba(0,0,0,.12);
+            border-left:1px solid #d4c4a8;
+        }
+        .album-page-label{
+            font-family:'Lora',serif;
+            font-size:11px;
+            color:var(--ink-faint);
+            text-align:center;
+            margin-bottom:16px;
+            letter-spacing:.1em;
+        }
+        .album-items{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:12px;
+        }
+        .album-item{
+            background:rgba(255,255,255,.6);
+            border:1px solid rgba(160,120,80,.2);
+            border-radius:8px;
+            padding:10px;
+            text-align:center;
+            transition:all .18s;
+            cursor:pointer;
+        }
+        .album-item:hover{
+            transform:translateY(-2px);
+            box-shadow:0 4px 16px rgba(44,31,14,.12);
+            background:rgba(255,255,255,.85);
+        }
+        .album-item-icon{
+            font-size:28px;
+            display:block;
+            margin-bottom:4px;
+        }
+        .album-item-name{
+            font-size:11px;
+            color:var(--ink-soft);
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
+        .album-item-img{
+            width:100%;
+            aspect-ratio:1;
+            object-fit:cover;
+            border-radius:4px;
+            margin-bottom:4px;
+        }
+        .album-nav{
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            width:32px;
+            height:48px;
+            background:rgba(160,120,80,.15);
+            border:1px solid rgba(160,120,80,.25);
+            border-radius:6px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            color:var(--wood-dark);
+            transition:all .15s;
+        }
+        .album-nav:hover{
+            background:rgba(160,120,80,.3);
+        }
+        .album-nav-prev{left:-16px;}
+        .album-nav-next{right:-16px;}
+        .album-page-num{
+            position:absolute;
+            bottom:12px;
+            left:50%;
+            transform:translateX(-50%);
+            font-family:'Lora',serif;
+            font-size:11px;
+            color:var(--ink-faint);
+        }
+        .album-close{
+            position:fixed;
+            top:20px;
+            right:24px;
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            background:rgba(255,255,255,.2);
+            border:1px solid rgba(255,255,255,.3);
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:all .15s;
+            z-index:10;
+        }
+        .album-close:hover{
+            background:rgba(255,255,255,.4);
+        }
+        .album-empty{
+            text-align:center;
+            color:var(--ink-faint);
+            font-family:'Lora',serif;
+            font-style:italic;
+            padding:40px 0;
+            font-size:13px;
+        }
+
+        @media(max-width:640px){
+            header{padding:14px 16px;}
+            .main{padding:16px;}
+            .toolbar{padding:10px 16px;}
+            .container-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+            .fp-outer{max-width:100%;overflow-x:auto;}
+            .album-book{width:96vw;height:auto;min-height:320px;flex-direction:column;}
+            .album-page-left,.album-page-right{border-radius:8px;box-shadow:none;}
+            .album-page-left{border-right:none;border-bottom:2px solid #c9a87c;}
+            .album-page-right{border-left:none;border-top:1px solid #d4c4a8;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="header-logo">🏡 家居收纳</div>
+    <div class="header-sep"></div>
+    <nav class="breadcrumb" id="breadcrumb"></nav>
+</header>
+
+<!-- Toolbar -->
+<div class="toolbar">
+    <div class="toolbar-title" id="toolbar-title"></div>
+    <button class="btn btn-ghost" id="btn-fp" onclick="toggleView()">🗺 平面图</button>
+    <button class="btn btn-ghost" onclick="openAddContainer()">＋ 添加</button>
+    <button class="btn btn-primary" onclick="triggerUpload()">↑ 上传图片</button>
+</div>
+
+<!-- Main Content -->
+<main class="main" id="main"></main>
+
+<!-- Hidden File Input -->
+<input type="file" id="file-input" accept="image/*" multiple style="display:none" onchange="handleFiles(event)">
+
+<!-- Modals -->
+<div class="modal-backdrop" id="modal-add" style="display:none" onclick="closeModal(event,'modal-add')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-title">✦ 添加容器</div>
+        <div class="form-group"><label class="form-label">名称</label><input class="form-input" id="new-name" placeholder="例：主卧、书架左边…"></div>
+        <div class="form-group"><label class="form-label">类型</label><div class="type-grid" id="type-grid"></div></div>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" onclick="document.getElementById('modal-add').style.display='none'">取消</button>
+            <button class="btn btn-primary" onclick="confirmAddContainer()">添加</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="modal-rename" style="display:none" onclick="closeModal(event,'modal-rename')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-title">✦ 重命名</div>
+        <div class="form-group"><label class="form-label">新名称</label><input class="form-input" id="rename-input"></div>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" onclick="document.getElementById('modal-rename').style.display='none'">取消</button>
+            <button class="btn btn-primary" onclick="confirmRename()">确认</button>
+        </div>
+    </div>
+</div>
+
+<!-- Size Editor Modal -->
+<div class="modal-backdrop" id="modal-size" style="display:none" onclick="closeModal(event,'modal-size')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-title">✦ 调整尺寸</div>
+        <div class="size-inputs">
+            <div class="form-group"><label class="form-label">宽度（格）</label><input class="form-input" id="size-w" type="number" min="2" max="30"></div>
+            <div class="size-x">×</div>
+            <div class="form-group"><label class="form-label">高度（格）</label><input class="form-input" id="size-h" type="number" min="2" max="30"></div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" onclick="document.getElementById('modal-size').style.display='none'">取消</button>
+            <button class="btn btn-primary" onclick="confirmSize()">确认</button>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" style="display:none" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- Album Modal -->
+<div class="album-modal-backdrop" id="album-modal" style="display:none" onclick="closeAlbumModal(event)">
+    <button class="album-close" onclick="document.getElementById('album-modal').style.display='none'">✕</button>
+    <div class="album-book" id="album-book" onclick="event.stopPropagation()"></div>
+</div>
+
+<script>
+// ══ Type definitions ══
+const TYPE_DEFS = { house: { icon: '🏠', label: '房子' }, room: { icon: '🚪', label: '房间' },
+    bookshelf: { icon: '📚', label: '书架' }, desk: { icon: '🪑', label: '桌面' }, bed: { icon: '🛏️',
+        label: '床铺' }, cabinet: { icon: '🗄️', label: '柜子' }, 'under-bed': { icon: '📦', label: '床底' },
+    'shelf-layer': { icon: '➖', label: '分层' }, custom: { icon: '🔲', label: '自定义' },
+    album: { icon: '📖', label: '画册' } };
+const ALLOWED = { house: ['room'], room: ['bookshelf', 'desk', 'bed', 'cabinet', 'album', 'custom'], bookshelf: [
+        'shelf-layer'
+    ], desk: ['album', 'custom'], bed: ['under-bed', 'custom'], cabinet: ['shelf-layer', 'custom'], 'under-bed': [
+        'custom'
+    ], 'shelf-layer': ['custom'], custom: ['custom', 'shelf-layer', 'album'], album: ['custom'] };
+const TYPE_SIZES = { house: { w: 34, h: 26 }, room: { w: 14, h: 12 }, bookshelf: { w: 10, h: 4 }, desk: { w: 8,
+        h: 7 }, bed: { w: 8, h: 13 }, cabinet: { w: 6, h: 4 }, 'under-bed': { w: 9, h: 5 },
+    'shelf-layer': { w: 10, h: 2 }, custom: { w: 5, h: 5 }, album: { w: 7, h: 9 } };
+const ROOM_FLOOR_COLORS = ['#e8d8b8', '#d8e4d0', '#dcd8e8', '#e4d4c8', '#cce0e0', '#e0dcc8', '#d8e0d8',
+    '#e8d4c4'
+];
+const TILE = 28;
+const HANDLE_SIZE = 8;
+const MIN_GRID = 2;
+const uid = () => Math.random().toString(36).slice(2, 9);
+
+// ══ Store ══
+function makeDefault() {
+    return {
+        id: 'root',
+        type: 'house',
+        name: '我的家',
+        images: [],
+        children: [
+            { id: uid(), type: 'room', name: '卧室', images: [], children: [
+                    { id: uid(), type: 'bed', name: '床铺', images: [], children: [
+                            { id: uid(), type: 'under-bed', name: '床底', images: [], children: [] }] },
+                    { id: uid(), type: 'bookshelf', name: '书架', images: [], children: [
+                            { id: uid(), type: 'shelf-layer', name: '第一层', images: [], children: [] },
+                            { id: uid(), type: 'shelf-layer', name: '第二层', images: [], children: [] }] },
+                    { id: uid(), type: 'cabinet', name: '衣柜', images: [], children: [] }
+                ] },
+            { id: uid(), type: 'room', name: '书房', images: [], children: [
+                    { id: uid(), type: 'desk', name: '书桌', images: [], children: [] },
+                    { id: uid(), type: 'bookshelf', name: '书架', images: [], children: [
+                            { id: uid(), type: 'shelf-layer', name: '上层', images: [], children: [] },
+                            { id: uid(), type: 'shelf-layer', name: '中层', images: [], children: [] },
+                            { id: uid(), type: 'shelf-layer', name: '下层', images: [], children: [] }] }
+                ] }
+        ]
+    };
+}
+let store;
+try { const s = localStorage.getItem('home-v4'); store = s ? JSON.parse(s) : makeDefault(); } catch (e) { store =
+        makeDefault(); }
+
+function save() { try { localStorage.setItem('home-v4', JSON.stringify(store)); } catch (e) {} }
+let currentPath = ['root'];
+let viewMode = 'grid';
+
+function findNode(id, n) { if (!n) n = store; if (n.id === id) return n; for (const c of (n.children || [])) { const f =
+            findNode(id, c); if (f) return f; } }
+
+function findParent(id, n, p) { if (!n) { n = store;
+        p = null; } if (n.id === id) return p; for (const c of (n.children || [])) { const f = findParent(id, c, n); if (
+            f !== undefined) return f; } }
+
+function currentNode() { return findNode(currentPath[currentPath.length - 1]); }
+
+// ══ Render ══
+function render() { save();
+    renderBC();
+    renderTitle();
+    renderMain(); }
+
+function renderBC() {
+    const bc = document.getElementById('breadcrumb');
+    bc.innerHTML = '';
+    currentPath.forEach((id, i) => {
+        const node = findNode(id);
+        if (!node) return;
+        const isLast = i === currentPath.length - 1;
+        if (i > 0) { const a = document.createElement('span');
+            a.className = 'crumb-arrow';
+            a.textContent = '›';
+            bc.appendChild(a); }
+        const c = document.createElement('span');
+        c.className = 'crumb' + (isLast ? ' active' : '');
+        c.textContent = (TYPE_DEFS[node.type]?.icon || '📦') + ' ' + node.name;
+        if (!isLast) c.onclick = () => { currentPath = currentPath.slice(0, i + 1);
+            render(); };
+        bc.appendChild(c);
+    });
+}
+
+function renderTitle() {
+    const node = currentNode(),
+        def = TYPE_DEFS[node.type] || TYPE_DEFS.custom;
+    document.getElementById('toolbar-title').innerHTML =
+        `<span>${def.icon} ${node.name}</span><span class="type-badge">${def.label}</span>`;
+    const btn = document.getElementById('btn-fp');
+    btn.textContent = viewMode === 'floorplan' ? '📋 列表' : '🗺 平面图';
+    btn.className = 'btn btn-ghost' + (viewMode === 'floorplan' ? ' btn-active' : '');
+}
+
+function renderMain() {
+    const node = currentNode(),
+        main = document.getElementById('main');
+    main.innerHTML = '';
+    // Force re-animation
+    main.style.animation = 'none';
+    main.offsetHeight;
+    main.style.animation = '';
+    if (viewMode === 'floorplan') renderFP(node, main);
+    else renderGrid(node, main);
+}
+
+// ══ Grid view ══
+function el(t, c) { const e = document.createElement(t); if (c) e.className = c; return e; }
+
+function renderGrid(node, main) {
+    const children = node.children || [],
+        images = node.images || [];
+    if (children.length > 0) {
+        const sh = el('div', 'section-header');
+        sh.innerHTML =
+            `<span class="section-label">子容器</span><div class="section-line"></div><span style="color:var(--ink-faint);font-size:12px;font-family:Lora,serif">${children.length} 个</span>`;
+        main.appendChild(sh);
+        const grid = el('div', 'container-grid');
+        children.forEach((child, idx) => {
+            const def = TYPE_DEFS[child.type] || TYPE_DEFS.custom;
+            const card = el('div', 'container-card');
+            card.setAttribute('data-type', child.type);
+            card.style.animationDelay = (idx * 50) + 'ms';
+            card.innerHTML =
+                `<span class="card-icon">${def.icon}</span><div class="card-name">${child.name}</div><div class="card-meta"><span>${(child.children||[]).length} 容器</span><span>${(child.images||[]).length} 图片</span></div><div class="card-actions"><button class="card-action-btn" onclick="renameContainer(event,'${child.id}')">✏️</button><button class="card-action-btn delete" onclick="deleteContainer(event,'${child.id}')">🗑️</button></div>`;
+            if (child.type === 'album') {
+                card.onclick = () => openAlbumModal(child);
+            } else {
+                card.onclick = () => { currentPath.push(child.id); render(); };
+            }
+            grid.appendChild(card);
+        });
+        main.appendChild(grid);
+    }
+    appendImageSection(node, main, images);
+}
+
+function appendImageSection(node, main, images) {
+    const ih = el('div', 'section-header');
+    ih.innerHTML =
+        `<span class="section-label">图片</span><div class="section-line"></div><span style="color:var(--ink-faint);font-size:12px;font-family:Lora,serif">${images.length} 张</span>`;
+    main.appendChild(ih);
+    const dz = el('div', 'drop-zone');
+    dz.innerHTML = `<span style="font-size:22px">🖼️</span><div class="drop-zone-text">拖放图片至此，或点击"上传图片"</div>`;
+    dz.onclick = () => triggerUpload();
+    dz.addEventListener('dragover', e => { e.preventDefault();
+        dz.classList.add('dragover'); });
+    dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+    dz.addEventListener('drop', e => { e.preventDefault();
+        dz.classList.remove('dragover');
+        handleFileList(e.dataTransfer.files); });
+    main.appendChild(dz);
+    if (images.length === 0 && (node.children || []).length === 0 && viewMode === 'grid') { const em = el('div',
+            'empty-state');
+        em.textContent = '这里还什么都没有，添加容器或上传图片开始整理吧。';
+        main.appendChild(em); }
+    if (images.length > 0) {
+        const grid = el('div', 'image-grid');
+        images.forEach((img, i) => {
+            const card = el('div', 'image-card');
+            card.style.animationDelay = (i * 40) + 'ms';
+            card.innerHTML =
+                `<img src="${img.data}" alt="${img.name}" loading="lazy"><div class="img-overlay"><div class="img-name">${img.name}</div><div class="img-actions"><div class="img-action" onclick="openLightbox(event,${i})">查看</div><div class="img-action del" onclick="deleteImage(event,${i})">删除</div></div></div>`;
+            grid.appendChild(card);
+        });
+        main.appendChild(grid);
+    }
+}
+
+// ══ Floor plan view ══
+// Combine children and images into a single renderable list for floor plan
+function getFloorItems(node) {
+    const items = [];
+    (node.children || []).forEach(c => items.push({ kind: 'container', data: c, pos: c.pos }));
+    (node.images || []).forEach(img => items.push({ kind: 'image', data: img, pos: img.pos }));
+    return items;
+}
+
+function ensurePositions(items, parentType) {
+    const MAXW = parentType === 'house' ? 32 : 26;
+    let cx = 1, cy = 1, rowH = 0;
+    items.forEach(item => {
+        if (!item.pos) {
+            const s = item.kind === 'image'
+                ? { w: 4, h: 4 }
+                : (TYPE_SIZES[item.data.type] || { w: 5, h: 5 });
+            if (cx + s.w > MAXW) { cx = 1; cy += rowH + 1; rowH = 0; }
+            item.pos = { x: cx, y: cy, w: s.w, h: s.h };
+            // Write back pos to data
+            item.data.pos = item.pos;
+            cx += s.w + 1;
+            rowH = Math.max(rowH, s.h);
+        }
+    });
+}
+
+function canvasSize(items, pad = 3) {
+    let mx = pad, my = pad;
+    items.forEach(item => { if (item.pos) {
+        mx = Math.max(mx, item.pos.x + item.pos.w + pad);
+        my = Math.max(my, item.pos.y + item.pos.h + pad);
+    }});
+    return { w: Math.max(mx, 18) * TILE, h: Math.max(my, 12) * TILE };
+}
+
+// Preloaded image cache for floor plan
+const imgCache = {};
+function preloadImage(dataUrl) {
+    if (imgCache[dataUrl]) return imgCache[dataUrl];
+    const img = new Image();
+    img.src = dataUrl;
+    imgCache[dataUrl] = img;
+    return img;
+}
+
+function renderFP(node, main) {
+    const items = getFloorItems(node);
+    ensurePositions(items, node.type);
+    // Preload images
+    items.filter(i => i.kind === 'image').forEach(i => preloadImage(i.data.data));
+    const outer = el('div', 'fp-outer');
+    const { w, h } = canvasSize(items);
+    const canvas = document.createElement('canvas');
+    canvas.className = 'fp-canvas';
+    canvas.width = w;
+    canvas.height = h;
+    outer.appendChild(canvas);
+    main.appendChild(outer);
+    const hint = el('div', 'fp-hint');
+    hint.innerHTML =
+        '🖱 <b>点击</b>进入 &nbsp;·&nbsp; <b>拖拽</b>移动 &nbsp;·&nbsp; <b>角落手柄</b>调整大小 &nbsp;·&nbsp; <b>双击</b>设置尺寸 &nbsp;·&nbsp; <kbd style="background:var(--parchment);padding:1px 5px;border-radius:3px;font-size:10px">F</kbd> 切换';
+    main.appendChild(hint);
+    drawFP(canvas, node, items);
+    setupFPEvents(canvas, node, items);
+}
+
+// ── Pixel-perfect floor plan drawing ──
+function drawFP(canvas, parentNode, items) {
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    drawFloor(ctx, canvas.width, canvas.height, parentNode.type);
+    // Draw shadows first
+    items.forEach((item, i) => {
+        const p = item.pos;
+        if (!p) return;
+        drawShadow(ctx, p.x * TILE, p.y * TILE, p.w * TILE, p.h * TILE);
+    });
+    // Draw sprites
+    items.forEach((item, i) => {
+        const p = item.pos;
+        if (!p) return;
+        if (item.kind === 'image') {
+            drawImageSprite(ctx, item.data, p.x * TILE, p.y * TILE, p.w * TILE, p.h * TILE);
+        } else {
+            drawSprite(ctx, item.data.type, p.x * TILE, p.y * TILE, p.w * TILE, p.h * TILE, item.data, ROOM_FLOOR_COLORS[
+                i % ROOM_FLOOR_COLORS.length]);
+        }
+        drawLabel(ctx, item.kind === 'image' ? (item.data.name || '') : item.data.name, p.x * TILE, p.y * TILE, p.w * TILE, p.h * TILE);
+    });
+    // Draw resize handles for hovered item
+    if (fpHoveredItem && fpHoveredItem.pos) {
+        drawResizeHandles(ctx, fpHoveredItem.pos);
+    }
+}
+
+let fpHoveredItem = null;
+
+function drawFloor(ctx, w, h, parentType) {
+    ctx.fillStyle = parentType === 'house' ? '#2f2115' : '#4a3320';
+    ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(255,255,255,.06)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= w; x += TILE) {
+        ctx.beginPath(); ctx.moveTo(x + .5, 0); ctx.lineTo(x + .5, h); ctx.stroke();
+    }
+    for (let y = 0; y <= h; y += TILE) {
+        ctx.beginPath(); ctx.moveTo(0, y + .5); ctx.lineTo(w, y + .5); ctx.stroke();
+    }
+    ctx.strokeStyle = '#8b6138';
+    ctx.lineWidth = 6;
+    ctx.strokeRect(3, 3, w - 6, h - 6);
+    ctx.strokeStyle = 'rgba(255,238,200,.35)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(8, 8, w - 16, h - 16);
+}
+
+function drawShadow(ctx, x, y, w, h) {
+    ctx.save();
+    ctx.fillStyle = 'rgba(0,0,0,.24)';
+    roundRect(ctx, x + 5, y + 6, w, h, 8, true, false);
+    ctx.restore();
+}
+
+function drawSprite(ctx, type, x, y, w, h, node, roomColor) {
+    const def = TYPE_DEFS[type] || TYPE_DEFS.custom;
+    const fill = type === 'room' ? roomColor : (type === 'album' ? '#e8d4b8' : '#c9a87c');
+    const stroke = type === 'room' ? '#7d5b36' : (type === 'album' ? '#8b6138' : '#6b4f30');
+
+    ctx.save();
+    ctx.fillStyle = fill;
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 3;
+    roundRect(ctx, x, y, w, h, type === 'room' ? 10 : (type === 'album' ? 4 : 6), true, true);
+
+    // Album-specific: book shape details
+    if (type === 'album') {
+        // Spine line
+        ctx.strokeStyle = 'rgba(80,45,20,.4)';
+        ctx.lineWidth = 2;
+        line(ctx, x + 8, y + 6, x + 8, y + h - 6);
+        // Spine shadow
+        ctx.fillStyle = 'rgba(80,45,20,.12)';
+        ctx.fillRect(x + 4, y + 4, 8, h - 8);
+        // Page lines
+        ctx.strokeStyle = 'rgba(255,255,255,.3)';
+        ctx.lineWidth = 1;
+        for (let yy = y + 14; yy < y + h - 10; yy += 8) {
+            line(ctx, x + 14, yy, x + w - 8, yy);
+        }
+        // Gold bookmark ribbon
+        ctx.fillStyle = '#c49a6c';
+        ctx.beginPath();
+        ctx.moveTo(x + w - 12, y + 4);
+        ctx.lineTo(x + w - 6, y + 4);
+        ctx.lineTo(x + w - 9, y + 16);
+        ctx.closePath();
+        ctx.fill();
+    } else if (type === 'bookshelf' || type === 'shelf-layer') {
+        ctx.strokeStyle = 'rgba(80,45,20,.25)';
+        ctx.lineWidth = 1;
+        for (let yy = y + h / 3; yy < y + h; yy += h / 3) line(ctx, x + 6, yy, x + w - 6, yy);
+    } else if (type === 'bed') {
+        ctx.fillStyle = 'rgba(255,255,255,.38)';
+        roundRect(ctx, x + 8, y + 8, w - 16, Math.min(34, h / 3), 5, true, false);
+    } else if (type === 'desk') {
+        line(ctx, x + 8, y + 8, x + w - 8, y + 8);
+        line(ctx, x + 8, y + h - 8, x + w - 8, y + h - 8);
+    } else if (type === 'cabinet') {
+        line(ctx, x + w / 2, y + 8, x + w / 2, y + h - 8);
+    }
+
+    // Icon
+    ctx.font = `${Math.max(18, Math.min(30, h * .28))}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(44,31,14,.78)';
+    ctx.fillText(def.icon, x + w / 2, y + h / 2 - 6);
+
+    // Count badge
+    const count = (node.children || []).length + (node.images || []).length;
+    if (count > 0) {
+        ctx.fillStyle = 'rgba(107,79,48,.9)';
+        ctx.beginPath();
+        ctx.arc(x + w - 12, y + 12, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff7e8';
+        ctx.font = '11px sans-serif';
+        ctx.fillText(String(count), x + w - 12, y + 13);
+    }
+    ctx.restore();
+}
+
+function drawImageSprite(ctx, imgData, x, y, w, h) {
+    ctx.save();
+    // Photo frame border
+    ctx.fillStyle = '#d4c0a0';
+    ctx.strokeStyle = '#8b6f50';
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, w, h, 3, true, true);
+
+    // Inner mat (white border)
+    const mat = Math.max(4, Math.min(8, w * 0.06));
+    ctx.fillStyle = '#faf5ed';
+    ctx.fillRect(x + mat, y + mat, w - mat * 2, h - mat * 2);
+
+    // Draw image if loaded
+    const img = imgCache[imgData.data];
+    if (img && img.complete && img.naturalWidth) {
+        const inner = mat + 2;
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(x + inner, y + inner, w - inner * 2, h - inner * 2);
+        ctx.clip();
+        // Fit image
+        const iw = img.naturalWidth, ih = img.naturalHeight;
+        const scale = Math.max((w - inner * 2) / iw, (h - inner * 2) / ih);
+        const dw = iw * scale, dh = ih * scale;
+        ctx.drawImage(img, x + inner + (w - inner * 2 - dw) / 2, y + inner + (h - inner * 2 - dh) / 2, dw, dh);
+        ctx.restore();
+    } else {
+        // Placeholder
+        ctx.fillStyle = 'rgba(160,120,80,.15)';
+        const inner = mat + 2;
+        ctx.fillRect(x + inner, y + inner, w - inner * 2, h - inner * 2);
+        ctx.font = `${Math.max(14, h * .3)}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = 'rgba(160,120,80,.4)';
+        ctx.fillText('🖼️', x + w / 2, y + h / 2);
+    }
+
+    // Corner ornaments
+    const orn = 4;
+    ctx.fillStyle = '#a07850';
+    [[x + 2, y + 2], [x + w - 2 - orn, y + 2], [x + 2, y + h - 2 - orn], [x + w - 2 - orn, y + h - 2 - orn]].forEach(([cx, cy]) => {
+        ctx.fillRect(cx, cy, orn, orn);
+    });
+
+    ctx.restore();
+}
+
+function drawResizeHandles(ctx, pos) {
+    const handles = getHandlePositions(pos);
+    ctx.save();
+    handles.forEach(h => {
+        ctx.fillStyle = 'rgba(240,196,144,.9)';
+        ctx.strokeStyle = 'rgba(160,120,80,.8)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(h.cx, h.cy, HANDLE_SIZE / 2 + 1, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    });
+    ctx.restore();
+}
+
+function getHandlePositions(pos) {
+    const x = pos.x * TILE, y = pos.y * TILE, w = pos.w * TILE, h = pos.h * TILE;
+    return [
+        { dir: 'nw', cx: x, cy: y },
+        { dir: 'ne', cx: x + w, cy: y },
+        { dir: 'sw', cx: x, cy: y + h },
+        { dir: 'se', cx: x + w, cy: y + h },
+        { dir: 'n', cx: x + w / 2, cy: y },
+        { dir: 's', cx: x + w / 2, cy: y + h },
+        { dir: 'w', cx: x, cy: y + h / 2 },
+        { dir: 'e', cx: x + w, cy: y + h / 2 },
+    ];
+}
+
+function drawLabel(ctx, text, x, y, w, h) {
+    ctx.save();
+    ctx.font = '600 13px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillStyle = 'rgba(44,31,14,.86)';
+    ctx.fillText(text, x + w / 2, y + h - 8, Math.max(20, w - 12));
+    ctx.restore();
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+    r = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
+}
+
+function line(ctx, x1, y1, x2, y2) {
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+}
+
+// ══ Floor Plan Events (Drag + Resize + Click) ══
+function setupFPEvents(canvas, node, items) {
+    let dragging = null;
+    let resizing = null;
+    let moved = false;
+
+    function getMouse(e) {
+        const r = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / r.width;
+        const scaleY = canvas.height / r.height;
+        return { x: (e.clientX - r.left) * scaleX, y: (e.clientY - r.top) * scaleY };
+    }
+
+    function hitTestItem(mx, my) {
+        for (let i = items.length - 1; i >= 0; i--) {
+            const item = items[i], p = item.pos;
+            if (!p) continue;
+            const x = p.x * TILE, y = p.y * TILE, w = p.w * TILE, h = p.h * TILE;
+            if (mx >= x && mx <= x + w && my >= y && my <= y + h) return item;
+        }
+        return null;
+    }
+
+    function hitTestHandle(mx, my) {
+        if (!fpHoveredItem || !fpHoveredItem.pos) return null;
+        const handles = getHandlePositions(fpHoveredItem.pos);
+        const threshold = HANDLE_SIZE + 4;
+        for (const h of handles) {
+            if (Math.abs(mx - h.cx) < threshold && Math.abs(my - h.cy) < threshold) return h;
+        }
+        return null;
+    }
+
+    canvas.onmousedown = e => {
+        const m = getMouse(e);
+
+        // Check resize handle first
+        const handle = hitTestHandle(m.x, m.y);
+        if (handle && fpHoveredItem) {
+            resizing = {
+                item: fpHoveredItem,
+                dir: handle.dir,
+                startX: m.x,
+                startY: m.y,
+                origPos: { ...fpHoveredItem.pos }
+            };
+            moved = false;
+            return;
+        }
+
+        // Check drag
+        const item = hitTestItem(m.x, m.y);
+        if (!item) return;
+        dragging = {
+            item,
+            startX: m.x,
+            startY: m.y,
+            ox: item.pos.x,
+            oy: item.pos.y
+        };
+        moved = false;
+        canvas.style.cursor = 'grabbing';
+    };
+
+    window.onmousemove = e => {
+        const m = getMouse(e);
+
+        if (resizing) {
+            const dx = Math.round((m.x - resizing.startX) / TILE);
+            const dy = Math.round((m.y - resizing.startY) / TILE);
+            if (Math.abs(dx) + Math.abs(dy) > 0) moved = true;
+            const o = resizing.origPos;
+            const dir = resizing.dir;
+            let nx = o.x, ny = o.y, nw = o.w, nh = o.h;
+
+            if (dir.includes('e')) nw = Math.max(MIN_GRID, o.w + dx);
+            if (dir.includes('w')) { nx = o.x + dx; nw = Math.max(MIN_GRID, o.w - dx); if (nw === MIN_GRID) nx = o.x + o.w - MIN_GRID; }
+            if (dir.includes('s')) nh = Math.max(MIN_GRID, o.h + dy);
+            if (dir.includes('n')) { ny = o.y + dy; nh = Math.max(MIN_GRID, o.h - dy); if (nh === MIN_GRID) ny = o.y + o.h - MIN_GRID; }
+
+            nx = Math.max(1, nx);
+            ny = Math.max(1, ny);
+
+            resizing.item.pos.x = nx;
+            resizing.item.pos.y = ny;
+            resizing.item.pos.w = nw;
+            resizing.item.pos.h = nh;
+            // Sync back to data
+            resizing.item.data.pos = resizing.item.pos;
+            drawFP(canvas, node, items);
+            return;
+        }
+
+        if (dragging) {
+            const dx = Math.round((m.x - dragging.startX) / TILE);
+            const dy = Math.round((m.y - dragging.startY) / TILE);
+            if (Math.abs(dx) + Math.abs(dy) > 0) moved = true;
+            dragging.item.pos.x = Math.max(1, dragging.ox + dx);
+            dragging.item.pos.y = Math.max(1, dragging.oy + dy);
+            dragging.item.data.pos = dragging.item.pos;
+            drawFP(canvas, node, items);
+            return;
+        }
+
+        // Hover detection
+        const item = hitTestItem(m.x, m.y);
+        const prevHovered = fpHoveredItem;
+        fpHoveredItem = item;
+
+        // Check handle cursor
+        const handle = hitTestHandle(m.x, m.y);
+        if (handle) {
+            const cursors = { nw: 'nwse-resize', ne: 'nesw-resize', sw: 'nesw-resize', se: 'nwse-resize',
+                n: 'ns-resize', s: 'ns-resize', w: 'ew-resize', e: 'ew-resize' };
+            canvas.style.cursor = cursors[handle.dir];
+        } else if (item) {
+            canvas.style.cursor = 'pointer';
+        } else {
+            canvas.style.cursor = 'default';
+        }
+
+        if (prevHovered !== fpHoveredItem) {
+            drawFP(canvas, node, items);
+        }
+    };
+
+    window.onmouseup = () => {
+        if (resizing) { save(); resizing = null; return; }
+        if (dragging) { save(); dragging = null; canvas.style.cursor = 'default'; }
+    };
+
+    canvas.onclick = e => {
+        if (moved) return;
+        const m = getMouse(e);
+        const item = hitTestItem(m.x, m.y);
+        if (!item) return;
+        if (item.kind === 'image') {
+            // Open lightbox for image
+            const imgIdx = (node.images || []).indexOf(item.data);
+            if (imgIdx >= 0) openLightbox(null, imgIdx);
+        } else if (item.data.type === 'album') {
+            openAlbumModal(item.data);
+        } else {
+            currentPath.push(item.data.id);
+            render();
+        }
+    };
+
+    canvas.ondblclick = e => {
+        const m = getMouse(e);
+        const item = hitTestItem(m.x, m.y);
+        if (!item) return;
+        openSizeEditor(item);
+    };
+}
+
+function openSizeEditor(item) {
+    const p = item.pos;
+    if (!p) return;
+    sizeEditTarget = item;
+    document.getElementById('size-w').value = p.w;
+    document.getElementById('size-h').value = p.h;
+    document.getElementById('modal-size').style.display = 'flex';
+}
+
+let sizeEditTarget = null;
+
+function confirmSize() {
+    if (!sizeEditTarget) return;
+    const w = Math.max(MIN_GRID, parseInt(document.getElementById('size-w').value) || MIN_GRID);
+    const h = Math.max(MIN_GRID, parseInt(document.getElementById('size-h').value) || MIN_GRID);
+    sizeEditTarget.pos.w = w;
+    sizeEditTarget.pos.h = h;
+    sizeEditTarget.data.pos = sizeEditTarget.pos;
+    document.getElementById('modal-size').style.display = 'none';
+    sizeEditTarget = null;
+    save();
+    render();
+}
+
+function toggleView() {
+    viewMode = viewMode === 'floorplan' ? 'grid' : 'floorplan';
+    fpHoveredItem = null;
+    render();
+}
+
+function openAddContainer() {
+    const node = currentNode();
+    const allowed = ALLOWED[node.type] || ['custom'];
+    let selected = allowed[0];
+    const grid = document.getElementById('type-grid');
+    grid.innerHTML = '';
+    allowed.forEach(type => {
+        const def = TYPE_DEFS[type] || TYPE_DEFS.custom;
+        const opt = el('div', 'type-option' + (type === selected ? ' selected' : ''));
+        opt.innerHTML = `<span class="t-icon">${def.icon}</span><span class="t-name">${def.label}</span>`;
+        opt.onclick = () => {
+            selected = type;
+            grid.querySelectorAll('.type-option').forEach(x => x.classList.remove('selected'));
+            opt.classList.add('selected');
+            grid.dataset.selected = selected;
+        };
+        grid.appendChild(opt);
+    });
+    grid.dataset.selected = selected;
+    document.getElementById('new-name').value = '';
+    document.getElementById('modal-add').style.display = 'flex';
+    setTimeout(() => document.getElementById('new-name').focus(), 0);
+}
+
+function confirmAddContainer() {
+    const node = currentNode();
+    const name = document.getElementById('new-name').value.trim() || '新容器';
+    const type = document.getElementById('type-grid').dataset.selected || 'custom';
+    const s = TYPE_SIZES[type] || TYPE_SIZES.custom;
+    node.children = node.children || [];
+    node.children.push({ id: uid(), type, name, images: [], children: [], pos: { x: 1, y: 1, w: s.w, h: s.h } });
+    document.getElementById('modal-add').style.display = 'none';
+    render();
+}
+
+let renamingId = null;
+function renameContainer(event, id) {
+    event.stopPropagation();
+    renamingId = id;
+    const node = findNode(id);
+    document.getElementById('rename-input').value = node ? node.name : '';
+    document.getElementById('modal-rename').style.display = 'flex';
+    setTimeout(() => document.getElementById('rename-input').focus(), 0);
+}
+
+function confirmRename() {
+    const node = findNode(renamingId);
+    if (node) node.name = document.getElementById('rename-input').value.trim() || node.name;
+    document.getElementById('modal-rename').style.display = 'none';
+    render();
+}
+
+function deleteContainer(event, id) {
+    event.stopPropagation();
+    const parent = findParent(id);
+    if (!parent || !confirm('确定删除这个容器及其中内容吗？')) return;
+    parent.children = (parent.children || []).filter(c => c.id !== id);
+    render();
+}
+
+function closeModal(event, id) {
+    if (event.target.id === id) document.getElementById(id).style.display = 'none';
+}
+
+function triggerUpload() {
+    document.getElementById('file-input').click();
+}
+
+function handleFiles(event) {
+    handleFileList(event.target.files);
+    event.target.value = '';
+}
+
+function handleFileList(files) {
+    const node = currentNode();
+    node.images = node.images || [];
+    Array.from(files).filter(f => f.type.startsWith('image/')).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+            node.images.push({ id: uid(), name: file.name, data: e.target.result, ts: Date.now(), pos: null });
+            render();
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function openLightbox(event, index) {
+    if (event) event.stopPropagation();
+    const img = (currentNode().images || [])[index];
+    if (!img) return;
+    document.getElementById('lightbox-img').src = img.data;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+
+function deleteImage(event, index) {
+    event.stopPropagation();
+    if (!confirm('确定删除这张图片吗？')) return;
+    const node = currentNode();
+    node.images.splice(index, 1);
+    render();
+}
+
+// ═══ Album Modal ═══
+let albumPage = 0;
+let albumNode = null;
+const ALBUM_ITEMS_PER_PAGE = 6;
+
+function openAlbumModal(albumData) {
+    albumNode = albumData;
+    albumPage = 0;
+    renderAlbumModal();
+    document.getElementById('album-modal').style.display = 'flex';
+}
+
+function closeAlbumModal(event) {
+    if (event && event.target.id !== 'album-modal') return;
+    document.getElementById('album-modal').style.display = 'none';
+    albumNode = null;
+}
+
+function renderAlbumModal() {
+    if (!albumNode) return;
+    const book = document.getElementById('album-book');
+    const allItems = [];
+    (albumNode.children || []).forEach(c => allItems.push({ kind: 'container', data: c }));
+    (albumNode.images || []).forEach(img => allItems.push({ kind: 'image', data: img }));
+
+    const totalPages = Math.max(1, Math.ceil(allItems.length / ALBUM_ITEMS_PER_PAGE));
+    albumPage = Math.min(albumPage, totalPages - 1);
+
+    const leftStart = albumPage * ALBUM_ITEMS_PER_PAGE;
+    const rightStart = leftStart + ALBUM_ITEMS_PER_PAGE;
+    const leftItems = allItems.slice(leftStart, rightStart);
+    const rightItems = allItems.slice(rightStart, rightStart + ALBUM_ITEMS_PER_PAGE);
+
+    const def = TYPE_DEFS[albumNode.type] || TYPE_DEFS.custom;
+
+    book.innerHTML = `
+        <div class="album-page album-page-left">
+            <div class="album-page-label">${def.icon} ${albumNode.name}</div>
+            ${leftItems.length > 0 ? `<div class="album-items">${leftItems.map(renderAlbumItem).join('')}</div>` : '<div class="album-empty">这一页暂无内容</div>'}
+            ${albumPage > 0 ? `<div class="album-nav album-nav-prev" onclick="albumPage--;renderAlbumModal()">‹</div>` : ''}
+            <div class="album-page-num">${albumPage * 2 + 1}</div>
+        </div>
+        <div class="album-page album-page-right">
+            <div class="album-page-label">收藏</div>
+            ${rightItems.length > 0 ? `<div class="album-items">${rightItems.map(renderAlbumItem).join('')}</div>` : (rightStart < allItems.length ? '' : '<div class="album-empty">翻到下一页继续…</div>')}
+            ${rightStart + ALBUM_ITEMS_PER_PAGE < allItems.length || rightItems.length > 0 ? `<div class="album-nav album-nav-next" onclick="albumPage++;renderAlbumModal()">›</div>` : ''}
+            <div class="album-page-num">${albumPage * 2 + 2}</div>
+        </div>
+    `;
+}
+
+function renderAlbumItem(item) {
+    if (item.kind === 'image') {
+        return `<div class="album-item" onclick="openLightboxFromAlbum('${item.data.id}')">
+            <img class="album-item-img" src="${item.data.data}" alt="${item.data.name}">
+            <div class="album-item-name">${item.data.name}</div>
+        </div>`;
+    }
+    const def = TYPE_DEFS[item.data.type] || TYPE_DEFS.custom;
+    const count = (item.data.children || []).length + (item.data.images || []).length;
+    return `<div class="album-item" onclick="enterFromAlbum('${item.data.id}')">
+        <span class="album-item-icon">${def.icon}</span>
+        <div class="album-item-name">${item.data.name}</div>
+        <div style="font-size:10px;color:var(--ink-faint)">${count} 项</div>
+    </div>`;
+}
+
+function openLightboxFromAlbum(imgId) {
+    if (!albumNode) return;
+    const idx = (albumNode.images || []).findIndex(i => i.id === imgId);
+    if (idx < 0) return;
+    // We need to temporarily set currentNode for lightbox
+    const img = albumNode.images[idx];
+    document.getElementById('lightbox-img').src = img.data;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function enterFromAlbum(childId) {
+    document.getElementById('album-modal').style.display = 'none';
+    currentPath.push(childId);
+    albumNode = null;
+    render();
+}
+
+// ═══ Keyboard shortcuts ═══
+document.addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 'f' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) toggleView();
+    if (e.key === 'Escape') {
+        document.getElementById('modal-add').style.display = 'none';
+        document.getElementById('modal-rename').style.display = 'none';
+        document.getElementById('modal-size').style.display = 'none';
+        document.getElementById('album-modal').style.display = 'none';
+        closeLightbox();
+    }
+});
+
+render();
+</script>
+</body>
+</html>
