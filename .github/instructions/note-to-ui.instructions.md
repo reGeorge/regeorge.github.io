@@ -41,4 +41,8 @@ applyTo: "projects/**/index.html"
 assets/img/[project-name]/   ← 压缩图
 projects/[project-name]/
   index.html                 ← 作品展示页
+  data/                      ← 数据层 JS（如 knowledge-graph.js）
+  sources/                   ← 原始 Markdown 源文件
 ```
+
+> **Knowledge Atlas 例外**：`projects/philosophy-flywheel/` 使用 `data/knowledge-graph.js` 作为唯一内容数据源，增量内容写入该文件而非直接修改 `index.html`。详见 `.github/skills/knowledge-atlas-update/SKILL.md`。

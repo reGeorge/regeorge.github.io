@@ -52,3 +52,4 @@ disable-model-invocation: false
 ## References
 - [Cover strategy](./references/cover-strategy.md)
 - [Update checklist](./references/update-checklist.md)
+- [Book collision protocol](./references/book-collision-protocol.md)
