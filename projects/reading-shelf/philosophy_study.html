@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哲学精读工作室</title>
+<style>
+:root {
+  --bg: #f5f4f0;
+  --card: #fff;
+  --border: #e5e3dc;
+  --border2: #d0cec5;
+  --text: #1a1916;
+  --text2: #5a5750;
+  --text3: #9a9790;
+  --accent: #2c4a2e;
+  --accent-light: #eef3ee;
+  --accent-mid: #8aab8c;
+  --amber: #7a5c1a;
+  --amber-light: #fdf6e3;
+  --red: #8b2020;
+  --red-light: #fdf0f0;
+  --purple: #4a2878;
+  --purple-light: #f3eefb;
+  --r: 8px;
+  --r2: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Georgia', 'Songti SC', serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+.sans { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+
+/* Layout */
+.shell { display: flex; flex-direction: column; height: 100vh; }
+.topbar { background: var(--accent); color: #fff; padding: 10px 20px; display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.topbar-back { font-family: sans-serif; font-size: 12px; opacity: .7; cursor: pointer; padding: 3px 8px; border: 1px solid rgba(255,255,255,.3); border-radius: 4px; }
+.topbar-back:hover { opacity: 1; background: rgba(255,255,255,.1); }
+.topbar-book { flex: 1; }
+.topbar-title { font-size: 15px; font-weight: 600; }
+.topbar-sub { font-size: 11px; font-family: sans-serif; opacity: .65; margin-top: 1px; }
+.mode-chips { display: flex; gap: 4px; font-family: sans-serif; }
+.mode-chip { padding: 4px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; border: 1px solid rgba(255,255,255,.25); color: rgba(255,255,255,.7); transition: all .15s; }
+.mode-chip:hover { background: rgba(255,255,255,.12); }
+.mode-chip.on { background: rgba(255,255,255,.22); color: #fff; border-color: rgba(255,255,255,.5); font-weight: 600; }
+
+.body-area { display: flex; flex: 1; overflow: hidden; }
+
+/* Left info panel */
+.info-panel { width: 200px; flex-shrink: 0; background: var(--card); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
+.book-cover { background: var(--accent); padding: 20px 16px; text-align: center; }
+.cover-art { width: 80px; height: 108px; background: rgba(255,255,255,.12); border-radius: 4px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.2); }
+.cover-char { font-size: 32px; color: rgba(255,255,255,.9); font-family: 'Georgia', serif; }
+.cover-title { font-size: 13px; color: rgba(255,255,255,.95); font-weight: 600; line-height: 1.4; }
+.cover-author { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 4px; font-family: sans-serif; }
+.info-section { padding: 14px 14px 8px; border-bottom: 1px solid var(--border); }
+.info-label { font-size: 10px; font-family: sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .7px; color: var(--text3); margin-bottom: 8px; }
+.info-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.info-key { font-size: 11px; font-family: sans-serif; color: var(--text3); }
+.info-val { font-size: 11px; font-family: sans-serif; color: var(--text2); font-weight: 500; }
+.concept-list { list-style: none; }
+.concept-list li { font-size: 12px; padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 5px; font-family: sans-serif; color: var(--text2); cursor: pointer; }
+.concept-list li:hover { color: var(--accent); }
+.concept-list li:last-child { border-bottom: none; }
+.concept-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-mid); flex-shrink: 0; }
+.reading-prog { padding: 14px; }
+.prog-bar-bg { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; margin: 6px 0 4px; }
+.prog-bar-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width .4s; }
+.prog-label { font-size: 11px; font-family: sans-serif; color: var(--text3); }
+
+/* Main content */
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+.main-body { flex: 1; overflow-y: auto; padding: 20px; }
+
+/* Mode panels */
+.mode-panel { display: none; }
+.mode-panel.active { display: block; }
+
+/* 导读 mode */
+.guide-hero { background: var(--amber-light); border: 1px solid #e8d9a0; border-radius: var(--r2); padding: 18px 20px; margin-bottom: 18px; display: flex; align-items: flex-start; gap: 14px; }
+.guide-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.guide-intro { font-size: 13px; color: var(--amber); line-height: 1.6; font-family: sans-serif; }
+.guide-intro strong { font-weight: 600; display: block; margin-bottom: 4px; font-size: 14px; }
+.gen-btn { font-family: sans-serif; display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: var(--r); border: none; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .15s; }
+.gen-btn.primary { background: var(--accent); color: #fff; }
+.gen-btn.primary:hover { opacity: .88; }
+.gen-btn.secondary { background: var(--card); color: var(--text2); border: 1px solid var(--border2); }
+.gen-btn.secondary:hover { background: var(--bg); }
+.gen-btn:disabled { opacity: .45; cursor: not-allowed; }
+.gen-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+
+.ai-output { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px; margin-top: 14px; min-height: 80px; }
+.ai-output.loading { display: flex; align-items: center; justify-content: center; height: 120px; }
+.ai-prose { font-size: 14px; line-height: 1.9; color: var(--text); white-space: pre-wrap; }
+.ai-prose h3 { font-size: 15px; font-weight: 600; color: var(--accent); margin: 16px 0 8px; }
+.ai-prose h3:first-child { margin-top: 0; }
+.ai-prose p { margin-bottom: 12px; }
+.ai-prose p:last-child { margin-bottom: 0; }
+.ai-prose blockquote { border-left: 3px solid var(--accent-mid); padding-left: 14px; color: var(--text2); font-style: italic; margin: 12px 0; }
+.spinner { display: inline-block; width: 22px; height: 22px; border: 2px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin-right: 8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-family: sans-serif; font-size: 13px; color: var(--text3); }
+.empty-hint { font-family: sans-serif; font-size: 13px; color: var(--text3); text-align: center; padding: 30px; }
+.cursor-blink::after { content: '▋'; animation: blink .7s step-end infinite; color: var(--accent); }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+/* 精读 mode */
+.reader-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; height: calc(100vh - 180px); }
+.reader-input-area { display: flex; flex-direction: column; gap: 10px; }
+.reader-label { font-size: 11px; font-family: sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .7px; color: var(--text3); margin-bottom: 4px; }
+.passage-input { flex: 1; border: 1px solid var(--border2); border-radius: var(--r); padding: 14px; font-size: 13px; font-family: 'Georgia', serif; line-height: 1.8; color: var(--text); resize: none; background: var(--card); }
+.passage-input:focus { outline: none; border-color: var(--accent-mid); }
+.reader-explain-area { display: flex; flex-direction: column; gap: 10px; }
+.explain-output { flex: 1; background: var(--accent-light); border: 1px solid #c8d9c8; border-radius: var(--r); padding: 16px; overflow-y: auto; }
+.explain-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.explain-tag { font-size: 10px; font-family: sans-serif; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
+.et-concept { background: var(--purple-light); color: var(--purple); }
+.et-context { background: var(--amber-light); color: var(--amber); }
+.et-modern { background: var(--accent-light); color: var(--accent); }
+.explain-section { margin-bottom: 14px; }
+.explain-section-title { font-size: 11px; font-family: sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); margin-bottom: 5px; }
+.explain-text { font-size: 13px; line-height: 1.8; color: var(--text); }
+
+/* 对话 mode */
+.chat-area { display: flex; flex-direction: column; height: calc(100vh - 180px); }
+.chat-persona { background: var(--purple-light); border: 1px solid #c8b8e8; border-radius: var(--r); padding: 12px 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-family: sans-serif; }
+.persona-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--purple); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 600; font-family: sans-serif; flex-shrink: 0; }
+.persona-name { font-size: 13px; font-weight: 600; color: var(--purple); }
+.persona-desc { font-size: 11px; color: #7a60a0; margin-top: 1px; }
+.chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; padding: 4px 0; }
+.msg { display: flex; gap: 8px; }
+.msg.user { flex-direction: row-reverse; }
+.msg-avatar { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; font-family: sans-serif; }
+.msg-avatar.phi { background: var(--purple); color: #fff; }
+.msg-avatar.user { background: var(--accent); color: #fff; }
+.msg-bubble { max-width: 78%; padding: 10px 14px; border-radius: var(--r2); font-size: 13px; line-height: 1.75; }
+.msg.phi .msg-bubble { background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 4px var(--r2) var(--r2) var(--r2); }
+.msg.user .msg-bubble { background: var(--accent); color: #fff; border-radius: var(--r2) 4px var(--r2) var(--r2); }
+.msg-time { font-size: 10px; font-family: sans-serif; color: var(--text3); margin-top: 3px; text-align: right; }
+.msg.phi .msg-time { text-align: left; }
+.chat-input-row { display: flex; gap: 8px; }
+.chat-input { flex: 1; border: 1px solid var(--border2); border-radius: var(--r); padding: 10px 14px; font-size: 13px; font-family: 'Georgia', serif; resize: none; background: var(--card); color: var(--text); min-height: 52px; max-height: 100px; }
+.chat-input:focus { outline: none; border-color: var(--purple); }
+.chat-send { border: none; border-radius: var(--r); padding: 0 18px; background: var(--purple); color: #fff; font-size: 13px; font-family: sans-serif; font-weight: 500; cursor: pointer; }
+.chat-send:hover { opacity: .88; }
+.chat-send:disabled { opacity: .4; cursor: not-allowed; }
+.starter-prompts { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.starter { font-size: 11px; font-family: sans-serif; padding: 4px 10px; border-radius: var(--r); border: 1px solid var(--border2); background: var(--card); color: var(--text2); cursor: pointer; transition: all .12s; }
+.starter:hover { border-color: var(--purple); color: var(--purple); }
+
+/* 概念 mode */
+.concepts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.concept-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: 16px; cursor: pointer; transition: all .15s; }
+.concept-card:hover { border-color: var(--accent-mid); }
+.concept-card.expanded { border-color: var(--accent); }
+.cc-term { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.cc-orig { font-size: 11px; font-family: sans-serif; color: var(--text3); margin-bottom: 8px; }
+.cc-short { font-size: 12px; color: var(--text2); line-height: 1.6; font-family: sans-serif; }
+.cc-body { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.concept-card.expanded .cc-body { display: block; }
+.cc-full { font-size: 13px; color: var(--text); line-height: 1.8; font-family: sans-serif; }
+.cc-example { margin-top: 10px; padding: 10px 12px; background: var(--accent-light); border-radius: var(--r); border-left: 3px solid var(--accent-mid); font-size: 12px; color: var(--accent); font-family: sans-serif; }
+.cc-related { margin-top: 8px; display: flex; gap: 5px; flex-wrap: wrap; }
+.cc-rel-tag { font-size: 10px; font-family: sans-serif; padding: 2px 7px; border-radius: 99px; background: var(--bg); border: 1px solid var(--border2); color: var(--text3); }
+.concept-gen-bar { display: flex; gap: 8px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <div class="topbar">
+    <span class="topbar-back sans" onclick="history.back()">← 路线图</span>
+    <div class="topbar-book">
+      <div class="topbar-title">存在主义是一种人道主义</div>
+      <div class="topbar-sub sans">Jean-Paul Sartre · 1946 · 存在主义 · 约3小时通读</div>
+    </div>
+    <div class="mode-chips">
+      <span class="mode-chip on" onclick="switchMode('guide',this)">导读</span>
+      <span class="mode-chip" onclick="switchMode('reader',this)">精读</span>
+      <span class="mode-chip" onclick="switchMode('chat',this)">对话</span>
+      <span class="mode-chip" onclick="switchMode('concepts',this)">概念</span>
+    </div>
+  </div>
+
+  <div class="body-area">
+    <!-- Left info panel -->
+    <div class="info-panel">
+      <div class="book-cover">
+        <div class="cover-art"><span class="cover-char">存</span></div>
+        <div class="cover-title">存在主义是一种人道主义</div>
+        <div class="cover-author sans">萨特 · Sartre</div>
+      </div>
+      <div class="info-section">
+        <div class="info-label sans">基本信息</div>
+        <div class="info-row"><span class="info-key sans">难度</span><span class="info-val sans">★★☆☆☆</span></div>
+        <div class="info-row"><span class="info-key sans">篇幅</span><span class="info-val sans">约60页</span></div>
+        <div class="info-row"><span class="info-key sans">发表</span><span class="info-val sans">1946年演讲</span></div>
+        <div class="info-row"><span class="info-key sans">类型</span><span class="info-val sans">通俗讲演</span></div>
+      </div>
+      <div class="info-section">
+        <div class="info-label sans">核心概念</div>
+        <ul class="concept-list">
+          <li onclick="switchMode('concepts',null);expandConcept('existence')"><span class="concept-dot"></span><span class="sans">存在先于本质</span></li>
+          <li onclick="switchMode('concepts',null);expandConcept('freedom')"><span class="concept-dot"></span><span class="sans">自由与责任</span></li>
+          <li onclick="switchMode('concepts',null);expandConcept('others')"><span class="concept-dot"></span><span class="sans">他人的目光</span></li>
+          <li onclick="switchMode('concepts',null);expandConcept('badvfaith')"><span class="concept-dot"></span><span class="sans">恶意（坏信仰）</span></li>
+          <li onclick="switchMode('concepts',null);expandConcept('anguish')"><span class="concept-dot"></span><span class="sans">焦虑</span></li>
+          <li onclick="switchMode('concepts',null);expandConcept('humanism')"><span class="concept-dot"></span><span class="sans">存在主义人道主义</span></li>
+        </ul>
+      </div>
+      <div class="reading-prog info-section">
+        <div class="info-label sans">阅读进度</div>
+        <div class="prog-bar-bg"><div class="prog-bar-fill" id="readProg" style="width:0%"></div></div>
+        <div class="prog-label sans" id="readProgLabel">未开始</div>
+        <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+          <span class="gen-btn secondary sans" style="font-size:11px;padding:4px 10px" onclick="setProgress(30)">开始阅读</span>
+          <span class="gen-btn secondary sans" style="font-size:11px;padding:4px 10px" onclick="setProgress(100)">已读完</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <div class="main-body">
+
+        <!-- 导读 mode -->
+        <div class="mode-panel active" id="panel-guide">
+          <div class="guide-hero">
+            <div class="guide-icon">📖</div>
+            <div class="guide-intro sans">
+              <strong>AI 导读助手</strong>
+              选择下方任意角度，生成定制化的阅读引导。内容由 Claude 实时生成，针对这本书的实际内容。
+            </div>
+          </div>
+          <div class="gen-actions">
+            <button class="gen-btn primary sans" onclick="generateGuide('overview')" id="btn-overview">📋 整体导读</button>
+            <button class="gen-btn secondary sans" onclick="generateGuide('why')" id="btn-why">💡 为什么读这本</button>
+            <button class="gen-btn secondary sans" onclick="generateGuide('context')" id="btn-context">🌍 历史背景</button>
+            <button class="gen-btn secondary sans" onclick="generateGuide('argument')" id="btn-argument">🧠 核心论证脉络</button>
+            <button class="gen-btn secondary sans" onclick="generateGuide('criticism')" id="btn-criticism">⚔️ 主要批评与回应</button>
+          </div>
+          <div class="ai-output" id="guide-output">
+            <div class="empty-hint">点击上方按钮，生成这本书的AI导读</div>
+          </div>
+        </div>
+
+        <!-- 精读 mode -->
+        <div class="mode-panel" id="panel-reader">
+          <div class="reader-layout">
+            <div class="reader-input-area">
+              <div class="reader-label sans">粘贴原文段落</div>
+              <textarea class="passage-input" id="passageInput" placeholder="将书中任意一段原文粘贴在这里…
+
+例如：「如果上帝不存在，一切便都是允许的。」这正是存在主义的出发点。确实，上帝不存在，结果就是，至少有一种存在，其存在先于本质……"></textarea>
+              <div style="display:flex;gap:8px">
+                <button class="gen-btn primary sans" onclick="explainPassage()" id="btn-explain">解读这段文字</button>
+                <button class="gen-btn secondary sans" onclick="document.getElementById('passageInput').value=SAMPLE_PASSAGE">填入示例段落</button>
+              </div>
+            </div>
+            <div class="reader-explain-area">
+              <div class="reader-label sans">AI 解读</div>
+              <div class="explain-output" id="explain-output">
+                <div class="empty-hint" style="height:100%;display:flex;align-items:center;justify-content:center;">粘贴段落后点击「解读」</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 对话 mode -->
+        <div class="mode-panel" id="panel-chat">
+          <div class="chat-area">
+            <div class="chat-persona">
+              <div class="persona-avatar">萨</div>
+              <div>
+                <div class="persona-name sans">与萨特对话</div>
+                <div class="persona-desc sans">AI 将以萨特的视角和口吻回应你的问题，引用其真实著作与论点</div>
+              </div>
+            </div>
+            <div class="starter-prompts">
+              <span class="starter sans" onclick="startChat(this.textContent)">「存在先于本质」是什么意思？</span>
+              <span class="starter sans" onclick="startChat(this.textContent)">你说人被判决为自由，那命运呢？</span>
+              <span class="starter sans" onclick="startChat(this.textContent)">如何理解「他人即地狱」？</span>
+              <span class="starter sans" onclick="startChat(this.textContent)">你与加缪的分歧在哪里？</span>
+              <span class="starter sans" onclick="startChat(this.textContent)">存在主义如何面对死亡？</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <div class="msg phi">
+                <div class="msg-avatar phi sans">萨</div>
+                <div>
+                  <div class="msg-bubble">你好。我是萨特。1946年，我在一间巴黎的会议室里做了那次演讲——那时候人们对存在主义的误解已经积累太深了。你想从哪里开始？</div>
+                  <div class="msg-time sans">让-保罗·萨特</div>
+                </div>
+              </div>
+            </div>
+            <textarea class="chat-input" id="chatInput" placeholder="向萨特提问…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
+            <div class="chat-input-row">
+              <button class="chat-send sans" onclick="sendChat()" id="btn-chat-send">发送</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 概念 mode -->
+        <div class="mode-panel" id="panel-concepts">
+          <div class="concept-gen-bar">
+            <button class="gen-btn primary sans" onclick="generateConcept('existence')">生成：存在先于本质</button>
+            <button class="gen-btn secondary sans" onclick="generateConcept('freedom')">自由与责任</button>
+            <button class="gen-btn secondary sans" onclick="generateConcept('badvfaith')">恶意（坏信仰）</button>
+            <button class="gen-btn secondary sans" onclick="generateConcept('anguish')">焦虑</button>
+          </div>
+          <div class="concepts-grid" id="conceptsGrid">
+            <!-- Pre-filled static cards -->
+            <div class="concept-card" id="card-existence" onclick="toggleCard(this)">
+              <div class="cc-term">存在先于本质</div>
+              <div class="cc-orig sans">Existence precedes essence</div>
+              <div class="cc-short sans">存在主义的核心命题：人先是存在于世，然后才定义自己是什么。</div>
+              <div class="cc-body">
+                <div class="cc-full" id="cc-full-existence">点击「生成」按钮获取 AI 详细解读</div>
+              </div>
+            </div>
+            <div class="concept-card" id="card-freedom" onclick="toggleCard(this)">
+              <div class="cc-term">自由与责任</div>
+              <div class="cc-orig sans">Freedom & Responsibility</div>
+              <div class="cc-short sans">人被「判决」为自由——自由是无法逃脱的命运，因此责任也无可推卸。</div>
+              <div class="cc-body">
+                <div class="cc-full" id="cc-full-freedom">点击「生成」按钮获取 AI 详细解读</div>
+              </div>
+            </div>
+            <div class="concept-card" id="card-others" onclick="toggleCard(this)">
+              <div class="cc-term">他人的目光</div>
+              <div class="cc-orig sans">The Look of the Other</div>
+              <div class="cc-short sans">他人的凝视将我客体化——「他人即地狱」并非说他人坏，而是说他人的存在本身就限制了我的自由。</div>
+              <div class="cc-body">
+                <div class="cc-full" id="cc-full-others">点击「生成」按钮获取 AI 详细解读</div>
+              </div>
+            </div>
+            <div class="concept-card" id="card-badvfaith" onclick="toggleCard(this)">
+              <div class="cc-term">恶意（坏信仰）</div>
+              <div class="cc-orig sans">Mauvaise foi / Bad Faith</div>
+              <div class="cc-short sans">假装自己没有自由、用「我没有选择」来逃避责任的自我欺骗。</div>
+              <div class="cc-body">
+                <div class="cc-full" id="cc-full-badvfaith">点击「生成」按钮获取 AI 详细解读</div>
+              </div>
+            </div>
+            <div class="concept-card" id="card-anguish" onclick="toggleCard(this)">
+              <div class="cc-term">焦虑</div>
+              <div class="cc-orig sans">Angoisse / Anguish</div>
+              <div class="cc-short sans">意识到自己的选择代表了对全人类的立法时，涌现的那种沉重感。</div>
+              <div class="cc-body">
+                <div class="cc-full" id="cc-full-anguish">点击「生成」按钮获取 AI 详细解读</div>
+              </div>
+            </div>
+            <div class="concept-card" id="card-humanism" onclick="toggleCard(this)">
+              <div class="cc-term">存在主义人道主义</div>
+              <div class="cc-orig sans">Existentialist Humanism</div>
+              <div class="cc-short sans">萨特对「存在主义是绝望哲学」的反驳：正因为人可以选择，人才有尊严。</div>
+              <div class="cc-body">
+                <div class="cc-full" id="cc-full-humanism">点击「生成」按钮获取 AI 详细解读</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var BOOK = {
+  title: '存在主义是一种人道主义',
+  author: '让-保罗·萨特',
+  year: '1946',
+  school: '存在主义',
+  context: '这是萨特1945年10月在「维特别墅」俱乐部的一次公开演讲，旨在回应外界对存在主义的三大批评：（1）存在主义是一种令人绝望的悲观哲学；（2）它是放纵的哲学；（3）它忽视了人的社会性。'
+};
+
+var SAMPLE_PASSAGE = '如果上帝不存在，一切便都是允许的。这正是存在主义的出发点。确实，上帝不存在，结果就是，至少有一种存在，其存在先于本质；在能够被任何概念定义之前便存在着——而这种存在就是人，或者按海德格尔所说，人类实在。这意味着什么呢？这意味着人首先存在，在世界中与他人相遇，然后才定义自己。如果说人在存在主义者看来是难以定义的，那是因为人在最初什么也不是。只有到了后来，他才成为某种存在，并且，他成为何种存在，是他自己造就的。';
+
+var chatHistory = [
+  {role:'assistant', content:'你好。我是萨特。1946年，我在一间巴黎的会议室里做了那次演讲——那时候人们对存在主义的误解已经积累太深了。你想从哪里开始？'}
+];
+
+var GUIDE_PROMPTS = {
+  overview: '请为《'+BOOK.title+'》（'+BOOK.author+'，'+BOOK.year+'）写一篇1200字左右的整体导读，用清晰流畅的中文，面向哲学入门读者。内容包括：这本书的核心主张、写作背景、结构脉络、为什么重要。用标题分节，语言生动不晦涩。',
+  why: '请用600-800字解释：为什么应该读萨特的《存在主义是一种人道主义》？面向当代中文读者，从这本书对理解现代人的自由、责任、人生意义等实际问题的帮助出发，给出有说服力的理由。',
+  context: '请用700-900字介绍《存在主义是一种人道主义》的历史背景：二战后法国的思想氛围、萨特为何要做这次演讲、当时存在主义面临的三类主要批评，以及这篇讲演在存在主义发展史上的位置。',
+  argument: '请梳理《存在主义是一种人道主义》的核心论证脉络，用结构化的方式（有标题、分步骤）展示萨特如何回应对存在主义的批评，如何从「存在先于本质」出发推导出自由、责任和人道主义的结论。约800字。',
+  criticism: '请介绍《存在主义是一种人道主义》发表后遭遇的主要批评（包括来自马克思主义者、天主教徒和其他存在主义者的批评，以及萨特本人后来的自我反思），并解释这些批评的核心论点。约800字。'
+};
+
+var CONCEPT_PROMPTS = {
+  existence: '请详细解释萨特存在主义中「存在先于本质」（Existence precedes essence）这一核心命题。内容包括：（1）用一个生动的具体比喻解释这句话；（2）它与传统哲学（尤其是柏拉图和笛卡尔）的根本区别；（3）这个命题对「人是什么」这个问题的回答；（4）一个日常生活中体现这个概念的例子。约400字，语言清晰通俗。',
+  freedom: '请详细解释萨特存在主义中「人被判决为自由」（Condemned to be free）以及随之而来的责任观念。内容包括：（1）为什么自由是一种「判决」而非礼物；（2）我的选择如何代表对全人类的立法；（3）一个具体的现实情境例子；（4）与决定论的根本分歧。约400字。',
+  badvfaith: '请详细解释萨特的「坏信仰」或「恶意」（mauvaise foi）概念。内容包括：（1）什么是坏信仰；（2）萨特著名的「侍者」例子；（3）为什么坏信仰是对自由的逃避；（4）我们如何识别生活中的坏信仰。约400字。',
+  anguish: '请详细解释萨特存在主义中「焦虑」（angoisse）的含义。内容包括：（1）什么引发了存在主义意义上的焦虑（区别于日常焦虑）；（2）为什么意识到自由会带来焦虑；（3）萨特的「作战指挥官」的例子；（4）如何以真诚的态度面对这种焦虑。约400字。'
+};
+
+async function callClaude(messages, systemPrompt) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: systemPrompt || '',
+      messages: messages
+    })
+  });
+  if (!response.ok) throw new Error('API error: ' + response.status);
+  const data = await response.json();
+  return data.content && data.content[0] ? data.content[0].text : '';
+}
+
+function formatAIProse(text) {
+  return '<div class="ai-prose">' +
+    text
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(?!<h3|<p)/, '<p>')
+      + '</p>' +
+    '</div>';
+}
+
+async function generateGuide(type) {
+  const el = document.getElementById('guide-output');
+  el.innerHTML = '<div class="loading"><span class="spinner"></span><span class="loading-text">Claude 正在生成导读…</span></div>';
+  document.querySelectorAll('.gen-btn').forEach(b => b.disabled = true);
+  try {
+    const text = await callClaude([{role:'user', content: GUIDE_PROMPTS[type]}]);
+    el.innerHTML = formatAIProse(text);
+  } catch(e) {
+    el.innerHTML = '<div class="empty-hint">生成失败，请检查网络后重试。<br><small>' + e.message + '</small></div>';
+  }
+  document.querySelectorAll('.gen-btn').forEach(b => b.disabled = false);
+}
+
+async function explainPassage() {
+  const passage = document.getElementById('passageInput').value.trim();
+  if (!passage) { alert('请先粘贴一段原文'); return; }
+  const el = document.getElementById('explain-output');
+  el.innerHTML = '<div class="loading" style="height:100%"><span class="spinner"></span><span class="loading-text">解读中…</span></div>';
+  document.getElementById('btn-explain').disabled = true;
+  const sys = '你是一位专门研究萨特存在主义的哲学教授。用户会粘贴《' + BOOK.title + '》的原文段落，你需要：1. 用现代中文解释这段话的意思（白话化，但不失准确）；2. 指出其中的关键术语并定义；3. 说明这段话在全书论证中的位置；4. 提供一个帮助理解的类比或例子。语言清晰易懂，约400字。';
+  try {
+    const text = await callClaude([{role:'user', content: '请解读这段原文：\n\n' + passage}], sys);
+    el.innerHTML = '<div class="ai-prose" style="font-size:13px;line-height:1.85">' +
+      text.replace(/\n\n/g,'</p><p>').replace(/^/,'<p>') + '</p>' +
+      '</div>';
+  } catch(e) {
+    el.innerHTML = '<div class="empty-hint">解读失败：' + e.message + '</div>';
+  }
+  document.getElementById('btn-explain').disabled = false;
+}
+
+async function sendChat(prefill) {
+  const inputEl = document.getElementById('chatInput');
+  const userMsg = prefill || inputEl.value.trim();
+  if (!userMsg) return;
+  inputEl.value = '';
+  document.getElementById('btn-chat-send').disabled = true;
+  chatHistory.push({role:'user', content: userMsg});
+  addChatMsg('user', userMsg);
+  const thinkingEl = addChatMsg('phi', '…', true);
+  const sys = '你是让-保罗·萨特（Jean-Paul Sartre），存在主义哲学家。请用第一人称，以萨特的口吻和视角回答问题。回答要：（1）忠实于萨特的真实思想和著作；（2）偶尔引用你（萨特）的真实原话或著作；（3）语言带有萨特式的直接和锐利；（4）用中文回答，约150-250字。书名背景：你在1946年做了演讲《存在主义是一种人道主义》，此时正是战后法国，你在为存在主义辩护。';
+  try {
+    const messages = chatHistory.map(m => ({role: m.role === 'phi' ? 'assistant' : m.role, content: m.content}));
+    const text = await callClaude(messages, sys);
+    chatHistory.push({role:'assistant', content: text});
+    thinkingEl.querySelector('.msg-bubble').textContent = text;
+    thinkingEl.querySelector('.msg-time').textContent = '让-保罗·萨特';
+  } catch(e) {
+    thinkingEl.querySelector('.msg-bubble').textContent = '（连接失败：' + e.message + '）';
+  }
+  document.getElementById('btn-chat-send').disabled = false;
+}
+
+function startChat(text) {
+  document.getElementById('chatInput').value = text;
+  sendChat();
+}
+
+function addChatMsg(role, text, thinking) {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + (role === 'user' ? 'user' : 'phi');
+  div.innerHTML = '<div class="msg-avatar ' + (role === 'user' ? 'user' : 'phi') + ' sans">' +
+    (role === 'user' ? '我' : '萨') + '</div>' +
+    '<div><div class="msg-bubble' + (thinking ? ' cursor-blink' : '') + '">' + text + '</div>' +
+    '<div class="msg-time sans">' + (role === 'user' ? '你' : '') + '</div></div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
+
+async function generateConcept(key) {
+  const card = document.getElementById('card-' + key);
+  const fullEl = document.getElementById('cc-full-' + key);
+  if (!fullEl) return;
+  card.classList.add('expanded');
+  fullEl.innerHTML = '<span class="spinner" style="width:16px;height:16px;display:inline-block;border-width:2px"></span> 生成中…';
+  try {
+    const text = await callClaude([{role:'user', content: CONCEPT_PROMPTS[key] || '请解释这个概念：' + key}]);
+    fullEl.innerHTML = '<div class="cc-full">' + text.replace(/\n\n/g,'</p><p>').replace(/^/,'<p>') + '</p></div>';
+  } catch(e) {
+    fullEl.innerHTML = '<span style="color:var(--red);font-size:12px">生成失败：' + e.message + '</span>';
+  }
+}
+
+function expandConcept(key) {
+  const card = document.getElementById('card-' + key);
+  if (card) card.classList.add('expanded');
+}
+
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+}
+
+function switchMode(mode, chipEl) {
+  document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + mode).classList.add('active');
+  if (chipEl) {
+    document.querySelectorAll('.mode-chip').forEach(c => c.classList.remove('on'));
+    chipEl.classList.add('on');
+  } else {
+    document.querySelectorAll('.mode-chip').forEach(c => {
+      c.classList.toggle('on', c.textContent === {guide:'导读',reader:'精读',chat:'对话',concepts:'概念'}[mode]);
+    });
+  }
+}
+
+function setProgress(pct) {
+  document.getElementById('readProg').style.width = pct + '%';
+  document.getElementById('readProgLabel').textContent = pct === 100 ? '已读完 ✓' : pct + '% 进行中';
+}
+</script>
+</body>
+</html>

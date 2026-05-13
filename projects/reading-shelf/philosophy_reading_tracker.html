@@ -1,0 +1,411 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;font-size:13px;line-height:1.6;color:var(--color-text-primary);background:var(--color-background-tertiary)}
+.shell{display:flex;flex-direction:column;height:640px;background:var(--color-background-tertiary)}
+.topbar{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap}
+.tb-title{font-size:14px;font-weight:500;color:var(--color-text-primary);white-space:nowrap}
+.tb-chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font-size:11px;padding:3px 10px;border-radius:99px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);transition:all .15s;white-space:nowrap}
+.chip.on{background:var(--color-background-info);border-color:var(--color-border-info);color:var(--color-text-info);font-weight:500}
+.tb-search{margin-left:auto}
+.tb-search input{border:0.5px solid var(--color-border-secondary);border-radius:6px;padding:4px 10px;font-size:12px;background:var(--color-background-secondary);color:var(--color-text-primary);width:130px}
+.tb-search input:focus{outline:none;border-color:var(--color-border-primary);background:var(--color-background-primary)}
+.prog-row{width:100%;display:flex;align-items:center;gap:8px;padding-top:2px}
+.prog-bg{flex:1;height:4px;background:var(--color-background-secondary);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;border-radius:99px;transition:width .4s;background:#5DCAA5}
+.prog-txt{font-size:11px;color:var(--color-text-tertiary);min-width:80px}
+.main{display:flex;flex:1;overflow:hidden}
+.sidebar{width:188px;flex-shrink:0;background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);overflow-y:auto}
+.era-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;color:var(--color-text-tertiary);padding:10px 12px 4px}
+.phi-item{padding:8px 12px;cursor:pointer;border-left:2px solid transparent;transition:all .12s;border-bottom:0.5px solid var(--color-border-tertiary)}
+.phi-item:hover{background:var(--color-background-secondary)}
+.phi-item.active{background:var(--color-background-info);border-left-color:#185FA5}
+.phi-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.phi-sub{font-size:10px;color:var(--color-text-tertiary);margin-top:1px}
+.phi-prog{display:flex;align-items:center;gap:5px;margin-top:4px}
+.phi-prog-bg{flex:1;height:3px;background:var(--color-background-secondary);border-radius:99px;overflow:hidden}
+.phi-prog-fill{height:100%;border-radius:99px;transition:width .3s}
+.phi-prog-txt{font-size:9px;color:var(--color-text-tertiary)}
+.center{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.phi-header{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:14px 18px;flex-shrink:0}
+.phi-title-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
+.phi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500}
+.phi-meta{flex:1;min-width:0}
+.phi-full-name{font-size:16px;font-weight:500;color:var(--color-text-primary)}
+.phi-dates{font-size:12px;color:var(--color-text-tertiary);margin-top:1px}
+.phi-tagline{font-size:13px;color:var(--color-text-secondary);margin-top:8px;font-style:italic;line-height:1.5}
+.theme-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.theme-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+.center-body{flex:1;overflow-y:auto;padding:14px 18px}
+.sec-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;color:var(--color-text-tertiary);margin:0 0 8px}
+.book-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:8px;transition:border-color .15s}
+.book-card:hover{border-color:var(--color-border-secondary)}
+.book-top{display:flex;align-items:flex-start;gap:8px}
+.book-info{flex:1;min-width:0}
+.book-title{font-size:13px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.book-orig{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
+.book-meta{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+.diff-dots{display:flex;gap:2px}
+.diff-dot{width:6px;height:6px;border-radius:50%}
+.diff-dot.on{background:#378ADD}.diff-dot.off{background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary)}
+.est-time{font-size:11px;color:var(--color-text-tertiary);display:flex;align-items:center;gap:3px}
+.rec-badge{font-size:10px;padding:1px 6px;border-radius:3px;background:#FAEEDA;color:#633806;font-weight:500}
+.status-btn{border:0.5px solid var(--color-border-secondary);border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer;white-space:nowrap;transition:all .15s;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.status-btn.reading{background:#E6F1FB;border-color:#85B7EB;color:#0C447C}
+.status-btn.done{background:#EAF3DE;border-color:#97C459;color:#27500A}
+.book-note{width:100%;border:0.5px solid var(--color-border-tertiary);border-radius:5px;padding:5px 8px;font-size:11px;background:var(--color-background-secondary);color:var(--color-text-primary);resize:none;min-height:28px;margin-top:8px;font-family:inherit}
+.book-note:focus{outline:none;border-color:var(--color-border-primary);background:var(--color-background-primary)}
+.prereq-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.prereq-chip{font-size:11px;padding:3px 9px;border-radius:99px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer;transition:all .12s}
+.prereq-chip:hover{background:var(--color-background-info);border-color:var(--color-border-info);color:var(--color-text-info)}
+.prereq-chip.done-prereq{background:#EAF3DE;border-color:#97C459;color:#27500A}
+.right-panel{width:210px;flex-shrink:0;background:var(--color-background-primary);border-left:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;overflow:hidden}
+.rp-section{padding:12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.rp-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;color:var(--color-text-tertiary);margin-bottom:8px}
+.rp-note{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:6px;padding:7px 9px;font-size:12px;background:var(--color-background-secondary);color:var(--color-text-primary);resize:none;min-height:80px;font-family:inherit}
+.rp-note:focus{outline:none;border-color:var(--color-border-primary);background:var(--color-background-primary)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 10px;text-align:center}
+.stat-n{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.stat-l{font-size:10px;color:var(--color-text-tertiary);margin-top:2px}
+.unlocks{flex:1;overflow-y:auto;padding:8px 12px}
+.unlock-item{display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary);cursor:pointer;font-size:12px;color:var(--color-text-secondary)}
+.unlock-item:last-child{border-bottom:none}
+.unlock-item:hover{color:var(--color-text-primary)}
+.unlock-arrow{color:var(--color-text-tertiary);font-size:14px}
+.ask-btn{margin:12px;border:0.5px solid var(--color-border-secondary);border-radius:8px;padding:8px 12px;font-size:12px;cursor:pointer;background:var(--color-background-secondary);color:var(--color-text-secondary);width:calc(100% - 24px);text-align:left;transition:all .15s;display:flex;align-items:center;gap:6px}
+.ask-btn:hover{background:var(--color-background-info);border-color:var(--color-border-info);color:var(--color-text-info)}
+.empty-msg{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--color-text-tertiary);font-size:13px}
+.school-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+</style>
+
+<h2 class="sr-only">哲学家阅读路线追踪器 — 按哲学家浏览，追踪书单状态，厘清思想脉络</h2>
+
+<div class="shell" id="app">
+<div class="topbar">
+  <span class="tb-title"><i class="ti ti-books" style="font-size:16px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>哲学阅读路线</span>
+  <div class="tb-chips" id="eraChips"></div>
+  <div class="tb-search"><input type="text" id="searchBox" placeholder="搜索哲学家…" oninput="render()"></div>
+  <div class="prog-row">
+    <div class="prog-bg"><div class="prog-fill" id="globalProg" style="width:0%"></div></div>
+    <span class="prog-txt" id="globalProgTxt">0 本已读</span>
+  </div>
+</div>
+<div class="main">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="center">
+    <div id="phiHeader"></div>
+    <div class="center-body" id="centerBody"><div class="empty-msg"><i class="ti ti-arrow-left" style="font-size:24px" aria-hidden="true"></i><span>从左侧选择一位哲学家</span></div></div>
+  </div>
+  <div class="right-panel">
+    <div class="rp-section">
+      <div class="rp-label">阅读笔记</div>
+      <textarea class="rp-note" id="rpNote" placeholder="记录你对这位哲学家的思考…" oninput="saveNote()"></textarea>
+    </div>
+    <div class="rp-section">
+      <div class="rp-label">进度统计</div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-n" id="statDone">0</div><div class="stat-l">已读</div></div>
+        <div class="stat-card"><div class="stat-n" id="statReading">0</div><div class="stat-l">在读</div></div>
+        <div class="stat-card"><div class="stat-n" id="statTotal">0</div><div class="stat-l">总计</div></div>
+        <div class="stat-card"><div class="stat-n" id="statHours">0h</div><div class="stat-l">预计时长</div></div>
+      </div>
+    </div>
+    <div class="rp-label" style="padding:10px 12px 4px">读完后可解锁</div>
+    <div class="unlocks" id="unlockList"><div style="padding:12px;font-size:12px;color:var(--color-text-tertiary)">先选择哲学家</div></div>
+    <button class="ask-btn" id="askBtn" onclick="askClaude()"><i class="ti ti-sparkles" style="font-size:15px" aria-hidden="true"></i> 为我规划阅读路线 ↗</button>
+  </div>
+</div>
+</div>
+
+<script>
+var SCHOOL_COLOR = {
+  '古希腊':'#5DCAA5','理性主义':'#7F77DD','经验主义':'#EF9F27',
+  '德国观念论':'#D85A30','存在主义':'#D4537E','分析哲学':'#378ADD',
+  '中国先秦':'#639922','现象学':'#BA7517'
+};
+
+var PHILOSOPHERS = [
+  {id:'plato',name:'柏拉图',orig:'Plato',dates:'约 428—348 BC',era:'古代',school:'古希腊',
+   avatar:'柏',tagline:'洞穴中的阴影不是真实——唯有理念，才是永恒之物。',
+   themes:['理念论','认识论','灵魂不朽','政治哲学','爱欲'],
+   prereqs:[],
+   books:[
+     {title:'理想国',orig:'The Republic',year:'约前380',diff:3,hrs:20,rec:true,status:'unread',note:''},
+     {title:'斐多篇',orig:'Phaedo',year:'约前380',diff:3,hrs:8,rec:false,status:'unread',note:''},
+     {title:'会饮篇',orig:'Symposium',year:'约前385',diff:2,hrs:6,rec:true,status:'unread',note:''},
+     {title:'美诺篇',orig:'Meno',year:'约前385',diff:2,hrs:4,rec:false,status:'unread',note:''}
+   ]},
+  {id:'aristotle',name:'亚里士多德',orig:'Aristotle',dates:'384—322 BC',era:'古代',school:'古希腊',
+   avatar:'亚',tagline:'人是政治的动物；善是一切事物所追求的目的。',
+   themes:['伦理学','政治学','形式逻辑','形而上学','诗学'],
+   prereqs:['plato'],
+   books:[
+     {title:'尼各马可伦理学',orig:'Nicomachean Ethics',year:'约前350',diff:3,hrs:18,rec:true,status:'unread',note:''},
+     {title:'政治学',orig:'Politics',year:'约前335',diff:3,hrs:15,rec:false,status:'unread',note:''},
+     {title:'诗学',orig:'Poetics',year:'约前335',diff:2,hrs:5,rec:true,status:'unread',note:''}
+   ]},
+  {id:'descartes',name:'笛卡尔',orig:'Descartes',dates:'1596—1650',era:'近代',school:'理性主义',
+   avatar:'笛',tagline:'我思，故我在——怀疑一切之后，唯有思维本身无法被怀疑。',
+   themes:['方法论怀疑','身心二元论','上帝存在证明','理性主义认识论'],
+   prereqs:[],
+   books:[
+     {title:'第一哲学沉思集',orig:'Meditations on First Philosophy',year:'1641',diff:3,hrs:10,rec:true,status:'unread',note:''},
+     {title:'谈谈方法',orig:'Discourse on the Method',year:'1637',diff:2,hrs:5,rec:true,status:'unread',note:''}
+   ]},
+  {id:'hume',name:'休谟',orig:'David Hume',dates:'1711—1776',era:'近代',school:'经验主义',
+   avatar:'休',tagline:'理性是激情的奴隶——因果不过是习惯性期待，并无逻辑必然。',
+   themes:['因果怀疑','印象与观念','道德情感主义','自我幻觉'],
+   prereqs:['descartes'],
+   books:[
+     {title:'人类理解研究',orig:'Enquiry Concerning Human Understanding',year:'1748',diff:3,hrs:12,rec:true,status:'unread',note:''},
+     {title:'道德原则研究',orig:'Enquiry Concerning the Principles of Morals',year:'1751',diff:3,hrs:10,rec:false,status:'unread',note:''}
+   ]},
+  {id:'kant',name:'康德',orig:'Immanuel Kant',dates:'1724—1804',era:'近代',school:'德国观念论',
+   avatar:'康',tagline:'两件事充满敬畏：头顶的星空，心中的道德律。',
+   themes:['先天综合判断','范畴','定言命令','物自体','审美判断力'],
+   prereqs:['hume','descartes'],
+   books:[
+     {title:'纯粹理性批判',orig:'Critique of Pure Reason',year:'1781',diff:5,hrs:40,rec:true,status:'unread',note:''},
+     {title:'道德形而上学奠基',orig:'Groundwork of the Metaphysics of Morals',year:'1785',diff:4,hrs:12,rec:true,status:'unread',note:''},
+     {title:'判断力批判',orig:'Critique of Judgment',year:'1790',diff:4,hrs:20,rec:false,status:'unread',note:''}
+   ]},
+  {id:'hegel',name:'黑格尔',orig:'G.W.F. Hegel',dates:'1770—1831',era:'近代',school:'德国观念论',
+   avatar:'黑',tagline:'凡是现实的都是合理的；精神通过否定自身而认识自身。',
+   themes:['辩证法','正反合','绝对精神','历史哲学','主奴辩证法'],
+   prereqs:['kant'],
+   books:[
+     {title:'精神现象学',orig:'Phenomenology of Spirit',year:'1807',diff:5,hrs:45,rec:true,status:'unread',note:''},
+     {title:'法哲学原理',orig:'Philosophy of Right',year:'1820',diff:4,hrs:20,rec:false,status:'unread',note:''}
+   ]},
+  {id:'nietzsche',name:'尼采',orig:'Friedrich Nietzsche',dates:'1844—1900',era:'近代',school:'存在主义',
+   avatar:'尼',tagline:'上帝死了——我们必须自己成为神，才配得上这件事。',
+   themes:['权力意志','永恒轮回','超人','虚无主义','价值重估'],
+   prereqs:['hegel','plato'],
+   books:[
+     {title:'悲剧的诞生',orig:'The Birth of Tragedy',year:'1872',diff:3,hrs:10,rec:true,status:'unread',note:''},
+     {title:'查拉图斯特拉如是说',orig:'Thus Spoke Zarathustra',year:'1883',diff:3,hrs:15,rec:true,status:'unread',note:''},
+     {title:'善恶的彼岸',orig:'Beyond Good and Evil',year:'1886',diff:4,hrs:12,rec:false,status:'unread',note:''},
+     {title:'道德的谱系',orig:'On the Genealogy of Morality',year:'1887',diff:4,hrs:10,rec:false,status:'unread',note:''}
+   ]},
+  {id:'heidegger',name:'海德格尔',orig:'Martin Heidegger',dates:'1889—1976',era:'当代',school:'现象学',
+   avatar:'海',tagline:'此在就是存在的问题本身——语言是存在之家。',
+   themes:['此在','在世存在','时间性','死亡先行','技术批判'],
+   prereqs:['kant','nietzsche'],
+   books:[
+     {title:'存在与时间',orig:'Being and Time',year:'1927',diff:5,hrs:50,rec:true,status:'unread',note:''},
+     {title:'技术的追问',orig:'The Question Concerning Technology',year:'1954',diff:3,hrs:4,rec:true,status:'unread',note:''}
+   ]},
+  {id:'sartre',name:'萨特',orig:'Jean-Paul Sartre',dates:'1905—1980',era:'当代',school:'存在主义',
+   avatar:'萨',tagline:'存在先于本质——人被判决为自由。',
+   themes:['存在主义','自由与责任','他人即地狱','恶意','处境伦理'],
+   prereqs:['heidegger','hegel'],
+   books:[
+     {title:'存在与虚无',orig:'Being and Nothingness',year:'1943',diff:5,hrs:40,rec:true,status:'unread',note:''},
+     {title:'存在主义是一种人道主义',orig:'Existentialism Is a Humanism',year:'1946',diff:1,hrs:3,rec:true,status:'unread',note:''},
+     {title:'恶心',orig:'Nausea',year:'1938',diff:2,hrs:7,rec:false,status:'unread',note:'（小说）'}
+   ]},
+  {id:'wittgenstein',name:'维特根斯坦',orig:'Ludwig Wittgenstein',dates:'1889—1951',era:'当代',school:'分析哲学',
+   avatar:'维',tagline:'对不可言说之物，必须保持沉默；语言游戏就是生活形式本身。',
+   themes:['语言图像论','语言游戏','私人语言论证','家族相似','哲学治疗'],
+   prereqs:['descartes'],
+   books:[
+     {title:'逻辑哲学论',orig:'Tractatus Logico-Philosophicus',year:'1921',diff:4,hrs:10,rec:true,status:'unread',note:''},
+     {title:'哲学研究',orig:'Philosophical Investigations',year:'1953',diff:4,hrs:18,rec:true,status:'unread',note:''}
+   ]},
+  {id:'confucius',name:'孔子',orig:'Kǒng Qiū',dates:'前 551—479',era:'古代',school:'中国先秦',
+   avatar:'孔',tagline:'仁者爱人——克己复礼，天下归仁焉。',
+   themes:['仁','礼','君子人格','正名','为政以德'],
+   prereqs:[],
+   books:[
+     {title:'论语',orig:'Analects',year:'约前475',diff:2,hrs:8,rec:true,status:'unread',note:''},
+     {title:'大学·中庸',orig:'Great Learning / Doctrine of the Mean',year:'约前300',diff:2,hrs:5,rec:false,status:'unread',note:''}
+   ]},
+  {id:'zhuangzi',name:'庄子',orig:'Zhuāng Zhōu',dates:'约前 369—286',era:'古代',school:'中国先秦',
+   avatar:'庄',tagline:'天地与我并生，万物与我为一——蝴蝶梦中，谁是真实？',
+   themes:['道','齐物论','逍遥游','相对主义','自然无为'],
+   prereqs:['confucius'],
+   books:[
+     {title:'庄子·内篇',orig:'Zhuangzi (Inner Chapters)',year:'约前300',diff:3,hrs:10,rec:true,status:'unread',note:'建议读陈鼓应注译版'},
+     {title:'庄子·外篇选',orig:'Outer Chapters (selected)',year:'约前300',diff:3,hrs:12,rec:false,status:'unread',note:''}
+   ]}
+];
+
+var ERAS = ['全部','古代','近代','当代'];
+var curEra = '全部', curId = null, notes = {}, bookNotes = {};
+
+function schoolColor(s){return SCHOOL_COLOR[s]||'#888780';}
+
+function initEraChips(){
+  var html='';
+  ERAS.forEach(function(e){html+='<span class="chip'+(e===curEra?' on':'')+'" onclick="setEra(\''+e+'\',this)">'+e+'</span>';});
+  document.getElementById('eraChips').innerHTML=html;
+}
+
+function setEra(e,el){
+  curEra=e;
+  document.querySelectorAll('#eraChips .chip').forEach(function(c){c.classList.remove('on');});
+  el.classList.add('on');
+  render();
+}
+
+function getFiltered(){
+  var q=(document.getElementById('searchBox').value||'').toLowerCase();
+  return PHILOSOPHERS.filter(function(p){
+    if(curEra!=='全部'&&p.era!==curEra) return false;
+    if(q&&p.name.indexOf(q)<0&&(p.orig||'').toLowerCase().indexOf(q)<0) return false;
+    return true;
+  });
+}
+
+function booksDone(p){return p.books.filter(function(b){return b.status==='done';}).length;}
+function booksReading(p){return p.books.filter(function(b){return b.status==='reading';}).length;}
+
+function renderSidebar(){
+  var f=getFiltered(), html='';
+  var lastEra='';
+  f.forEach(function(p){
+    if(p.era!==lastEra&&curEra==='全部'){html+='<div class="era-label">'+p.era+'</div>';lastEra=p.era;}
+    var done=booksDone(p), total=p.books.length;
+    var pct=total>0?Math.round(done/total*100):0;
+    var progColor=done===total&&total>0?'#639922':schoolColor(p.school);
+    html+='<div class="phi-item'+(p.id===curId?' active':'')+'" onclick="selectPhi(\''+p.id+'\')">'+
+      '<div style="display:flex;align-items:center;gap:6px">'+
+      '<span class="school-dot" style="background:'+progColor+'"></span>'+
+      '<span class="phi-name">'+p.name+'</span></div>'+
+      '<div class="phi-sub">'+p.school+' · '+p.dates+'</div>'+
+      '<div class="phi-prog"><div class="phi-prog-bg"><div class="phi-prog-fill" style="width:'+pct+'%;background:'+progColor+'"></div></div>'+
+      '<span class="phi-prog-txt">'+done+'/'+total+'</span></div></div>';
+  });
+  document.getElementById('sidebar').innerHTML=html||'<div style="padding:16px;text-align:center;font-size:12px;color:var(--color-text-tertiary)">无匹配结果</div>';
+}
+
+function renderHeader(p){
+  if(!p){document.getElementById('phiHeader').innerHTML='';return;}
+  var sc=schoolColor(p.school);
+  document.getElementById('phiHeader').innerHTML=
+    '<div class="phi-header">'+
+    '<div class="phi-title-row">'+
+    '<div class="phi-avatar" style="background:'+sc+'22;border-color:'+sc+'44;color:'+sc+'">'+p.avatar+'</div>'+
+    '<div class="phi-meta">'+
+    '<div class="phi-full-name">'+p.name+'<span style="font-size:13px;font-weight:400;color:var(--color-text-tertiary);margin-left:8px">'+p.orig+'</span></div>'+
+    '<div class="phi-dates">'+p.school+' · '+p.dates+'</div>'+
+    '</div></div>'+
+    '<div class="phi-tagline">"'+p.tagline+'"</div>'+
+    '<div class="theme-tags">'+p.themes.map(function(t){return '<span class="theme-tag">'+t+'</span>';}).join('')+'</div>'+
+    '</div>';
+}
+
+function getStatus(p,bi){return p.books[bi].status;}
+function setStatus(pid,bi){
+  var p=PHILOSOPHERS.find(function(x){return x.id===pid;});
+  if(!p) return;
+  var cycle={unread:'reading',reading:'done',done:'unread'};
+  p.books[bi].status=cycle[p.books[bi].status]||'unread';
+  render();
+}
+
+function statusLabel(s){
+  if(s==='reading') return '在读中';
+  if(s==='done') return '已读完';
+  return '未读';
+}
+
+function renderCenter(p){
+  var el=document.getElementById('centerBody');
+  if(!p){el.innerHTML='<div class="empty-msg"><i class="ti ti-arrow-left" style="font-size:24px" aria-hidden="true"></i><span>从左侧选择一位哲学家</span></div>';return;}
+  var prereqHtml='';
+  if(p.prereqs.length>0){
+    prereqHtml='<div class="sec-label" style="margin-bottom:6px">建议先读</div><div class="prereq-row">';
+    p.prereqs.forEach(function(rid){
+      var rp=PHILOSOPHERS.find(function(x){return x.id===rid;});
+      if(!rp) return;
+      var done=booksDone(rp)===rp.books.length&&rp.books.length>0;
+      prereqHtml+='<span class="prereq-chip'+(done?' done-prereq':'')+'" onclick="selectPhi(\''+rid+'\')">'+
+        (done?'<i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i> ':'')+rp.name+'</span>';
+    });
+    prereqHtml+='</div>';
+  }
+  var booksHtml=p.books.map(function(b,i){
+    var dots='<div class="diff-dots">';
+    for(var d=1;d<=5;d++) dots+='<span class="diff-dot '+(d<=b.diff?'on':'off')+'"></span>';
+    dots+='</div>';
+    var sc=p.books[i].status;
+    var bnKey=p.id+'_'+i;
+    var bn=bookNotes[bnKey]||b.note||'';
+    return '<div class="book-card">'+
+      '<div class="book-top">'+
+      '<div class="book-info">'+
+      '<div class="book-title">'+(b.rec?'<i class="ti ti-star" style="font-size:12px;color:#BA7517;margin-right:3px" aria-hidden="true"></i>':'')+b.title+'</div>'+
+      '<div class="book-orig">'+b.orig+' ('+b.year+')</div>'+
+      '<div class="book-meta">'+dots+
+      '<span class="est-time"><i class="ti ti-clock" style="font-size:12px" aria-hidden="true"></i> 约'+b.hrs+'h</span>'+
+      (b.rec?'<span class="rec-badge">推荐入手</span>':'')+
+      '</div></div>'+
+      '<button class="status-btn '+sc+'" onclick="setStatus(\''+p.id+'\','+i+')">'+statusLabel(sc)+'</button>'+
+      '</div>'+
+      '<textarea class="book-note" placeholder="读书笔记…" data-key="'+bnKey+'" oninput="saveBookNote(this)">'+esc(bn)+'</textarea>'+
+      '</div>';
+  }).join('');
+  el.innerHTML=prereqHtml+'<div class="sec-label">核心书目</div>'+booksHtml;
+}
+
+function renderRightPanel(p){
+  document.getElementById('rpNote').value=p?notes[p.id]||'':'';
+  var allDone=0,allReading=0,allTotal=0,allHrs=0;
+  PHILOSOPHERS.forEach(function(ph){
+    ph.books.forEach(function(b){
+      allTotal++;allHrs+=b.hrs;
+      if(b.status==='done') allDone++;
+      if(b.status==='reading') allReading++;
+    });
+  });
+  document.getElementById('statDone').textContent=allDone;
+  document.getElementById('statReading').textContent=allReading;
+  document.getElementById('statTotal').textContent=allTotal;
+  var doneHrs=PHILOSOPHERS.reduce(function(s,ph){return s+ph.books.reduce(function(t,b){return t+(b.status==='done'?b.hrs:0);},0);},0);
+  document.getElementById('statHours').textContent=doneHrs+'h';
+  document.getElementById('globalProg').style.width=Math.round(allDone/allTotal*100)+'%';
+  document.getElementById('globalProgTxt').textContent=allDone+' / '+allTotal+' 本已读';
+  var ul=document.getElementById('unlockList');
+  if(!p){ul.innerHTML='<div style="padding:12px;font-size:12px;color:var(--color-text-tertiary)">先选择哲学家</div>';return;}
+  var unlocks=PHILOSOPHERS.filter(function(x){return x.prereqs.indexOf(p.id)>=0;});
+  if(unlocks.length===0){ul.innerHTML='<div style="padding:12px;font-size:12px;color:var(--color-text-tertiary)">暂无直接后继</div>';return;}
+  ul.innerHTML=unlocks.map(function(u){
+    var done=booksDone(p)===p.books.length;
+    return '<div class="unlock-item" onclick="selectPhi(\''+u.id+'\')">'+
+      '<span class="school-dot" style="background:'+schoolColor(u.school)+'"></span>'+
+      '<span style="flex:1">'+u.name+'</span>'+
+      (done?'<i class="ti ti-lock-open" style="font-size:13px;color:#639922" aria-hidden="true"></i>':
+            '<i class="ti ti-lock" style="font-size:13px;color:var(--color-text-tertiary)" aria-hidden="true"></i>')+
+      '</div>';
+  }).join('');
+  var btn=document.getElementById('askBtn');
+  btn.onclick=function(){askClaude(p);};
+}
+
+function render(){
+  var f=getFiltered();
+  var p=curId?PHILOSOPHERS.find(function(x){return x.id===curId;}):null;
+  renderSidebar();
+  renderHeader(p);
+  renderCenter(p);
+  renderRightPanel(p);
+}
+
+function selectPhi(id){curId=id;render();}
+function saveNote(){var p=PHILOSOPHERS.find(function(x){return x.id===curId;});if(p) notes[p.id]=document.getElementById('rpNote').value;}
+function saveBookNote(el){bookNotes[el.getAttribute('data-key')]=el.value;}
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+
+function askClaude(p){
+  var done=PHILOSOPHERS.filter(function(x){return booksDone(x)>0;}).map(function(x){return x.name+'('+booksDone(x)+'/'+x.books.length+'本)';}).join('、')||'暂无';
+  var reading=PHILOSOPHERS.filter(function(x){return booksReading(x)>0;}).map(function(x){return x.name;}).join('、')||'暂无';
+  var cur=p?' 我目前在看 '+p.name+' 的书。':'';
+  sendPrompt('我在系统学习哲学，已读过：'+done+'；在读：'+reading+'。'+cur+'请根据我的进度，推荐接下来3~5本最值得读的书，并说明理由和阅读顺序。');
+}
+
+initEraChips();
+render();
+</script>
