@@ -877,7 +877,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "微信读书",
         "status": "在读",
         "progress": 3,
-        "notes": 0,
+        "notes": 3,
         "edition": "微信读书",
         "theme": [
             "#f2e8d9",
@@ -893,7 +893,11 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "originalFeeling": "",
-            "collisions": [],
+            "collisions": [
+                "生活方式 x 语言游戏 — 想锻炼慢思考，不如直接选择一种简单的生活方式。用旁观视角体会当下，少用回顾和展望框定自己。目标不要遥不可及，才能真正让那几棵树开出分叉。",
+                "维特根斯坦的生活方式决定语言游戏 x 纳瓦尔的减法哲学 x 斯多葛的沉思录 — 三者共享同一洞见：摆脱自我意识的过度建构，回到生活本身的语言游戏中。",
+                "维特根斯坦 x 清晰思考的HALT法则 — HALT是硬性的减速带，维特根斯坦是软性的生活方式转向。前者治标，后者治本。"
+            ],
             "scanDate": "",
             "scanTarget": ""
         }
