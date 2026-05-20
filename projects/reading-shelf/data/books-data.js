@@ -2210,7 +2210,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "微信读书",
         "status": "在读",
         "progress": 11,
-        "notes": 1,
+        "notes": 2,
         "edition": "微信读书",
         "theme": [
             "#50736f",
@@ -2227,7 +2227,8 @@ window.READING_SHELF_BOOKS = [
             "distance": "高度共鸣——\"本分/平常心\"和飞轮底层价值观几乎完全重合，但段永平框架更系统，洞见更个人化。",
             "originalFeeling": "",
             "collisions": [
-                "段永平 × 本分与平静过滤器：物理学家与工程师"
+                "段永平 × 本分与平静过滤器：物理学家与工程师",
+                "纳瓦尔的把自己产品化 x 段永平的本分 — 一个要\"特别\"，一个要\"正常\"，但都在说找到自己的生态位 -> **新洞见**"
             ],
             "scanDate": "2026-04-08",
             "scanTarget": "",
@@ -2242,7 +2243,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "民主与建设出版社·后浪",
         "status": "在读",
         "progress": 98,
-        "notes": 0,
+        "notes": 2,
         "edition": "微信读书",
         "theme": [
             "#335db6",
@@ -2258,7 +2259,10 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "originalFeeling": "",
-            "collisions": [],
+            "collisions": [
+                "复利需要时间 x 延迟显现 — 金钱和时间是一对双胞胎，缺任何一个都不行 -> **新洞见**",
+                "尾部事件决定结果 x 对未知的敬畏 — 少数几个决定决定了90%的结局，关键是让那几个决定正确 -> **新洞见**"
+            ],
             "scanDate": "",
             "scanTarget": ""
         }
@@ -2300,7 +2304,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "中信出版社",
         "status": "已读",
         "progress": 100,
-        "notes": 6,
+        "notes": 7,
         "edition": "传记",
         "theme": [
             "#f5f5f5",
@@ -2322,7 +2326,8 @@ window.READING_SHELF_BOOKS = [
                 "乔布斯传 × 编码标准",
                 "乔布斯传 × 死亡的标尺与感恩",
                 "乔布斯传 × 愿景者",
-                "乔布斯传 × 偏执与英雄之旅"
+                "乔布斯传 × 偏执与英雄之旅",
+                "碳基vs硅基思维 x 现实扭曲力场 — 乔布斯的\"不可能\"和飞轮的\"可以不同\"共享同一底层：不被现状束缚 -> **已升级**"
             ],
             "scanDate": "2026-04-08",
             "scanTarget": "",
@@ -2424,7 +2429,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "中信出版社",
         "status": "在读",
         "progress": 99,
-        "notes": 0,
+        "notes": 2,
         "edition": "生命练习",
         "theme": [
             "#f9f6ee",
@@ -2440,7 +2445,10 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "originalFeeling": "",
-            "collisions": [],
+            "collisions": [
+                "修好自己 x 做对的事 — 两者殊途同归：一切向外求都是徒劳，答案在自己身上 -> **新洞见**",
+                "活好=放下自我 x 平常心 — 越是想证明自己越活不好，越不证明自己反而越强大 -> **新洞见**"
+            ],
             "scanDate": "",
             "scanTarget": ""
         }
@@ -2453,7 +2461,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "中信出版集团",
         "status": "在读",
         "progress": 99,
-        "notes": 0,
+        "notes": 2,
         "edition": "译者：张定绮",
         "theme": [
             "#f7f1e7",
@@ -2469,7 +2477,10 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "originalFeeling": "",
-            "collisions": [],
+            "collisions": [
+                "最优体验 x 当下的力量 — 心流是主动的临在，正念是被动的临在，都是同一枚硬币的两面 -> **新洞见**",
+                "挑战-技能平衡 x 复利效应 — 心流的门槛随能力提升而提高，本身就是复利 -> **新洞见**"
+            ],
             "scanDate": "",
             "scanTarget": ""
         }
@@ -2598,7 +2609,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "中信出版集团",
         "status": "在读",
         "progress": 87,
-        "notes": 7,
+        "notes": 12,
         "edition": "财富与幸福指南",
         "theme": [
             "#f7f1e7",
@@ -2621,7 +2632,12 @@ window.READING_SHELF_BOOKS = [
                 "纳瓦尔宝典 × 资源与欲望",
                 "纳瓦尔宝典 × 记忆资产",
                 "纳瓦尔宝典 × AI时代的专长",
-                "纳瓦尔宝典 × 阅读与记录"
+                "纳瓦尔宝典 × 阅读与记录",
+                "健康第一优先级 x 长期主义 — 把身体健康放在高于一切的位置，复利的前提是活得久 -> **新洞见**",
+                "幸福=消除缺憾感 x 当下的力量 — 幸福不是加法而是减法，减少欲望 = 增加满足 -> **新洞见**",
+                "阅读=心灵织锦 x 记忆资产的复利 — 每本书都是心灵织布上的丝线，编织成灵魂的一部分 -> **新洞见**",
+                "留出思考时间 x 认知带宽 — 每周至少一天不做任何事，思考是最好的投资 -> **新洞见**",
+                "灵感本易逝，行动应当时 x 过程即奖励 — 捕捉灵感的时机窗口很窄，必须立刻行动 -> **新洞见**"
             ],
             "scanDate": "2026-04-08",
             "scanTarget": "哲学飞轮 17 张洞见卡 + 5 张清晰思考碰撞卡",
@@ -4173,7 +4189,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "微信读书",
         "status": "在读",
         "progress": 71,
-        "notes": 0,
+        "notes": 5,
         "edition": "微信读书",
         "theme": [
             "#f6f9f4",
@@ -4189,7 +4205,13 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "originalFeeling": "",
-            "collisions": [],
+            "collisions": [
+                "HALT法则(饥饿/愤怒/孤独/疲倦) x 情绪默认 — 先对付身体再对付情绪 -> **新洞见**",
+                "社会压力的保护措施(延迟24小时) x 社交默认 — 建立缓冲带对抗即时压力 -> **新洞见**",
+                "习惯与环境重塑 x 惰性默认 — 改变环境比改变意志力更有效 -> **新洞见**",
+                "二元思维的陷阱 — 非黑即白是最危险的简化 -> **新洞见**",
+                "机会成本的隐性定价 x 决策框架 — 看不见的成本最容易被忽视 -> **新洞见**"
+            ],
             "scanDate": "",
             "scanTarget": ""
         }
@@ -4347,7 +4369,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "中信出版社",
         "status": "在读",
         "progress": 4,
-        "notes": 4,
+        "notes": 5,
         "edition": "延迟显现",
         "theme": [
             "#f9efcf",
@@ -4367,7 +4389,8 @@ window.READING_SHELF_BOOKS = [
                 "复利效应 × 记录",
                 "复利效应 × 焦急与复利",
                 "复利效应 × 自动驾驶",
-                "复利效应 × 段永平"
+                "复利效应 × 段永平",
+                "延迟显现 x 焦急=宇宙相变 — 复利最大的难点不是数学，而是等待的耐心 -> **已升级**"
             ],
             "scanDate": "2026-04-08",
             "scanTarget": "",
@@ -4933,7 +4956,7 @@ window.READING_SHELF_BOOKS = [
         "publisher": "中信出版集团",
         "status": "已读",
         "progress": 100,
-        "notes": 0,
+        "notes": 3,
         "edition": "译者：宋红波;符李桃;",
         "theme": [
             "#f4ebd5",
@@ -4949,7 +4972,11 @@ window.READING_SHELF_BOOKS = [
             "reader": "待补",
             "distance": "待补",
             "originalFeeling": "",
-            "collisions": [],
+            "collisions": [
+                "不变的人性 x 历史的重复 — 人性从不会从历史中学习，这是最大的不变 -> **新洞见**",
+                "泡沫与贪婪 x 四种默认模式 — 泡沫中的群体疯狂 = 情绪默认+社交默认的集体爆发 -> **新洞见**",
+                "复利不仅要算时间还要算心态 — 财富复利的最大敌人不是市场，是自己的情绪 -> **新洞见**"
+            ],
             "scanDate": "",
             "scanTarget": ""
         }
