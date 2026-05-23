@@ -1,5 +1,40 @@
 window.READING_SHELF_BOOKS = [
     {
+        "bookId": "SELF_BIN",
+        "title": "卜斌 — Ni主导的框架构建者",
+        "coverTitle": "卜斌\n自我认知",
+        "author": "INTJ (Ni-Te-Fi-Se)",
+        "publisher": "自我剖析",
+        "status": "已读",
+        "progress": 100,
+        "notes": 5,
+        "edition": "认知功能自我画像",
+        "theme": [
+            "#2d2d2d",
+            "#6b6b6b"
+        ],
+        "source": "自我解剖",
+        "cover": "",
+        "lastReadDate": "2026-05-20",
+        "readingTime": 0,
+        "detail": {
+            "summary": "从阅读偏好、知识系统构建方式、个人哲学三个角度反推的自我认知画像。",
+            "thesis": "INTJ的核心驱动是Ni（内向直觉）——在所有现象中找那根统摄性的主线。Te（外向思考）负责把洞见外化成系统和产品。Fi（内向情感）是内心那把价值尺。Se（外向感知）是最弱的第四功能，需要以乒乓球和小满为接地锚点刻意练习。",
+            "reader": "自己",
+            "distance": "零距离——这就是我",
+            "originalFeeling": "",
+            "collisions": [
+                "Ni找主线 x 碰撞系统 — 不满足于读完就过，要在所有书中找到万物相通的那条线",
+                "Te建系统 x 阅读路线图 — 想清楚了就必须外化成可操作的产品，不落地不算完成",
+                "Fi的价值尺 x 本分/平常心 — 判断标准不是别人怎么看，而是这件事和内心是否一致",
+                "Se接地气 x 乒乓球 — 最弱的功能，需要刻意用身体体验来平衡脑内活动",
+                "斌=文+武 x 生活方式决定语言游戏 — 用三十年活出了名字的两面，验证了维特根斯坦的命题"
+            ],
+            "scanDate": "2026-05-20",
+            "scanTarget": "723条微信读书划线 + 书架碰撞系统 + 个人对话记录"
+        }
+    },
+    {
         "bookId": "CB_3zo18G19F1tP71L71J6MaGlu",
         "title": "思考,快与慢",
         "coverTitle": "思考,快与慢",
