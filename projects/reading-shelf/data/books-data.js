@@ -1,9 +1,9 @@
 window.READING_SHELF_BOOKS = [
     {
         "bookId": "SELF_BIN",
-        "title": "卜斌 — Ni主导的框架构建者",
-        "coverTitle": "卜斌\n自我认知",
-        "author": "INTJ (Ni-Te-Fi-Se)",
+        "title": "我的潮湿生活日记",
+        "coverTitle": "潮湿\n生活日记",
+        "author": "卜斌",
         "publisher": "自我剖析",
         "status": "已读",
         "progress": 100,
