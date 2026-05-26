@@ -125,6 +125,12 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
 .concepts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .concept-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px;transition:border-color .15s}
 .concept-card:hover{border-color:var(--border2)}
+.collision-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.collision-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.7}
+.collision-card .cc-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-bottom:5px}
+.cc-tag.done{background:#eaf3de;color:#27500a}
+.cc-tag.new{background:#e6f1fb;color:#0c447c}
+.cc-tag.gap{background:#fef3e2;color:#7a5c1a}
 .cc-term{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
 .cc-short{font-size:12px;color:var(--text2);line-height:1.6}
 .cc-prompt-row{margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
@@ -194,6 +200,8 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
           </div>
           <div class="section-label">原始感受</div>
           <div class="feeling-block" id="feelingBlock">暂无记录</div>
+          <div class="section-label" style="margin-top:16px">知识碰撞</div>
+          <div class="collision-cards" id="collisionCards"></div>
           <div class="section-label" style="margin-top:16px">AI 探索提示词</div>
           <div class="prompt-grid" id="overviewPrompts"></div>
         </div>
@@ -304,9 +312,9 @@ function initPanel() {
     return '<div class="info-row"><span class="info-key">'+esc(r[0])+'</span><span class="info-val">'+esc(r[1])+'</span></div>';
   }).join('');
 
-  // collisions
+  // collisions (sidebar - keep compact for regular books, hide for self-book)
   var cols = d.collisions || [];
-  if (cols.length) {
+  if (cols.length && bookId !== 'SELF_BIN') {
     q('collisionSection').style.display = '';
     q('collisionList').innerHTML = cols.map(function(c){
       return '<li>'+esc(c)+'</li>';
@@ -325,6 +333,33 @@ function initPanel() {
   if (d.distance && d.distance !== '待补') metaPills.push(d.distance.slice(0,20)+'…');
   q('ohMeta').innerHTML = metaPills.map(function(p){ return '<span class="oh-pill">'+esc(p)+'</span>'; }).join('');
   q('feelingBlock').textContent = (d.originalFeeling && d.originalFeeling.trim()) ? d.originalFeeling : '暂无原始感受记录。';
+
+  // collision cards (main area)
+  var cols = d.collisions || [];
+  if (cols.length) {
+    q('collisionCards').innerHTML = cols.map(function(c){
+      var tag = 'new';
+      if (c.indexOf('已升级') >= 0) tag = 'done';
+      else if (c.indexOf('新洞见') >= 0) tag = 'new';
+      else if (c.indexOf('待升级') >= 0) tag = 'gap';
+      var tagLabel = {done:'已升级', new:'新洞见', gap:'待升级'}[tag] || '想法';
+      return '<div class="collision-card"><span class="cc-tag '+tag+'">'+tagLabel+'</span><div>'+esc(c)+'</div></div>';
+    }).join('');
+  } else {
+    q('collisionCards').innerHTML = '<div style="color:var(--text3);font-size:13px">暂无知识碰撞记录。</div>';
+  }
+
+  // operating guide (for self-book SELF_BIN)
+  var guide = d.operatingGuide || [];
+  if (guide.length) {
+    var guideHtml = '<div class="section-label" style="margin-top:20px">操作系统手册</div>' +
+      guide.map(function(g){
+        var num = g.charAt(0);
+        var rest = g.slice(2).trim();
+        return '<div class="collision-card" style="border-left:3px solid var(--accent-mid)"><div style="font-weight:600;color:var(--accent);margin-bottom:3px">⛳ 第' + num + '步</div><div>' + esc(rest) + '</div></div>';
+      }).join('');
+    q('collisionCards').insertAdjacentHTML('afterend', guideHtml);
+  }
 
   // 初始化各 mode
   initOverviewPrompts();
