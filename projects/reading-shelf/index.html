@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>阅读书架</title>
+    <title>阅读记录</title>
+    <meta http-equiv="refresh" content="0; url=reading-roadmap.html">
+    <script>
+        location.replace("reading-roadmap.html");
+    </script>
     <style>
         :root {
             --ink: #2e241f;
@@ -377,9 +381,9 @@
         </a>
 
         <header class="hero">
-            <span class="eyebrow">Reading Shelf Progress</span>
-            <h1>阅读书架</h1>
-            <p class="subtitle">这里只保留阅读进度。修改会自动保存在当前浏览器，本地维护结束后导出进度文件，再用同步脚本写回仓库。</p>
+            <span class="eyebrow">Reading Record</span>
+            <h1>阅读记录</h1>
+            <p class="subtitle">旧书架页已经并入阅读记录，页面会自动跳转到新的主题入口。</p>
             <div class="hero-meta" id="heroMeta"></div>
         </header>
 
@@ -388,7 +392,7 @@
             <div style="display:flex;gap:10px;flex-wrap:wrap">
                 <a class="ghost-button" href="reading-roadmap.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h12"/></svg>
-                    阅读路线图
+                    阅读记录
                 </a>
                 <button class="ghost-button" id="exportProgressButton" type="button">导出进度</button>
             </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>阅读路线图</title>
+<title>阅读记录</title>
 <style>
 :root {
   --bg: #f5f4f0;
@@ -176,12 +176,12 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
   <button class="hamburger" onclick="toggleSidebar()" aria-label="打开主题列表">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
   </button>
-  <a class="back-link" href="index.html">
+  <a class="back-link" href="../../index.html">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-    书架
+    首页
   </a>
   <span style="color:var(--border2)">|</span>
-  <span class="topbar-title">阅读路线图</span>
+  <span class="topbar-title">阅读记录</span>
   <span class="topbar-sub" id="topbarSub"></span>
   <div class="topbar-right">
     <input class="search-input" type="text" id="searchInput" placeholder="搜索…" oninput="onSearch()">
@@ -266,7 +266,7 @@ var CLUSTERS = [
     name: '哲学与意义',
     color: '#7F77DD',
     desc: '存在的意义、人性的深处、古典智慧与现代处境。',
-    keywords: ['哲学','尼采','查拉图斯','叔本华','沉思录','斯多葛','被讨厌','阿德勒','悉达多','存在','人道主义','西方现代','局外人','变形','与神对话','心流','当下的力量','正念','王阳明','了凡','INTJ','卜斌','框架构建者','认知功能','自我认知','潮湿生活'],
+    keywords: ['哲学','尼采','查拉图斯','叔本华','沉思录','斯多葛','被讨厌','阿德勒','悉达多','存在','人道主义','西方现代','局外人','变形','与神对话','心流','当下的力量','正念','王阳明','了凡','INTJ','我自己','框架构建者','认知功能','自我认知','生活随笔'],
     prompts: [
       { label: '意义体系梳理', text: '我读过《查拉图斯特拉如是说》《人生的智慧》《沉思录》《被讨厌的勇气》《当下的力量》。请帮我梳理这些书在"人如何面对自身存在"这个问题上的核心立场，找出最深层的共鸣与张力。' },
       { label: '东西哲学对话', text: '我读过王阳明心学、了凡四训（东方传统），也读过尼采、斯多葛（西方）。请对比东西方这两条路在"如何成为更好的自己"上的根本差异。' },
@@ -465,7 +465,7 @@ function renderMain() {
         '<div class="bc-footer">'+
         '<span class="bc-status '+s+'">'+statusLabel(s)+'</span>'+
         ((b.notes||0)>0 ? '<span class="bc-notes">📝 '+b.notes+' 张笔记</span>' : '')+
-        '<a class="bc-study-btn'+(hasStudy?'':' disabled')+'" href="'+(hasStudy?studyHref:'#')+'">精读 →</a>'+
+        '<a class="bc-study-btn'+(hasStudy?'':' disabled')+'" href="'+(hasStudy?studyHref:'#')+'">记录 →</a>'+
         '</div></div></div>';
     });
     cardsHtml += '</div></div>';

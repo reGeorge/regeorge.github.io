@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>精读工作室</title>
+<title>阅读记录</title>
 <style>
 :root {
   --bg: #f5f4f0;
@@ -131,6 +131,14 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
 .cc-tag.done{background:#eaf3de;color:#27500a}
 .cc-tag.new{background:#e6f1fb;color:#0c447c}
 .cc-tag.gap{background:#fef3e2;color:#7a5c1a}
+.record-sections{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.record-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px 16px}
+.record-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.record-summary{font-size:12px;color:var(--text3);line-height:1.7;margin-bottom:10px}
+.record-items{list-style:none}
+.record-items li{font-size:12px;color:var(--text2);line-height:1.7;padding:6px 0;border-top:1px solid var(--border)}
+.record-items li:first-child{border-top:none;padding-top:0}
+.record-items li::before{content:'•';color:var(--accent-mid);margin-right:6px;font-weight:600}
 
 /* ── mobile ── */
 @media(max-width:768px){
@@ -177,7 +185,7 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
 
 <div class="shell">
   <div class="topbar">
-    <a class="topbar-back" href="reading-roadmap.html">← 路线图</a>
+    <a class="topbar-back" href="reading-roadmap.html">← 阅读记录</a>
     <div class="topbar-book">
       <div class="topbar-title" id="topTitle">加载中…</div>
       <div class="topbar-sub" id="topSub"></div>
@@ -232,6 +240,7 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
           <div class="feeling-block" id="feelingBlock">暂无记录</div>
           <div class="section-label" style="margin-top:16px">知识碰撞</div>
           <div class="collision-cards" id="collisionCards"></div>
+          <div id="extraRecords"></div>
           <div class="section-label" style="margin-top:16px">AI 探索提示词</div>
           <div class="prompt-grid" id="overviewPrompts"></div>
         </div>
@@ -379,22 +388,46 @@ function initPanel() {
     q('collisionCards').innerHTML = '<div style="color:var(--text3);font-size:13px">暂无知识碰撞记录。</div>';
   }
 
+  // extra records (for self-book / merged archive)
+  var extraHtml = '';
+
   // operating guide (for self-book SELF_BIN)
   var guide = d.operatingGuide || [];
   if (guide.length) {
-    var guideHtml = '<div class="section-label" style="margin-top:20px">操作系统手册</div>' +
+    extraHtml += '<div class="section-label" style="margin-top:20px">操作系统手册</div>' +
       guide.map(function(g){
         var num = g.charAt(0);
         var rest = g.slice(2).trim();
         return '<div class="collision-card" style="border-left:3px solid var(--accent-mid)"><div style="font-weight:600;color:var(--accent);margin-bottom:3px">⛳ 第' + num + '步</div><div>' + esc(rest) + '</div></div>';
       }).join('');
-    q('collisionCards').insertAdjacentHTML('afterend', guideHtml);
   }
+
+  var recordSections = d.recordSections || [];
+  if (recordSections.length) {
+    extraHtml += renderRecordSections(recordSections);
+  }
+  q('extraRecords').innerHTML = extraHtml;
 
   // 初始化各 mode
   initOverviewPrompts();
   initChat();
   initConcepts();
+}
+
+function renderRecordSections(recordSections) {
+  return '<div class="section-label" style="margin-top:20px">归档与迭代</div>' +
+    '<div class="record-sections">' +
+    recordSections.map(function(section){
+      var items = section.items || [];
+      return '<section class="record-section">' +
+        '<div class="record-title">' + esc(section.title || '未命名分组') + '</div>' +
+        (section.summary ? '<div class="record-summary">' + esc(section.summary) + '</div>' : '') +
+        '<ul class="record-items">' +
+        items.map(function(item){ return '<li>' + esc(item) + '</li>'; }).join('') +
+        '</ul>' +
+      '</section>';
+    }).join('') +
+    '</div>';
 }
 
 // ── 概览提示词 ────────────────────────────────────────────
