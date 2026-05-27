@@ -17,6 +17,7 @@ const ARCH_GRAPH = {
     { id: "station",   title: "工作站门户",   icon: "🖥️", color: "#0284c7", description: "三栏交互面板，需求全生命周期可视化" },
     { id: "lifecycle", title: "流程生命周期", icon: "🔄", color: "#059669", description: "创建 → 沉淀 → 快照 → 评审 → 报告" },
     { id: "roadmap",   title: "治理路线",     icon: "🗺️", color: "#dc2626", description: "P0 收口 → P1 入口 → P2 迁移" },
+    { id: "insights",  title: "演进洞见",     icon: "💡", color: "#d97706", description: "架构复盘中提取的可复用工程认知" },
   ],
 
   topics: [
@@ -50,6 +51,9 @@ const ARCH_GRAPH = {
     { id: "p0-rules",       categoryId: "roadmap", title: "P0 · 先收口规则",   oneLiner: "meta.json 最小合同 + 5 份文档上限", status: "in-progress", updatedAt: "2026-05-09" },
     { id: "p1-entry",       categoryId: "roadmap", title: "P1 · 流程入口统一", oneLiner: "所有操作通过工作站入口", status: "planned", updatedAt: "2026-05-09" },
     { id: "p2-migration",   categoryId: "roadmap", title: "P2 · 历史迁移",     oneLiner: "存量 workstream 逐步规范化", status: "planned", updatedAt: "2026-05-09" },
+
+    // ── insights ──
+    { id: "insight-topic",  categoryId: "insights", title: "架构演进复盘",   oneLiner: "从脚本仓库到 AI Native 编排的认知跃迁", status: "stable", updatedAt: "2026-05-27" },
   ],
 
   nodes: [
@@ -191,5 +195,22 @@ const ARCH_GRAPH = {
     { id: "case-operator", topicId: "phase-review", title: "运营商通用功能 · 实战", oneLiner: "66 条用例 → 46 条自动化 → 审核交互页",
       detail: "完整走通了 Phase 0-3 流程：分析 66 条手工用例 → 梳理 8 个类别 → 对齐 14 条待确认问题 → 批量创建 46 条平台用例 → ID 回填飞书 → 生成交互审核页。\n\n最终产物：review.html 全量分析交互文档，已集成到工作站。",
       tags: ["实战", "46条", "review.html"], status: "stable", updatedAt: "2026-05-09" },
+
+    // ── 演进洞见 ──
+    { id: "insight-phase0", topicId: "p0-rules", title: "门禁制投入产出比最高", oneLiner: "Phase 0 阻断是整个项目最有价值的设计",
+      detail: "直接来源于 dot1x 项目 66 条用例返工的教训：不做状态矩阵分析就批量创建，错误会被 N 倍放大。此后所有项目都执行 Phase 0，再未出现批量返工。",
+      tags: ["门禁", "ROI", "复盘"], status: "stable", updatedAt: "2026-05-27" },
+    { id: "insight-skill-evolution", topicId: "skills-layer", title: "Skill 演化论", oneLiner: "从功能模块到工程规范层的认知跃迁",
+      detail: "Skill 不再承载原子能力、workflow、API SDK。核心职责变为：定义 Agent 如何思考、任务如何推进、何时阻断、结果如何沉淀。早期塞一起短期能跑，但规模一大就 Skill 变胖、能力无法复用、流程能力耦合。",
+      tags: ["演化", "Agent", "规范"], status: "stable", updatedAt: "2026-05-27" },
+    { id: "insight-subtraction", topicId: "p0-rules", title: "做减法阶段", oneLiner: "项目过了加法期，进入加固收口期",
+      detail: "不再做的事：自动化 Phase 0 分析、扩展 agent_service、skills 发现推荐系统、知识库双向同步、单元测试框架、拆 platform_client。\n\n继续打磨：debugger bug 修复、审计规则自动生成、配置源收敛、sys.path 治理。",
+      tags: ["减法", "加固", "边界"], status: "stable", updatedAt: "2026-05-27" },
+    { id: "insight-god-class", topicId: "skills-layer", title: "上帝类不拆论", oneLiner: "工具项目中内聚的大类优于过度抽象",
+      detail: "platform_client 500 行，所有调用者只需 from platform_client import PlatformClient。拆分带来的 import 复杂度和维护成本远大于收益。对于工具性项目，内部方法职责清晰即可。",
+      tags: ["内聚", "务实", "反模式"], status: "stable", updatedAt: "2026-05-27" },
+    { id: "insight-patterns", topicId: "services-layer", title: "可复用模式清单", oneLiner: "门禁制 / 统一契约 / 知识版本化 / 错误码驱动 / 探针即弃",
+      detail: "1. 门禁制：批量前人工阻断，审计当 CI lint\n2. 统一契约：ServiceResult ok/fail，不 throw\n3. 知识版本化：平台数据→本地 JSON→git diff\n4. 错误码驱动修复路径\n5. 探针即弃：结论上浮后删除实验",
+      tags: ["模式", "复用", "飞轮"], status: "stable", updatedAt: "2026-05-27" },
   ]
 };
