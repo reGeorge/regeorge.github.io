@@ -126,8 +126,8 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
 .concept-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px;transition:border-color .15s}
 .concept-card:hover{border-color:var(--border2)}
 .collision-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.collision-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.7}
-.collision-card .cc-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-bottom:5px}
+.collision-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;font-size:13px;color:var(--text2);line-height:1.7;text-align:left}
+.collision-card .cc-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-bottom:5px;text-align:left}
 .cc-tag.done{background:#eaf3de;color:#27500a}
 .cc-tag.new{background:#e6f1fb;color:#0c447c}
 .cc-tag.gap{background:#fef3e2;color:#7a5c1a}
@@ -141,16 +141,16 @@ body{font-family:-apple-system,'PingFang SC',sans-serif;background:var(--bg);col
 .record-items li::before{content:'•';color:var(--accent-mid);margin-right:6px;font-weight:600}
 .philosophy-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
 .philosophy-card{border:1px solid var(--border);border-radius:var(--r2);background:var(--card);overflow:hidden}
-.philosophy-card summary{cursor:pointer;padding:12px 14px;font-size:13px;font-weight:500;color:var(--text);line-height:1.6;transition:background .12s}
+.philosophy-card summary{cursor:pointer;padding:12px 14px;font-size:13px;font-weight:500;color:var(--text);line-height:1.6;transition:background .12s;text-align:left}
 .philosophy-card summary:hover{background:var(--bg)}
-.philosophy-card .pc-body{padding:0 14px 14px;border-top:1px solid var(--border)}
-.philosophy-card .pc-body .pc-meta{font-size:11px;color:var(--text3);margin:8px 0;display:flex;gap:8px;flex-wrap:wrap}
-.philosophy-card .pc-body .pc-meta span{background:var(--bg);padding:2px 8px;border-radius:4px}
-.philosophy-card .pc-body .pc-dialogue{font-size:12px;color:var(--text2);line-height:1.8;margin:8px 0;background:var(--bg);padding:10px 12px;border-radius:var(--r);white-space:pre-wrap}
-.philosophy-card .pc-body .pc-body-text{font-size:12px;color:var(--text2);line-height:1.7;margin:6px 0}
-.philosophy-card .pc-body .pc-focus{font-size:11px;color:var(--text2);background:#fefce8;padding:8px 10px;border-radius:var(--r);margin:8px 0;border-left:3px solid #e6ad52}
-.philosophy-card .pc-body .pc-action{font-size:12px;color:var(--text);padding:6px 10px;margin:4px 0;background:#eaf3de;border-radius:var(--r);border-left:3px solid #639922}
-.philosophy-card .pc-body .pc-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:var(--border);color:var(--text3)}
+.philosophy-card .pc-body{padding:0 14px 14px;border-top:1px solid var(--border);text-align:left}
+.philosophy-card .pc-body .pc-meta{font-size:11px;color:var(--text3);margin:8px 0;display:flex;gap:8px;flex-wrap:wrap;text-align:left}
+.philosophy-card .pc-body .pc-meta span{background:var(--bg);padding:2px 8px;border-radius:4px;text-align:left}
+.philosophy-card .pc-body .pc-dialogue{font-size:12px;color:var(--text2);line-height:1.8;margin:8px 0;background:var(--bg);padding:10px 12px;border-radius:var(--r);white-space:pre-wrap;text-align:left}
+.philosophy-card .pc-body .pc-body-text{font-size:12px;color:var(--text2);line-height:1.7;margin:6px 0;text-align:left}
+.philosophy-card .pc-body .pc-focus{font-size:11px;color:var(--text2);background:#fefce8;padding:8px 10px;border-radius:var(--r);margin:8px 0;border-left:3px solid #e6ad52;text-align:left}
+.philosophy-card .pc-body .pc-action{font-size:12px;color:var(--text);padding:6px 10px;margin:4px 0;background:#eaf3de;border-radius:var(--r);border-left:3px solid #639922;text-align:left}
+.philosophy-card .pc-body .pc-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:var(--border);color:var(--text3);text-align:left}
 
 /* ── mobile ── */
 @media(max-width:768px){
