@@ -413,10 +413,43 @@
         }
 
         @media (max-width: 600px) {
+            body { padding: 24px 12px; }
+
             h1 { font-size: 1.7rem; }
-            .node-level { flex-direction: column; }
+
+            .architecture { padding: 20px 16px; }
+            .arch-title { margin-bottom: 16px; }
+            .core-node { padding: 14px 20px; font-size: 0.85rem; }
+            .node-level { flex-direction: column; gap: 8px; }
+            .pillar-card { padding: 10px 14px; font-size: 0.82rem; }
+
+            .format-note { padding: 14px 16px; margin-bottom: 32px; }
+
+            .insight-list { gap: 16px; }
+
+            .card-header { padding: 16px 16px 0 !important; }
+            .card-tools { top: 10px; right: 10px; }
+
+            summary { padding: 0 16px 14px; }
             summary::after,
             details[open] summary::after { display: none; }
+            .core-statement { padding: 0 16px 14px; }
+
+            .process-content { padding: 0 16px 16px; }
+            .process-section { margin-top: 12px; }
+            .process-section p,
+            .process-section ul,
+            .process-section li { font-size: 0.85rem; }
+
+            .dialogue-block { padding: 12px 14px; font-size: 0.85rem; word-break: break-word; }
+            .aha-block { padding: 10px 14px; font-size: 0.85rem; }
+            .redundancy-section { padding: 10px 14px; font-size: 0.82rem; }
+            .action-item { font-size: 0.85rem; }
+            .action-item .action-label { word-break: break-word; }
+            .migration-item { font-size: 0.85rem; }
+            .error-list li { font-size: 0.85rem; }
+
+            footer { margin-top: 48px; }
         }
     </style>
 </head>
