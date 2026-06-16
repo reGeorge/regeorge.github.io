@@ -605,6 +605,18 @@
               <div class="step-label">平台调试</div>
               <div class="step-sub">debug PASS<br>三段一致确认</div>
             </div>
+            <div class="step-arrow">→</div>
+            <div class="flow-step">
+              <div class="step-bubble">📎</div>
+              <div class="step-label">引用 vs 引入</div>
+              <div class="step-sub">QUOTE 不足时<br>COPY 步骤后微调</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="flow-step">
+              <div class="step-bubble">🛡️</div>
+              <div class="step-label">Turing T6 门禁</div>
+              <div class="step-sub">测试点覆盖检查<br>≥1 个 HTTP 验证</div>
+            </div>
           </div>
         </div>
 
@@ -646,18 +658,18 @@
 
         <div class="flow-connector">↓ (发现偏差)</div>
 
-        <!-- 偏差修正循环 -->
+        <!-- 偏差修正 + 探针溯源 -->
         <div class="flow-phase phase-debug">
           <div class="flow-phase-label">
             <span class="phase-num" style="color:var(--purple)">偏差修正</span>
-            <span class="phase-name">三段对齐<br>修正循环</span>
+            <span class="phase-name">三段对齐<br>+ 探针溯源</span>
             <span class="phase-gate" style="background:var(--purple-soft);color:var(--purple);border:1px solid rgba(124,58,237,0.2)">🔄 持续</span>
           </div>
           <div class="flow-steps">
             <div class="flow-step">
               <div class="step-bubble">🔍</div>
-              <div class="step-label">发现不一致</div>
-              <div class="step-sub">endpoint/顺序/命名<br>三段有偏差</div>
+              <div class="step-label">自动审计</div>
+              <div class="step-sub">飞书↔review↔平台<br>三方交叉比对</div>
             </div>
             <div class="step-arrow">→</div>
             <div class="flow-step">
@@ -679,9 +691,15 @@
             </div>
             <div class="step-arrow">→</div>
             <div class="flow-step">
-              <div class="step-bubble">💡</div>
-              <div class="step-label">沉淀到飞轮</div>
-              <div class="step-sub">新增模式卡片<br>更新命名约定</div>
+              <div class="step-bubble">🕵️</div>
+              <div class="step-label">探针溯源</div>
+              <div class="step-sub">probe_trace.json<br>原始抓包+AI理解</div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="flow-step">
+              <div class="step-bubble">⏱️</div>
+              <div class="step-label">阻塞止损</div>
+              <div class="step-sub">15分钟/3轮上限<br>标记 hypothesis</div>
             </div>
           </div>
         </div>
@@ -770,6 +788,45 @@
             <strong>命名</strong>：步骤名（如「预期查到/查不到」）三段统一，不各自取名<br>
             <strong>发现偏差时</strong>：先回头修正 review.html autoSteps & flow，再继续实现<br>
             <strong>新建/修改平台步骤后</strong>：同步更新 review.html，两者始终对齐
+          </p>
+        </div>
+        <div class="pattern-card">
+          <h4>📎 引用 vs 引入（QUOTE vs COPY）</h4>
+          <p>
+            平台两种复用公共用例方式，<strong>关键差异在步骤是否可修改</strong>：<br>
+            <strong>QUOTE（引用）</strong>：type=1, 原样执行，适用「完全复用」场景<br>
+            <strong>COPY（引入）</strong>：GET 公共步骤 → POST type=0 → 改 body/check/xlsx<br>
+            <strong>识别规则</strong>：标题含 校验/限制/边界/格式/非法 且公共用例只做通用执行 → 必须引入改造<br>
+            <strong>反例</strong>：80099 用户名校验用 QUOTE 通用导入 → 导入没挂就 PASS，未测校验逻辑
+          </p>
+        </div>
+        <div class="pattern-card">
+          <h4>🕵️ 探针溯源验证（Probe Trace）</h4>
+          <p>
+            Playwright 探测后<strong>必须产出结构化 trace 文件</strong>，供人类独立审计：<br>
+            <code>playground/probe_trace_{id}.json</code> 包含 captured_requests + interpretations + confidence + diffs<br>
+            <strong>置信度</strong>：high(≥3次+直调) / medium(1-2次) / low(单次/矛盾)<br>
+            <strong>禁止</strong>：只写结论不写原始抓包 / 省略 gaps / 修改响应字段名<br>
+            Station 仪表盘「探针溯源」tab 可查看所有 trace 记录
+          </p>
+        </div>
+        <div class="pattern-card">
+          <h4>⏱️ 阻塞止损规则</h4>
+          <p>
+            单个 API 探测上限 <strong>15 分钟 / 3 轮试错</strong>。<br>
+            超时后记录当前假设到 meta.json，标记 <code>hypothesis</code>，继续下一个测试点。<br>
+            禁止在同一参数推断上纠缠超过 5 条交互消息。<br>
+            样本验证上限 <strong>3 轮</strong>，3 轮不过 → 标记 <code>skipped</code> → 继续下一条。
+          </p>
+        </div>
+        <div class="pattern-card">
+          <h4>🎨 review.html 亮色三栏模板</h4>
+          <p>
+            所有 review.html 必须参照模板 <code>运营商通用功能/review.html</code>：<br>
+            <strong>亮色主题</strong>：<code>--bg:#f6efe4</code> 米色调，禁止暗黑色系<br>
+            <strong>三栏并列</strong>：手工用例 | 自动化步骤 | 流程图 (1fr 1fr 1.15fr)<br>
+            <strong>必备元素</strong>：顶部统计条 + 分类标签页 + 底部审核栏 + AI理解面板<br>
+            <strong>Turing T6 门禁</strong>：用例不得仅靠 QUOTE 内置断言通过；标题含校验/限制/边界必须有 ≥1 HTTP 步
           </p>
         </div>
       </div>
