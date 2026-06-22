@@ -9,7 +9,8 @@ const KNOWLEDGE_GRAPH = {
   meta: {
     title: 'Knowledge Atlas',
     subtitle: '从整体到局部，从快速审阅到深度理解',
-    lastUpdated: '2026-05-09'
+    lastUpdated: '2026-06-22',
+    reviewStatus: '已回顾 — 36 Active / 16 NIPoison / 7 合并 / 3 降级/研究'
   },
 
   categories: [
@@ -261,7 +262,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-04-01',
       source: 'sources/2026-04-01-AI工具流双向检验.md',
-      keyTakeaways: ['效率检验是第一道', '意义检验是第二道', '落点在人身上'],
+      absorbedFrom: ['naval-tool-judgment'],
+      keyTakeaways: ['效率检验是第一道', '意义检验是第二道', '落点在人身上', '判断力检验=刀快+厨师变好'],
       relations: [
         { type: 'related', target: 'interactive-doc' },
         { type: 'related', target: 'naval-tool-judgment' }
@@ -274,6 +276,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'cognitive-upgrade',
       title: 'AI元认知',
       bookBadge: null,
+      mergedInto: 'carbon-silicon',
       oneLiner: '密度优先 + 思维还原 + 精力卸载。结构化的语言是信息密度最高的提示词。',
       philosophyNote: 'AI元认知的核心不是"用AI"，而是"知道什么时候用AI，什么时候不用"。',
       status: 'human-reviewed',
@@ -295,7 +298,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-03-31',
       source: 'sources/2026-03-31-碳基与硅基思维.md',
-      keyTakeaways: ['碳基：写详档扒图分享', '硅基：写概要交AI复刻', '核心：能不能写硅基友好的流程概要'],
+      absorbedFrom: ['ai-metacognition'],
+      keyTakeaways: ['碳基：写详档扒图分享', '硅基：写概要交AI复刻', '核心：能不能写硅基友好的流程概要', '元认知=知道什么时候用AI/不用AI'],
       relations: [
         { type: 'related', target: 'ai-metacognition' },
         { type: 'related', target: 'ai-meaning' }
@@ -311,7 +315,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-03-31',
       source: 'sources/2026-03-31-AI时代的意义指向.md',
-      keyTakeaways: ['产出的唯一意义指向自己', '杠杆 + 指向自我 = 飞轮加速', 'AI最大化服务自己的决策'],
+      absorbedFrom: ['naval-ai-expertise'],
+      keyTakeaways: ['产出的唯一意义指向自己', '杠杆 + 指向自我 = 飞轮加速', 'AI最大化服务自己的决策', '专长不在工具在用的你→内化率'],
       relations: [
         { type: 'related', target: 'carbon-silicon' },
         { type: 'related', target: 'naval-ai-expertise' }
@@ -406,6 +411,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'clear-thinking',
       title: '社交默认的底层因果',
       bookBadge: '📖 清晰思考',
+      mergedInto: 'fast-thinking-anchors',
       oneLiner: '社交默认不是心理缺陷，是信息不对称制造的被动服从。治浮萍不是捞浮萍，是改水流。',
       philosophyNote: '社交默认不是心理缺陷，是信息不对称制造的被动服从。',
       status: 'human-reviewed',
@@ -477,7 +483,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-04-23',
       source: 'sources/2026-04-23-快思考觉察锚点.md',
-      keyTakeaways: ['赛前问快思考想说什么', '失误后3秒问复盘还是辩解', '看见本身就是力量'],
+      absorbedFrom: ['info-asymmetry-social'],
+      keyTakeaways: ['赛前问快思考想说什么', '失误后3秒问复盘还是辩解', '看见本身就是力量', '社交锚点:沉默是选择还是信息不对称？'],
       relations: [
         { type: 'depends_on', target: 'fast-thinking-patterns' },
         { type: 'related', target: 'self-settle' }
@@ -604,6 +611,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'jobs-biography',
       title: '信息不对称可以是正向的——愿景者',
       bookBadge: '📖 乔布斯传',
+      mergedInto: 'duan-clockmaker',
       oneLiner: '三类人模型需要第四类：愿景者——用信念点燃追随者而非消耗他们。',
       philosophyNote: '信息不对称可以是正向的——愿景者用信念点燃追随者而非消耗他们。',
       status: 'human-reviewed',
@@ -620,6 +628,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'jobs-biography',
       title: '偏执不是性格天赋，是经历锻造的结果',
       bookBadge: '📖 乔布斯传',
+      reviewTag: 'research',
       oneLiner: '乔布斯的平静过滤器指向"做出伟大的东西"——偏执是正反馈和负反馈交替锻造的极致选择。',
       philosophyNote: '偏执不是性格天赋，是经历锻造的结果。两条路径都能到达终点，但代价不同。',
       status: 'human-reviewed',
@@ -654,6 +663,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'duan-yongping',
       title: '真正的驱动力不能是产出本身',
       bookBadge: '📖 段永平',
+      reviewTag: 'NIPoison',
       oneLiner: '产出是做对了事的副产品。盯着果实看的人反而结不出好果实。',
       philosophyNote: '真正的驱动力不能是产出本身——产出是做对了事的副产品。',
       status: 'human-reviewed',
@@ -691,7 +701,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-04-08',
       source: 'sources/2026-04-08-段永平-造钟人.md',
-      keyTakeaways: ['造钟人 vs 报时人', 'AI让个人也能造钟', '系统自运转是目标'],
+      absorbedFrom: ['jobs-visionary'],
+      keyTakeaways: ['造钟人 vs 报时人', 'AI让个人也能造钟', '系统自运转是目标', '愿景者的信息不对称是正向的'],
       relations: [
         { type: 'related', target: 'jobs-encoding' },
         { type: 'related', target: 'carbon-silicon' }
@@ -785,6 +796,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'compound-effect',
       title: '打破自动驾驶需要三层防线',
       bookBadge: '📖 复利效应',
+      mergedInto: 'three-reflections',
       oneLiner: '方向过滤器（你）→ 思维模式识别（帕里什）→ 行为追踪（哈迪）。缺一层就有漏洞。',
       philosophyNote: '打破自动驾驶需要三层防线。',
       status: 'human-reviewed',
@@ -851,6 +863,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'naval-almanack',
       title: '工具流的第二道检验就是判断力',
       bookBadge: '📖 纳瓦尔宝典',
+      mergedInto: 'ai-tool-validation',
       oneLiner: '第一道检验问刀快不快，第二道检验问厨师有没有变好。',
       philosophyNote: '第一道检验问刀快不快，第二道检验问厨师有没有变好。',
       status: 'human-reviewed',
@@ -899,6 +912,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'naval-almanack',
       title: 'AI时代的专长是你用工具产出了什么不可复制的认知',
       bookBadge: '📖 纳瓦尔宝典',
+      mergedInto: 'ai-meaning',
       oneLiner: '专长不在工具里，在"你用了工具之后的你"里。含金量 = 内化率。',
       philosophyNote: '专长不在工具里，在"你用了工具之后的你"里。含金量 = 内化率。',
       status: 'human-reviewed',
@@ -954,7 +968,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-04-26',
       source: 'sources/2026-04-26-三省吾身生活版.md',
-      keyTakeaways: ['先有方向再有状态最后执行', '顺序反了会出问题', '59张卡片的收束'],
+      absorbedFrom: ['compound-autopilot'],
+      keyTakeaways: ['先有方向再有状态最后执行', '顺序反了会出问题', '59张卡片的收束', '三层防线=方向过滤→模式识别→行为追踪'],
       relations: [
         { type: 'related', target: 'jobs-obsession' },
         { type: 'related', target: 'duan-benfen' },
@@ -1082,6 +1097,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'anxiety-peace',
       title: '焦急 = 宇宙相变前奏',
       bookBadge: null,
+      mergedInto: 'anxiety-death',
       oneLiner: '焦急不是错误，而是宇宙在"你这个节点"上进行的一场激烈"相变"前奏。',
       philosophyNote: '耗散结构理论——远离平衡态的系统如何维持有序并演进。',
       status: 'human-reviewed',
@@ -1103,7 +1119,8 @@ const KNOWLEDGE_GRAPH = {
       status: 'human-reviewed',
       updatedAt: '2026-04-22',
       source: 'sources/2026-04-22-焦急与死亡.md',
-      keyTakeaways: ['来不及的终极是死亡', '平静不是不作为', '对时间有信心'],
+      absorbedFrom: ['anxiety-cosmos'],
+      keyTakeaways: ['来不及的终极是死亡', '平静不是不作为', '对时间有信心', '焦急=相变前奏(footnote)'],
       relations: [
         { type: 'related', target: 'anxiety-cosmos' },
         { type: 'related', target: 'jobs-death' }
@@ -1212,6 +1229,7 @@ const KNOWLEDGE_GRAPH = {
       topicId: 'present-moment',
       title: '万物相通',
       bookBadge: null,
+      reviewTag: 'header-quote',
       oneLiner: '哲学本身就是和万物相通的。日常琐事升华为普遍逻辑。',
       philosophyNote: '打破学科边界，将日常琐事升华为普遍逻辑，实现从"生肉数据"到"模型认知"的跨越。',
       status: 'human-reviewed',
