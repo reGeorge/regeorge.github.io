@@ -419,12 +419,34 @@ function initPanel() {
   // operating guide (for self-book SELF_BIN)
   var guide = d.operatingGuide || [];
   if (guide.length) {
-    extraHtml += '<div class="section-label" style="margin-top:20px">操作系统手册</div>' +
-      guide.map(function(g){
-        var num = g.charAt(0);
-        var rest = g.slice(2).trim();
-        return '<div class="collision-card" style="border-left:3px solid var(--accent-mid)"><div style="font-weight:600;color:var(--accent);margin-bottom:3px">⛳ 第' + num + '步</div><div>' + esc(rest) + '</div></div>';
-      }).join('');
+    extraHtml += '<div class="section-label" style="margin-top:20px">操作系统手册</div>';
+    guide.forEach(function(g) {
+      if (!g || !g.trim()) return; // skip empty lines
+      var trimmed = g.trim();
+      // Section header lines like "===== 三层操作系统 ====="
+      if (/^=+/.test(trimmed)) {
+        extraHtml += '<div style="text-align:center;font-size:13px;font-weight:700;color:var(--accent);margin:10px 0 4px;letter-spacing:.05em">' + esc(trimmed) + '</div>';
+        return;
+      }
+      // Layer name lines like "第一层 - 战略层：..."
+      var layerMatch = trimmed.match(/^(第[一二三四五六七八九十百\d]+层)[^：]*(：)?(.+)/);
+      if (layerMatch) {
+        var layerNum = layerMatch[1];
+        var layerDesc = layerMatch[3] ? layerMatch[3].trim() : '';
+        extraHtml += '<div class="collision-card" style="border-left:3px solid var(--accent);background:rgba(42,74,46,.04)"><div style="font-weight:700;color:var(--accent);margin-bottom:3px;font-size:13px">' + esc(layerNum) + (layerDesc ? ' ' + esc(layerDesc) : '') + '</div></div>';
+        return;
+      }
+      // Numbered step lines like "1. xxx" or "1 两分钟冲动法则 — ..."
+      var numMatch = trimmed.match(/^(\d+)[.、](.+)/);
+      if (numMatch) {
+        var num = numMatch[1];
+        var rest = numMatch[2].trim();
+        extraHtml += '<div class="collision-card" style="border-left:3px solid var(--accent-mid)"><div style="font-weight:600;color:var(--accent);margin-bottom:3px">⛳ 第' + esc(num) + '步</div><div>' + esc(rest) + '</div></div>';
+        return;
+      }
+      // Fallback: regular text paragraph
+      extraHtml += '<div class="collision-card" style="font-style:italic;color:var(--text3);border-left:3px solid var(--border2)"><div>' + esc(trimmed) + '</div></div>';
+    });
   }
 
   var recordSections = d.recordSections || [];
