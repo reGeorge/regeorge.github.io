@@ -5741,14 +5741,14 @@ window.READING_SHELF_BOOKS = [
                 },
                 {
                     "title": "caseHelper 设计与迭代",
-                    "summary": "从脚本堆到收口架构，真正留下的不是层数，而是流程认知的固化。",
+                    "summary": "从手工脚本 → Agent协同 → 知识库守门员。把\"经验\"从人的脑子迁移到可被Agent加载的规则文件。",
                     "items": [
-                        "Phase 0 门禁是整个项目投入产出比最高的设计：不做状态矩阵分析就批量创建，错误会被 N 倍放大。",
-                        "PlatformClient 把 ATP 的怪癖收口在一处：method 是整数、更新走 GET → 改 → POST、body 只序列化一次。",
-                        "ServiceResult + ErrorCode 统一了输出契约：调用方不用 try-catch，就能知道是修环境、修适配层还是修输入。",
-                        "项目已经过了“做加法”的阶段，进入“做减法和加固”的阶段：不再扩展 agent_service，不再追求自动化 Phase 0，不再拆 platform_client。",
-                        "收口后的主链应该一句话说清：cli.py → Service → Capability → Workspace，Knowledge 只存稳定事实，Skill 只放纯规则。",
-                        "最有价值的产出不是代码，而是流程认知的固化。"
+                        "上下文延迟加载：按meta.json.phase动态加载skill，不一次性灌入全部宪章。节省context budget，Agent在每个阶段只看到当前需要的规则。",
+                        "子Agent编排：主Agent做阶段决策和路由，子Agent做聚焦执行。回收结构化结论，不直接写文件，避免冲突。",
+                        "知识库管理员模式：探测前守门（注入api-quirks等已验证模式），探测后归档新发现。替代手工维护PlatformClient怪癖列表。",
+                        "浏览器实证优先：Playwright抓Network真实Payload，API自愈机制替代curl盲猜。不在不确定的API参数上消耗推理token。",
+                        "Turing门禁T1-T8：标题无时间戳、数据自包含、断言用contains、验证点标题覆盖等。样本验证→批量创建→全量调试→回填。",
+                        "meta.json作为状态恢复锚点：阶段切换不需重放历史，新对话从当前phase接续。最有价值的产出不是代码，是流程认知的固化。"
                     ]
                 },
                 {
