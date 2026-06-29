@@ -6,26 +6,39 @@
     <title>投资观点笔记 | reGeorge</title>
     <style>
         :root {
-            --bg: #F9F8F6;
-            --text: #191919;
-            --sub: #6E6E73;
-            --accent: #D97757;
-            --border: rgba(0, 0, 0, 0.08);
-            --card-bg: #FFFFFF;
-            --buy: #2D8C4E;
-            --hold: #B8860B;
-            --sell: #C0392B;
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-raised: #1c2333;
+            --text: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --border: rgba(240,246,252,0.08);
+            --border-strong: rgba(240,246,252,0.14);
+            --accent: #58a6ff;
+            --buy: #3fb950;
+            --buy-bg: rgba(63,185,80,0.12);
+            --hold: #d29922;
+            --hold-bg: rgba(210,153,34,0.12);
+            --sell: #f85149;
+            --sell-bg: rgba(248,81,73,0.12);
+            --tencent: #00d46a;
+            --xiaomi: #ff6b35;
+            --moutai: #e64040;
+            --radius: 10px;
+            --radius-sm: 6px;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: "Noto Serif SC", serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 40px 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
             display: flex;
             justify-content: center;
+            padding: 48px 20px 80px;
         }
 
         .container { max-width: 720px; width: 100%; }
@@ -34,23 +47,65 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--sub);
+            color: var(--text-tertiary);
             text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 40px;
+            font-size: 0.82rem;
+            margin-bottom: 48px;
             transition: color 0.2s;
+            letter-spacing: 0.03em;
         }
         .back-link:hover { color: var(--accent); }
 
+        /* ── Header ── */
         header {
-            margin-bottom: 40px;
+            margin-bottom: 16px;
+            padding-bottom: 28px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 30px;
         }
-        h1 { font-size: 2.4rem; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.01em; }
-        .subtitle { font-size: 1.1rem; color: var(--sub); font-style: italic; }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 8px;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+        .subtitle {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
 
-        /* ==================== Filter bar ==================== */
+        /* ── Summary bar ── */
+        .summary-bar {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .summary-num {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            font-variant-numeric: tabular-nums;
+            font-family: "SF Mono", "JetBrains Mono", "Cascadia Code", monospace;
+        }
+        .summary-num.buy-color { color: var(--buy); }
+        .summary-num.hold-color { color: var(--hold); }
+        .summary-num.sell-color { color: var(--sell); }
+        .summary-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+        }
+
+        /* ── Filter bar ── */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -60,133 +115,193 @@
         .filter-chip {
             display: inline-flex;
             align-items: center;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 500;
-            padding: 5px 12px;
+            padding: 5px 14px;
             border-radius: 999px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--sub);
+            border: 1px solid var(--border-strong);
+            background: var(--surface);
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.2s;
-            font-family: sans-serif;
             letter-spacing: 0.02em;
         }
-        .filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-chip:hover { border-color: var(--accent); color: var(--text); }
         .filter-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* ==================== Timeline ==================== */
-        .timeline { display: flex; flex-direction: column; gap: 24px; }
+        /* ── Timeline ── */
+        .timeline { display: flex; flex-direction: column; gap: 20px; }
 
-        /* ==================== Entry card ==================== */
+        /* ── Entry card ── */
         .entry-card {
-            background: var(--card-bg);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 24px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s, background 0.2s;
             position: relative;
+            overflow: hidden;
+        }
+        .entry-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         .entry-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-color: var(--border-strong);
+            background: var(--surface-raised);
         }
+        .entry-card[data-company="tencent"]:hover::before { opacity: 1; background: var(--tencent); }
+        .entry-card[data-company="xiaomi"]:hover::before  { opacity: 1; background: var(--xiaomi); }
+        .entry-card[data-company="moutai"]::before { opacity: 1; background: var(--moutai); }
 
         .entry-meta {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-
-        .entry-date {
-            font-size: 0.78rem;
-            color: var(--sub);
-            font-family: sans-serif;
-            letter-spacing: 0.02em;
-        }
-
-        .company-tag {
-            font-size: 0.74rem;
-            font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 999px;
-            letter-spacing: 0.04em;
-            font-family: sans-serif;
-        }
-        .company-tag.tencent { background: rgba(7, 193, 96, 0.1); color: #07C160; border: 0.5px solid rgba(7, 193, 96, 0.3); }
-        .company-tag.xiaomi  { background: rgba(255, 103, 0, 0.1); color: #FF6700; border: 0.5px solid rgba(255, 103, 0, 0.3); }
-        .company-tag.moutai { background: rgba(194, 54, 22, 0.1); color: #B53A1A; border: 0.5px solid rgba(194, 54, 22, 0.3); }
-
-        .rating {
-            font-size: 0.74rem;
-            font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 999px;
-            letter-spacing: 0.06em;
-            font-family: sans-serif;
-            margin-left: auto;
-        }
-        .rating.buy  { background: rgba(45, 140, 78, 0.1); color: var(--buy); border: 1px solid rgba(45, 140, 78, 0.3); }
-        .rating.hold { background: rgba(184, 134, 11, 0.1); color: var(--hold); border: 1px solid rgba(184, 134, 11, 0.3); }
-        .rating.sell { background: rgba(192, 57, 43, 0.1); color: var(--sell); border: 1px solid rgba(192, 57, 43, 0.3); }
-
-        .entry-view {
-            font-size: 0.94rem;
-            line-height: 1.85;
-            color: var(--text);
             margin-bottom: 16px;
         }
 
+        .entry-date {
+            font-size: 0.76rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.04em;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ── Ticker line ── */
+        .ticker {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-variant-numeric: tabular-nums;
+        }
+        .ticker-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #fff;
+            font-family: "SF Mono", "JetBrains Mono", "Cascadia Code", monospace;
+        }
+        .ticker-pe {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-family: "SF Mono", "JetBrains Mono", "Cascadia Code", monospace;
+        }
+        .ticker-pe span {
+            color: var(--text-tertiary);
+            font-size: 0.68rem;
+        }
+
+        .company-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 999px;
+            letter-spacing: 0.04em;
+        }
+        .company-tag.tencent { background: rgba(0,212,106,0.12); color: var(--tencent); }
+        .company-tag.xiaomi  { background: rgba(255,107,53,0.12); color: var(--xiaomi); }
+        .company-tag.moutai { background: rgba(230,64,64,0.12); color: var(--moutai); }
+
+        .rating {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            letter-spacing: 0.08em;
+            margin-left: auto;
+            text-transform: uppercase;
+        }
+        .rating.buy  { background: var(--buy-bg); color: var(--buy); }
+        .rating.hold { background: var(--hold-bg); color: var(--hold); }
+        .rating.sell { background: var(--sell-bg); color: var(--sell); }
+
+        .entry-view {
+            font-size: 0.92rem;
+            line-height: 1.85;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        /* ── Sparkline ── */
+        .sparkline-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.02);
+            border-radius: var(--radius-sm);
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+        }
+        .sparkline-row svg { flex-shrink: 0; }
+        .spark-label { letter-spacing: 0.06em; text-transform: uppercase; }
+
+        /* ── Variables ── */
         .entry-variables {
-            padding-top: 12px;
-            border-top: 1px dashed var(--border);
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
         }
         .entry-variables h4 {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--sub);
-            margin: 0 0 8px;
+            letter-spacing: 0.1em;
+            color: var(--text-tertiary);
+            margin: 0 0 10px;
             font-weight: 600;
         }
         .variable-item {
-            font-size: 0.85rem;
-            color: #555;
-            padding-left: 14px;
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            padding-left: 16px;
             position: relative;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            line-height: 1.6;
         }
         .variable-item::before {
-            content: "⚠";
+            content: "⚡";
             position: absolute;
             left: 0;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            top: 2px;
         }
 
         .entry-card.is-hidden { display: none; }
 
-        /* ==================== Empty state ==================== */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
-            color: var(--sub);
-            font-size: 0.92rem;
+            color: var(--text-tertiary);
+            font-size: 0.88rem;
             font-style: italic;
         }
 
         footer {
-            margin-top: 100px;
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
             text-align: center;
-            color: var(--sub);
-            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-size: 0.78rem;
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
+            body { padding: 32px 14px 60px; }
+            h1 { font-size: 1.6rem; }
+            .ticker-price { font-size: 1.3rem; }
+            .entry-card { padding: 18px; }
             .entry-meta { gap: 6px; }
             .rating { margin-left: 0; }
+            .summary-bar { gap: 16px; }
         }
     </style>
 </head>
@@ -196,8 +311,23 @@
 
         <header>
             <h1>投资观点笔记</h1>
-            <div class="subtitle">"观点会变，但写下时的思考不会消失。"</div>
+            <div class="subtitle">观点会变，但写下时的思考不会消失。</div>
         </header>
+
+        <div class="summary-bar">
+            <div class="summary-item">
+                <span class="summary-num buy-color">1</span>
+                <span class="summary-label">买入</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-num hold-color">2</span>
+                <span class="summary-label">持有</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-num sell-color">0</span>
+                <span class="summary-label">卖出</span>
+            </div>
+        </div>
 
         <div class="filter-bar" id="filterBar">
             <span class="filter-chip active" data-filter="all">全部</span>
@@ -207,7 +337,6 @@
         </div>
 
         <div class="timeline" id="timeline">
-            <!-- Entries will be added here, newest first -->
 
             <!-- 2026-04-23 茅台 -->
             <div class="entry-card" data-company="moutai">
@@ -216,8 +345,11 @@
                     <span class="company-tag moutai">茅台</span>
                     <span class="rating hold">持有</span>
                 </div>
+                <div class="ticker">
+                    <span class="ticker-price">¥1,458</span>
+                    <span class="ticker-pe">PE <span>TTM</span> 22.19</span>
+                </div>
                 <div class="entry-view">
-                    <strong>1458 RMB · TTM PE 22.19</strong><br>
                     三家公司中生意模式最顶级——不光轻松赚钱，还拥有库存升值的特性。22.19 的 PE 看似不低，但稳定分红提供了长久的安全边际，让持有过程更容易获得鱼尾效应（越持有越舒服）。如果三家公司同时处于持有评级，会优先将多余现金配置给茅台——因为它是那个"不需要你操心的仓位"。
                 </div>
                 <div class="entry-variables">
@@ -235,8 +367,11 @@
                     <span class="company-tag xiaomi">小米</span>
                     <span class="rating hold">持有</span>
                 </div>
+                <div class="ticker">
+                    <span class="ticker-price">HK$31</span>
+                    <span class="ticker-pe">PE <span>TTM</span> 17.5</span>
+                </div>
                 <div class="entry-view">
-                    <strong>31 HKD · TTM PE 17.5</strong><br>
                     和腾讯同样的 PE 区间，但生意更苦——竞争对手更多，属于不努力就挨打的行业。之前没完全看懂就买入，现在有些浮亏。但长期看仍是一家各方面比较优秀、短板很少的公司，尤其是雷军的个人魅力是稀缺资产。持有它的股票，本质上是一种保持深度关注和感受的方式，算是一种乐趣。不追加，也不急着离场。
                 </div>
                 <div class="entry-variables">
@@ -254,8 +389,11 @@
                     <span class="company-tag tencent">腾讯</span>
                     <span class="rating buy">买入</span>
                 </div>
+                <div class="ticker">
+                    <span class="ticker-price">HK$493</span>
+                    <span class="ticker-pe">PE <span>TTM</span> 17.99</span>
+                </div>
                 <div class="entry-view">
-                    <strong>493 HKD · TTM PE 17.99</strong><br>
                     腾讯在 AI 时代从增速平稳来到了加速前的深蹲。市场上的短钱对其 AI 的思路不喜欢，但它的用户黏性（护城河）和产品调性（品味或文化）依旧是顶级的。短钱看到的是 AI 叙事不够性感，长钱看到的是一个拥有最强用户关系和产品审美的公司在为 AI 原生体验蓄力。17.99 的 TTM PE 对这个护城河来说是便宜的。
                 </div>
                 <div class="entry-variables">

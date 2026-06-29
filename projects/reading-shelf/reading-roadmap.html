@@ -131,7 +131,10 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
   .sidebar{position:fixed;top:52px;left:0;bottom:0;z-index:100;width:240px;transform:translateX(-100%);transition:transform .25s ease;box-shadow:2px 0 20px rgba(0,0,0,.12);max-height:none}
   .sidebar.open{transform:translateX(0)}
 
-  .right-panel{display:none}
+  .right-panel{display:block;position:fixed;bottom:0;left:0;right:0;z-index:90;background:#fff;border-top:2px solid var(--accent);border-radius:16px 16px 0 0;max-height:45vh;overflow-y:auto;width:100%;box-shadow:0 -4px 24px rgba(0,0,0,.1);transition:transform .25s ease;transform:translateY(100%)}
+  .right-panel.open{transform:translateY(0)}
+  .right-panel-toggle{display:flex;position:fixed;bottom:16px;right:16px;z-index:91;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;align-items:center;justify-content:center;font-size:18px;cursor:pointer;box-shadow:0 4px 16px rgba(177,107,67,.35);border:none}
+  .right-panel-toggle:active{transform:scale(.94)}
 
   .main{width:100%;overflow-y:auto}
 
@@ -190,6 +193,7 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 
 <div class="global-bar"><div class="global-bar-fill" id="globalBarFill"></div></div>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<button class="right-panel-toggle" id="rightPanelToggle" onclick="toggleRightPanel()" aria-label="AI探索提示词">💡</button>
 
 <div class="shell">
   <div class="sidebar" id="sidebar"></div>
@@ -649,6 +653,11 @@ function init() {
 }
 
 init();
+
+function toggleRightPanel() {
+  var panel = document.querySelector('.right-panel');
+  if (panel) panel.classList.toggle('open');
+}
 </script>
 </body>
 </html>

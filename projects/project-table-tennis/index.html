@@ -6,37 +6,62 @@
     <title>乒乓球技术框架与思维流</title>
     <style>
         :root {
-            --claude-beige: #F9F8F6;
-            --claude-text: #191919;
-            --claude-sub: #6E6E73;
-            --accent: #D97757;
-            --border: rgba(0, 0, 0, 0.08);
-            --card-bg: #FFFFFF;
-            --node-bg: #f0ede6;
-            --dialogue-bg: #faf9f7;
-            --filter-color: #9ca3af;
-            --action-color: #059669;
-            --highlight-bg: #fefce8;
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-raised: #1c2333;
+            --claude-beige: #0d1117;
+            --claude-text: #e6edf3;
+            --claude-sub: #8b949e;
+            --accent: #00e676;
+            --accent-glow: rgba(0,230,118,0.18);
+            --orange: #ff6d00;
+            --orange-glow: rgba(255,109,0,0.15);
+            --border: rgba(240,246,252,0.08);
+            --border-strong: rgba(240,246,252,0.14);
+            --card-bg: #161b22;
+            --node-bg: #1c2333;
+            --dialogue-bg: rgba(240,246,252,0.03);
+            --filter-color: #484f58;
+            --action-color: #00e676;
+            --highlight-bg: rgba(0,230,118,0.08);
+            --radius: 10px;
         }
 
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
+        @keyframes ball-bounce {
+            0%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px) scale(1.04); }
+            60% { transform: translateY(2px) scale(0.98); }
+        }
+        @keyframes impact-pulse {
+            0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            70% { box-shadow: 0 0 0 8px transparent; }
+            100% { box-shadow: 0 0 0 0 transparent; }
+        }
+        @keyframes speed-line {
+            from { width: 0; opacity: 0; }
+            to { width: 100%; opacity: 1; }
+        }
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.4; }
+        }
+
         body {
-            background-color: var(--claude-beige);
+            background-color: var(--bg);
             color: var(--claude-text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
             line-height: 1.75;
             margin: 0;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 720px;
-            width: 100%;
-        }
+        .container { max-width: 720px; width: 100%; }
 
         .back-link {
             display: inline-flex;
@@ -44,30 +69,51 @@
             gap: 8px;
             color: var(--claude-sub);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             margin-bottom: 40px;
             transition: color 0.2s;
+            letter-spacing: 0.03em;
         }
         .back-link:hover { color: var(--accent); }
 
         header { margin-bottom: 40px; }
-        h1 { font-size: 2.2rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.02em; }
-        .bio { color: var(--claude-sub); font-size: 1rem; }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+        .bio {
+            color: var(--claude-sub);
+            font-size: 0.92rem;
+        }
 
         /* ==================== 顶部架构图 ==================== */
         .architecture {
-            background: var(--card-bg);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 32px;
             margin-bottom: 56px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .architecture::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--orange), transparent);
+            opacity: 0.7;
         }
 
         .arch-title {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.14em;
             color: var(--accent);
             font-weight: 600;
             margin-bottom: 24px;
@@ -75,15 +121,41 @@
         }
 
         .core-node {
-            background-color: var(--claude-text);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #1a2a1a, #1c2a1c);
+            color: #fff;
+            padding: 18px 32px;
+            border-radius: var(--radius);
             font-weight: 600;
             text-align: center;
             margin-bottom: 20px;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.08em;
+            border: 1px solid rgba(0,230,118,0.25);
+            position: relative;
+            animation: ball-bounce 2.4s ease-in-out infinite;
         }
+        .core-node::before {
+            content: "🏓";
+            position: absolute;
+            left: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            animation: ball-bounce 0.8s ease-in-out infinite;
+            animation-delay: 0.15s;
+        }
+        .core-node::after {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--orange));
+            opacity: 0;
+            z-index: -1;
+            filter: blur(8px);
+            transition: opacity 0.3s;
+        }
+        .core-node:hover::after { opacity: 0.25; }
 
         .node-level {
             display: flex;
@@ -94,53 +166,55 @@
         .pillar-card {
             background-color: var(--node-bg);
             border: 1px solid var(--border);
-            padding: 12px 16px;
-            border-radius: 8px;
+            padding: 14px 16px;
+            border-radius: var(--radius);
             flex: 1;
             text-align: center;
             font-size: 0.85rem;
             color: var(--claude-text);
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.25s;
+            position: relative;
         }
         .pillar-card:hover {
             border-color: var(--accent);
-            background-color: #fff;
+            background-color: var(--surface-raised);
             transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
-        .pillar-card strong { color: var(--accent); display: block; margin-bottom: 2px; }
+        .pillar-card strong { color: var(--accent); display: block; margin-bottom: 2px; font-size: 0.88rem; }
 
         /* ==================== 卡片通用 ==================== */
-        .insight-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
+        .insight-list { display: flex; flex-direction: column; gap: 20px; }
 
         .insight-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: var(--radius);
             overflow: hidden;
-            transition: box-shadow 0.2s, transform 0.2s;
+            transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
         }
         .insight-card:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-            transform: translateY(-3px);
+            border-color: var(--border-strong);
+            background: var(--surface-raised);
+            box-shadow: 0 4px 24px rgba(0,230,118,0.06);
+            animation: impact-pulse 0.8s ease-out;
         }
 
-        .card-header {
-            padding: 22px 26px 0;
-        }
+        .card-header { padding: 22px 26px 0; }
 
         .tag {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--accent);
             font-weight: 700;
             margin-bottom: 8px;
-            display: block;
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(0,230,118,0.15);
         }
 
         /* ==================== details / summary ==================== */
@@ -155,11 +229,11 @@
         summary::-webkit-details-marker { display: none; }
         summary::after {
             content: attr(data-hint);
-            font-size: 0.78rem;
-            color: var(--claude-sub);
+            font-size: 0.76rem;
+            color: var(--filter-color);
             font-style: italic;
         }
-        details[open] summary::after { content: "▲ 收起"; }
+        details[open] summary::after { content: "▲ 收起"; color: var(--accent); }
         details[open] summary .core-text { color: var(--accent); }
 
         .core-statement {
@@ -167,6 +241,7 @@
             font-weight: 600;
             line-height: 1.6;
             padding: 0 26px 18px;
+            color: #fff;
         }
 
         details[open] summary { padding-bottom: 10px; }
@@ -179,18 +254,13 @@
         }
 
         /* ==================== 展开内容区 ==================== */
-        .process-content {
-            padding: 0 26px 22px;
-        }
-
-        .process-section {
-            margin-top: 16px;
-        }
+        .process-content { padding: 0 26px 22px; }
+        .process-section { margin-top: 16px; }
 
         .process-section h4 {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: var(--claude-sub);
             margin: 0 0 8px;
             font-weight: 600;
@@ -202,14 +272,8 @@
             color: var(--claude-text);
             margin: 0;
         }
-
-        .process-section ul {
-            padding-left: 18px;
-        }
-
-        .process-section ul li {
-            margin-bottom: 5px;
-        }
+        .process-section ul { padding-left: 18px; }
+        .process-section ul li { margin-bottom: 5px; }
 
         /* ==================== 对话还原 ==================== */
         .dialogue-block {
@@ -218,17 +282,14 @@
             padding: 14px 18px;
             font-size: 0.88rem;
             line-height: 1.9;
+            border: 1px solid var(--border);
         }
-
-        .dialogue-block .q {
-            color: var(--accent);
-            font-weight: 600;
-        }
+        .dialogue-block .q { color: var(--accent); font-weight: 600; }
         .dialogue-block .q::before { content: "Q："; }
         .dialogue-block .a {
-            color: #333;
+            color: var(--claude-text);
             padding-left: 14px;
-            border-left: 2px solid var(--border);
+            border-left: 2px solid rgba(0,230,118,0.3);
             margin-top: 4px;
         }
         .dialogue-block .a::before {
@@ -239,56 +300,58 @@
 
         /* ==================== 身体感悟 ==================== */
         .aha-block {
-            background: rgba(255, 230, 100, 0.22);
-            border-left: 3px solid #C9A227;
+            background: rgba(255,109,0,0.08);
+            border-left: 3px solid var(--orange);
             padding: 12px 16px;
             border-radius: 0 6px 6px 0;
             font-size: 0.88rem;
         }
         .aha-block::before {
-            content: "💡 身体感悟 / Aha Moment：";
+            content: "⚡ 身体感悟 / Aha Moment：";
             font-weight: 700;
             display: block;
             margin-bottom: 4px;
-            color: #7A6010;
+            color: var(--orange);
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
         }
-        .aha-block p { color: #5A4A10; margin: 0; }
+        .aha-block p { color: #ffd1a3; margin: 0; }
 
         /* ==================== 冗余过滤器 ==================== */
         .redundancy-section {
-            background: #fafafa;
+            background: rgba(240,246,252,0.02);
             border-radius: 6px;
             padding: 12px 16px;
             font-size: 0.85rem;
+            border: 1px solid var(--border);
         }
         .redundancy-section h4 {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #aaa;
+            letter-spacing: 0.1em;
+            color: var(--filter-color);
             margin: 0 0 8px;
         }
         .noise {
-            color: #bbb;
+            color: var(--filter-color);
             text-decoration: line-through;
             margin-bottom: 4px;
             display: block;
         }
         .focus-lens {
-            color: #444;
+            color: var(--claude-text);
             border-left: 2px solid var(--accent);
             padding-left: 10px;
             margin-top: 8px;
         }
         .focus-lens::before {
             content: "✓ ";
-            color: var(--action-color);
+            color: var(--accent);
             font-weight: 700;
         }
 
         /* ==================== 最小化行动 ==================== */
         .actionable-section { margin-top: 14px; }
-
         .action-item {
             display: flex;
             align-items: flex-start;
@@ -299,12 +362,13 @@
         .checkbox {
             width: 15px;
             height: 15px;
-            border: 1.5px solid var(--action-color);
+            border: 1.5px solid var(--accent);
             border-radius: 3px;
             flex-shrink: 0;
             margin-top: 3px;
+            background: rgba(0,230,118,0.06);
         }
-        .action-label { color: #2a7a2a; font-weight: 600; }
+        .action-label { color: var(--accent); font-weight: 600; }
 
         /* ==================== 可迁移场景 ==================== */
         .migration-section {
@@ -313,9 +377,9 @@
             border-top: 1px dashed var(--border);
         }
         .migration-section h4 {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: var(--claude-sub);
             margin: 0 0 8px;
         }
@@ -326,7 +390,7 @@
             position: relative;
         }
         .migration-item::before {
-            content: "→";
+            content: "↳";
             position: absolute;
             left: 0;
             color: var(--accent);
@@ -335,34 +399,36 @@
 
         /* ==================== 错题集 ==================== */
         .error-card {
-            border-left: 4px solid #c0392b;
+            border-left: 3px solid #f85149;
+            box-shadow: inset 3px 0 12px rgba(248,81,73,0.08);
         }
-        .error-card .tag { color: #c0392b; }
-        .error-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .error-card:hover {
+            border-color: #f85149;
+            box-shadow: 0 4px 24px rgba(248,81,73,0.1), inset 3px 0 12px rgba(248,81,73,0.08);
         }
+        .error-card .tag { color: #f85149; background: rgba(248,81,73,0.1); border-color: rgba(248,81,73,0.2); }
+        .error-list { list-style: none; padding: 0; margin: 0; }
         .error-list li {
             font-size: 0.88rem;
             margin-bottom: 8px;
             padding-left: 14px;
-            border-left: 2px solid #e8b4b4;
-            color: #7a2020;
+            border-left: 2px solid rgba(248,81,73,0.3);
+            color: #fda4a3;
         }
 
         /* ==================== 底部说明 ==================== */
         .format-note {
-            background: rgba(217, 119, 87, 0.04);
-            border: 1px solid rgba(217, 119, 87, 0.15);
+            background: rgba(0,230,118,0.04);
+            border: 1px solid rgba(0,230,118,0.12);
             border-radius: 8px;
             padding: 16px 20px;
             margin-bottom: 48px;
-            font-size: 0.85rem;
+            font-size: 0.84rem;
             color: var(--claude-sub);
         }
         .format-note strong { color: var(--accent); }
 
+        /* ==================== 卡片工具按钮 ==================== */
         .card-tools {
             position: absolute;
             top: 14px;
@@ -373,14 +439,14 @@
         }
         .card-shot-btn {
             appearance: none;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid var(--border);
+            background: rgba(22,27,34,0.92);
             color: var(--claude-sub);
             border-radius: 999px;
             padding: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             backdrop-filter: blur(6px);
             display: flex;
             align-items: center;
@@ -389,15 +455,11 @@
         .card-shot-btn svg { width: 16px; height: 16px; }
         .card-shot-btn:hover {
             color: var(--accent);
-            border-color: rgba(217, 119, 87, 0.24);
-            background: #fff;
+            border-color: rgba(0,230,118,0.3);
+            background: var(--surface-raised);
             transform: translateY(-1px);
         }
-        .card-shot-btn:disabled {
-            opacity: 0.6;
-            cursor: wait;
-            transform: none;
-        }
+        .card-shot-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
         .capture-mode .card-tools { display: none !important; }
         .capture-mode { transform: none !important; box-shadow: none !important; }
         .insight-card { position: relative; }
@@ -409,40 +471,32 @@
             border-top: 1px solid var(--border);
             text-align: center;
             color: var(--claude-sub);
-            font-size: 0.82rem;
+            font-size: 0.78rem;
         }
 
         @media (max-width: 600px) {
             body { padding: 24px 12px; }
             .container { overflow-x: hidden; }
-
             h1 { font-size: 1.7rem; }
-
             .architecture { padding: 20px 16px; }
             .arch-title { margin-bottom: 16px; }
             .core-node { padding: 14px 20px; font-size: 0.85rem; }
             .node-level { flex-direction: column; gap: 8px; }
             .pillar-card { padding: 10px 14px; font-size: 0.82rem; }
-
             .format-note { padding: 14px 16px; margin-bottom: 32px; }
-
             .insight-list { gap: 16px; }
-
             .card-header { padding: 16px 16px 0 !important; }
             .card-tools { top: 10px; right: 10px; }
-
             summary { padding: 0 16px 14px; word-break: break-word; }
             summary::after,
             details[open] summary::after { display: none; }
             .core-statement { padding: 0 16px 14px; word-break: break-word; }
             .core-text { word-break: break-word; }
-
             .process-content { padding: 0 16px 16px; }
             .process-section { margin-top: 12px; }
             .process-section p,
             .process-section ul,
             .process-section li { font-size: 0.85rem; }
-
             .dialogue-block { padding: 12px 14px; font-size: 0.85rem; word-break: break-word; }
             .aha-block { padding: 10px 14px; font-size: 0.85rem; }
             .redundancy-section { padding: 10px 14px; font-size: 0.82rem; }
@@ -450,7 +504,6 @@
             .action-item .action-label { word-break: break-word; }
             .migration-item { font-size: 0.85rem; }
             .error-list li { font-size: 0.85rem; }
-
             footer { margin-top: 48px; }
         }
     </style>
@@ -479,9 +532,9 @@
             </div>
             <div class="node-level" style="margin-top:10px;">
                 <a href="#card-errors" class="pillar-card"><strong>错题集</strong>反模式</a>
-                <a class="pillar-card"><strong>踩实释放</strong>正手细节</a>
-                <a class="pillar-card"><strong>反手稳住</strong>正反衔接</a>
-                <a class="pillar-card"><strong>引拍收臂</strong>动作细节</a>
+                <a href="#card-force" class="pillar-card"><strong>踩实释放</strong>正手细节</a>
+                <a href="#card-frame" class="pillar-card"><strong>反手稳住</strong>正反衔接</a>
+                <a href="#card-timing" class="pillar-card"><strong>引拍收臂</strong>动作细节</a>
             </div>
         </div>
 
@@ -1581,14 +1634,14 @@
         async function renderCard(card) {
             card.classList.add('capture-mode');
             const canvas = await html2canvas(card, {
-                backgroundColor: '#F9F8F6', scale: SCALE, useCORS: true, logging: false,
+                backgroundColor: '#0d1117', scale: SCALE, useCORS: true, logging: false,
                 scrollX: 0, scrollY: -window.scrollY,
                 windowWidth: document.documentElement.scrollWidth,
                 windowHeight: document.documentElement.scrollHeight,
                 onclone: function(doc) {
                     const cc = doc.querySelector('.insight-card.capture-mode');
-                    if (cc) { cc.style.backgroundColor = '#F9F8F6'; cc.style.background = '#F9F8F6'; }
-                    doc.querySelectorAll('.process-section, .core-text').forEach(el => { el.style.backgroundColor = '#F9F8F6'; });
+                    if (cc) { cc.style.backgroundColor = '#0d1117'; cc.style.background = '#0d1117'; }
+                    doc.querySelectorAll('.process-section, .core-text').forEach(el => { el.style.backgroundColor = '#0d1117'; });
                 }
             });
             card.classList.remove('capture-mode');

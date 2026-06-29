@@ -178,6 +178,8 @@
             white-space: nowrap;
             font-size: 0.88rem;
         }
+        details[open] .summary-toggle::after { content: " 收起"; }
+        details:not([open]) .summary-toggle::after { content: " 展开"; }
 
         .resume-detail {
             padding: 0 18px 18px;
@@ -264,7 +266,7 @@
                                         <div class="summary-meta">测试开发工程师 · 2025.05 — 至今</div>
                                         <div class="summary-highlight">参与并落地 AI Prompt Engineering 用例生成流水线，覆盖 5000+ 用例。</div>
                                     </div>
-                                    <div class="summary-toggle">展开 / 收起</div>
+                                    <div class="summary-toggle"></div>
                                 </div>
                             </summary>
                             <div class="resume-detail">
@@ -286,7 +288,7 @@
                                         <div class="summary-meta">测试开发工程师 · 2020.10 — 2025.05</div>
                                         <div class="summary-highlight">负责酒店查询与定价服务工具链、日志解析比对工具与质量工程，发布流程效率提升 50%。</div>
                                     </div>
-                                    <div class="summary-toggle">展开 / 收起</div>
+                                    <div class="summary-toggle"></div>
                                 </div>
                             </summary>
                             <div class="resume-detail">
@@ -308,7 +310,7 @@
                                         <div class="summary-meta">测试开发工程师 · 2017.07 — 2020.10</div>
                                         <div class="summary-highlight">负责华为云空间客户端功能测试与安卓自动化补充，覆盖云相册、文件管理等客户端场景。</div>
                                     </div>
-                                    <div class="summary-toggle">展开 / 收起</div>
+                                    <div class="summary-toggle"></div>
                                 </div>
                             </summary>
                             <div class="resume-detail">
